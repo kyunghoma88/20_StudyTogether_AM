@@ -31,7 +31,7 @@ public class LectorUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int no=Integer.parseInt(request.getParameter("no"));
+		int no=Integer.parseInt(request.getParameter("pNo"));
 		Lector l=new LectorService().selectLector(no);
 		
 		request.setAttribute("lector", l);

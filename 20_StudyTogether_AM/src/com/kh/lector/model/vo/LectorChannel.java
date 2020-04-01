@@ -14,7 +14,7 @@ public class LectorChannel {
 	 private String channelRenamedVideo;
 	 private Date ChannelEnrollDate;
 	 private int channelLevel;
-	 private String channel_assign;
+	 private String channelAssign;
 	 
 	 
 	public LectorChannel() {
@@ -24,7 +24,7 @@ public class LectorChannel {
 
 	public LectorChannel(int channelNo, int channelNoRef, String channelTitle, String channelWriter,
 			String channelDetail, int channelPrice, String channelOriginalVideo, String channelRenamedVideo,
-			Date channelEnrollDate, int channelLevel, String channel_assign) {
+			Date channelEnrollDate, int channelLevel, String channelAssign) {
 		super();
 		this.channelNo = channelNo;
 		this.channelNoRef = channelNoRef;
@@ -36,7 +36,7 @@ public class LectorChannel {
 		this.channelRenamedVideo = channelRenamedVideo;
 		ChannelEnrollDate = channelEnrollDate;
 		this.channelLevel = channelLevel;
-		this.channel_assign = channel_assign;
+		this.channelAssign = channelAssign;
 	}
 
 
@@ -78,6 +78,7 @@ public class LectorChannel {
 	public void setChannelWriter(String channelWriter) {
 		this.channelWriter = channelWriter;
 	}
+
 
 	public String getChannelDetail() {
 		return channelDetail;
@@ -139,13 +140,13 @@ public class LectorChannel {
 	}
 
 
-	public String getChannel_assign() {
-		return channel_assign;
+	public String getChannelAssign() {
+		return channelAssign;
 	}
 
 
-	public void setChannel_assign(String channel_assign) {
-		this.channel_assign = channel_assign;
+	public void setChannelAssign(String channelAssign) {
+		this.channelAssign = channelAssign;
 	}
 
 
@@ -155,8 +156,10 @@ public class LectorChannel {
 				+ channelTitle + ", channelWriter=" + channelWriter + ", channelDetail=" + channelDetail
 				+ ", channelPrice=" + channelPrice + ", channelOriginalVideo=" + channelOriginalVideo
 				+ ", channelRenamedVideo=" + channelRenamedVideo + ", ChannelEnrollDate=" + ChannelEnrollDate
-				+ ", channelLevel=" + channelLevel + ", channel_assign=" + channel_assign + "]";
+				+ ", channelLevel=" + channelLevel + ", channelAssign=" + channelAssign + "]";
 	}
+
 	
+
 
 }

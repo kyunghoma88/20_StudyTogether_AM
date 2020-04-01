@@ -32,7 +32,7 @@ public class LectorViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int no=Integer.parseInt(request.getParameter("pno"));
+		int no=Integer.parseInt(request.getParameter("pNo"));
 		
 		///////////////LectorChannel lc=new LectorService().selectChannel(no);
 		//lectorChannelRefNo를 이용하여 엄마강좌의 자기자식만 출력할것임
@@ -57,6 +57,7 @@ public class LectorViewServlet extends HttpServlet {
 		///lectorView에서 채널  리스트로불러오는 메서드->페이징처리위해
 		List<LectorChannel> clist=new LectorService().searchChannel(no,cPage,numPerPage);
 		//channelRefNo를 이용하여 (엄마강좌번호)로 자식들 list로 출력 
+		System.out.println("lectorView"+clist.size());
 		
 		//pageBar만들기
 		int RefTotalChannel=new LectorService().channelCount(no);//엄마강좌의 pNo를 가지고 그에대한 자식들의 총갯수

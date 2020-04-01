@@ -22,10 +22,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 @WebServlet("/lector/lectorChannelOpenEnd")
 public class ChannelOpenEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ChannelOpenEndServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -56,25 +53,22 @@ public class ChannelOpenEndServlet extends HttpServlet {
 		
 		LectorChannel lc=new LectorChannel(0,noRef,title,writer,detail,price,oriFile,renameFile,null,0,null);
 		int result=new LectorService().insertChannelLector(lc);
-		System.out.println(result);
+		
+		//LectorChannel lc2=new LectorService().selectChannel(noRef);
 		String msg="";
 		String loc="";
 		
 		if(result>0) {
 			msg="등록 완료";
-			loc="/lector/lectorList";
+			loc="/lector/lectorView?pNo="+noRef;
 		}
 		else {
 			msg="등록 실패";
-			loc="/lector/lector/lectorView?no="+noRef;
-			
+			loc="/lector/lectorView?pNo="+noRef;
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
-
 	}
 
 	/**

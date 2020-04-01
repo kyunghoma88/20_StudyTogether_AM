@@ -27,7 +27,6 @@ public class ChannelViewServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
 //자식강좌 단일출력 및 목록구성하는 서블릿
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -44,17 +43,16 @@ public class ChannelViewServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		int numPerPage=5;
+		int numPerPage=10;
 		
 		///목록구성 : pNo=lectoNo,cNo=channelNo가지고 lectorChannelList을 출력해주는 메서드(페이징처리에 사용)
-		List<LectorChannel> clist=new LectorService().searchChannel(pNo,cNo,cPage,numPerPage);
+		List<LectorChannel> clist=new LectorService().searchChannel(pNo,cPage,numPerPage);
+		System.out.println("사이즈!!:"+clist.size());
+		
 		
 		//단일 채널:채널의 특정강좌 1개 출력메서드
 		LectorChannel lc1=new LectorService().selectChannel(pNo,cNo);
 
-		
-		
-		
 		//pageBar만들기
 		int RefTotalChannel=new LectorService().channelCount(pNo);
 		int totalPage=(int)Math.ceil((double)RefTotalChannel/numPerPage);//2

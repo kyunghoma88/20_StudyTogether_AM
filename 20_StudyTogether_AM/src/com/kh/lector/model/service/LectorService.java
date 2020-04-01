@@ -128,8 +128,32 @@ public class LectorService {
 		close(conn);
 		return result;
 	}
+
+	public LectorChannel selectChannel2(int cNo) {
+		Connection conn=getConnection();
+		LectorChannel lc=dao.selectChannel2(conn,cNo);
+		close(conn);
+		return lc;
+	}
+
+	//자식강좌 수정메서드
+	public int updateChannel(LectorChannel lc) {
+		Connection conn=getConnection();
+		int result=dao.updateChannel(conn,lc);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteChannel(int pNo, int cNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteChannel(conn,pNo,cNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 	
 
-	
 
 }
