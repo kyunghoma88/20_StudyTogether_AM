@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<%@ page import="com.kh.review.model.vo.ReviewStudy" %>
+<%@ page import="com.kh.review.model.vo.ReviewLecture" %>
 <%
-	ReviewStudy revS = (ReviewStudy)request.getAttribute("reviewStudy");
+	ReviewLecture revL = (ReviewLecture)request.getAttribute("reviewLecture");
 %>
 <style>
 #revWTitle{
@@ -47,21 +47,21 @@ table.revWrite td {
     align: center;
 }
 </style>
-<form action="<%=request.getContextPath() %>/review/reviewStudyUpdateEnd">
+<form action="<%=request.getContextPath() %>/review/reviewLectureUpdateEnd">
 <br>
-<h2 style="text-align:center"><%=revS.getStudyName() %><input type="hidden" name="allStudy" value="<%=revS.getStudyName()%>" readonly required></h2>
+<h2 style="text-align:center"><%=revL.getLectureName() %><input type="hidden" name="allStudy" value="<%=revL.getLectureName()%>" readonly required></h2>
 <br>
-<input type="hidden" name="no" value=<%=revS.getReviewStuNo() %>>
+<input type="hidden" name="no" value=<%=revL.getReviewLecNo() %>>
    <table class="revWrite">
       <tr>
         <td style="text-align: center;">작성자</td>
-        <td><%=revS.getReviewStuWriter() %><input type="hidden" name="writer" value="<%=loginMember.getUserId()%>" readonly required/></td>
+        <td><%=revL.getReviewLecWriter() %><input type="hidden" name="writer" value="<%=loginMember.getUserId()%>" readonly required/></td>
        </tr>
        
         <tr>
           <td style="text-align: center;">분야</td>
           <td><select name="field" > 
-            <option value="<%=revS.getReviewStuCategory() %>"><%=revS.getReviewStuCategory() %></option>
+            <option value="<%=revL.getReviewLecCategory() %>"><%=revL.getReviewLecCategory() %></option>
             <optgroup label="어학,회화">
                 <option value="불어">불어</option>
                 <option value="스페인어">스페인어</option>
@@ -112,11 +112,11 @@ table.revWrite td {
         </tr>
         <tr>
             <td style="text-align: center;">만족도</td>
-           <td><%=revS.getReviewStuStar()%><input type="hidden" name="star" value="<%=revS.getReviewStuStar()%>" readonly required></td>
+           <td><%=revL.getReviewLecStar()%><input type="hidden" name="star" value="<%=revL.getReviewLecStar()%>" readonly required></td>
         </tr>
         <tr>
            <td style="text-align: center;">내용</td>
-           <td style="height:auto"><textarea name="content" cols=55 rows=10 style="resize:none;"><%=revS.getReviewStuContent() %></textarea></td>
+           <td style="height:auto"><textarea name="content" cols=55 rows=10 style="resize:none;"><%=revL.getReviewLecContent() %></textarea></td>
         </tr>
           
    </table>
@@ -139,7 +139,7 @@ table.revWrite td {
   
           function cancelChk(){
              if (confirm("정말 취소하시겠습니까??") == true){    //확인
-                   location.replace("<%=request.getContextPath()%>/review/reviewStudyView?no=<%=revS.getReviewStuNo()%>");
+                   location.replace("<%=request.getContextPath()%>/review/reviewStudyView?no=<%=revL.getReviewLecNo()%>");
                }else{   //취소
                   return false;
                }

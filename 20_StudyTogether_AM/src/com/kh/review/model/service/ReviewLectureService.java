@@ -2,12 +2,15 @@ package com.kh.review.model.service;
 
 import static com.kh.common.JDBCTemplate.close;
 import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.kh.review.model.dao.ReviewLectureDao;
 import com.kh.review.model.vo.ReviewLecture;
+
 
 
 public class ReviewLectureService {
@@ -25,6 +28,30 @@ public class ReviewLectureService {
 		List<ReviewLecture> list = dao.selectReviewLecture(conn,cPage,numPerPage);
 		close(conn);
 		return list;
+	}
+
+	public ReviewLecture searchReviewLecture(int no) {
+		Connection conn = getConnection();
+		ReviewLecture revL = dao.searchReviewLecture(conn,no);
+		close(conn);
+		return revL;
+	}
+
+	public int updateReviewLecture(ReviewLecture revL) {
+		Connection conn = getConnection();
+		int result = dao.updateReviewLecture(conn,revL);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+
+	public int deleteReviewLecture(int no) {
+		Connection conn=getConnection();
+		int result=dao.deleteReviewLecture(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
 	}
 
 }
