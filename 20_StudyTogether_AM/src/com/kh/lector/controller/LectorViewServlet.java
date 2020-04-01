@@ -57,7 +57,6 @@ public class LectorViewServlet extends HttpServlet {
 		///lectorView에서 채널  리스트로불러오는 메서드->페이징처리위해
 		List<LectorChannel> clist=new LectorService().searchChannel(no,cPage,numPerPage);
 		//channelRefNo를 이용하여 (엄마강좌번호)로 자식들 list로 출력 
-		System.out.println("lectorView"+clist.size());
 		
 		//pageBar만들기
 		int RefTotalChannel=new LectorService().channelCount(no);//엄마강좌의 pNo를 가지고 그에대한 자식들의 총갯수
@@ -76,7 +75,7 @@ public class LectorViewServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link'>이전</a></li>";
 			
 		}else{
-			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+(pageNo-1)+"&pNo="+no+"'>이전</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+(pageNo-1)+"&pNo="+no+"'>이전</a>";
 
 		}
 		
@@ -85,7 +84,7 @@ public class LectorViewServlet extends HttpServlet {
 			if(pageNo==cPage) {
 				pageBar+="<li class='page-item'><a class='page-link'  style='background-color: lightblue; color:black; '>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+pageNo+"&pNo="+no+"'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+pageNo+"&pNo="+no+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -93,7 +92,7 @@ public class LectorViewServlet extends HttpServlet {
 		
 				pageBar+="<li class='page-item'><a class='page-link'>다음</a></li>";
 			}else  {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+pageNo+"&pNo="+no+"'>다음</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+pageNo+"&pNo="+no+"'>다음</a>";
 			}
 		
 		String msg="";

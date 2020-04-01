@@ -47,7 +47,6 @@ public class ChannelViewServlet extends HttpServlet {
 		
 		///목록구성 : pNo=lectoNo,cNo=channelNo가지고 lectorChannelList을 출력해주는 메서드(페이징처리에 사용)
 		List<LectorChannel> clist=new LectorService().searchChannel(pNo,cPage,numPerPage);
-		System.out.println("사이즈!!:"+clist.size());
 		
 		
 		//단일 채널:채널의 특정강좌 1개 출력메서드
@@ -75,6 +74,7 @@ public class ChannelViewServlet extends HttpServlet {
 		}else {
 			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+(pageNo-1)+"&pNo="+pNo+"&cNo="+cNo+"'>이전</a>";
 		}
+//////////////while문의 조건식을 어떻게 줘야할까???????????????????????		
 		while(!(pageNo>pageEnd || pageNo>totalPage)) {
 			if(pageNo==cPage&&pNo==lc1.getChannelNoRef()&&cNo==lc1.getChannelNo()) {
 				pageBar+="<li class='page-item'><a class='page-link'  style='background-color: lightblue; color:black; '>"+pageNo+"</a></li>";
@@ -83,10 +83,11 @@ public class ChannelViewServlet extends HttpServlet {
 			}
 			pageNo++;
 		}
+		
 		if(pageNo>totalPage) {
 				pageBar+="<li class='page-item'><a class='page-link'>다음</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+(pageNo)+"&pNo="+pNo+"&cNo="+cNo+"'>다음</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+pageNo+"&pNo="+pNo+"&cNo="+cNo+"'>다음</a>";
 			}
 		String msg="";
 		String loc="";

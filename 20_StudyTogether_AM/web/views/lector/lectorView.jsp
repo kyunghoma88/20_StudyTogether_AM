@@ -57,11 +57,11 @@ background-color:#ffc107;
 	}%>
   </div>
 </div>
-
+<%if(!clist.isEmpty()){ %>
  	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
- 
+ <%} %>
 <style>
 	.pagination{
 		margin-left:600px;

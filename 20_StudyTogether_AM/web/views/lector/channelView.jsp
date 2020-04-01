@@ -57,10 +57,11 @@
 		}%>
   	</div>
 </div>
+<%if(!clist.isEmpty()){ %>
 	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul>
-	
+<%} %>
 </section>
 <style>
 .pagination{
