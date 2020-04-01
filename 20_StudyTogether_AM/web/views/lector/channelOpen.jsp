@@ -26,7 +26,7 @@ button{
 }
 
 </style>
-
+test
      <h2>강좌 등록</h2><br>
    <form id="regFrm" action="<%=request.getContextPath()%>/lector/lectorChannelOpenEnd" method="post" enctype="multipart/form-data">
     	<input type="hidden" name="no" value="<%=l.getLectorNo() %>" />
