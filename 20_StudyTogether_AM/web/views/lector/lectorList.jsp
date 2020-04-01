@@ -16,40 +16,99 @@
     <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
   </div>
   	<div id=title>강좌 스터디 찾기 </div>
+	
 	<div class="main_list">
 	 <!-- 상단 제목 -->
 	<div class="main_title">
+	
       <!-- 카테고리 -->
      <select id="searchType" > 
-     	<option value="all">전체</option>
+     	<option value="all" <%=type!=null&&type.equals("all")?"selected":"" %>>전체</option>
      	 <optgroup label="어학,회화">
-          <option value="영어">영어</option>
-          <option value="일본어">일본어</option>
-          <option value="스페인어">스페인어</option>
-          <option value="불어">불어</option>
-          <option value="기타">기타</option>
+          <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
+          <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
+          <option value="스페인어" <%=type!=null&&type.equals("스페인어")?"selected":"" %>>스페인어</option>
+          <option value="불어" <%=type!=null&&type.equals("불어")?"selected":"" %>>불어</option> --%>
       </optgroup>
-      <optgroup label="자격증">
-          <option value="제빵">제빵</option>
-          <option value="정보처리기사" >정보처리기사</option>
-          <option value="컴퓨터활용">컴퓨터활용</option>
-          <option value="토익" >토익</option>
-          <option value="기타" >기타</option>
+       <optgroup label="자격증">
+          <option value="제빵" <%=type!=null&&type.equals("제빵")?"selected":"" %>>제빵</option>
+          <option value="정보처리기사" <%=type!=null&&type.equals("정보처리기사")?"selected":"" %>>정보처리기사</option>
+          <option value="컴퓨터활용" <%=type!=null&&type.equals("컴퓨터활용")?"selected":"" %>>컴퓨터활용</option>
+          <option value="토익" <%=type!=null&&type.equals("토익")?"selected":"" %>>토익</option>
       </optgroup>
 
       <optgroup label="IT">
-          <option value="알고리즘" >알고리즘</option>
-          <option value="데이터베이스" >데이터베이스</option>
-          <option value="자바프로그래밍">자바프로그래밍</option>
-          <option value="기타" >기타</option>
+          <option value="알고리즘" <%=type!=null&&type.equals("알고리즘")?"selected":"" %>>알고리즘</option>
+          <option value="데이터베이스" <%=type!=null&&type.equals("데이터베이스")?"selected":"" %>>데이터베이스</option>
+          <option value="자바프로그래밍" <%=type!=null&&type.equals("자바프로그래밍")?"selected":"" %>>자바프로그래밍</option>
       </optgroup>
       </select>
-      <button type="submit">검색</button>
       
+   <%--    <div id="search-all">
+			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
+				<input type="hidden" name="searchType" value="전체"/>
+				<input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("all")?keyword:""%>" size="25" placeholder="검색할 아이디 입력"/>
+				<button type="submit">검색</button>
+			</form>
+		</div>
+      
+      <div id="search-Eng">
+			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
+				<input type="hidden" name="searchType" value="영어"/>
+				<input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("영어")?keyword:""%>" size="25" placeholder="검색할 아이디 입력"/>
+				<button type="submit">검색</button>
+			</form>
+		</div>
+		
+
+      <div id="search-Jap">
+			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
+				<input type="hidden" name="searchType" value="일본어"/>
+				<input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("일본어")?keyword:""%>" size="25" placeholder="검색할 아이디 입력"/>
+				<button type="submit">검색</button>
+			</form>
+		</div>
+		 --%>
+		
+   </div>
+  </div>
+<script>
+//온로드
+	$(function(){
+		$("#searchType").change(()=>{
+			//select가 변경됐을때 change함수 이용
+			let type=$("#searchType").val();
+			//userName,userId,gender 값받기
+			
+			let all=$("#search-all");
+			let eng=$("#search-Eng");
+			let jap=$("#search-Jap");
+			all.hide();//다 닫힌다
+			eng.hide();//다 닫힌다
+			jap.hide(); //다 닫힌다
+			
+			$("#search-"+type).css("display","inline-block");
+		})
+		$("#searchType").trigger("change");//trigger(강제실행)(change)먼저 실행하고 위에 함수 실행
+	})
+
+
+//** jQuery show() , hide(), toggle() 사용법
+/*
+ $("#tagId").show(); -> display속성을 block으로 바꾼다.
+ $("#tagId").hide(); -> display속성을 none으로 바꾼다.
+ $("#tagId").toggle(); -> show->"hide" hide->"show"
+ */
+</script>
+
+
+
+
+
+
 
   <!-- 리스트 -->
-</div>
-</div>
+
 <%if(list.isEmpty()){ %>
 	<div class="list_start">
 		<h3>검색된 강좌가 없습니다.</h3>

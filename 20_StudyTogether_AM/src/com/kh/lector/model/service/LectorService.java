@@ -11,6 +11,7 @@ import java.util.List;
 import com.kh.lector.model.dao.LectorDao;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
+import com.kh.member.model.vo.Member;
 
 public class LectorService {
 
@@ -151,6 +152,20 @@ public class LectorService {
 		int result=dao.deleteChannel(conn,pNo,cNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		return result;
+	}
+
+	public List<Lector> searchLectorPage(int cPage, int numPerPage, String type, String key) {
+		Connection conn=getConnection();
+		List<Lector> list=dao.searchLectorPage(conn,cPage,numPerPage,type,key);
+		close(conn);
+		return list;
+	}
+
+	public int lectorCount(String type, String key) {
+		Connection conn=getConnection();
+		int result=dao.lectorCount(conn,type,key);
+		close(conn);
 		return result;
 	}
 	

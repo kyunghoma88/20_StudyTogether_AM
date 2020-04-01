@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
+import com.kh.member.model.vo.Member;
 
 public class LectorDao {
 
@@ -508,8 +509,64 @@ public class LectorDao {
 		}
 		return result;
 	}
+	public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage, String type, String key) {
+		
+		Statement stmt=null;
+		ResultSet rs=null;
+		String sql="SELECT * FROM (SELECT ROWNUM AS RNUM,A.* FROM "
+				+"(SELECT * FROM LECTOR WHERE "+type+" LIKE '%"+key+"%' ORDER BY LECTOR_DATE)A)" 
+			+" WHERE RNUM BETWEEN " +((cPage-1)*numPerPage+1)+" AND "+(cPage*numPerPage);	
+		//띄어쓰기 주의할것 LIKE 양 옆도 꼭 띄어주기
+		List<Lector> list=new ArrayList();
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()) {
+				Lector l=new Lector();
+				l.setLectorNo(rs.getInt("lector_no"));
+				l.setLectorTitle(rs.getString("lector_title"));
+				l.setLectorWriter(rs.getString("lector_writer"));
+				l.setLectorCategory(rs.getString("lector_category"));
+				l.setLectorDetail(rs.getString("lector_detail"));
+				l.setLectorPrice(rs.getInt("lector_price"));
+				l.setLectorOriginalImg(rs.getString("lector_original_img"));
+				l.setLectorRenamedImg(rs.getString("lector_renamed_img"));
+				l.setLectorOriginalVideo("lector_original_video");
+				l.setLectorRenamedVideo("lector_renamed_video");
+				l.setLectorDate(rs.getDate("lector_date"));
+				l.setLectorAssign(rs.getString("lector_assign"));
+				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}return list;
+		}
+	public int lectorCount(Connection conn, String type, String key) {
+		Statement stmt=null;
+		ResultSet rs=null;
+		String sql="SELECT COUNT(*) as cnt FROM LECTOR WHERE "+type+" LIKE '%"+key+"%'";
+		int result=0;
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			if(rs.next()) result=rs.getInt("cnt");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return result;
+		}
 
-	
 
 
 }
+		
+	
+
+
+
