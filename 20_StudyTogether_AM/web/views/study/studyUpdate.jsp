@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import=com.kh.study.model.vo.Study %>
+<%
+	Study s=(Study)request.getAttribute("s");
+
+%>	
+	
 <%@ include file="/views/common/header.jsp"%>
 
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lecStuOpen.css" type="text/css"/>
@@ -9,8 +15,8 @@
          <table class="openWrite">
                  <tr>
                      <td>스터디<br>이름</td>
-                     <td>개설자<input type="text" name="studyWriter" value=""></td>
-                     <td>스터디명<input type = "text" name = "studyName" size=50> </td>
+                     <td>개설자<input type="text" name="studyWriter" value="<%=s.getStudyWriter()%>"></td>
+                     <td>스터디명<input type = "text" name = "studyName" value="<%=s.getStudyName()%>"size=50> </td>
                  </tr>
                  <tr>
                      <td> 희망 지역</td>
@@ -25,7 +31,6 @@
                              <option value="홍대">홍대</option>
                          </optgroup>
                          <optgroup label="경기도">   
-                             <option value="남양주">남양주</option>
                              <option value="수원">수원</option>
                              <option value="안산">안산</option>
                              <option value="안양">안양</option>
@@ -84,7 +89,6 @@
                              <option value="토익">토익</option>
                              <option value="자격증 기타">자격증 기타</option>
                          </optgroup>
-             
                          <optgroup label="취미">
                              <option value="공예">공예</option>
                              <option value="맛집탐방">맛집탐방</option>

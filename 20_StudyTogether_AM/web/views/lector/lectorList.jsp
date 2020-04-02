@@ -23,7 +23,7 @@
 	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
      <select id="searchType" name="searchType">
-     	<option value="all" <%=type!=null&&type.equals("all")?"selected":"" %>>전체</option>
+     	<option value="전체" <%=type!=null&&type.equals("전체")?"selected":"" %>>전체</option>
      	  <optgroup label="어학,회화">
           <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
           <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
@@ -76,7 +76,7 @@
   </div>
 <script>
 
-	$(function(){
+	/* $(function(){
 		$("#searchType").change(()=>{
 			//select가 변경됐을때 change함수 이용
 			let type=$("#searchType").val();
@@ -92,7 +92,7 @@
 			$("#search-"+type).css("display","inline-block");
 		})
 		$("#searchType").trigger("change");//trigger(강제실행)(change)먼저 실행하고 위에 함수 실행
-	})
+	}) */
 
 
 //** jQuery show() , hide(), toggle() 사용법

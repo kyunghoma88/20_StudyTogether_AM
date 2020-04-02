@@ -63,7 +63,7 @@ public class LectorDao {
 		return list;
 	}
 
-	//총 로우수 받아오는 메서드
+	//총 로우수 받아오는 메서드////////////////////////////
 	public int lectorCount(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -81,6 +81,25 @@ public class LectorDao {
 		}
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {
