@@ -65,7 +65,7 @@
       <%} %>
 		<button onclick="location.href='<%=request.getContextPath()%>/member/memberView'" class="main2">내정보보기</button>
          
-		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView'" class="main2">장바구니</button>                                                                             
+		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView?id=<%=loginMember.getUserId() %>'" class="main2">장바구니</button>                                                                             
      
 		<button onclick="location.replace('<%=request.getContextPath()%>/logout.do')" class="main2">로그아웃</button>
    <%} %>
