@@ -34,64 +34,20 @@ public class LectorFinderServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String type=request.getParameter("searchType");
 		String key=request.getParameter("searchKeyword");
-		System.out.println(type);
-		System.out.println(key);
+		System.out.println("카테고리 :"+type);
+		System.out.println("키워드:"+key);
 		
-		int cPage;
-		try {
-			cPage=Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
-		int numPerPage=12;
 		
-		List<Lector> list=new LectorService().searchLectorPage(cPage,numPerPage,type,key);
-
-		int totalLector=new LectorService().lectorCount(type,key);
+		List<Lector> list=new LectorService().searchLectorPage(type,key);
 		
-		int totalPage=(int)Math.ceil((double)totalLector/numPerPage);
-		int pageBarSize=5;
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;//얘가 제일 중요함
-		int pageEnd=pageNo+pageBarSize-1;
-		
-		String pageBar="";
-		
-		if(pageNo==1) {
-			pageBar+="<span>[이전]</이전>";
-		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/lector/lectorList?cPage="+(pageNo-1)+
-					"&searchType="+type+""
-					+ "&searchKeyword="+key+"'>[이전]</a>";
-		}
-		
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
-			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/lector/lectorFinder?cPage="
-						+pageNo+"&searchType="+type+"&searchKeyword="+key+"'>"+pageNo+"</a>";
-				/*pageBar+="<a href='"+request.getContextPath()+"/admin/memberFinder?cPage="+pageNo
-							+"&searchType="+type+"&searchKeyword="+key+"'>"+pageNo+"</a>";*/
-			}
-			pageNo++;
-		}
-		
-		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
-		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/lector/lectorFinder?cPage="
-					+pageNo+"&searchType="+type+"&searchKeyword="+key+"'>[다음]</a>";
-			/*pageBar+="<a href='"+request.getContextPath()
-			+"/admin/memberFinder?cPage="+pageNo
-					+ "&searchType="+type+""
-							+ "&searchKeyword="+key+"'>[다음]</a>*/
-		}
+		System.out.println(list);
+	
 		
 		
 
 		request.setAttribute("list", list);
-		request.setAttribute("pageBar", pageBar);
-		request.getRequestDispatcher("/views/lector/lectorList.jsp").forward(request, response);
+		request.setAttribute("key",key);
+		request.getRequestDispatcher("/views/lector/lectorFinder.jsp").forward(request, response);
 		
 		
  	}

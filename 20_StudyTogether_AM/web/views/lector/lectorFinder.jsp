@@ -7,29 +7,31 @@
 
 <%
 	List<Lector> list=(List)request.getAttribute("list");
+	String key=(String)request.getAttribute("key");
+
 	String type=request.getParameter("searchType");
 	String keyword=request.getParameter("searchKeyword");
- 	int cPage=(int)request.getAttribute("cPage");
 %>
 <section>
   <div class="make">
     <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
   </div>
   	<div id=title>강좌 스터디 찾기 </div>
+  	<h3> 검색 결과 입니다.</h3>
 	
 	<div class="main_list">
 	 <!-- 상단 제목 -->
-	<div class="main_title">
+		<div class="main_title">
 	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
-     <select id="searchType" name="searchType">
+     <select id="searchType" name="searchType"> 
      	<option value="all" <%=type!=null&&type.equals("all")?"selected":"" %>>전체</option>
      	  <optgroup label="어학,회화">
           <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
           <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
           <option value="스페인어" <%=type!=null&&type.equals("스페인어")?"selected":"" %>>스페인어</option>
-          <option value="불어" <%=type!=null&&type.equals("불어")?"selected":"" %>>불어</option>
-      	</optgroup>
+          <option value="불어" <%=type!=null&&type.equals("불어")?"selected":"" %>>불어</option> --%>
+      </optgroup>
        <optgroup label="자격증">
           <option value="제빵" <%=type!=null&&type.equals("제빵")?"selected":"" %>>제빵</option>
           <option value="정보처리기사" <%=type!=null&&type.equals("정보처리기사")?"selected":"" %>>정보처리기사</option>
@@ -43,10 +45,9 @@
       </optgroup>
       </select>
       
-       <input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("searchKeyword")?keyword:""%>">
-     <input type="submit" value="검색">
+      <input type="text" name="searchKeyword" value="<%=request.getAttribute("key")%>">
+      <input type="submit" value="검색">
      </form>
- 
    <%--    <div id="search-all">
 			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
 				<input type="hidden" name="searchType" value="전체"/>
@@ -72,10 +73,11 @@
 			</form>
 		</div>
 		 --%>
+		
    </div>
   </div>
 <script>
-
+//온로드
 	$(function(){
 		$("#searchType").change(()=>{
 			//select가 변경됐을때 change함수 이용
@@ -131,9 +133,9 @@
   <%}
 	}%>
 </div>
-	 <ul class="pagination">
+	 <%-- <ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
-	</ul> 
+	</ul>  --%>
 </section>
 	
 <script>
