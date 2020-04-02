@@ -32,7 +32,7 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userId = request.getParameter("userId");
+		String userId = request.getParameter("id");
 		List<Cart> list = new CartService().searchCart(userId);
 		
 		request.setAttribute("list", list);
