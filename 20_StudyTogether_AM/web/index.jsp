@@ -83,7 +83,7 @@
     <div class="third">third</div>
 </div>
 <div class="container1">
-  <button type="button" class="btn btn-danger" onClick="location.href='강좌 스터디 목록.html'">더 많은 강좌 보러가기</button>
+  <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'">더 많은 강좌 보러가기</button>
 </div>
 <script>
 

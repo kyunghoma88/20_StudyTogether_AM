@@ -62,6 +62,9 @@ background-color:#ffc107;
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
  <%} %>
+ 
+ 
+ 
 <style>
 	.pagination{
 		margin-left:600px;

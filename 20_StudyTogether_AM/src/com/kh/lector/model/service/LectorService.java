@@ -168,6 +168,13 @@ public class LectorService {
 		close(conn);
 		return result;
 	}
+
+	public List<Lector> searchLectorPage(String type, String key) {
+		Connection conn=getConnection();
+		List<Lector> list=dao.searchLectorPage(conn,type,key);
+		close(conn);
+		return list;
+	}
 	
 
 
