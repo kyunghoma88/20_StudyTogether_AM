@@ -46,11 +46,6 @@
        <input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("searchKeyword")?keyword:""%>">
      <input type="submit" value="검색">
      </form>
-      
- 
- 
- 
- 
  
    <%--    <div id="search-all">
 			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
@@ -77,11 +72,10 @@
 			</form>
 		</div>
 		 --%>
-		
    </div>
   </div>
 <script>
-//온로드
+
 	$(function(){
 		$("#searchType").change(()=>{
 			//select가 변경됐을때 change함수 이용

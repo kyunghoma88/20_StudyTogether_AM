@@ -48,12 +48,6 @@
       <input type="text" name="searchKeyword" value="<%=request.getAttribute("key")%>">
       <input type="submit" value="검색">
      </form>
-      
- 
- 
- 
- 
- 
    <%--    <div id="search-all">
 			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
 				<input type="hidden" name="searchType" value="전체"/>
