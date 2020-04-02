@@ -61,7 +61,7 @@ table.revWrite td {
         <tr>
           <td style="text-align: center;">분야</td>
           <td><select name="field" > 
-            <option value="<%=revS.getReviewStuCategory() %>"><%=revS.getReviewStuCategory() %></option>
+            <option value="<%=revS.getReviewStuCategory() %>"></option>
             <optgroup label="어학,회화">
                 <option value="불어">불어</option>
                 <option value="스페인어">스페인어</option>

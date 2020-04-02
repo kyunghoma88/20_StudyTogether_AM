@@ -8,12 +8,16 @@
  //cookie값 받아오기
    Cookie[] cookies = request.getCookies();
    String saveId=null;
+   String keeplogin=null;
    if(cookies != null){
       for(Cookie c : cookies){
          String key = c.getName();
          String value=c.getValue();
          if(key.equals("saveId")){
             saveId=value;
+         }
+         if(key.equals("keeplogin")){
+        	 keeplogin = value;
          }
       }
    }
