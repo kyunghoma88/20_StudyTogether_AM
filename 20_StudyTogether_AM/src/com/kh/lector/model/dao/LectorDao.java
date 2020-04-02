@@ -479,8 +479,8 @@ public class LectorDao {
 			pstmt.setDate(7, lc.getChannelEnrollDate());
 			pstmt.setInt(8, lc.getChannelLevel());
 			pstmt.setString(9, lc.getChannelAssign());
-			pstmt.setInt(9, lc.getChannelNo());
-			pstmt.setInt(10, lc.getChannelNoRef());
+			pstmt.setInt(10, lc.getChannelNo());
+			pstmt.setInt(11, lc.getChannelNoRef());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
