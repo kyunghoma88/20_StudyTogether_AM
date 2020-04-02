@@ -45,7 +45,12 @@ public class StudyService {
 		Study s=dao.selectStudy(conn,no);
 		close(conn);
 		return s;
-		
 	}
-
+	public int deleteStudy(int no) {
+		Connection conn=getConnection();
+		int result=dao.deleteStudy(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 }

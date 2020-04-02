@@ -3,7 +3,6 @@ package com.kh.study.model.vo;
 import java.sql.Date;
 
 public class Study {
-	
 		
 		private int studyNo;
 	 	private String studyName;
