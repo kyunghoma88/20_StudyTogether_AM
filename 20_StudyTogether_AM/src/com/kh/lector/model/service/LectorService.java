@@ -11,6 +11,7 @@ import java.util.List;
 import com.kh.lector.model.dao.LectorDao;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
+import com.kh.member.model.vo.Member;
 
 public class LectorService {
 
@@ -128,8 +129,53 @@ public class LectorService {
 		close(conn);
 		return result;
 	}
+
+	public LectorChannel selectChannel2(int cNo) {
+		Connection conn=getConnection();
+		LectorChannel lc=dao.selectChannel2(conn,cNo);
+		close(conn);
+		return lc;
+	}
+
+	//자식강좌 수정메서드
+	public int updateChannel(LectorChannel lc) {
+		Connection conn=getConnection();
+		int result=dao.updateChannel(conn,lc);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteChannel(int pNo, int cNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteChannel(conn,pNo,cNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+
+	public List<Lector> searchLectorPage(int cPage, int numPerPage, String type, String key) {
+		Connection conn=getConnection();
+		List<Lector> list=dao.searchLectorPage(conn,cPage,numPerPage,type,key);
+		close(conn);
+		return list;
+	}
+
+	public int lectorCount(String type, String key) {
+		Connection conn=getConnection();
+		int result=dao.lectorCount(conn,type,key);
+		close(conn);
+		return result;
+	}
+
+	public List<Lector> searchLectorPage(String type, String key) {
+		Connection conn=getConnection();
+		List<Lector> list=dao.searchLectorPage(conn,type,key);
+		close(conn);
+		return list;
+	}
 	
 
-	
 
 }

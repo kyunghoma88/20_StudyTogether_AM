@@ -32,21 +32,38 @@ public class ReviewStudyUpdateEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "스터디 후기 수정 오류![form:enctype 관리자에게 물어보세요]");
-			request.setAttribute("loc","/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}
-		ReviewStudy revS = new ReviewStudy(Integer.parseInt(request.getParameter("no")),
-											request.getParameter("writer"),
-											request.getParameter("allStudy"),
-											request.getParameter("field"),
-											request.getParameter("content"),
-											Integer.parseInt(request.getParameter("star")),
-											null);
+	
+		/*
+		 * ReviewStudy revS = new
+		 * ReviewStudy(Integer.parseInt(request.getParameter("no")),
+		 * request.getParameter("writer"), request.getParameter("allStudy"),
+		 * request.getParameter("field"), request.getParameter("content"),
+		 * Integer.parseInt(request.getParameter("star")), null);
+		 */
+		int no = Integer.parseInt(request.getParameter("no"));
+		String writer = request.getParameter("writer");
+		String allStudy = request.getParameter("allStudy");
+		String field = request.getParameter("field");
+		String content = request.getParameter("content");
+		int star = Integer.parseInt(request.getParameter("star"));
+		
+		System.out.println("번호 : " + no);
+		System.out.println("작성자 : " + writer);
+		System.out.println("스터디명 : " + allStudy);
+		System.out.println("분야 : " + field);
+		System.out.println("내용 : " + content);
+		System.out.println("만족 : " + star);
+		
+		ReviewStudy revS = new ReviewStudy(no,writer,allStudy,field,content,star,null);
+		
+
+		
+		
 		String msg="";
 		String loc="/review/reviewStudyView?no="+request.getParameter("no");
+		
 		int result = new ReviewStudyService().updateReviewStudy(revS);
+		System.out.println(result);
 		if(result>0) {
 			msg="수정이 완료되었습니다";		
 		}else {

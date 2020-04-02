@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
+import com.kh.member.model.vo.Member;
 
 public class LectorDao {
 
@@ -80,8 +81,6 @@ public class LectorDao {
 		}
 		return result;
 	}
-
-
 
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {
@@ -255,19 +254,20 @@ public class LectorDao {
 
 
 
-
+//channelView의 목록출력되게!
 	public List<LectorChannel> searchChannel(Connection conn, int pNo, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("searchLectorChannelPage");
 		List<LectorChannel> list=new ArrayList();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1,pNo);
 			pstmt.setInt(2, (cPage-1)*numPerPage+1);
 			pstmt.setInt(3, cPage*numPerPage);
-		
 			rs=pstmt.executeQuery();
+			
 			while(rs.next()) {
 				LectorChannel lc=new LectorChannel();
 				lc.setChannelNo(rs.getInt("lector_channel_no"));
@@ -280,7 +280,7 @@ public class LectorDao {
 				lc.setChannelRenamedVideo(rs.getString("renamed_lector_channel_video"));
 				lc.setChannelEnrollDate(rs.getDate("lector_channel_date"));
 				lc.setChannelLevel(rs.getInt("lector_channel_level"));
-				lc.setChannel_assign(rs.getString("lector_channel_assign"));
+				lc.setChannelAssign(rs.getString("lector_channel_assign"));
 				list.add(lc);
 			}
 		}catch(SQLException e) {
@@ -336,7 +336,7 @@ public class LectorDao {
 				lc.setChannelRenamedVideo(rs.getString("renamed_lector_channel_video"));
 				lc.setChannelEnrollDate(rs.getDate("lector_channel_date"));
 				lc.setChannelLevel(rs.getInt("lector_channel_level"));
-				lc.setChannel_assign(rs.getString("lector_channel_assign"));
+				lc.setChannelAssign(rs.getString("lector_channel_assign"));
 				list.add(lc);
 			}
 		}catch(SQLException e) {
@@ -369,7 +369,7 @@ public class LectorDao {
 			lc.setChannelRenamedVideo(rs.getString("renamed_lector_channel_video"));
 			lc.setChannelEnrollDate(rs.getDate("lector_channel_date"));
 			lc.setChannelLevel(rs.getInt("lector_channel_level"));
-			lc.setChannel_assign(rs.getString("lector_channel_assign"));
+			lc.setChannelAssign(rs.getString("lector_channel_assign"));
 		}	
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -403,7 +403,7 @@ public class LectorDao {
 			lc.setChannelRenamedVideo(rs.getString("renamed_lector_channel_video"));
 			lc.setChannelEnrollDate(rs.getDate("lector_channel_date"));
 			lc.setChannelLevel(rs.getInt("lector_channel_level"));
-			lc.setChannel_assign(rs.getString("lector_channel_assign"));
+			lc.setChannelAssign(rs.getString("lector_channel_assign"));
 		}	
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -412,9 +412,7 @@ public class LectorDao {
 			close(pstmt);
 		}
 		return lc;
-		
 	}
-	
 	//lectorNo를 가지고 엄마강좌에 대한 자식들만 출력할것임
 	public int channelCount(Connection conn, int no) {
 		PreparedStatement pstmt=null;
@@ -431,14 +429,185 @@ public class LectorDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public LectorChannel selectChannel2(Connection conn, int cNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchLectorChannel2");
+		LectorChannel lc=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cNo);
+			rs=pstmt.executeQuery();
+		if(rs.next())	{
+			lc=new LectorChannel();
+			lc.setChannelNo(rs.getInt("lector_channel_no"));
+			lc.setChannelNoRef(rs.getInt("lector_channel_no_ref"));
+			lc.setChannelTitle(rs.getString("lector_channel_title"));
+			lc.setChannelWriter(rs.getString("lector_channel_writer"));
+			lc.setChannelDetail(rs.getString("lector_channel_detail"));
+			lc.setChannelPrice(rs.getInt("lector_channel_price"));
+			lc.setChannelOriginalVideo(rs.getString("original_lector_channel_video"));
+			lc.setChannelRenamedVideo(rs.getString("renamed_lector_channel_video"));
+			lc.setChannelEnrollDate(rs.getDate("lector_channel_date"));
+			lc.setChannelLevel(rs.getInt("lector_channel_level"));
+			lc.setChannelAssign(rs.getString("lector_channel_assign"));
+		}	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return lc;
+	}
+	
+	//자식채널  update/////////에러남
+	public int updateChannel(Connection conn, LectorChannel lc) {
+
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateChannel");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, lc.getChannelTitle());
+			pstmt.setString(2, lc.getChannelWriter());
+			pstmt.setString(3, lc.getChannelDetail());
+			pstmt.setInt(4, lc.getChannelPrice());
+			pstmt.setString(5, lc.getChannelOriginalVideo());
+			pstmt.setString(6, lc.getChannelRenamedVideo());
+			pstmt.setDate(7, lc.getChannelEnrollDate());
+			pstmt.setInt(8, lc.getChannelLevel());
+			pstmt.setString(9, lc.getChannelAssign());
+			pstmt.setInt(9, lc.getChannelNo());
+			pstmt.setInt(10, lc.getChannelNoRef());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int deleteChannel(Connection conn, int pNo, int cNo) {
 		
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteChannel");
+		try {
+			LectorChannel lc=new LectorChannel();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			pstmt.setInt(2, cNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+///////////////////////////////////////////////////////게시판 검색기능		
+public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage, String type, String key) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchCategoryLector");
+		List<Lector> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,type);
+			pstmt.setString(2, key);
+			pstmt.setInt(3, (cPage-1)*numPerPage+1);
+			pstmt.setInt(4, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Lector l=new Lector();
+				l.setLectorNo(rs.getInt("lector_no"));
+				l.setLectorTitle(rs.getString("lector_title"));
+				l.setLectorWriter(rs.getString("lector_writer"));
+				l.setLectorCategory(rs.getString("lector_category"));
+				l.setLectorDetail(rs.getString("lector_detail"));
+				l.setLectorPrice(rs.getInt("lector_price"));
+				l.setLectorOriginalImg(rs.getString("lector_original_img"));
+				l.setLectorRenamedImg(rs.getString("lector_renamed_img"));
+				l.setLectorOriginalVideo("lector_original_video");
+				l.setLectorRenamedVideo("lector_renamed_video");
+				l.setLectorDate(rs.getDate("lector_date"));
+				l.setLectorAssign(rs.getString("lector_assign"));
+				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
 	}
 
 
-
-
-	
+	public int lectorCount(Connection conn, String type, String key) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("lectorCount");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			pstmt.setString(2, key);
+			rs=pstmt.executeQuery();
+			if(rs.next())result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Lector> searchLectorPage(Connection conn, String type, String key) {
 		
-
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchCategoryLector1");
+		List<Lector> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,type);
+			pstmt.setString(2, key);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Lector l=new Lector();
+				l.setLectorNo(rs.getInt("lector_no"));
+				l.setLectorTitle(rs.getString("lector_title"));
+				l.setLectorWriter(rs.getString("lector_writer"));
+				l.setLectorCategory(rs.getString("lector_category"));
+				l.setLectorDetail(rs.getString("lector_detail"));
+				l.setLectorPrice(rs.getInt("lector_price"));
+				l.setLectorOriginalImg(rs.getString("lector_original_img"));
+				l.setLectorRenamedImg(rs.getString("lector_renamed_img"));
+				l.setLectorOriginalVideo("lector_original_video");
+				l.setLectorRenamedVideo("lector_renamed_video");
+				l.setLectorDate(rs.getDate("lector_date"));
+				l.setLectorAssign(rs.getString("lector_assign"));
+				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 
 }
+		
+	
+
+
+

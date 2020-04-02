@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.lector.model.service.LectorService;
-import com.kh.lector.model.vo.Lector;
 
 /**
- * Servlet implementation class ChannelOpenServlet
+ * Servlet implementation class ChannelDeleteServlet
  */
-@WebServlet("/lector/lectorChannelOpen")
-public class ChannelOpenServlet extends HttpServlet {
+@WebServlet("/lector/ChannelDelete")
+public class ChannelDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChannelOpenServlet() {
+    public ChannelDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +28,31 @@ public class ChannelOpenServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int pNo=Integer.parseInt(request.getParameter("pNo"));
+		int cNo=Integer.parseInt(request.getParameter("cNo"));
+		System.out.println(pNo);
+		System.out.println(cNo);
 		
-		int no=Integer.parseInt(request.getParameter("cNo"));
-		Lector l=new LectorService().selectLector(no);
+		int result=new LectorService().deleteChannel(pNo,cNo);
+		System.out.println("삭제RESULT"+result);
+
+		String msg="";
+		String loc="";
 		
-		request.setAttribute("lector", l);
-		System.out.println(l);
+		if(result>0) {
+			msg="삭제 완료";
+			loc="/lector/lectorView?pNo="+pNo;
+		}
 		
-		//화면 전환용 서블릿
-		request.getRequestDispatcher("/views/lector/channelOpen.jsp").forward(request, response);
+		else {
+			msg="삭제 실패";
+			loc="/lector/channelView?pNo="+pNo+"&cNo="+cNo;
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 

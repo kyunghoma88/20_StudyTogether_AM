@@ -20,13 +20,23 @@
         <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
     </div>
     <br>
-    <%for(ReviewLecture revL : list) {%>
+    <%if(list.isEmpty()){ %>
+     		<fieldset id="reviewField">
+            	<tr>
+            		<hr>
+            			<h4 style="align:center;">등록된 후기가 없습니다.</h4>
+            		<hr>
+            	</tr>
+            	</fieldset>
+      <%}else{ %>       	
+    	<%for(ReviewLecture revL : list) {%>
         <fieldset id="reviewField">
          <hr>
             <td><%=revL.getReviewLecCategory()%></td> 
             <td><span style="float:right;"><%=revL.getReviewLecDate() %></span></td>
-            <h2><%=revL.getLectureName() %></h2>
-            <%-- <%if(%> --%>
+           <a href="<%=request.getContextPath()%>/review/reviewLectureView?no=<%=revL.getReviewLecNo()%>">
+	                       <h2><%=revL.getLectureName() %></h2>
+	         </a>
             <p id="star_grade">
                 <a href="#">★</a>
                 <a href="#">★</a>
@@ -41,13 +51,16 @@
              <hr>
             </fieldset>
            
-	<%} %>
+	<%} 
+	}%>
 
        		<ul class="pagination" style="margin-left:650px">
+			<%if(!list.isEmpty()){ %>
 			<%=request.getAttribute("pageBar") %>
+			<%} %>
 			</ul>
         <%if(loginMember!=null){%>
-			<input type="button" value="후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
+			<input type="button" value="강좌 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
 		<%} %>
        
     </div>

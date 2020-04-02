@@ -26,8 +26,7 @@ button{
 }
 
 </style>
-
-
+test
      <h2>강좌 등록</h2><br>
    <form id="regFrm" action="<%=request.getContextPath()%>/lector/lectorChannelOpenEnd" method="post" enctype="multipart/form-data">
     	<input type="hidden" name="no" value="<%=l.getLectorNo() %>" />
@@ -41,7 +40,6 @@ button{
            <!-- 강좌 비디오 첨부 -->
             
             <input type="file" name="video"  readonly/><br><br>
-		
             가격<br>
             <input type="number" name="price" value="<%=l.getLectorPrice() %>"readonly >원<br><br>
                 

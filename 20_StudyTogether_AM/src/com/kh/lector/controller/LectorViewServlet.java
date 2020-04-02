@@ -32,7 +32,7 @@ public class LectorViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int no=Integer.parseInt(request.getParameter("pno"));
+		int no=Integer.parseInt(request.getParameter("pNo"));
 		
 		///////////////LectorChannel lc=new LectorService().selectChannel(no);
 		//lectorChannelRefNo를 이용하여 엄마강좌의 자기자식만 출력할것임
@@ -75,7 +75,7 @@ public class LectorViewServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link'>이전</a></li>";
 			
 		}else{
-			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+(pageNo-1)+"&pNo="+no+"'>이전</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+(pageNo-1)+"&pNo="+no+"'>이전</a>";
 
 		}
 		
@@ -84,7 +84,7 @@ public class LectorViewServlet extends HttpServlet {
 			if(pageNo==cPage) {
 				pageBar+="<li class='page-item'><a class='page-link'  style='background-color: lightblue; color:black; '>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+pageNo+"&pNo="+no+"'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+pageNo+"&pNo="+no+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -92,7 +92,7 @@ public class LectorViewServlet extends HttpServlet {
 		
 				pageBar+="<li class='page-item'><a class='page-link'>다음</a></li>";
 			}else  {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/channelView?cPage="+pageNo+"&pNo="+no+"'>다음</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorView?cPage="+pageNo+"&pNo="+no+"'>다음</a>";
 			}
 		
 		String msg="";

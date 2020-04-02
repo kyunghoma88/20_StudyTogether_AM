@@ -25,11 +25,9 @@ public class LectorDeleteServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no=Integer.parseInt(request.getParameter("no"));
+		int no=Integer.parseInt(request.getParameter("pNo"));
 		int result=new LectorService().deleteLector(no);
 
 		String msg="";
@@ -38,11 +36,10 @@ public class LectorDeleteServlet extends HttpServlet {
 		if(result>0) {
 			msg="삭제 완료";
 			loc="/lector/lectorList";
-			
 		}
 		else {
 			msg="삭제 실패";
-			loc="/lector/lectorWatch";
+			loc="/lector/lectorList";
 			
 		}
 		request.setAttribute("msg", msg);

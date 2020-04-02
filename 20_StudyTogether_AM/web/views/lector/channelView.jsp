@@ -13,12 +13,11 @@
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lectorWatch.css" type="text/css"/>
 
-
 <section>
 <div class="container" >
-    <a href="<%=request.getContextPath()%>/lector/ChannelOpen?pno=<%=l.getLectorNo() %>&cno=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 추가</a>
-    <a href="<%=request.getContextPath()%>/lector/ChannelUpdate?pno=<%=l.getLectorNo() %>&cno=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 수정</a>
-    <a href="<%=request.getContextPath() %>/lector/ChannelDelete?pno=<%=l.getLectorNo() %>&cno=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 삭제</a><!--관리자만 삭제  -->
+    <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">자식강좌 추가</a>
+    <a href="<%=request.getContextPath()%>/lector/ChannelUpdate?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 수정</a>
+    <a href="<%=request.getContextPath() %>/lector/ChannelDelete?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 삭제</a><!--관리자만 삭제  -->
 </div>
 
 <!--분기처리해서 강좌개설자&admin에게만 보일수 있는 강좌추가,수정,(삭제는 관리자페이지에서만가능) 버튼  -->
@@ -49,19 +48,27 @@
 </p>
 
 <div class="container">
-<%if(!clist.isEmpty()){ %>
-	 <%for(LectorChannel lc2:clist){ %>
 	<div class="list-group">
+		   <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
+	<%if(!clist.isEmpty()){ %>
+		 <%for(LectorChannel lc2:clist){ %>
     	<a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc2.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc2.getChannelTitle() %></a>
+  		<%}
+		}%>
   	</div>
 </div>
-	<%}
-		}%>
-	
+<%if(!clist.isEmpty()){ %>
 	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul>
-	
+<%} %>
 </section>
+<style>
+.pagination{
+	margin-top:100px;
+	margin-left:600px;
+}
+
+</style>
 
 <%@ include file="/views/common/footer.jsp"%>

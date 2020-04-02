@@ -8,7 +8,8 @@
 
 <form style="margin:0 auto;" action="<%=request.getContextPath() %>/review/reviewFormEnd">
 <br>
-<h2>스터디후기작성</h2>
+<h2 id="revWTitle">스터디후기작성</h2>
+
    <table class="revWrite">
       <tr>
         <td>작성자</td>

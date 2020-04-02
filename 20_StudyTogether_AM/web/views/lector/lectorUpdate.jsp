@@ -31,7 +31,7 @@ button{
 
      <h2>강좌 수정</h2><br>
    <form id="regFrm" action="<%=request.getContextPath()%>/lector/lectorUpdateEnd" method="post" enctype="multipart/form-data">
-    	<input type="hidden" name="no" value="<%=l.getLectorNo() %>" />
+    	<input type="hidden" name="pNo" value="<%=l.getLectorNo() %>" />
      강사명<input type="text" name="lectorWriter" value="<%=l.getLectorWriter()%>" readonly><br>
 		<input type="hidden" name="lectorDate" value="<%=l.getLectorDate() %>" ><br>
         강좌 이름 <input type="text" name="lectorTitle" value="<%=l.getLectorTitle()%>"><br><br>

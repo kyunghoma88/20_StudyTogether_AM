@@ -15,9 +15,9 @@
 <section>
  <div class="container" >
 <%--     <a href="<%=request.getContextPath() %>/lectorWatch/lectorInsert" class="btn btn-info" role="button">강좌 추가</a>
- --%> <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?no=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 추가</a>
-    <a href="<%=request.getContextPath()%>/lector/lectorUpdate?no=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 수정</a>
-    <a href="<%=request.getContextPath() %>/lector/lectorDelete?no=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 삭제</a><!--관리자만 삭제  -->
+ --%> <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 추가</a>
+    <a href="<%=request.getContextPath()%>/lector/lectorUpdate?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 수정</a>
+    <a href="<%=request.getContextPath() %>/lector/lectorDelete?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 삭제</a><!--관리자만 삭제  -->
   </div>
 <style>
 .btn btn-info{
@@ -61,10 +61,13 @@ background-color:#ffc107;
 	}%>
   </div>
 </div>
-
+<%if(!clist.isEmpty()){ %>
  	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
+ <%} %>
+ 
+ 
  
 <style>
 	.pagination{
@@ -72,7 +75,6 @@ background-color:#ffc107;
 		margin-top:100px;
 		margin-bottom:100px;	
 	}
-
 </style>
 
 <%-- </div>
@@ -87,7 +89,6 @@ background-color:#ffc107;
 	}%>
   </div> 
 </div> --%>
-
 </section>
 
  <script>

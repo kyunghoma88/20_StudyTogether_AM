@@ -37,21 +37,21 @@ public class StudyDao {
 		String sql=prop.getProperty("insertStudy");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1,s.getStudyNo());
-			pstmt.setString(2, s.getStudyName());
-			pstmt.setString(3, s.getStudyWriter());
-			pstmt.setString(4, s.getStudyCategory());
-			pstmt.setString(5, s.getStudyPossibleDay());
-			pstmt.setString(6, s.getStudyArea());
-			pstmt.setString(7, s.getStudyDetail());
-			pstmt.setInt(8, s.getMaxMember());
-			pstmt.setDate(9, s.getEnrollDate());
+			//pstmt.setInt(1,s.getStudyNo());
+			pstmt.setString(1, s.getStudyName());
+			pstmt.setString(2, s.getStudyWriter());
+			pstmt.setString(3, s.getStudyCategory());
+			pstmt.setString(4, s.getStudyPossibleDay());
+			pstmt.setString(5, s.getStudyArea());
+			pstmt.setString(6, s.getStudyDetail());
+			pstmt.setInt(7, s.getMaxMember());
+			//pstmt.setDate(9, s.getEnrollDate());
 			//System.out.println(s.getEndDate().replaceAll("-", "/"));
-			pstmt.setString(10, s.getEndDate().replaceAll("-", ""));
-			pstmt.setString(11, s.getOriImg());
-			pstmt.setString(12, s.getReImg());
-			pstmt.setString(13, s.getDateAssign());
-			pstmt.setString(14, s.getMemberAssign());
+			pstmt.setString(8, s.getEndDate().replaceAll("-", ""));
+			pstmt.setString(9, s.getOriImg());
+			pstmt.setString(10, s.getReImg());
+			//pstmt.setString(13, s.getDateAssign());
+			//pstmt.setString(14, s.getMemberAssign());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

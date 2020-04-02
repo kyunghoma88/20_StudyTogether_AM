@@ -42,7 +42,6 @@ public class ReviewStudyService {
 		Connection conn = getConnection();
 		ReviewStudy revS = dao.searchReviewStudy(conn,no);
 		close(conn);
-		System.out.println("service revS" + revS);
 		return revS;
 	}
 
@@ -53,6 +52,15 @@ public class ReviewStudyService {
 		else rollback(conn);
 		close(conn);
 		return flag;
+	}
+
+	public int deleteReviewStudy(int no) {
+		Connection conn=getConnection();
+		int result=dao.deleteReviewStudy(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
 	}
 
 }

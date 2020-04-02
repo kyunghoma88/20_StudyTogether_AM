@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.lector.model.service.LectorService;
 import com.kh.lector.model.vo.Lector;
-
+import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class LectorFinderServlet
  */
@@ -33,11 +33,23 @@ public class LectorFinderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String type=request.getParameter("searchType");
-//		
-//	//	List<Lector> list=new LectorService().searchLector(type);
-//		
-//		request.setAttribute("list", list);
-//		request.getRequestDispatcher("/views/lector/lectorList.jsp").forward(request, response);
+		String key=request.getParameter("searchKeyword");
+		System.out.println("카테고리 :"+type);
+		System.out.println("키워드:"+key);
+		
+		
+		List<Lector> list=new LectorService().searchLectorPage(type,key);
+		
+		System.out.println(list);
+	
+		
+		
+
+		request.setAttribute("list", list);
+		request.setAttribute("key",key);
+		request.getRequestDispatcher("/views/lector/lectorFinder.jsp").forward(request, response);
+		
+		
  	}
 
 	/**
