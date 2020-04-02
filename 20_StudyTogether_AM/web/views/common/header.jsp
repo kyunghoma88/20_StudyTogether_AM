@@ -61,7 +61,7 @@
       <%} %>
 		<button onclick="location.href='<%=request.getContextPath()%>/member/memberView'" class="main2">내정보보기</button>
          
-		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView'" class="main2">장바구니</button>                                                                             
+		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView?id=<%=loginMember.getUserId() %>'" class="main2">장바구니</button>                                                                             
      
 		<button onclick="location.replace('<%=request.getContextPath()%>/logout.do')" class="main2">로그아웃</button>
    <%} %>
@@ -78,7 +78,7 @@
 
     <div class="containerlogin">
       <!-- <label for="uname"><b>아이디</b></label> -->
-      <input type="text" placeholder="ID" id="uname" name="uname" required>
+      <input type="text" placeholder="ID" id="uname" name="uname" value = "<%=saveId!=null? saveId : "" %>" required>
 
       <!-- <label for="psw"><b>비밀번호</b></label> -->
       <input type="password" placeholder="Password" id="psw" name="psw" required>
@@ -86,11 +86,12 @@
       <button onclick="loginCheck();" class="login-button" type="submit">Login</button>
 
       <label>
-        <input type="checkbox" id="store" name="saveId">아이디 저장
+        <input type="checkbox" id="store" name="saveId" <%=saveId!=null ? "checked" : "" %>>아이디 저장
       </label>
+      
       <label>
-      <input type="checkbox" checked="checked" name="keepId"> 로그인유지
-    </label>
+      <input type="checkbox" id="keeplogin" name="keeplogin"> 로그인 유지
+   	  </label>
     </div>
     
    

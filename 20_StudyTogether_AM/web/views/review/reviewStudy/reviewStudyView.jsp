@@ -42,9 +42,7 @@ table.revWrite td {
     border-radius: 4px;
     cursor: pointer;
     display: inline-block; 
-    margin-: 0px auto; 
-    width: 10%;
-    align: center;
+    width: 10%;  
 }
 </style>
 
@@ -86,14 +84,14 @@ table.revWrite td {
 </form>
 <%if(loginMember!=null && (loginMember.getUserId().equals("admin") || loginMember.getUserId().equals(revS.getReviewStuWriter()))){ %>
 	        
-	        <div style="mrgin:0 auto;">
+	        <div style="text-align:center">
 	     		   <button type="button" onclick="location.replace('<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList')" id="backBtn">목록으로</button>
 	     		 	<!--  <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">목록</a>-->
 	              <button onclick="updateChk()" name="revUpdate" id="revUpdate">수정</button>
        			  <button onclick="deleteChk()" name="revDelete" id="revDelete">삭제</button>
 	        </div>
 	     <%}else{ %>
-			<div>
+			<div style="text-align:center">
 				<button type="button" onclick="location.replace('<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList')" id="backBtn">목록으로</button>
 			</div>
 			

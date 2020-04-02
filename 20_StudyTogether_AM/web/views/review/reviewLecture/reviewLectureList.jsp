@@ -60,7 +60,7 @@
 			<%} %>
 			</ul>
         <%if(loginMember!=null){%>
-			<input type="button" value="후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
+			<input type="button" value="강좌 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
 		<%} %>
        
     </div>
