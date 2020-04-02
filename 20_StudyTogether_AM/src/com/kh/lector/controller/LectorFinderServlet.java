@@ -34,7 +34,8 @@ public class LectorFinderServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String type=request.getParameter("searchType");
 		String key=request.getParameter("searchKeyword");
-
+		System.out.println(type);
+		System.out.println(key);
 		
 		int cPage;
 		try {

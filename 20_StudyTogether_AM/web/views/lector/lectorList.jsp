@@ -21,10 +21,11 @@
 	 <!-- 상단 제목 -->
 	<div class="main_title">
 	
-      <!-- 카테고리 -->
-     <select id="searchType" > 
+     <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
+     
+     <select id="searchType" name="searchType"> 
      	<option value="all" <%=type!=null&&type.equals("all")?"selected":"" %>>전체</option>
-     	 <optgroup label="어학,회화">
+     	  <optgroup label="어학,회화">
           <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
           <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
           <option value="스페인어" <%=type!=null&&type.equals("스페인어")?"selected":"" %>>스페인어</option>
@@ -36,7 +37,6 @@
           <option value="컴퓨터활용" <%=type!=null&&type.equals("컴퓨터활용")?"selected":"" %>>컴퓨터활용</option>
           <option value="토익" <%=type!=null&&type.equals("토익")?"selected":"" %>>토익</option>
       </optgroup>
-
       <optgroup label="IT">
           <option value="알고리즘" <%=type!=null&&type.equals("알고리즘")?"selected":"" %>>알고리즘</option>
           <option value="데이터베이스" <%=type!=null&&type.equals("데이터베이스")?"selected":"" %>>데이터베이스</option>
@@ -44,6 +44,15 @@
       </optgroup>
       </select>
       
+      <input type="text" name="searchKeyword">
+      <input type="submit" value="검색">
+     </form>
+      
+ 
+ 
+ 
+ 
+ 
    <%--    <div id="search-all">
 			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
 				<input type="hidden" name="searchType" value="전체"/>

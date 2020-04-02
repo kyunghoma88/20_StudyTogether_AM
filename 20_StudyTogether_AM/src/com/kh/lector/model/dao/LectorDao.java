@@ -513,6 +513,7 @@ public class LectorDao {
 		
 		Statement stmt=null;
 		ResultSet rs=null;
+		
 		String sql="SELECT * FROM (SELECT ROWNUM AS RNUM,A.* FROM "
 				+"(SELECT * FROM LECTOR WHERE "+type+" LIKE '%"+key+"%' ORDER BY LECTOR_DATE)A)" 
 			+" WHERE RNUM BETWEEN " +((cPage-1)*numPerPage+1)+" AND "+(cPage*numPerPage);	

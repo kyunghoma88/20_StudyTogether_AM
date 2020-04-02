@@ -68,7 +68,6 @@ background-color:#ffc107;
 		margin-top:100px;
 		margin-bottom:100px;	
 	}
-
 </style>
 
 <%-- </div>
@@ -83,7 +82,6 @@ background-color:#ffc107;
 	}%>
   </div> 
 </div> --%>
-
 </section>
 
  <script>
