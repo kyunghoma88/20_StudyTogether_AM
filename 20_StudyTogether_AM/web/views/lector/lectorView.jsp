@@ -27,23 +27,27 @@ background-color:#ffc107;
 
 <!--분기처리해서 강좌개설자&admin에게만 보일수 있는 강좌추가,수정,(삭제는 관리자페이지에서만가능) 버튼  -->
 <div id="intro">
-  <h2><<%=l.getLectorCategory() %>&nbsp;강좌><h2>
-  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
-  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
-  	금액:&nbsp;&nbsp;<%=l.getLectorPrice() %>&nbsp;&nbsp;원</p>
- </div>
-  <div class="watch">
-    <div class="video">
-      <!-- 855*481 -->
-     <%if(l!=null&&l.getLectorOriginalVideo()!=null) {%>
-	<video src="<%=request.getContextPath() %>/upload/lector/<%=l.getLectorOriginalVideo() %>" id="video" controls width="855px" height="481px"></video>
-    <%}%>
- 	</div>
-    <div id="video-inform">
-    <%=l.getLectorDetail() %>
-    </div>
-   
-    <button type="button" class="basket" onclick="apply();">수강신청</button>
+<form action="<%=request.getContextPath()%>/cart/cartAdd" method="post">
+
+	  <h2><<%=l.getLectorCategory() %>&nbsp;강좌><h2>
+	  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
+	  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
+	  	금액:&nbsp;&nbsp;<%=l.getLectorPrice() %>&nbsp;&nbsp;원</p>
+	  	<input type="hidden" name="userId" value="<%=loginMember.getUserId() %>">
+	  	<input type="hidden" name="lectorNo" value="<%=l.getLectorNo()%>">
+	 </div>
+	  <div class="watch">
+	    <div class="video">
+	      <!-- 855*481 -->
+	     <%if(l!=null&&l.getLectorOriginalVideo()!=null) {%>
+		<video src="<%=request.getContextPath() %>/upload/lector/<%=l.getLectorOriginalVideo() %>" id="video" controls width="855px" height="481px"></video>
+	    <%}%>
+	 	</div>
+	    <div id="video-inform">
+	    <%=l.getLectorDetail() %>
+	    </div>
+	    <input type="submit" class="basket" value="구매하기">
+   </form>
   </div>
   
   
@@ -111,7 +115,7 @@ function changeLector(pNo, cNo){
 	})
 } --%>
 
-function apply(){
+/* function apply(){
 var result= confirm("장바구니에 강좌를 담았습니다. 장바구니로 이동하시겠습니까?");
  if(result==true){
    location.href="";
@@ -119,7 +123,7 @@ var result= confirm("장바구니에 강좌를 담았습니다. 장바구니로 
  else{
    location.reload;
  }
-}
+} */
  
 </script>
 
