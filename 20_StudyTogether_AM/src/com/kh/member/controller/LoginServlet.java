@@ -50,20 +50,13 @@ public class LoginServlet extends HttpServlet {
 		//메인화면으로 돌아가게 처리하기
 		System.out.println(m);
 		String msg="";
-		if(m!=null) {
-			//로그인 성공
+		HttpSession session = request.getSession();	
+		
+		if(m!=null) {	
 			msg="로그인 성공";
-//			request.setAttribute("loginedMember", m);//로그인 유지가 되지 않음
-			//로그인을 유지하기 위해 session객체에 데이터를 넣고 처리함
-			HttpSession session = request.getSession(true);//기본으로 값을 가져옴
-			//getSession()메소드는 매개변수가 있음 default true가 됨
-			//true : 세션이 있으면 그 세션을 리턴하고 없으면 생성해서 리턴
-			//false : 세션이 있으면 그 세션을 리턴하고 없으면 null값 리턴
+
 			session.setAttribute("loginedMember", m);
-//			session객체의 유지기간을 설정할 수 있음
-			//web.xml에 session timeout에 대한 설정이 분으로 설정되어있음
-			//session.setMaxInactiveInterval()메소드를 이용해서 설정
-//			session.setMaxInactiveInterval(20);//초단위
+
 			//cookie로 아이디 저장 유지하기
 			String saveId = request.getParameter("saveId");
 			System.out.println("saveId : " + saveId);
