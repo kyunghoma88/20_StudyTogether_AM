@@ -9,8 +9,8 @@
 <section>
 	<form action="#" method="post">
 		<table id="cartTbl">
-			<tr>
-				<th>번호</th>
+			<tr id="cartHead">
+				<!-- <th>번호</th> -->
 				<th>강좌명</th>
 				<th>강사</th>
 				<th>카테고리</th>
@@ -23,15 +23,21 @@
 			<%} else{ %>
 			<% for(Cart c : list) {%>
 				<tr>
-					<td><%=c.getCartNo() %></td>
+					<%-- <td><%=c.getCartNo() %></td> --%>
 					<td><%=c.getLectorTitle() %></td>
 					<td><%=c.getLectorWriter() %></td>
 					<td><%=c.getLectorCategory() %></td>
-					<td><%=c.getLectorPrice() %></td><input type="hidden" value="<%=c.getLectorPrice()%>">
+					<td><%=c.getLectorPrice() %></td>
+					<input type="hidden" value="<%=c.getCartNo()%>">
+					<input type="hidden" value="<%=c.getUserId()%>">
+					<input type="hidden" value="<%=c.getLectorNo()%>">
+					<input type="hidden" value="<%=c.getLectorPrice()%>">
 				</tr>
 			<%}
 			}%>
 		</table>
+		<input type="submit" value="결제하기" id="subBtn">
+		
 	</form>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
