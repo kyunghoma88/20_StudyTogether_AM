@@ -31,7 +31,7 @@
 			<button type="button" id="btn-faq-category" onclick="fn_payment();">결 제</button>
 			<button type="button" id="btn-faq-category" onclick="fn_etc();">기 타</button>
 		</div>
-		<div id="tableContainer"></div>
+		<div id="tableContainer"> 2020 04 02 이건 테스트!</div>
 
 
 

@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.review.model.vo.ReviewLecture;
 
+
 public class ReviewLectureDao {
 
 private Properties prop = new Properties();
@@ -76,6 +77,70 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public ReviewLecture searchReviewLecture(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchReviewLecture");
+		ReviewLecture revL=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				revL = new ReviewLecture();
+				revL.setReviewLecNo(rs.getInt("review_lec_no"));
+				revL.setReviewLecWriter(rs.getString("review_lec_writer"));
+				revL.setLectureName(rs.getString("lecture_title"));
+				revL.setReviewLecCategory(rs.getString("review_lec_category"));
+				revL.setReviewLecContent(rs.getString("review_lec_content"));
+				revL.setReviewLecStar(rs.getInt("review_lec_star"));
+				revL.setReviewLecDate(rs.getDate("review_lec_date"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return revL;
+	}
+
+	public int updateReviewLecture(Connection conn, ReviewLecture revL) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReviewLecture");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, revL.getReviewLecWriter());
+			pstmt.setString(2, revL.getLectureName());
+			pstmt.setString(3, revL.getReviewLecCategory());
+			pstmt.setString(4, revL.getReviewLecContent());
+			pstmt.setInt(5, revL.getReviewLecStar());
+			pstmt.setInt(6, revL.getReviewLecNo());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
+	public int deleteReviewLecture(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteReviewLecture");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

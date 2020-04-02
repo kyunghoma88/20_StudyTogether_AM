@@ -118,8 +118,7 @@ public class ReviewStudyDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("dao revS" + revS);
-		return revS;//null이거나 값이 있거나
+		return revS;
 	}
 	public int updateReviewStudy(Connection conn, ReviewStudy revS) {
 		PreparedStatement pstmt = null;
@@ -131,13 +130,29 @@ public class ReviewStudyDao {
 			pstmt.setString(2, revS.getStudyName());
 			pstmt.setString(3, revS.getReviewStuCategory());
 			pstmt.setString(4, revS.getReviewStuContent());
-			pstmt.setInt(5, revS.getReviewStuNo());
+			pstmt.setInt(5, revS.getReviewStuStar());
+			pstmt.setInt(6, revS.getReviewStuNo());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
-		}return result;//null이거나 값이 있거나
+		}return result;
+	}
+	public int deleteReviewStudy(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteReviewStudy");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }
