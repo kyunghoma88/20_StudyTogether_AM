@@ -23,7 +23,7 @@
 	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
      <select id="searchType" name="searchType">
-     	<option value="전체" <%=type!=null&&type.equals("전체")?"selected":"" %>>전체</option>
+     	<option >강좌 카테고리</option>
      	  <optgroup label="어학,회화">
           <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
           <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
@@ -63,7 +63,7 @@
         <img src="<%=request.getContextPath() %>/upload/lector/<%=lector.getLectorOriginalImg() %>" class="" width="200px" height="150px">
      </div>
       <%} %>
-      <div id="lectorTitle"><%=lector.getLectorTitle() %><br/><%=lector.getLectorPrice() %>원</div>
+      <div id="lectorTitle"><%=lector.getLectorTitle() %></div>
     </div>
   </a>
   <%}

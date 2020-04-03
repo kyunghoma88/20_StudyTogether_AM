@@ -54,5 +54,12 @@ public class StudyService {
 		return result;
 	}
 
+	public List<Study> searchStudyPage(String area, String searchType, String day) {
+		Connection conn=getConnection();
+		List<Study> list=dao.searchStudyPage(conn,area,searchType,day);
+		close(conn);
+		return list;
+	}
+
 	
 }

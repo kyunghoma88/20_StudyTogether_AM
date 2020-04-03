@@ -175,5 +175,43 @@ public class StudyDao {
 		return result;
 	}
 
-	
+	public List<Study> searchStudyPage(Connection conn, String area, String searchType, String day) {
+
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchStudyPage2");
+		List<Study> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,area);
+			pstmt.setString(2, searchType);
+			pstmt.setString(3, day);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Study s=new Study();
+				s.setStudyNo(rs.getInt("STUDY_NO"));
+				s.setStudyName(rs.getString("STUDY_NAME"));
+				s.setStudyWriter(rs.getString("STUDY_WRITER"));
+				s.setStudyCategory(rs.getString("STUDY_CATEGORY"));
+				s.setStudyPossibleDay(rs.getString("STUDY_POSSIBLE_DAY"));
+				s.setStudyArea(rs.getString("STUDY_AREA"));
+				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
+				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
+				s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));
+				s.setEnrollDate(rs.getDate("STUDY_DATE"));
+				s.setEndDate(rs.getString("STUDY_END_DATE"));
+				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
+				s.setReImg(rs.getString("STUDY_RENAMED_IMG"));
+				s.setDateAssign(rs.getString("STUDY_DATE_ASSIGN"));
+				s.setMemberAssign(rs.getString("STUDY_MEMBER_ASSIGN"));
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 }
