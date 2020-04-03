@@ -49,6 +49,7 @@ public class LectorListServlet extends HttpServlet {
 			6.	pageNo : 출력할 페이지의 시작번호*/
 		int numPerPage=12;
 		List<Lector> list=new LectorService().searchLector(cPage,numPerPage);
+		System.out.println("list??"+list);
 		
 		//pageBar만들기
 		int totalLector=new LectorService().lectorCount();

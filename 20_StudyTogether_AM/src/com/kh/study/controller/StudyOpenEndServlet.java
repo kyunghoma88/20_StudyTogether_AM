@@ -1,6 +1,7 @@
 package com.kh.study.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,18 +61,15 @@ public class StudyOpenEndServlet extends HttpServlet {
 		String oriImg=mr.getOriginalFileName("thumbnail");
 		String reImg=mr.getFilesystemName("thumbnail");
 		
-		System.out.println("개설자:"+writer);
-		System.out.println("스터디명:"+title);
-		System.out.println("지역:"+area);
-		System.out.println("카테고리:"+category);
-		System.out.println("모집인원:"+maxMember);
-		System.out.println("마감일:"+endDate);
-		System.out.println("가능일:"+days);
-		System.out.println("상세소개:"+intro);
-		System.out.println("파일명:"+oriImg);
-		System.out.println("파일명:"+reImg);
+		  System.out.println("개설자:"+writer); System.out.println("스터디명:"+title);
+		  System.out.println("지역:"+area); System.out.println("카테고리:"+category);
+		  System.out.println("모집인원:"+maxMember); System.out.println("마감일:"+endDate);
+		 System.out.println("가능일:"+days); System.out.println("상세소개:"+intro);
+		 System.out.println("파일명:"+oriImg); System.out.println("파일명:"+reImg);
+		 
 		
-		Study s=new Study(0,title,writer,category,days,area,intro,maxMember,null,endDate,oriImg,reImg,null,null);
+		Study s=new Study(0,title,writer,category,days,area,intro,maxMember,0,null,endDate,oriImg,reImg,null,null);
+		
 		
 		int result=new StudyService().insertStudy(s);
 		System.out.println("s"+result);
@@ -98,6 +96,11 @@ public class StudyOpenEndServlet extends HttpServlet {
 
 		
 		
+	}
+
+	private String format(String endDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**

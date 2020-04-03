@@ -33,6 +33,7 @@ public class LectorViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("pNo"));
+		System.out.println("viewNo"+no);
 		
 		///////////////LectorChannel lc=new LectorService().selectChannel(no);
 		//lectorChannelRefNo를 이용하여 엄마강좌의 자기자식만 출력할것임
@@ -104,7 +105,7 @@ public class LectorViewServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
 			request.setAttribute("clist", clist);
-			request.setAttribute("lector", l);
+			request.setAttribute("l", l);
 			request.setAttribute("RefTotalChannel", RefTotalChannel);//엄마강좌의 자식들갯수
 			request.setAttribute("pageBar", pageBar);
 			request.setAttribute("cPage", cPage);

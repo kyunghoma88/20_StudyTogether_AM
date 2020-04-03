@@ -118,8 +118,8 @@
                  <tr>
                      <td>희망 일자</td>
                      <td> 
-                         <input type="checkbox" id="week" name="day">평일
-                         <input type="checkbox" id="weekend" name="day">주말
+                         <input type="checkbox" id="week" name="day" value="평일">평일
+                         <input type="checkbox" id="weekend" name="day" value="주말">주말
                      </td>
                  </tr>
                  <tr>

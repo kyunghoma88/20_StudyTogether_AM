@@ -45,9 +45,10 @@ public class StudyDao {
 			pstmt.setString(5, s.getStudyArea());
 			pstmt.setString(6, s.getStudyDetail());
 			pstmt.setInt(7, s.getMaxMember());
+			//pstmt.setInt(8, s.getNowMember());
 			//pstmt.setDate(9, s.getEnrollDate());
 			//System.out.println(s.getEndDate().replaceAll("-", "/"));
-			pstmt.setString(8, s.getEndDate().replaceAll("-", ""));
+			pstmt.setString(8, s.getEndDate().replaceAll("-", "/"));
 			pstmt.setString(9, s.getOriImg());
 			pstmt.setString(10, s.getReImg());
 			//pstmt.setString(13, s.getDateAssign());
@@ -84,6 +85,7 @@ public class StudyDao {
 				s.setStudyArea(rs.getString("STUDY_AREA"));
 				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
 				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
+				s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));//
 				s.setEnrollDate(rs.getDate("STUDY_DATE"));
 				s.setEndDate(rs.getString("STUDY_END_DATE"));
 				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
@@ -139,6 +141,7 @@ public class StudyDao {
 			s.setStudyArea(rs.getString("STUDY_AREA"));
 			s.setStudyDetail(rs.getString("STUDY_DETAIL"));
 			s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
+			s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));//
 			s.setEnrollDate(rs.getDate("STUDY_DATE"));
 			s.setEndDate(rs.getString("STUDY_END_DATE"));
 			s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
@@ -171,4 +174,6 @@ public class StudyDao {
 		}
 		return result;
 	}
+
+	
 }

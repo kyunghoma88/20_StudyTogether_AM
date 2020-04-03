@@ -123,7 +123,7 @@
 
 
 
- 	<ul class="pagination">
+ 	<ul class="pagination" style="margin-left:500px;margin-bottom:50px; margin-top:100px;">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
 	

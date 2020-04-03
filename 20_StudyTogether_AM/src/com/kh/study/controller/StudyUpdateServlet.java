@@ -34,11 +34,8 @@ public class StudyUpdateServlet extends HttpServlet {
 		Study s=new StudyService().selectStudy(no);//
 		
 		request.setAttribute("s", s);
-		System.out.println(s);
-		
+		System.out.println("upup"+s);
 		request.getRequestDispatcher("/views/study/studyUpdate.jsp").forward(request, response);
-
-		
 	}
 	
 

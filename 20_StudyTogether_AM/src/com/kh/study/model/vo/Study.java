@@ -12,6 +12,7 @@ public class Study {
 	 	private String studyArea;
 	 	private String studyDetail;
 	 	private int maxMember;
+	 	private int nowMember;
 	 	private Date enrollDate;
 	 	private String endDate;
 	 	private String oriImg;
@@ -24,8 +25,8 @@ public class Study {
 		}
 
 		public Study(int studyNo, String studyName, String studyWriter, String studyCategory, String studyPossibleDay,
-				String studyArea, String studyDetail, int maxMember, Date enrollDate, String endDate, String oriImg,
-				String reImg, String dateAssign, String memberAssign) {
+				String studyArea, String studyDetail, int maxMember, int nowMember, Date enrollDate, String endDate,
+				String oriImg, String reImg, String dateAssign, String memberAssign) {
 			super();
 			this.studyNo = studyNo;
 			this.studyName = studyName;
@@ -35,6 +36,7 @@ public class Study {
 			this.studyArea = studyArea;
 			this.studyDetail = studyDetail;
 			this.maxMember = maxMember;
+			this.nowMember = nowMember;
 			this.enrollDate = enrollDate;
 			this.endDate = endDate;
 			this.oriImg = oriImg;
@@ -107,6 +109,14 @@ public class Study {
 			this.maxMember = maxMember;
 		}
 
+		public int getNowMember() {
+			return nowMember;
+		}
+
+		public void setNowMember(int nowMember) {
+			this.nowMember = nowMember;
+		}
+
 		public Date getEnrollDate() {
 			return enrollDate;
 		}
@@ -159,14 +169,13 @@ public class Study {
 		public String toString() {
 			return "Study [studyNo=" + studyNo + ", studyName=" + studyName + ", studyWriter=" + studyWriter
 					+ ", studyCategory=" + studyCategory + ", studyPossibleDay=" + studyPossibleDay + ", studyArea="
-					+ studyArea + ", studyDetail=" + studyDetail + ", maxMember=" + maxMember + ", enrollDate="
-					+ enrollDate + ", endDate=" + endDate + ", oriImg=" + oriImg + ", reImg=" + reImg + ", dateAssign="
-					+ dateAssign + ", memberAssign=" + memberAssign + "]";
+					+ studyArea + ", studyDetail=" + studyDetail + ", maxMember=" + maxMember + ", nowMember="
+					+ nowMember + ", enrollDate=" + enrollDate + ", endDate=" + endDate + ", oriImg=" + oriImg
+					+ ", reImg=" + reImg + ", dateAssign=" + dateAssign + ", memberAssign=" + memberAssign + "]";
 		}
 	 	
-	 	
-	 	
-	 	
+
+	
 	 	
 	 	
 	 	

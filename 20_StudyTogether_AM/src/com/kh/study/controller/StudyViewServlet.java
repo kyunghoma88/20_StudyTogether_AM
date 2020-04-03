@@ -35,7 +35,10 @@ public class StudyViewServlet extends HttpServlet {
 		int no=Integer.parseInt(request.getParameter("no"));
 		Study s=new StudyService().selectStudy(no);
 		System.out.println(no);
-		System.out.println(s);
+		System.out.println(s.getEndDate());
+		
+		
+		
 		String msg="";
 		String loc="";
 		
