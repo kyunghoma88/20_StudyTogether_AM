@@ -37,12 +37,19 @@ public class CartAddServlet extends HttpServlet {
 
 		int result = new CartService().insertCart(userId, lectorNo);
 		
+		String msg = "";
+		String loc = "";
 		if(result>0) {
-			System.out.println("장바구니 담기 성공");
-			request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
+			msg = "장바구니 담기 성공";
+			loc = "/lector/lectorList";
+		} else {
+			msg = "이미 장바구니에 담겨 있습니다.";
+			loc = "/lector/lectorList";
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 
-//		request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

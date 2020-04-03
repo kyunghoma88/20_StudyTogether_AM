@@ -1,7 +1,6 @@
-package com.kh.cart.controller;
+package com.kh.study.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.cart.model.vo.Cart;
-import com.kh.cart.service.CartService;
+import com.kh.study.model.service.StudyService;
 
 /**
- * Servlet implementation class CartViewServlet
+ * Servlet implementation class StudyDeleteServlet
  */
-@WebServlet("/cart/cartView")
-public class CartViewServlet extends HttpServlet {
+@WebServlet("/study/studyDelete")
+public class StudyDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartViewServlet() {
+    public StudyDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +29,25 @@ public class CartViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String userId = request.getParameter("id");
-		List<Cart> list = new CartService().searchCart(userId);
+		int no=Integer.parseInt(request.getParameter("no"));
+		int result=new StudyService().deleteStudy(no);
+
+		String msg="";
+		String loc="";
 		
-		request.setAttribute("list", list);
+		if(result>0) {
+			msg="삭제 완료";
+			loc="/study/studyList";
+		}
+		else {
+			msg="삭제 실패";
+			loc="/study/studyList";
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
 	}
 
 	/**

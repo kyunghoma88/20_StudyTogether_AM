@@ -7,11 +7,11 @@
     z-index: 1;
   }  
  
-/* .carousel-inner > .item > img{
+.carousel-inner > .item > img{
     width:1200px;
     height:450px;
   }  
- */
+
    #myCarousel{
     margin-left:0px;
     margin-top:0px;
