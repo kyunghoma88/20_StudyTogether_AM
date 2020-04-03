@@ -49,4 +49,12 @@ public class StudyService {
 		
 	}
 
+//	지현 - 리뷰
+	public List<Study> selectStudyName(String writer) {
+		Connection conn = getConnection();
+		List<Study> list = dao.selectStudyName(conn,writer);
+		close(conn);
+		return list;
+	}
+
 }

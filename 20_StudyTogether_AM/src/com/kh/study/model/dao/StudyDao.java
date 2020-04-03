@@ -153,4 +153,34 @@ public class StudyDao {
 		}
 		return s;
 	}
+
+	//지현 -리뷰
+	public List<Study> selectStudyName(Connection conn,String writer) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=prop.getProperty("selectStudyName");
+		List<Study> list = new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, writer); //시박 데이터 번호 -> rnum기준
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Study s =new Study();
+			
+				s.setStudyName(rs.getString("STUDY_NAME"));
+		
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 }
