@@ -5,6 +5,7 @@ import static com.kh.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.join.model.vo.LectorJoin;
+import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.vo.Member;
+import com.kh.study.model.vo.Study;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -230,6 +234,136 @@ public class MemberDao {
 		System.out.println(result);
 		return result;
 	}
+//	public List<Lector> selectMemberCreateLector(Connection conn, String id) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql= prop.getProperty("selectMemberCreateLector");
+//		List<Lector> list=new ArrayList<Lector>();
+//		Lector l = null;
+//		try {			
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1, id);
+//				rs = pstmt.executeQuery();
+//				
+//			while(rs.next()) {
+//				l.setLectorNo(rs.getInt("LECTOR_NO"));
+//				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
+//				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
+//				l.setLectorCategory(rs.getString("LECTOR_CATEGORY"));
+//				l.setLectorDetail(rs.getString("LECTOR_DETAIL"));
+//				l.setLectorPrice(rs.getInt("LECTOR_PRICE"));
+//				l.setLectorOriginalImg(rs.getString("LECTOR_ORIGINAL_IMG"));
+//				l.setLectorRenamedImg(rs.getString("LECTOR_RENAMED_IMG"));
+//				//동영상정보는 미포함
+//				l.setLectorDate(rs.getDate("LECTOR_DATE"));
+//				l.setLectorAssign(rs.getString("LECTOR_ASSIGN"));
+//				
+//			}
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		return list;
+//	}
+//	public List<LectorJoin> selectMemberJoinLector(Connection conn, String id) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		String sql= prop.getProperty("selectMemberJoinLector");
+//		List<LectorJoin> list=new ArrayList<LectorJoin>();
+//		Lector l = null;
+//		try {			
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1, id);
+//				rs = pstmt.executeQuery();
+//				
+//			while(rs.next()) {
+//				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
+//				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
+//			}
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		return list;
+//	}
 	
+	
+	public List<Study> selectMemberCreateStudy(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectMemberCreateStudy");
+		List<Study> list=new ArrayList<Study>();
+		Study s = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				s.setStudyNo(rs.getInt("STUDY_NO"));
+				s.setStudyName(rs.getString("STUDY_NAME"));
+				s.setStudyWriter(rs.getString("STUDY_WRITER"));
+				s.setStudyCategory(rs.getString("STUDY_CATEGORY"));
+				s.setStudyPossibleDay(rs.getString("STUDY_POSSIBLE_DAY"));
+				s.setStudyArea(rs.getString("STUDY_AREA"));
+				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
+				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
+				s.setEnrollDate(rs.getDate("STUDY_DATE"));
+				s.setEndDate(rs.getString("STUDY_END_DATE"));
+				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
+				s.setReImg(rs.getString("STUDY_RENAMED_IMG"));
+				s.setDateAssign(rs.getString("STUDY_DATE_ASSIGN"));
+				s.setMemberAssign(rs.getString("STUDY_MEMBER_ASSIGN"));
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public List<Study> selectMemberJoinStudy(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectMemberJoinStudy");
+		List<Study> list=new ArrayList<Study>();
+		Study s = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				s.setStudyNo(rs.getInt("STUDY_NO"));
+				s.setStudyName(rs.getString("STUDY_NAME"));
+				s.setStudyWriter(rs.getString("STUDY_WRITER"));
+				s.setStudyCategory(rs.getString("STUDY_CATEGORY"));
+				s.setStudyPossibleDay(rs.getString("STUDY_POSSIBLE_DAY"));
+				s.setStudyArea(rs.getString("STUDY_AREA"));
+				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
+				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
+				s.setEnrollDate(rs.getDate("STUDY_DATE"));
+				s.setEndDate(rs.getString("STUDY_END_DATE"));
+				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
+				s.setReImg(rs.getString("STUDY_RENAMED_IMG"));
+				s.setDateAssign(rs.getString("STUDY_DATE_ASSIGN"));
+				s.setMemberAssign(rs.getString("STUDY_MEMBER_ASSIGN"));
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }
