@@ -63,6 +63,7 @@ public class CartDao {
 				c.setLectorWriter(rs.getString("lector_writer"));
 				c.setLectorCategory(rs.getString("lector_category"));
 				c.setLectorPrice(rs.getInt("lector_price"));
+				c.setStatus(rs.getString("status"));
 				list.add(c);
 			}
 		}catch(SQLException e) {

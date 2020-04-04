@@ -51,9 +51,10 @@
 				</tr>
 			<%}else { %>
 			<%for(int i = 0; i < list.size(); i++) {%>
+				<%if(list.get(i).getStatus().equals("N")){ %>
 				<tr>
 					<td>
-						<input type="checkbox" name="cartList" value="<%=list.get(i) %>" onclick="itemSum(this.form)">
+						<input type="checkbox" name="cartList" value="<%=list.get(i) %>" onclick="itemSum();">
 						<%=list.get(i).getLectorTitle() %>
 					</td>
 					<td><%=list.get(i).getLectorWriter() %></td>
@@ -61,6 +62,7 @@
 					<td><%=list.get(i).getLectorPrice() %></td>
 					<td></td>
 				</tr>
+				<%} %>
 			<%}
 			}%>
 		</table>
@@ -76,16 +78,16 @@
 			<span><input type="button" value="삭제" id="subBtn" onclick="mappingAction('delete');"></span>
 	</form>
 	<script>
-		
-		function itemSum(frm) {
+		function itemSum() {
 			var sum = 0;
-			var count = frm.cartList.length;
-			for (var i = 0; i < count; i++) {
+			var totalSum = document.getElementById("totalSum")
+			<%for(int i = 0; i < list.size(); i++) {%>
 				if (frm.cartList[i].checked == true) {
-					sum += parseInt(frm.cartList[i].value);
+					sum += <%=list.get(i).getLectorPrice()%>;
 				}
-			}
-			frm.total_sum.value = sum;
+			<%} %>
+			totalSum.value = sum;
+			console.log(sum);
 		}
 		
 		function mappingAction(val){
