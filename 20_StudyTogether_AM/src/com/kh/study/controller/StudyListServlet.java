@@ -65,14 +65,14 @@ public class StudyListServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link'>이전</a></li>";
 			
 		}else {
-			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorList?cPage="+(pageNo-1)+"'>이전</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/study/studyList?cPage="+(pageNo-1)+"'>이전</a>";
 		}
 		
 		while(!(pageNo>pageEnd || pageNo>totalPage)) {
 			if(pageNo==cPage) {
 				pageBar+="<li class='page-item'><a class='page-link'  style='background-color: lightblue; color:black; '>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorList?cPage="+pageNo+"'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/study/studyList?cPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -81,7 +81,7 @@ public class StudyListServlet extends HttpServlet {
 		
 				pageBar+="<li class='page-item'><a class='page-link'>다음</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorList?cPage="+(pageNo)+"'>다음</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"//study/studyList?cPage="+(pageNo)+"'>다음</a>";
 			}
 		
 		request.setAttribute("totalStudy", totalStudy);

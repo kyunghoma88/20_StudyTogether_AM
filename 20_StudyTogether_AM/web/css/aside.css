@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
+/*게시판 전체 크기*/
+	.boardContainer{
+		width:1401px;
+		margin:0 auto;
+		padding-top: 50px;
+		display:flex;
+	}
     /*사이드바 컨테이너*/
     .aside{
         width: 265px;
@@ -28,19 +27,3 @@
         padding-bottom: 20px;
         border-bottom: 2px solid red;
     }
-</style>
-</head>
-<body>
-    <div class="aside">
-        <span class="aside_title">커뮤니티</span>
-        <ul class="aside_list">
-            <li style="margin-bottom: 5px;">자유게시판</li>
-            <li>묻고 답하기</li>
-        </ul>
-        <div>
-            테스트
-        </div>
-    </div>
-	
-</body>
-</html>

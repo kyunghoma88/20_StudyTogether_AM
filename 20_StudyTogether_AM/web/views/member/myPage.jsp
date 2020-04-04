@@ -1,25 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp" %>
-
-
-<!-- DAUM POSTCODE API -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<!-- header페이지 불러오기 -->
-<div class="container">
-	<div name="nav" class="container-fluid mt-3 mb-3">
-        <div class="row">
-            <nav>
-                <ul class="navbar-nav flex-row">
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="<%=request.getContextPath()%>/member/memberView">내 계정 정보</a></li>
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="#">내 일반스터디</a></li>
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="#">내 강좌</a></li>
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="<%=request.getContextPath()%>/payment/paymentForm">구매Test</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+<%@ include file="/views/member/myPageHeader.jsp" %>
+	<!-- DAUM POSTCODE API -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <div name="must" class="container-fluid mt-5 mb-3">
         <div class="row">
             <fieldset>
@@ -50,7 +33,7 @@
                                     <label for="myPagePwd">비밀번호</label>
                                 </td>
                                 <td>
-                                    <input type="password" name="pwd" id="myPagePwd" value="">　　　　　　　　　　　　
+                                    <input type="password" name="pwd" id="myPagePwd" placeholder="회원정보 수정을 위해 비밀번호를 입력하세요" size="45">　　　　　　　　　　　　
                                 </td>
                             </tr>
                             <tr>
@@ -58,7 +41,7 @@
                                     <label for="myPagePwdCheck">비밀번호 확인</label>
                                 </td>
                                 <td>
-                                    <input type="password" name="pwdCheck" id="myPagePwdCheck">
+                                    <input type="password" name="pwdCheck" id="myPagePwdCheck" placeholder="비밀번호를 한 번 더 입력하세요" size="45">
                                 </td>
                             </tr>
                             <tr>
@@ -327,6 +310,5 @@
             </fieldset>
         </div>
     </div>
-</div>
-<%@ include file="/views/common/footer.jsp" %>
+<%@ include file="/views/member/myPageFooter.jsp" %>
     

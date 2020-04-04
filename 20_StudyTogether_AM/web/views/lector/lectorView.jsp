@@ -4,7 +4,7 @@
 <%@page import="java.util.List,com.kh.lector.model.vo.Lector,com.kh.lector.model.vo.LectorChannel,java.util.List" %>
 //엄마강좌View!!
 <%
-	Lector l=(Lector)request.getAttribute("lector");
+	Lector l=(Lector)request.getAttribute("l");
 	List<LectorChannel> clist=(List)request.getAttribute("clist");
  	int cPage=(int)request.getAttribute("cPage");
 %>
@@ -33,7 +33,7 @@ background-color:#ffc107;
 	  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
 	  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
 	  	금액:&nbsp;&nbsp;<%=l.getLectorPrice() %>&nbsp;&nbsp;원</p>
-	  	<input type="hidden" name="userId" value="<%=loginMember.getUserId() %>">
+	  	<input type="hidden" name="userId" value="">
 	  	<input type="hidden" name="lectorNo" value="<%=l.getLectorNo()%>">
 	 </div>
 	  <div class="watch">
@@ -50,17 +50,18 @@ background-color:#ffc107;
    </form>
   </div>
   
-  
 <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
 <div class="container">
 <%if(!clist.isEmpty()){ %>
   <div class="list-group">
+  	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
     <%for(LectorChannel lc:clist){ %>
     <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
   <%}
 	}%>
   </div>
 </div>
+
 <%if(!clist.isEmpty()){ %>
  	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>

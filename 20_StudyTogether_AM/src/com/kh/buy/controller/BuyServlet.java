@@ -1,4 +1,4 @@
-package com.kh.payment.controller;
+package com.kh.buy.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PaymentServlet
  */
-@WebServlet("/payment/paymentTest")
-public class PaymentServlet extends HttpServlet {
+@WebServlet("/buy/buyTest")
+public class BuyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentServlet() {
+    public BuyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class PaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/payment/paymentTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/buy/buyTest.jsp").forward(request, response);
 	}
 
 	/**

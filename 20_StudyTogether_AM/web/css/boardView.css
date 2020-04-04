@@ -1,0 +1,162 @@
+    /*게시판 전체내용*/
+	.view_content{
+		float: left;
+		padding-top: 40px;
+		width:100%;
+		margin-left: 50px;
+	}
+	/*게시판 커뮤니티 이름*/
+	.category_name{
+		font-weight: bold;
+		font-size: 30px;
+		margin-left: 20px;
+		margin-bottom: 20px;
+	}
+	/*게시판 뷰 화면 컨테이너*/
+	.view_content2{
+		padding: 15px;
+		border: 1px solid lightgray;
+	}
+	/*게시판 뷰 top 메뉴*/
+	.view_topMenu{
+		list-style-type: none;
+	}
+	.view_topMenu>li{
+		border-right: 5px solid lightgray;
+		display: inline;
+		padding-right: 10px;
+	}
+	.view_topMenu>li:last-of-type{
+		border-right: 0;
+	}
+	/*게시판 뷰 top메뉴의 a태그*/
+	.view_category{
+		text-decoration: none;
+		color:gray;
+	}
+	.view_category:hover{
+		text-decoration: none;
+		color:lightgray;
+	}
+	/*게시판 뷰의 게시판 제목*/
+	.view_title{
+		background-color: lightgray;
+		border-bottom: 1px solid gray;
+		text-indent: 1em;
+		font-weight: 1000;
+		font-family: "맑은 고딕";
+		font-size: 24px;
+		padding: 5px 0px;
+		border-top: 2px solid red;
+	}
+	/*좋아요*/
+	.good{
+		display: inline-block;
+		margin-right: 300px;
+		border: 1px solid black;
+		padding: 5px;
+		width: 80px;
+		height: 80px;
+		text-decoration: none;
+		color: black;
+		font-weight: bold;
+	}
+	/*싫어요*/
+	.bad{
+		display: inline-block;
+		border: 1px solid black;
+		padding: 5px;
+		width: 80px;
+		height: 80px;
+		text-decoration: none;
+		color: black;
+		font-weight: bold;
+	}
+	/*게시판 뷰에달린 댓글*/
+	.view_comment{
+		list-style-type: none;
+		padding-left: 0px;
+	}
+	.view_comment>li{
+		border-right: 5px solid lightgray;
+		display: inline;
+		padding-right: 10px;
+		font-size: 11px;
+	}
+	.view_comment>li:last-of-type{
+		border-right: 0;
+	}
+	/*답글에 대한 a태그*/
+	.comment, .comment:hover{
+		color: gray;
+		text-decoration: none;
+		font-size: 13px;
+	}
+	/*댓글 내용*/
+	.comment_content{
+		border-bottom: 1px dotted blue;
+		padding-bottom: 16px;
+	}
+	/*댓글 등록 컨테이너*/
+	.comment_container{
+		display: flex; 
+	}
+	/*textarea 속성*/
+	.comment_text{
+		resize: none; 
+		width:90%;
+		float: left;
+	}
+	/*댓글 등록*/
+	.comment_insert{
+		text-decoration: none;
+		text-align: center;
+    	border: 1px solid rgb(169,169,169);
+		width: 100px;
+		height: 78px;
+		display: inline-block;
+		padding-top: 24px;
+		background-color: white;
+		color: black;
+	}
+	.comment_insert:hover{
+		text-decoration: none;
+		color: black;
+	}
+	/*글쓰기 답글등 버튼 속성*/
+	.listbtn{
+		list-style-type: none;
+		padding: 0;
+	}
+	.listbtn>li{
+		display: inline;
+    	padding: 5px 10px;
+    	border: 1px solid lightgrey;
+	}
+	.listbtn>li>a, .listbtn>li>a:hover{
+		text-decoration: none;
+		color:gray;
+	}
+	/*파일다운 속성*/
+	.fileDown{
+		text-decoration: none;
+		color:black;
+	}
+	.fileDown:hover{
+		text-decoration: none;
+		color:gray;
+	}
+	/*댓글에 댓글 속성*/
+	.view_comment2{
+		list-style-type: none;
+		padding-left: 100px;
+	}
+	.view_comment2>li{
+		border-right: 5px solid lightgray;
+		display: inline;
+		padding-right: 10px;
+		font-size: 11px;
+	}
+	.view_comment2>li:last-of-type{
+		border-right: 0;
+	}

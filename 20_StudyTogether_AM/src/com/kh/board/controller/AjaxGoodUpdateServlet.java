@@ -1,4 +1,4 @@
-package com.kh.admin.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
+
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class AjaxUpdateServlet
  */
-@WebServlet("/admin/adminGrantStudy")
-public class AdminGrantStudyServlet extends HttpServlet {
+@WebServlet("/ajax/goodUpdate")
+public class AjaxGoodUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminGrantStudyServlet() {
+    public AjaxGoodUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +29,13 @@ public class AdminGrantStudyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/admin/adminGrantStudy.jsp").forward(request, response);
-
+		// TODO Auto-generated method stub
+		int no = Integer.parseInt(request.getParameter("no"));
+		System.out.println("test"+no);
+		
+		new BoardService().updateGood(no);
+		Board b=new BoardService().boardView(no);
+		response.getWriter().print(b.getGood_cnt());
 	}
 
 	/**

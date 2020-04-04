@@ -53,4 +53,23 @@ public class StudyService {
 		else rollback(conn);
 		return result;
 	}
+
+	public List<Study> searchStudyPage(String area, String searchType, String day) {
+		Connection conn=getConnection();
+		List<Study> list=dao.searchStudyPage(conn,area,searchType,day);
+		close(conn);
+		return list;
+	}
+
+	public int updateStudy(Study s) {
+			Connection conn=getConnection();
+			int result=dao.updateStudy(conn,s);
+			if(result>0) commit(conn);
+			else rollback(conn);
+			close(conn);
+			return result;
+		}
+	
+
+	
 }

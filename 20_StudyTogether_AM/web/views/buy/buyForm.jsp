@@ -32,7 +32,7 @@
 	})
 </script>
 <div class="container">
-	<form action="<%=request.getContextPath()%>/payment/paymentTest" method="post">
+	<form action="<%=request.getContextPath()%>/buy/buyTest" method="post">
 		<div class="row">
 			<table class="table">
 				<tr class="row border-top border-bottom">

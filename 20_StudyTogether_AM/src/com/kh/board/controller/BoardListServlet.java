@@ -43,6 +43,7 @@ public class BoardListServlet extends HttpServlet {
 		int numPerPage=15;
 		
 		List<Board> list = new BoardService().boardList(cPage, numPerPage);
+		List<Board> replyList = new BoardService().boardReplyList();
 		
 		//총 게시판 갯수 구하기
 		int totalBoard=new BoardService().boardCount();
@@ -73,7 +74,9 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("list", list);
+		request.setAttribute("replyList", replyList);
 		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("cPage", cPage);
 		request.getRequestDispatcher("/views/board/list.jsp")
 		.forward(request, response);
 	}

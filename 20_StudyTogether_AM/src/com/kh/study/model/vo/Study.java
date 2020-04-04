@@ -164,12 +164,7 @@ public class Study {
 					+ dateAssign + ", memberAssign=" + memberAssign + "]";
 		}
 	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
+
 	 	
 
 }

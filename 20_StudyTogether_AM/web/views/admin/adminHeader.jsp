@@ -16,9 +16,6 @@
 	      <a href="<%=request.getContextPath()%>/admin/adminManageLector" class="text-decoration-none text-reset text-decoration-none text-dark">개설된 강좌 목록</a>
 	    </div>
 	    <div class="col text-center">
-	      <a href="<%=request.getContextPath()%>/admin/adminGrantStudy" class="text-decoration-none text-reset text-decoration-none text-dark">스터디신청 관리</a>
-	    </div>
-	    <div class="col text-center">
 	      <a href="<%=request.getContextPath()%>/admin/adminManageStudy" class="text-decoration-none text-reset text-decoration-none text-dark">개설된 스터디 목록</a>
 	    </div>
 	    <div class="col text-center">

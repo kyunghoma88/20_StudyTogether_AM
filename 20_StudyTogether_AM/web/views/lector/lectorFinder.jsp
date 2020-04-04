@@ -5,6 +5,7 @@
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lectorList.css" type="text/css"/>
 
+
 <%
 	List<Lector> list=(List)request.getAttribute("list");
 	String key=(String)request.getAttribute("key");
@@ -12,6 +13,7 @@
 	String type=request.getParameter("searchType");
 	String keyword=request.getParameter("searchKeyword");
 %>
+
 <section>
   <div class="make">
     <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
@@ -25,7 +27,7 @@
 	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
      <select id="searchType" name="searchType"> 
-     	<option value="all" <%=type!=null&&type.equals("all")?"selected":"" %>>전체</option>
+     	<option >강좌 카테고리</option>
      	  <optgroup label="어학,회화">
           <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
           <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>

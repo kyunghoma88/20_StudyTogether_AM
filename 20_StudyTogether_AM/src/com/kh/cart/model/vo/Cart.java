@@ -9,13 +9,14 @@ public class Cart {
 	private String lectorWriter;
 	private String lectorCategory;
 	private int lectorPrice;
+	private String status;
 	
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Cart(int cartNo, String userId, int lectorNo, String lectorTitle, String lectorWriter, String lectorCategory,
-			int lectorPrice) {
+			int lectorPrice, String status) {
 		super();
 		this.cartNo = cartNo;
 		this.userId = userId;
@@ -24,6 +25,7 @@ public class Cart {
 		this.lectorWriter = lectorWriter;
 		this.lectorCategory = lectorCategory;
 		this.lectorPrice = lectorPrice;
+		this.status = status;
 	}
 
 	public int getCartNo() {
@@ -81,14 +83,22 @@ public class Cart {
 	public void setLectorPrice(int lectorPrice) {
 		this.lectorPrice = lectorPrice;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "Cart [cartNo=" + cartNo + ", userId=" + userId + ", lectorNo=" + lectorNo + ", lectorTitle="
 				+ lectorTitle + ", lectorWriter=" + lectorWriter + ", lectorCategory=" + lectorCategory
-				+ ", lectorPrice=" + lectorPrice + "]";
+				+ ", lectorPrice=" + lectorPrice + ", status=" + status + "]";
 	}
-	
+
 	
 	
 	

@@ -1,213 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.board.model.vo.Board" %>
+<%@ page import="com.kh.board.model.vo.Board,java.util.List,com.kh.board.model.vo.Comment" %>
 <%
 	Board b=(Board)request.getAttribute("board");
 	int maxNo=(int)request.getAttribute("maxNo");
+	int minNo=(int)request.getAttribute("minNo");
+	Board preView=(Board)request.getAttribute("preView");
+	Board nextView=(Board)request.getAttribute("nextView");
+	int cPage=(int)request.getAttribute("cPage");
+	List<Comment> commentList=(List)request.getAttribute("commentList");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<style>
-	/*게시판 전체 크기*/
-	.boardContainer{
-		width:1401px;
-		margin:0 auto;
-		padding-top: 50px;
-		display:flex;
-	}
-	/*사이드바 컨테이너*/
-    .aside{
-        width: 300px;
-        padding-right: 50px;
-        margin-top: 40px;
-        border-right: 2px solid #e6e6e6;
-		float: left;
-    }
-    /*사이드바 메뉴*/
-    .aside_list{
-        list-style-type: none;
-        padding-left: 20px;   
-        margin-top: 20px;
-    }
-    /*커뮤니티 이름*/
-    .aside_title{
-        display: block;
-        font-weight: bold;
-        font-size: 24px;
-        padding-left: 20px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid red;
-    }
-    /*-------------*/
-    /*게시판 전체내용*/
-	.view_content{
-		float: left;
-		padding-top: 40px;
-		width:100%;
-		margin-left: 50px;
-	}
-	/*게시판 커뮤니티 이름*/
-	.category_name{
-		font-weight: bold;
-		font-size: 30px;
-		margin-left: 20px;
-		margin-bottom: 20px;
-	}
-	/*게시판 뷰 화면 컨테이너*/
-	.view_content2{
-		padding: 15px;
-		border: 1px solid lightgray;
-	}
-	/*게시판 뷰 top 메뉴*/
-	.view_topMenu{
-		list-style-type: none;
-	}
-	.view_topMenu>li{
-		border-right: 5px solid lightgray;
-		display: inline;
-		padding-right: 10px;
-	}
-	.view_topMenu>li:last-of-type{
-		border-right: 0;
-	}
-	/*게시판 뷰 top메뉴의 a태그*/
-	.view_category{
-		text-decoration: none;
-		color:gray;
-	}
-	.view_category:hover{
-		text-decoration: none;
-		color:lightgray;
-	}
-	/*게시판 뷰의 게시판 제목*/
-	.view_title{
-		background-color: lightgray;
-		border-bottom: 1px solid gray;
-		text-indent: 1em;
-		font-weight: 1000;
-		font-family: "맑은 고딕";
-		font-size: 24px;
-		padding: 5px 0px;
-		border-top: 2px solid red;
-	}
-	/*좋아요*/
-	.good{
-		display: inline-block;
-		margin-right: 300px;
-		border: 1px solid black;
-		padding: 5px;
-		width: 80px;
-		height: 80px;
-		text-decoration: none;
-		color: black;
-		font-weight: bold;
-	}
-	/*싫어요*/
-	.bad{
-		display: inline-block;
-		border: 1px solid black;
-		padding: 5px;
-		width: 80px;
-		height: 80px;
-		text-decoration: none;
-		color: black;
-		font-weight: bold;
-	}
-	/*게시판 뷰에달린 댓글*/
-	.view_comment{
-		list-style-type: none;
-		padding-left: 0px;
-	}
-	.view_comment>li{
-		border-right: 5px solid lightgray;
-		display: inline;
-		padding-right: 10px;
-		font-size: 11px;
-	}
-	.view_comment>li:last-of-type{
-		border-right: 0;
-	}
-	/*답글에 대한 a태그*/
-	.comment{
-		color: gray;
-		text-decoration: none;
-		font-size: 13px;
-	}
-	/*댓글 내용*/
-	.comment_content{
-		border-bottom: 1px dotted blue;
-		padding-bottom: 16px;
-	}
-	/*댓글 등록 컨테이너*/
-	.comment_container{
-		display: flex; 
-		border-top: 1px dotted blue;
-		padding-top: 16px;
-	}
-	/*textarea 속성*/
-	.comment_text{
-		resize: none; 
-		width:90%;
-		float: left;
-	}
-	/*댓글 등록*/
-	.comment_insert{
-		text-decoration: none;
-		text-align: center;
-    	border: 1px solid rgb(169,169,169);
-		width: 100px;
-		height: 78px;
-		display: inline-block;
-		padding-top: 24px;
-		background-color: white;
-		color: black;
-	}
-	.comment_insert:hover{
-		text-decoration: none;
-		color: black;
-	}
-	/*글쓰기 답글등 버튼 속성*/
-	.listbtn{
-		list-style-type: none;
-		padding: 0;
-	}
-	.listbtn>li{
-		display: inline;
-    	padding: 5px 10px;
-    	border: 1px solid lightgrey;
-	}
-	.listbtn>li>a, .listbtn>li>a:hover{
-		text-decoration: none;
-		color:gray;
-	}
-</style>
-</head>
-<body>
-	<div class="boardContainer">
-		<div class="aside">
-	        <span class="aside_title">커뮤니티</span>
-	        <ul class="aside_list">
-	            <li style="margin-bottom: 5px;">자유게시판</li>
-	            <li>묻고 답하기</li>
-			</ul>
-		</div>
+<%@ include file="/views/board/aside.jsp"%>
 		<div class="view_content">
 			<div class="category_name">서버에서 넘어올 커뮤니티 이름</div>
 			<div class="view_content2">	
@@ -229,20 +32,27 @@
 					</ul>
 				</div>
 				<div style="border-bottom: 1px solid gray;">
-				<%if(b.getFile_upload() != null) {%>
+				<%if(b.getFile_upload() != null) {
+					String file[]=b.getFile_upload().split(","); 
+					for(int i=0;i<file.length;i++){
+					if(file[i].equals("")||file[i].equals("null")) continue;%>
 					<div style="text-align: right;">
+						<a class="fileDown" href="<%=request.getContextPath() %>/board/fileDown?filePath=<%=file[i] %>">
 						<i class="fas fa-download"></i>
-						<%=b.getFile_upload() %>
+						<%=file[i] %>
+						</a>
 					</div>
-				<%} %>
+				<%
+					} 
+				}%>
 					<p style="text-indent: 1em; margin-top: 16px;"><%=b.getContent() %></p>
 					<div style="text-align: center;">
-						<a class="good" href="#">
+						<a class="good" href="javascript:void(0)">
 							<i style="color: red"class="far fa-thumbs-up"></i><br>
 							<span id="goodAdd"><%=b.getGood_cnt() %></span><br>
 							좋아요
 						</a>
-						<a class="bad" href="#">
+						<a class="bad" href="javascript:void(0)">
 							<i style="color: blue"class="far fa-thumbs-down"></i><br>
 							<span id="badAdd"><%=b.getBad_cnt() %></span><br>
 							싫어요
@@ -255,36 +65,61 @@
 						</ul>
 					</div>
 					<div style="background-color: lightgray; padding: 10px 26px 16px 16px;">
+					<%if(commentList!=null && !commentList.isEmpty()) {
+						int i=1;
+						for(Comment c : commentList){
+							if(c.getComment_level()==1){%>
+						<div class="comment_area">
 						<ul class="view_comment">
-							<li style="font-size: 14px; font-weight: bold;">작성자이름</li>
+							<li style="font-size: 14px; font-weight: bold;"><%=c.getComment_writer() %></li>
 							<li>작성자이면표시</li>
-							<li>댓글쓴 날짜</li>
-							<li><a id="comment" class="comment" href="#" onclick="comment();">
+							<li><%=c.getComment_date() %></li>
+							<li><a id="comment<%=i %>" class="comment" href="javascript:void(0)" value="<%=c.getComment_no()%>">
 								<i class="fas fa-reply fas-lg"></i>답글</a>
 							</li>
 						</ul>
-						<p class="comment_content">댓글내용</p>
-						<div style="padding-bottom: 16px;">
-							댓글에대한 답글
+						<p class="comment_content"><%=c.getComment_content() %></p>
 						</div>
+						<%		i++;}else{%>
+						<div class="comment_area">
+						<ul class="view_comment2">
+							ㄴ<li style="font-size: 14px; font-weight: bold;"><%=c.getComment_writer() %></li>
+							<li>작성자이면표시</li>
+							<li><%=c.getComment_date() %></li>
+						</ul>
+						<p class="comment_content" style="padding-left:98px;"><%=c.getComment_content() %></p>
+						</div>			
+						<%		}
+							}
+						}%>
+						<!-- <div style="padding-bottom: 16px;">
+							댓글에대한 답글
+						</div> -->
 						<div class="comment_container">
-							<textarea cols="50" rows="3" class="comment_text"></textarea>
+							<textarea cols="50" rows="3" class="comment_text" id="comment_text"></textarea>
 							<div style="float: left; margin-left: 20px;">
-								<a href="#" class="comment_insert">등록</a>
+								<a href="javascript:commentInsert()" class="comment_insert">등록</a>
 							</div>
 						</div>
+						<form name="commentInsert" method="post" action="<%=request.getContextPath()%>/board/comment">
+							<input type="hidden" name="board_ref" value="<%=b.getBoard_no()%>">
+							<input type="hidden" name="comment_writer" value="<%=b.getNickname()%>">
+							<input type="hidden" name="comment_no_ref" value="0">
+							<input type="hidden" name="comment_level" value="1">
+							<input type="hidden" name="comment_text">
+						</form>
 					</div>
 				</div>
 			</div>
 			<div style="padding-top: 15px;">
 				<ul class="listbtn" style="float: left;">
-					<li><a href="#"><i class="fas fa-pen"></i> 글쓰기</a></li>
-					<li><a href="#"><i class="fas fa-comment-dots"></i> 답글</a></li>
-					<li><a href="#">목록</a></li>
+					<li><a href="<%=request.getContextPath()%>/board/boardWrite"><i class="fas fa-pen"></i> 글쓰기</a></li>
+					<li><a href="javascript:boareReply(<%=b.getBoard_no()%>)"><i class="fas fa-comment-dots"></i> 답글</a></li>
+					<li><a href="javascript:boardList(<%=cPage%>)">목록</a></li>
 				</ul>
 				<ul class="listbtn" style="float: right;">
-					<li><a href="#">삭제</a></li>
-					<li><a href="#">수정</a></li>
+					<li><a href="javascript:boardDelete(<%=b.getBoard_no()%>)">삭제</a></li>
+					<li><a href="javascript:boardUpdate(<%=b.getBoard_no()%>)">수정</a></li>
 				</ul>
 			</div>
 			<table class="table" style="clear: both; width: 100%; font-size: 13px;">
@@ -295,30 +130,34 @@
                         	이전글</a>
                        	</td>
                         <td style="width: 530px;">
-                        	<a href="javascript:boardView(<%=b.getBoard_no()+1 %>)" style="text-decoration: none; color:black;">글제목</a>
+                        	<a href="javascript:boardView(<%=b.getBoard_no()+1 %>)" style="text-decoration: none; color:black;"><%=preView.getTitle() %></a>
                         </td>
-                        <td>작성자명</td>
-                        <td style="text-align: center;">작성날짜</td>
+                        <td><%=preView.getNickname() %></td>
+                        <td style="text-align: center;"><%=preView.getWrite_date() %></td>
                     </tr>
                  <%} %>
+                 <%if(b.getBoard_no()!=1) {%>
                     <tr>
                         <td><a href="javascript:boardView(<%=b.getBoard_no()-1 %>)" style="text-decoration: none; color:black;">
                         <i class="fas fa-angle-down" style="color: orange;"></i> 
                         	다음글</a>
                         </td>
                         <td>
-                        	<a href="javascript:boardView(<%=b.getBoard_no()-1 %>)" style="text-decoration: none; color:black;">글제목</a>
+                        	<a href="javascript:boardView(<%=b.getBoard_no()-1 %>)" style="text-decoration: none; color:black;"><%=nextView.getTitle() %></a>
                         </td>
-                        <td>작성자명</td>
-                        <td style="text-align: center;">작성날짜</td>
+                        <td><%=nextView.getNickname() %></td>
+                        <td style="text-align: center;"><%=nextView.getWrite_date() %></td>
                     </tr>
+                <%} %>
                 </table>
                 <form name="paging">
 	                	<input type="hidden" name="no"/>
+	                	<input type="hidden" name="cPage"/>
 	            </form>
 		</div>
 	</div>
 	<script>
+	var comment_no;
 		$(document).ready(function(){
 			$("a[class='good']").on({
 				mouseenter:function(){
@@ -326,6 +165,18 @@
 						color:"black",
 						textDecoration:"none"
 					})
+				},
+				click:function(){
+					$.ajax({
+						url:"<%=request.getContextPath()%>/ajax/goodUpdate",
+						type:"post",
+						data:{"no":<%=b.getBoard_no()%>},
+						success:function(data){
+							$("#goodAdd").html(data);
+							console.log($(".view_topMenu>li"));
+							$(".view_topMenu>li").eq(6).html("좋아요 "+data+"&nbsp;");
+						}
+					});
 				}
 			});
 			$("a[class='bad']").on({
@@ -334,24 +185,146 @@
 						color:"black",
 						textDecoration:"none"
 					})
+				},
+				click:function(){
+					$.ajax({
+						url:"<%=request.getContextPath()%>/ajax/badUpdate",
+						type:"post",
+						data:{"no":<%=b.getBoard_no()%>},
+						success:function(data){
+							$("#badAdd").html(data);
+							$(".view_topMenu>li").eq(7).html("싫어요 "+data+"&nbsp;");
+						}
+					});
 				}
 			});
-			$("#comment").on({
-				mouseenter:function(){
+			$(".comment").on({
+				click:function(e){
 					$(this).css({
 						color:"gray",
 						textDecoration:"none"
 					})
+					if($(this).html().includes("취소")){
+						$(this).html("<i class='fas fa-reply fas-lg'></i>답글");
+						$(this).parents().eq(2).find(".comment_container").hide();
+					}else{
+						comment_no = $(this).attr("value");
+						$(".comment_container").not(".comment_container:last").remove();
+						var target=e.target;
+						$(".view_comment>li>a").not(event.target).css("color","gray")
+						.html("<i class='fas fa-reply fas-lg'></i>답글");
+						$(this).css({
+							color:"black",
+							textDecoration:"none"
+						}).html("<i class='fas fa-reply fas-lg'></i>답글취소");
+						//console.log($(".comment_area>ul>li").find("a"));
+						var div=$("<div class='comment_container' style='padding-left: 100px; padding-bottom: 20px; border-bottom: 1px dotted blue;'>");
+						var textarea="ㄴ<textarea cols='50' rows='3' class='comment_text' id='comment_text'></textarea>"+
+									"<div style='float: left; margin-left: 20px;'>"+
+									"<a href='javascript:commentInsert2()' class='comment_insert' id='comment_insert2'>등록</a>"+
+									"</div>";
+						div.append(textarea);
+						$(this).parents().eq(2).append(div);
+						console.log($(this).next());
+					}
 				}
 			});
+			
+			
+			<%-- setInterval(function(){
+				$.ajax({
+					url:"<%=request.getContextPath()%>/board/boardView",
+					type:"post",
+					data:{"cPage":<%=cPage%>,
+						  "no":<%=b.getBoard_no()%>},
+					success:function(data){
+						console.log("test");
+					}
+				})
+			},700) --%>
+			
 		})
-	function boardView(no){
-    	var f=document.paging;
-    	f.no.value=no;
-    	f.action="<%=request.getContextPath()%>/board/boardView";
-    	f.method="post";
-    	f.submit();
-    }
+		function boardView(no){
+	    	var f=document.paging;
+	    	f.no.value=no;
+	    	f.action="<%=request.getContextPath()%>/board/boardView";
+	    	f.method="post";
+	    	f.submit();
+	    }
+		function boardUpdate(no){
+			var f=document.paging;
+	    	f.no.value=no;
+	    	f.action="<%=request.getContextPath()%>/board/update";
+	    	f.method="post";
+	    	f.submit();
+		}
+		function boardList(cPage){
+	    	var f=document.paging;
+	    	f.cPage.value=cPage;
+	    	f.action="<%=request.getContextPath()%>/board/boardList";
+	    	f.method="post";
+	    	f.submit();
+		}
+		function boardDelete(no){
+			var f=document.paging;
+	    	f.no.value=no;
+	    	f.action="<%=request.getContextPath()%>/board/delete";
+	    	f.method="post";
+	    	f.submit();
+		}
+		function boareReply(no){
+			var f=document.paging;
+	    	f.no.value=no;
+	    	f.action="<%=request.getContextPath()%>/board/replyWrite";
+	    	f.method="post";
+	    	f.submit();
+		}
+		function commentInsert(){
+			$.ajax({
+				url:"<%=request.getContextPath()%>/board/comment",
+				type:"post",
+				dataType:"json",
+				data:{"comment_text":$("#comment_text").val(),
+					  "board_ref":<%=b.getBoard_no()%>,
+					  "comment_writer":"<%=b.getNickname()%>",
+					  "comment_no_ref":0,
+					  "comment_level":1},
+				success:function(data){
+					console.log(data.comment.comment_content);
+					if(data.comment.comment_content==""){
+						alert("댓글을 입력하세요!");
+					}else{						
+						alert("댓글 등록 성공!");
+					}
+					
+					$("#comment_text").val("");
+					$("#comment_text").focus();
+				}
+			});
+		};
+		function commentInsert2(){
+			$.ajax({
+				url:"<%=request.getContextPath()%>/board/comment",
+				type:"post",
+				dataType:"json",
+				data:{"comment_text":$("#comment_text").val(),
+					  "board_ref":<%=b.getBoard_no()%>,
+					  "comment_writer":"<%=b.getNickname()%>",
+					  "comment_no_ref":comment_no,
+					  "comment_level":2},
+				success:function(data){
+					console.log(data.comment.comment_content);
+					if(data.comment.comment_content==""){
+						alert("댓글을 입력하세요!");
+					}else{						
+						alert("댓글 등록 성공!");
+					}
+					
+					$("#comment_text").val("");
+					$("#comment_text").focus();
+				}
+			});
+		};
+		
 	</script>
-</body>
-</html>
+<%@ include file="/views/common/footer.jsp"%>
