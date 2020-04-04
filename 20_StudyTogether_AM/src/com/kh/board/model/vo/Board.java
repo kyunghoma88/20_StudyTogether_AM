@@ -20,7 +20,7 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
-	private Board(int board_no, int reply_no, int reply_level, String nickname, String title, String content,
+	public Board(int board_no, int reply_no, int reply_level, String nickname, String title, String content,
 			String img_file, String file_upload, Date write_date, int cnt, int good_cnt, int bad_cnt) {
 		super();
 		this.board_no = board_no;
