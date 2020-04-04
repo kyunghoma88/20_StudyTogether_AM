@@ -31,11 +31,29 @@
 			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'결제');">결 제</button>
 			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'기타');">기 타</button>
 		</div>
-		<div id="tableContainer"></div>
+		<div id="table-container"></div>
 
+		<script>
+			function fn_btn(cPage, category){
+				$.ajax({
+					url:"<%=request.getContextPath()%>/faq/faqListAjax",
+					type:"post",
+					data:{cPage:cPage,
+						 "category":category},
+					success:function(data){
+						//console.log(data);
+						//alert(category);
+						$("#tbl-faq, #pageBar").css("display","none"); 
+						
+						
+						
+						$('#table-container').html(data);
+					}
+					
+				})
+			}
 
-
-
+		</script>
 
 
 

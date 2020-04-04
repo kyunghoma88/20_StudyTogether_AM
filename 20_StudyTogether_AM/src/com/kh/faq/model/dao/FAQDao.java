@@ -36,7 +36,7 @@ public class FAQDao {
 		
 		
 		if(category.equals("전체보기")) {
-			String sql = prop.getProperty("searchFaq");
+			String sql = prop.getProperty("faqAll");
 			List<FAQ> list = new ArrayList();
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -137,8 +137,7 @@ public class FAQDao {
 				
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					result = rs.getInt(1);
-					//System.out.println("몇개니?? : " + result);
+					result = rs.getInt(1);					
 				}
 				
 			} catch(SQLException e) {
@@ -148,8 +147,6 @@ public class FAQDao {
 				close(pstmt);
 			}
 			return result;
-			
-			
 			
 		}
 			
@@ -220,7 +217,6 @@ public class FAQDao {
 		String sql = prop.getProperty("updateFaq");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//pstmt.setString(1, f.getFaqWriter());
 			pstmt.setString(1, f.getFaqTitle());
 			pstmt.setString(2, f.getFaqCategory());
 			pstmt.setString(3, f.getFaqContent());
