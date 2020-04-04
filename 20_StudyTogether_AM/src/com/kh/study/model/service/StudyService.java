@@ -61,5 +61,15 @@ public class StudyService {
 		return list;
 	}
 
+	public int updateStudy(Study s) {
+			Connection conn=getConnection();
+			int result=dao.updateStudy(conn,s);
+			if(result>0) commit(conn);
+			else rollback(conn);
+			close(conn);
+			return result;
+		}
+	
+
 	
 }

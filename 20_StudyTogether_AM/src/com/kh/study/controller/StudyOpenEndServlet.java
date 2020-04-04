@@ -68,7 +68,7 @@ public class StudyOpenEndServlet extends HttpServlet {
 		 System.out.println("파일명:"+oriImg); System.out.println("파일명:"+reImg);
 		 
 		
-		Study s=new Study(0,title,writer,category,days,area,intro,maxMember,0,null,endDate,oriImg,reImg,null,null);
+		Study s=new Study(0,title,writer,category,days,area,intro,maxMember,null,endDate,oriImg,reImg,null,null);
 		
 		
 		int result=new StudyService().insertStudy(s);

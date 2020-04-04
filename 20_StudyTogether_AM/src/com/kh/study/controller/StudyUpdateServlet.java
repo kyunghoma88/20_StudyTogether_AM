@@ -31,10 +31,12 @@ public class StudyUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no=Integer.parseInt(request.getParameter("no"));
+		System.out.println(no);
 		Study s=new StudyService().selectStudy(no);//
 		
-		request.setAttribute("s", s);
 		System.out.println("upup"+s);
+		request.setAttribute("s", s);
+
 		request.getRequestDispatcher("/views/study/studyUpdate.jsp").forward(request, response);
 	}
 	

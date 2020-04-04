@@ -73,7 +73,6 @@
                              <option value="영어">영어</option>
                              <option value="일본어">일본어</option>
                              <option value="중국어">중국어</option>
-                             <option value="어학 기타">어학 기타</option>
                          </optgroup>
                          
                          <optgroup label="자격증">
@@ -82,7 +81,6 @@
                              <option value="정보처리기사">정보처리기사</option>
                              <option value="컴퓨터활용">컴퓨터활용</option>
                              <option value="토익">토익</option>
-                             <option value="자격증 기타">자격증 기타</option>
                          </optgroup>
              
                          <optgroup label="취미">
@@ -91,7 +89,6 @@
                              <option value="밴드">밴드</option>
                              <option value="요리">요리</option>
                              <option value="운동">운동</option>
-                             <option value="취미 기타">취미 기타</option>
                          </optgroup>
                  
              
@@ -100,8 +97,7 @@
                              <option value="데이터베이스">데이터베이스</option>
                              <option value="자바프로그래밍">자바프로그래밍</option>
                              <option value="운영체제">운영체제</option>
-                             <option value="HTML">HTML</option>
-                             <option value="IT 기타">IT 기타</option>
+                             <option value="파이썬">파이썬</option>
                          </optgroup>
              
                          <optgroup label="대학생">
@@ -110,7 +106,6 @@
                              <option value="인문학과">인문학과</option>
                              <option value="자연과학">자연과학</option>
                              <option value="예체능">예체능</option>
-                             <option value="대학생 기타">대학생 기타</option>
                          </optgroup>
                          </select>
                          </td>

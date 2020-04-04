@@ -85,7 +85,6 @@ public class StudyDao {
 				s.setStudyArea(rs.getString("STUDY_AREA"));
 				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
 				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
-				s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));//
 				s.setEnrollDate(rs.getDate("STUDY_DATE"));
 				s.setEndDate(rs.getString("STUDY_END_DATE"));
 				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
@@ -141,7 +140,6 @@ public class StudyDao {
 			s.setStudyArea(rs.getString("STUDY_AREA"));
 			s.setStudyDetail(rs.getString("STUDY_DETAIL"));
 			s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
-			s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));//
 			s.setEnrollDate(rs.getDate("STUDY_DATE"));
 			s.setEndDate(rs.getString("STUDY_END_DATE"));
 			s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
@@ -197,7 +195,6 @@ public class StudyDao {
 				s.setStudyArea(rs.getString("STUDY_AREA"));
 				s.setStudyDetail(rs.getString("STUDY_DETAIL"));
 				s.setMaxMember(rs.getInt("STUDY_MAX_MEMBER"));
-				s.setNowMember(rs.getInt("STUDY_NOW_MEMBER"));
 				s.setEnrollDate(rs.getDate("STUDY_DATE"));
 				s.setEndDate(rs.getString("STUDY_END_DATE"));
 				s.setOriImg(rs.getString("STUDY_ORIGINAL_IMG"));
@@ -213,5 +210,33 @@ public class StudyDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int updateStudy(Connection conn, Study s) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateStudy");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, s.getStudyName());
+			pstmt.setString(2, s.getStudyCategory());
+			pstmt.setString(3, s.getStudyPossibleDay());
+			pstmt.setString(4, s.getStudyArea());
+			pstmt.setString(5, s.getStudyDetail());
+			pstmt.setInt(6, s.getMaxMember());
+			pstmt.setString(7, s.getEndDate());
+			pstmt.setString(8, s.getOriImg());
+			//pstmt.setString(9, s.getReImg());
+			//pstmt.setString(11, s.getDateAssign());
+			//pstmt.setString(12, s.getMemberAssign());
+			pstmt.setInt(9, s.getStudyNo());
+			result=pstmt.executeUpdate();
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

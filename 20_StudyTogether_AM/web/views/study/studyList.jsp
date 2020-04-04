@@ -105,7 +105,7 @@
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-      모집인원<%=s.getMaxMember() %>/<%=s.getNowMember() %> 명</div>
+      모집인원<%=s.getMaxMember() %>/0 명</div>
     모집마감&nbsp;~<%=s.getEndDate() %>까지
     </div>
   </a>
