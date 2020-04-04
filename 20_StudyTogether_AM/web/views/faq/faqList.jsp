@@ -16,20 +16,20 @@
 
 <section id="faq-container">
 	<h2>FAQ</h2>
-<%-- 		<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %> --%>
-<!-- 			<!-- null && 로 안하면 nullpoint exception 뜨겠지 --> 
+ 		<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
+ 
  			<button type="button" id="btn-faq-write" onclick="fn_faqWrite();">FAQ 작성</button>
-<%-- 		<% } %> --%>
+ 		<% } %> 
 
 
 
 
 		<div id="category-container">
-			<button type="button" id="btn-faq-category" onclick="fn_all();">전체보기</button>
-			<button type="button" id="btn-faq-category" onclick="fn_member();">회 원</button>
-			<button type="button" id="btn-faq-category" onclick="fn_registStudy();">스터디 개설</button>
-			<button type="button" id="btn-faq-category" onclick="fn_payment();">결 제</button>
-			<button type="button" id="btn-faq-category" onclick="fn_etc();">기 타</button>
+			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'전체보기');">전체보기</button>
+			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'회원');" >회 원</button>
+			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'스터디개설');">스터디 개설</button>
+			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'결제');">결 제</button>
+			<button type="button" id="btn-faq-category" onclick="fn_btn(1,'기타');">기 타</button>
 		</div>
 		<div id="tableContainer"></div>
 

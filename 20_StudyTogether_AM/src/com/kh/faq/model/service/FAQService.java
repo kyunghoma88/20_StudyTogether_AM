@@ -15,9 +15,9 @@ public class FAQService {
 	
 	private FAQDao dao = new FAQDao();
 	
-	public List<FAQ> searchFAQ(int cPage, int numPerPage){
+	public List<FAQ> searchFAQ(int cPage, int numPerPage, String category){
 		Connection conn = getConnection();
-		List<FAQ> list = dao.searchFAQ(conn, cPage, numPerPage);
+		List<FAQ> list = dao.searchFAQ(conn, cPage, numPerPage, category);
 		
 		
 		close(conn);
@@ -26,9 +26,9 @@ public class FAQService {
 		
 	}
 
-	public int faqCount() {
+	public int faqCount(String category) {
 		Connection conn = getConnection();
-		int result = dao.faqCount(conn);
+		int result = dao.faqCount(conn, category);
 		close(conn);
 		return result;
 	}
