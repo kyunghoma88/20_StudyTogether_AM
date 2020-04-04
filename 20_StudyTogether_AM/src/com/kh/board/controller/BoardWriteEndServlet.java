@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -69,8 +70,9 @@ public class BoardWriteEndServlet extends HttpServlet {
 		}
 		String fileNames=String.join(",", list);
 		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
-		System.out.println(fileNames);
-		Board b=new Board(0,0,0,"admin",title,write_text,"",fileNames,new Date(),0,0,0);
+		String id=mr.getParameter("id");
+		System.out.println("id : "+id);
+		Board b=new Board(0,0,1,id,title,write_text,"",fileNames,new Date(),0,0,0);
 		int result=new BoardService().insertBoard(b);
 		response.sendRedirect(request.getContextPath()+"/board/boardList");
 	}

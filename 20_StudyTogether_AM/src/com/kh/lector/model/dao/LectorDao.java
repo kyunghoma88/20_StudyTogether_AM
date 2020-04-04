@@ -279,14 +279,12 @@ public class LectorDao {
 		ResultSet rs=null;
 		String sql=prop.getProperty("searchLectorChannelPage");
 		List<LectorChannel> list=new ArrayList();
-		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1,pNo);
 			pstmt.setInt(2, (cPage-1)*numPerPage+1);
 			pstmt.setInt(3, cPage*numPerPage);
 			rs=pstmt.executeQuery();
-			
 			while(rs.next()) {
 				LectorChannel lc=new LectorChannel();
 				lc.setChannelNo(rs.getInt("lector_channel_no"));

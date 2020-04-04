@@ -81,7 +81,7 @@ button{
             <input type="hidden" name="lectorVideo" value="<%=l.getLectorOriginalVideo() %>" readonly/><br><br> -->
 			<%} %>
             가격<br>
-            <input type="number" name="price" value="<%=l.getLectorPrice() %>"readonly >원<br><br>
+            <input type="number" name="price" value="<%=l.getLectorPrice() %>">원<br><br>
                 
                 <input type="submit" value="등록">
                 <input type="reset" value="취소">

@@ -153,6 +153,27 @@ public class BoardDao {
 		return result;
 	}
 	
+	public int minNo(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("minNo");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public int insertBoard(Connection conn, Board b) {
 		PreparedStatement pstmt=null;
 		String sql=prop.getProperty("insertBoard");

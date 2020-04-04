@@ -30,6 +30,10 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/lookPassword.css" type="text/css"/>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/aside.css" type="text/css"/>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardList.css" type="text/css"/>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardWrite.css" type="text/css"/>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardView.css" type="text/css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
@@ -38,6 +42,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	<script src="<%=request.getContextPath()%>/js/main.js"></script>
 	   
 	<title>Study Together</title>
@@ -266,7 +272,7 @@
       <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
     </li>
     <li class='menu4'>
-      <a href="">커뮤니티</a>
+      <a href="<%=request.getContextPath()%>/board/boardList">커뮤니티</a>
         <ul  class='menu4-submenu'>
           <li>
             <a href="">대나무 숲</a>

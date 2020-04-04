@@ -1,43 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,com.kh.cart.model.vo.Cart" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.kh.cart.model.vo.Cart"%>
 <%
-	List<Cart> list = (List)request.getAttribute("list");
+	List<Cart> list = (List) request.getAttribute("list");
 %>
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/cartView.css" type="text/css"/>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/cartView.css" type="text/css" />
 <section>
-	<form action="#" method="post">
+	<form name="mapping" action="<%=request.getContextPath()%>/test" method="post">
 		<table id="cartTbl">
 			<tr id="cartHead">
 				<!-- <th>번호</th> -->
-				<th>강좌명</th>
+				<th>
+					<!-- <input type="checkbox" id="checkall" name="allselect">&nbsp;&nbsp;&nbsp; -->강좌명
+				</th>
 				<th>강사</th>
 				<th>카테고리</th>
 				<th>가격</th>
 			</tr>
+			<%-- <%
+				if (list.isEmpty()) {
+			%>
+			<tr>
+				<td>장바구니가 비었습니다.</td>
+			</tr>
+			<%
+				} else {
+			%>
+			<%
+				for (Cart c : list) {
+			%>
+			<tr>
+				<td>
+				<input name="list" type="checkbox" value="<%=list%>">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=c.getLectorTitle()%></td>
+				<td><%=c.getLectorWriter()%></td>
+				<td><%=c.getLectorCategory()%></td>
+				<td><%=c.getLectorPrice()%></td>
+				<input type="hidden" name="cartNo" value="<%=c.getCartNo()%>">
+				<input type="hidden" name="test" value="<%=list.get(1)%>">
+			</tr>
+			<%
+				}
+			}
+			%> --%>
 			<%if(list.isEmpty()) {%>
 				<tr>
-	            	<td colspan='5'>장바구니가 비었습니다.</td>
-	            </tr>
-			<%} else{ %>
-			<% for(Cart c : list) {%>
+					<td colspan='4'>장바구니가 비었습니다.</td>
+				</tr>
+			<%}else { %>
+			<%for(int i = 0; i < list.size(); i++) {%>
 				<tr>
-					<%-- <td><%=c.getCartNo() %></td> --%>
-					<td><%=c.getLectorTitle() %></td>
-					<td><%=c.getLectorWriter() %></td>
-					<td><%=c.getLectorCategory() %></td>
-					<td><%=c.getLectorPrice() %></td>
-					<input type="hidden" value="<%=c.getCartNo()%>">
-					<input type="hidden" value="<%=c.getUserId()%>">
-					<input type="hidden" value="<%=c.getLectorNo()%>">
-					<input type="hidden" value="<%=c.getLectorPrice()%>">
+					<td>
+						<input type="checkbox" name="cartList" value="<%=list.get(i) %>" onclick="itemSum(this.form)">
+						<%=list.get(i).getLectorTitle() %>
+					</td>
+					<td><%=list.get(i).getLectorWriter() %></td>
+					<td><%=list.get(i).getLectorCategory() %></td>
+					<td><%=list.get(i).getLectorPrice() %></td>
+					<td></td>
 				</tr>
 			<%}
 			}%>
 		</table>
-		<input type="submit" value="결제하기" id="subBtn">
-		
+		<tr>
+			<td>
+				<div id="totalSpan">
+					총 결제금액 : &nbsp;<input name="total_sum" type="text" id="totalSum"
+						size="20" readonly>
+				</div>
+			</td>
+		</tr>
+		<br><span><input type="button" value="결제하기" id="subBtn" onclick="mappingAction('payment');"></span>
+			<span><input type="button" value="삭제" id="subBtn" onclick="mappingAction('delete');"></span>
 	</form>
+	<script>
+		
+		function itemSum(frm) {
+			var sum = 0;
+			var count = frm.cartList.length;
+			for (var i = 0; i < count; i++) {
+				if (frm.cartList[i].checked == true) {
+					sum += parseInt(frm.cartList[i].value);
+				}
+			}
+			frm.total_sum.value = sum;
+		}
+		
+		function mappingAction(val){
+			var form = document.mapping;
+			
+			if(val == "payment"){
+				form.action = "";
+			} else if(val == "delete"){
+				form.action = "<%=request.getContextPath()%>/cart/deleteCart";
+			}
+			form.submit();
+		}
+		
+
+		
+	</script>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
