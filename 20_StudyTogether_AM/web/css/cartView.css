@@ -17,3 +17,10 @@
 #cartHead{
 	font-size:25px;
 }
+#totalSum{
+	
+	border-style:none;
+}
+#totalSpan{
+	transform:translate(75%,0);
+}
