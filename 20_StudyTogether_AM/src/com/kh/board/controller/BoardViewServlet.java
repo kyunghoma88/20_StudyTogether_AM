@@ -34,12 +34,18 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
-		int cPage = Integer.parseInt(request.getParameter("cPage"));
+		int cPage;
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
 		System.out.println("페이지 "+cPage);
 		
 		Board b=new BoardService().boardView(no);
 		
 		int maxNo=new BoardService().maxNo(no);
+		int minNo=new BoardService().minNo(no);
 		Board nextView=new BoardService().boardView(no-1);
 		Board preView=new BoardService().boardView(no+1);
 		//String preContent=new BoardService().boardPreView(no+1);
@@ -48,6 +54,7 @@ public class BoardViewServlet extends HttpServlet {
 		List<Comment> commentList=new BoardService().selectBoardComment(no);
 		request.setAttribute("board", b);
 		request.setAttribute("maxNo", maxNo);
+		request.setAttribute("minNo", minNo);
 		request.setAttribute("nextView", nextView);
 		request.setAttribute("preView", preView);
 		request.setAttribute("cPage", cPage);

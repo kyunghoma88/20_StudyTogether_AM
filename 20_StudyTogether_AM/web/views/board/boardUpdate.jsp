@@ -1,19 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.board.model.vo.Board"%>
+<%
+	Board b=(Board)request.getAttribute("board");
+	String files[]=(String[])request.getAttribute("files");
+%>
 <%@ include file="/views/board/aside.jsp"%>
         <div class="write_content">
             <div class="category_name">카테고리 이름</div>
-            <form action="<%=request.getContextPath()%>/board/boardWriteEnd" 
+            <form action="<%=request.getContextPath()%>/board/updateEnd" 
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
+                <input type="hidden" name="no" value="<%=b.getBoard_no()%>"/>
                 <input type="hidden" name="fileCnt"/>
-                <input type="hidden" name="id" value="<%=loginMember.getUserId()%>"/>
             <div class="write_title">
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>
                 </div>
-                <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70"/>
+                <input type="text" name="title" id="title" value="<%=b.getTitle() %>" size="70"/>
                 <div style="padding-left: 106px; margin-top:16px">
-                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"></textarea>
+                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"> <%=b.getContent().trim() %></textarea>
                 </div>
                 <div class="write_item" style="float: left; margin-top: 16px;">
                     <span style="font-weight: bold;">첨부파일</span>
@@ -27,10 +31,21 @@
                     </button>
                 </div>
                 <div id="fileArea">
+                <%if(files.length==0) {%>
                     <div id="data1">
                         <span class="item">파일#1</span> 
                         <input type="file" name="fileup1" id="fileup1">
                     </div>
+                <%}else { 
+                	for(int i=1;i<=files.length;i++){%>
+                	<div id="data<%=i%>">
+                        <span class="item">파일#<%=i%></span> 
+                        <input type="file" name="fileup<%=i%>" id="fileup<%=i%>">
+                        <span id="fname<%=i %>" class="fname" onchange="changeFile();"><%=files[i-1] %></span>
+                        <input type="hidden" name="oriFile<%=i %>" value="<%=files[i-1] %>"/>
+                    </div>
+                <%}
+                	} %>
                 </div>
                 <div id="filelimit"></div>
                 <div class="sendArea">
@@ -43,7 +58,12 @@
     </div>
     <script>
         $(function(){
-            var cnt = 1;
+            var cnt;
+            if(<%=files.length%>==0){
+            	cnt=1;
+            }else{
+            	cnt=<%=files.length%>;
+            }
             
             //파일창 추가
             $("#fileAdd").click(event,function(){
@@ -110,7 +130,14 @@
             
             $("form").submit(function(){
                 fileCnt[0].value=$("input[type='file']").length;
-            })
-        })      
+            });
+        	$("input[type='file']").change(function(){
+        		if($(this).val()==""){
+        			$(this).next().show();
+        		}else{
+        			$(this).next().hide();
+        		}
+        	});
+        });
     </script> 
 <%@ include file="/views/common/footer.jsp"%>

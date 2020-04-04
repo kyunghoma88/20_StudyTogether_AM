@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.board.model.vo.Board"%>
+<%
+	Board b = (Board)request.getAttribute("board");
+%>
 <%@ include file="/views/board/aside.jsp"%>
         <div class="write_content">
             <div class="category_name">카테고리 이름</div>
-            <form action="<%=request.getContextPath()%>/board/boardWriteEnd" 
+            <form action="<%=request.getContextPath()%>/board/replyWriteEnd" 
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
                 <input type="hidden" name="fileCnt"/>
-                <input type="hidden" name="id" value="<%=loginMember.getUserId()%>"/>
+                <input type="hidden" name="no" value="<%=b.getBoard_no()%>"/>
             <div class="write_title">
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>
                 </div>
-                <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70"/>
+                <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70" value="[답글]<%=b.getTitle() %>"/>
                 <div style="padding-left: 106px; margin-top:16px">
                     <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"></textarea>
                 </div>

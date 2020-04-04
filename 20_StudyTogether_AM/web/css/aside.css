@@ -1,0 +1,29 @@
+/*게시판 전체 크기*/
+	.boardContainer{
+		width:1401px;
+		margin:0 auto;
+		padding-top: 50px;
+		display:flex;
+	}
+    /*사이드바 컨테이너*/
+    .aside{
+        width: 265px;
+        padding-right: 50px;
+        padding-top: 40px;
+        border-right: 2px solid #e6e6e6;
+    }
+    /*사이드바 메뉴*/
+    .aside_list{
+        list-style-type: none;
+        padding-left: 20px;   
+        margin-top: 20px;
+    }
+    /*커뮤니티 이름*/
+    .aside_title{
+        display: block;
+        font-weight: bold;
+        font-size: 24px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid red;
+    }

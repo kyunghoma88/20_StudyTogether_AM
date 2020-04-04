@@ -53,6 +53,12 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	public int minNo(int no) {
+		Connection conn=getConnection();
+		int result=dao.maxNo(conn, no);
+		close(conn);
+		return result;
+	}
 	public int insertBoard(Board b) {
 		Connection conn=getConnection();
 		int result=dao.insertBoard(conn, b);
