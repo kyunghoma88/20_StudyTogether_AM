@@ -33,7 +33,7 @@ background-color:#ffc107;
 	  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
 	  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
 	  	금액:&nbsp;&nbsp;<%=l.getLectorPrice() %>&nbsp;&nbsp;원</p>
-	  	<input type="hidden" name="userId" value="">
+	  	<input type="hidden" name="userId" value="<%=loginMember.getUserId() %>">
 	  	<input type="hidden" name="lectorNo" value="<%=l.getLectorNo()%>">
 	 </div>
 	  <div class="watch">

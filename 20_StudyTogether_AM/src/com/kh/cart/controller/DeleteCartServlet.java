@@ -32,6 +32,7 @@ public class DeleteCartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("삭제하기 서블릿");
 		String[] cartList = request.getParameterValues("cartList");
+		System.out.println("cartList 데이터 : " + cartList);
 		String msg = "";
 		String loc = "";
 		for(int i=0; i < cartList.length; i++) {
