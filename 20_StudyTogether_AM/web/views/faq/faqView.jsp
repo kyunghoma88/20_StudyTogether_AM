@@ -31,23 +31,19 @@
 			</tr>		
 		</table>
 		
-		<div id="btn-update">
-			<button onclick="fn_updateFaq()">수 정</button>
-			<%-- <a href="<%=request.getContextPath() %>/faq/updateFaq?no=<%=f.getFaqNo() %>">수 정</a> --%>
-		</div>
-		
-		<div id="div-delete">
-			<%-- <a href="<%=request.getContextPath() %>/faq/deleteFaq?no=<%=f.getFaqNo() %>">삭 제</a> --%>
-			<button onclick="fn_deleteFaq()">삭 제</button>
+		<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
+			<div id="btn-update">
+				<button onclick="fn_updateFaq()">수 정</button>
+			</div>
 			
-			
-			
-		</div>
+			<div id="div-delete">
+				<button onclick="fn_deleteFaq()">삭 제</button>
+			</div>
+		<% } %>	
 		
 		</br>
 		<div id="btn-list">
-			<button onclick="fn_backToList()">목록으로</button>
-			<%-- <a href="<%=request.getContextPath() %>/faq/faqList"> 목록으로 </a> --%>
+			<button onclick="fn_backToList()">목록으로</button>			
 		</div>
 
 </div>
@@ -62,12 +58,12 @@
 		var btn_del=confirm("삭제 하시겠습니까?");
 		
 		if(btn_del == true){
-			  //document.write("확인을 누르셨군요");
+			 
 			  location.replace("<%=request.getContextPath()%>/faq/deleteFaq?no=<%=f.getFaqNo()%>");
 			  
 			}
 			else if(btn_del == false){
-			  //document.write("취소를 누르셨군요.");
+			  
 			}
 		
 	}

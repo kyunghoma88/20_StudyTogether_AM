@@ -46,11 +46,19 @@ public class FAQListServlet extends HttpServlet {
 		}
 		
 		int numPerPage = 5;
-		List<FAQ> list = new FAQService().searchFAQ(cPage, numPerPage);
+		
+		String category = request.getParameter("category");
+		if(category==null) {
+			category="전체보기";
+		}
+		
+		// 2020 04 03 수정해야함
+		
+		List<FAQ> list = new FAQService().searchFAQ(cPage, numPerPage, category);
 		
 		
 		//pageBar 
-		int totalFAQ = new FAQService().faqCount();
+		int totalFAQ = new FAQService().faqCount(category);
 		int totalPage = (int)Math.ceil((double)totalFAQ/numPerPage);
 		
 		int pageBarSize = 5;

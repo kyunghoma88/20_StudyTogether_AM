@@ -1,7 +1,6 @@
-package com.kh.cart.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.cart.model.vo.Cart;
-import com.kh.cart.service.CartService;
+import com.kh.board.model.service.BoardService;
 
 /**
- * Servlet implementation class CartViewServlet
+ * Servlet implementation class BoardDeleteServlet
  */
-@WebServlet("/cart/cartView")
-public class CartViewServlet extends HttpServlet {
+@WebServlet("/board/delete")
+public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartViewServlet() {
+    public BoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +30,10 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userId = request.getParameter("id");
-		List<Cart> list = new CartService().searchCart(userId);
+		int no=Integer.parseInt(request.getParameter("no"));
 		
-		request.setAttribute("list", list);
-		System.out.println(list);
-		
-		request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
+		new BoardService().deleteBoard(no);
+		response.sendRedirect(request.getContextPath()+"/board/boardList");
 	}
 
 	/**
