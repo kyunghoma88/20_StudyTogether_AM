@@ -54,11 +54,11 @@ public class FAQListServlet extends HttpServlet {
 		
 		// 2020 04 03 수정해야함
 		
-		List<FAQ> list = new FAQService().searchFAQ(cPage, numPerPage);
+		List<FAQ> list = new FAQService().searchFAQ(cPage, numPerPage, category);
 		
 		
 		//pageBar 
-		int totalFAQ = new FAQService().faqCount();
+		int totalFAQ = new FAQService().faqCount(category);
 		int totalPage = (int)Math.ceil((double)totalFAQ/numPerPage);
 		
 		int pageBarSize = 5;

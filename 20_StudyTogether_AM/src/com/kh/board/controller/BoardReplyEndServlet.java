@@ -20,16 +20,16 @@ import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
- * Servlet implementation class BoardWriteEndServlet
+ * Servlet implementation class BoardReplyEndServlet
  */
-@WebServlet("/board/boardWriteEnd")
-public class BoardWriteEndServlet extends HttpServlet {
+@WebServlet("/board/replyWriteEnd")
+public class BoardReplyEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriteEndServlet() {
+    public BoardReplyEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,6 +40,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int fileCnt;
+		
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			response.sendRedirect("/");
 			return;
@@ -51,7 +52,9 @@ public class BoardWriteEndServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request, path, maxSize,
 				"UTF-8",new MyFileRenamePolicy());
 		fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
+		System.out.println("file "+fileCnt);
 		String title=mr.getParameter("title");
+		int no=Integer.parseInt(mr.getParameter("no"));
 		String write_text=mr.getParameter("write_text");
 		String oriFileName[]= new String[fileCnt];
 		String renamedFileName[]= new String[fileCnt];
@@ -70,8 +73,8 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String fileNames=String.join(",", list);
 		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
 		System.out.println(fileNames);
-		Board b=new Board(0,0,0,"admin",title,write_text,"",fileNames,new Date(),0,0,0);
-		int result=new BoardService().insertBoard(b);
+		Board b=new Board(0,no,2,"admin",title,write_text,"",fileNames,new Date(),0,0,0);
+		new BoardService().insertReplyBoard(b);
 		response.sendRedirect(request.getContextPath()+"/board/boardList");
 	}
 
