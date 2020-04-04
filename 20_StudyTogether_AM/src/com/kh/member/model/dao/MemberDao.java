@@ -365,5 +365,97 @@ public class MemberDao {
 		}
 		return list;
 	}
+	public List<Lector> selectMemberCreateLector(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectMemberCreateLector");
+		List<Lector> list=new ArrayList<Lector>();
+		Lector l = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				System.out.println(id);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				l=new Lector();
+				l.setLectorNo(rs.getInt("LECTOR_NO"));
+				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
+				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
+				l.setLectorCategory(rs.getString("LECTOR_CATEGORY"));
+				l.setLectorDetail(rs.getString("LECTOR_DETAIL"));
+				l.setLectorPrice(rs.getInt("LECTOR_PRICE"));
+				l.setLectorOriginalImg(rs.getString("LECTOR_ORIGINAL_IMG"));
+				l.setLectorRenamedImg(rs.getString("LECTOR_RENAMED_IMG"));
+				l.setLectorDate(rs.getDate("LECTOR_DATE"));
+				l.setLectorAssign(rs.getString("LECTOR_ASSIGN"));
+				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<Lector> selectMemberJoinLector(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectMemberJoinLector");
+		List<Lector> list=new ArrayList<Lector>();
+		Lector l = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				l=new Lector();
+				l.setLectorNo(rs.getInt("LECTOR_NO"));
+				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
+				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
+				l.setLectorCategory(rs.getString("LECTOR_CATEGORY"));
+				l.setLectorDetail(rs.getString("LECTOR_DETAIL"));
+				l.setLectorPrice(rs.getInt("LECTOR_PRICE"));
+				l.setLectorOriginalImg(rs.getString("LECTOR_ORIGINAL_IMG"));
+				l.setLectorRenamedImg(rs.getString("LECTOR_RENAMED_IMG"));
+				l.setLectorDate(rs.getDate("LECTOR_DATE"));
+				l.setLectorAssign(rs.getString("LECTOR_ASSIGN"));
+				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<LectorJoin> selectMemberJoinLectorCount(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectMemberJoinLectorCount");
+		List<LectorJoin> list=new ArrayList<LectorJoin>();
+		LectorJoin lj = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				lj=new LectorJoin();
+				lj.setLectorNo(rs.getInt("LECTOR_NO"));
+				lj.setUserId(rs.getString("USER_ID"));
+				list.add(lj);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }

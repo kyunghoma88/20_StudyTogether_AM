@@ -7,10 +7,10 @@
             <table class="table">
               <thead class="text-center">
                   <tr>
+                    <th>이미지</th>
                     <th>등록 번호</th>
                     <th>강사명</th>
                     <th>강좌명</th>
-                    <th>이미지</th>
                     <th>가격</th>
                     <th colspan="2">승인 여부</th>
                     <!-- <th>전송</th> -->
@@ -18,13 +18,13 @@
                 </thead>
                 <tbody class="text-center">
                   <tr>
+                      <td>
+                          <img class="img-thumbnail" style="width:100px;height:100px;" src="http://placehold.it/100x100" alt="">
+                      </td>
                       <td>1</td>
                       <td>김선생</td>
                       <td>
                         <a href="#">영기씨의 지각안하는 방법</a>
-                      </td>
-                      <td>
-                          <img class="img-thumbnail" style="width:100px;height:100px;" src="http://placehold.it/100x100" alt="">
                       </td>
                       <td>36,000원</td>
                       <td>

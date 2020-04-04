@@ -103,6 +103,24 @@ private MemberDao dao = new MemberDao();
 		close(conn);
 		return list;
 	}
+	public List<Lector> selectMemberCreateLector(String id) {
+		Connection conn=getConnection();
+		List<Lector> list = dao.selectMemberCreateLector(conn,id);
+		close(conn);
+		return list;
+	}
+	public List<Lector> selectMemberJoinLector(String id) {
+		Connection conn=getConnection();
+		List<Lector> list = dao.selectMemberJoinLector(conn,id);
+		close(conn);
+		return list;
+	}
+	public List<LectorJoin> selectMemberJoinLectorCount(String id) {
+		Connection conn=getConnection();
+		List<LectorJoin> list = dao.selectMemberJoinLectorCount(conn,id);
+		close(conn);
+		return list;
+	}
 
 
 }

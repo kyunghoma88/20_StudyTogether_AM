@@ -3,7 +3,7 @@
 <%@ include file="/views/admin/adminHeader.jsp" %>
 <div class="row">
   <form action="" class="form-group col" name="frm1">
-    <h3>개설강좌 목록</h3>
+    <h3>개설스터디 목록</h3>
     <table class="table">
           <thead class="text-center">
             <tr>

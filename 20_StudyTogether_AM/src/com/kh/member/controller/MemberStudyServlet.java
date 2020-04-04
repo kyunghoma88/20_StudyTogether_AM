@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.join.model.vo.LectorJoin;
-import com.kh.join.model.vo.StudyJoin;
-import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.study.model.vo.Study;
@@ -46,8 +43,8 @@ public class MemberStudyServlet extends HttpServlet {
 		Member m=(Member)session.getAttribute("loginedMember");
 		String id=m.getUserId();
 		
-		List<Study> lList=new MemberService().selectMemberCreateStudy(id);
-		List<Study> ljList=new MemberService().selectMemberJoinStudy(id);
+//		List<Study> lList=new MemberService().selectMemberCreateStudy(id);
+//		List<Study> ljList=new MemberService().selectMemberJoinStudy(id);
 		
 		request.getRequestDispatcher("/views/member/myStudy.jsp").forward(request, response);
 	}
