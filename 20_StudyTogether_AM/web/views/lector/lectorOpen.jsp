@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+
 <style>
 fieldset {
     box-sizing: border-box;
@@ -21,7 +22,7 @@ button{
 </style>
        <h2>강좌 개설</h2><br>
     <form id="frmOpen" action="<%=request.getContextPath()%>/lector/lectorOpenEnd" method="post" enctype="multipart/form-data">
-     강사명 <input type="text" name="lectorWriter"><br>
+     강사명 <input type="text" name="lectorWriter" value="<%=loginMember.getUserId()%>"><br>
        <input type="hidden" name="lectorDate" ><br>
         강좌 이름 <input type="text" name="lectorTitle" maxlength="20" required><br><br>
         강좌 분야

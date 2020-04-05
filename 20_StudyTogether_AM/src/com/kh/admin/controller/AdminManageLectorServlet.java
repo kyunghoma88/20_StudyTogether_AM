@@ -26,7 +26,7 @@ public class AdminManageLectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/admin/adminManageStudy.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/adminManageLector.jsp").forward(request, response);
 	}
 
 	/**

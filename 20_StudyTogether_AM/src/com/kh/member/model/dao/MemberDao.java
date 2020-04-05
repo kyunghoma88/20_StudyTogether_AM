@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.join.model.vo.LectorJoin;
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.vo.Member;
 import com.kh.study.model.vo.Study;
@@ -193,6 +194,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
 	public int memberDelete(Connection conn, String id, String password) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("memberDelete");
@@ -211,6 +213,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
 	public int duplicateCheck(Connection conn, String id) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("duplicateCheck");
@@ -234,63 +237,6 @@ public class MemberDao {
 		System.out.println(result);
 		return result;
 	}
-//	public List<Lector> selectMemberCreateLector(Connection conn, String id) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql= prop.getProperty("selectMemberCreateLector");
-//		List<Lector> list=new ArrayList<Lector>();
-//		Lector l = null;
-//		try {			
-//				pstmt = conn.prepareStatement(sql);
-//				pstmt.setString(1, id);
-//				rs = pstmt.executeQuery();
-//				
-//			while(rs.next()) {
-//				l.setLectorNo(rs.getInt("LECTOR_NO"));
-//				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
-//				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
-//				l.setLectorCategory(rs.getString("LECTOR_CATEGORY"));
-//				l.setLectorDetail(rs.getString("LECTOR_DETAIL"));
-//				l.setLectorPrice(rs.getInt("LECTOR_PRICE"));
-//				l.setLectorOriginalImg(rs.getString("LECTOR_ORIGINAL_IMG"));
-//				l.setLectorRenamedImg(rs.getString("LECTOR_RENAMED_IMG"));
-//				//동영상정보는 미포함
-//				l.setLectorDate(rs.getDate("LECTOR_DATE"));
-//				l.setLectorAssign(rs.getString("LECTOR_ASSIGN"));
-//				
-//			}
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		return list;
-//	}
-//	public List<LectorJoin> selectMemberJoinLector(Connection conn, String id) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql= prop.getProperty("selectMemberJoinLector");
-//		List<LectorJoin> list=new ArrayList<LectorJoin>();
-//		Lector l = null;
-//		try {			
-//				pstmt = conn.prepareStatement(sql);
-//				pstmt.setString(1, id);
-//				rs = pstmt.executeQuery();
-//				
-//			while(rs.next()) {
-//				l.setLectorTitle(rs.getString("LECTOR_TITLE"));
-//				l.setLectorWriter(rs.getString("LECTOR_WRITER"));
-//			}
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		return list;
-//	}
-	
 	
 	public List<Study> selectMemberCreateStudy(Connection conn, String id) {
 		PreparedStatement pstmt = null;
@@ -456,6 +402,10 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public List<StudyJoin> selectMemberJoinStudyCount(Connection conn, String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

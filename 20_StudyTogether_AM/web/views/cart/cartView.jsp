@@ -94,7 +94,7 @@
 			var form = document.mapping;
 			
 			if(val == "payment"){
-				form.action = "";
+				form.action = "<%=request.getContextPath()%>/buy/buyForm";
 			} else if(val == "delete"){
 				form.action = "<%=request.getContextPath()%>/cart/deleteCart";
 			}

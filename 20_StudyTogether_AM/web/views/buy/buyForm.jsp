@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.kh.cart.model.vo.Cart"%>
+<%
+	System.out.println("buyForm으로 넘어온 내용");
+	String[] result= request.getParameterValues("cartList");
+	
+	for(int i=0; i<result.length; i++){
+		System.out.println(result[i]);		
+	}
+	
+%>
+
 <!-- header페이지 불러오기 -->
 <%@ include file="/views/common/header.jsp"%>
 <style>
@@ -61,17 +72,21 @@
 				<caption style="caption-side:top;">주문 세부정보</caption>
 				<colgroup>
 					<col width="72">
-					<col width="*">
-					<col width="30%">
+					<col width="40%">
+					<col width="15%">
+					<col width="15%">
 					<col width="16%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th scope="col" colspan="2">강좌명</th>
+						<th scope="col">강사명</th>
+						<th scope="col">카테고리</th>
 						<th scope="col">판매가</th>
 					</tr>
 				</thead>
 				<tbody>
+					<%-- <%for(Cart c:list){ %>
 					<tr>
 						<td id="prodImg0" class="img_cell ver_top">
 							<a href="javascript:;" class="book_img" onclick="toView('blank', '9788990247674', 'KOR');"> 
@@ -81,15 +96,17 @@
 						<td id="prodName0" class="align_left ver_top">
 							<div class="order_name">
 								<a href="javascript:;" onclick="#">
-									<span>JSP 강좌</span>
+									<span><%=c.getLectorTitle() %></span>
 								</a>
 							</div>
 						</td>
+						<td><%=c.getLectorWriter() %></td>
+						<td><%=c.getLectorCategory() %></td>
 						<td>
-							<strong>25,200</strong>원 
-							<div>25,200원</div>
+							<strong><%=c.getLectorPrice() %></strong>원 
 						</td>
 					</tr>
+					<%} %> --%>
 				</tbody>
 			</table>
 		</div>
