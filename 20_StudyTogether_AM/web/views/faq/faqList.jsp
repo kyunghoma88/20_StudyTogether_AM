@@ -80,7 +80,9 @@
 	</table>
 	
 	<div id="pageBar">
-		<%= request.getAttribute("pageBar") %>
+		<ul class="pagination">
+			<%= request.getAttribute("pageBar") %>
+		</ul>	
 	</div>
 
 </section>

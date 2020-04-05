@@ -28,5 +28,7 @@
 
 
 <div id="pagebar">
-	<%=request.getAttribute("pageBar") %>
+	<ul class="pagination">
+		<%=request.getAttribute("pageBar") %>
+	</ul>
 </div>
