@@ -9,13 +9,14 @@
 	Study s=(Study)request.getAttribute("study");
 %>
 <section>
+
 	<div class="container" >
     	<a href="<%=request.getContextPath()%>/study/studyUpdate?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">수정</a>
     	<a href="<%=request.getContextPath() %>/study/studyDelete?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">삭제</a>
 	</div>
 
-  <!-- <div id="intro">
- </div> -->
+ <input type="text" name="member" value="<%=loginMember.getUserId() %>">
+ <input type="text" name="no1" value="<%=s.getStudyNo() %>">
   <div style="margin-top:100px;margin-bottom:150px;" class="watch">
       <p id="watchtitle"><h2><%=s.getStudyName() %></h2></p>
       <p id="detail">희망 일자 : <%=s.getStudyPossibleDay() %>  </p>
@@ -27,7 +28,7 @@
     <div class="video-inform">
       <%=s.getStudyDetail() %>
     </div>
-    <button type="button" class="basket" onclick="apply();">참여하기</button>
+    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
   </div>
 </section>
 <style>
@@ -43,15 +44,15 @@
     function apply(){
     var result= confirm("스터디에 참여하시겠습니까?");
      if(result==true){
+    	 location.replace('<%=request.getContextPath()%>/study/studyJoin');
        //새로운 스터디입장시
-       alert("스터디에 참가되었습니다.");
-       location.href="<%=request.getContextPath()%>/study/studyJoin";
        //인원수 카운트하기
      }
    /*   else if{//else if(로그인이 되어있지만 ,studyJoin!=null 이미 가입된 스터디입니다.
        alert("이미 가입된 스터디 입니다..");
      } */else{
-    	 alert("로그인 후 이용 가능합니다.")
+    	 alert("로그인 후 이용 가능합니다.");
+    	 loaction.reload;
      }
     }
   </script>
