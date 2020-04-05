@@ -46,7 +46,7 @@
 //study참가하기 버튼을 누르면 현재인원이 카운트 된다.
     function apply(){
     var result= confirm("스터디에 참여하시겠습니까?");
-     if(true){
+     if(result==true){
     	 location.replace('<%=request.getContextPath()%>/study/studyJoin?no=<%=s.getStudyNo()%>&userId=<%=s.getStudyWriter()%>');
        //새로운 스터디입장시
        //인원수 카운트하기

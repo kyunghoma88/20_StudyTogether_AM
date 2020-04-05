@@ -27,8 +27,8 @@ background-color:#ffc107;
 
 <!--분기처리해서 강좌개설자&admin에게만 보일수 있는 강좌추가,수정,(삭제는 관리자페이지에서만가능) 버튼  -->
 <div id="intro">
-<form action="<%=request.getContextPath()%>/cart/cartAdd" method="post">
-
+<%-- <form action="<%=request.getContextPath()%>/cart/cartAdd" method="post">
+ --%>
 	  <h2><<%=l.getLectorCategory() %>&nbsp;강좌><h2>
 	  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
 	  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
@@ -46,8 +46,8 @@ background-color:#ffc107;
 	    <div id="video-inform">
 	    <%=l.getLectorDetail() %>
 	    </div>
-	    <input type="submit" class="basket" value="구매하기">
-   </form>
+	    <input type="submit" onclick="apply();" class="basket" value="구매하기">
+   <!-- </form> -->
   </div>
   
 <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
@@ -67,8 +67,6 @@ background-color:#ffc107;
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
  <%} %>
- 
- 
  
 <style>
 	.pagination{
@@ -117,15 +115,17 @@ function changeLector(pNo, cNo){
 	})
 } --%>
 
-/* function apply(){
+function apply(){
 var result= confirm("장바구니에 강좌를 담았습니다. 장바구니로 이동하시겠습니까?");
  if(result==true){
-   location.href="";
+   location.href="<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>";
+   
+   
  }
  else{
    location.reload;
  }
-} */
+}
  
 </script>
 
