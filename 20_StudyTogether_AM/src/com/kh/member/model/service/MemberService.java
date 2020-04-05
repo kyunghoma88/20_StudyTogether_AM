@@ -79,42 +79,42 @@ private MemberDao dao = new MemberDao();
 		int result=dao.duplicateCheck(conn,id);
 		return result;
 	}
-//	public List<Lector> selectMemberCreateLector(String id) {
-//		Connection conn=getConnection();
-//		List<Lector> list = dao.selectMemberCreateLector(conn,id);
-//		close(conn);
-//		return list;
-//	}
-//	public List<LectorJoin> selectMemberJoinLector(String id) {
-//		Connection conn=getConnection();
-//		List<LectorJoin> list = dao.selectMemberJoinLector(conn,id);
-//		close(conn);
-//		return list;
-//	}
+	
 	public List<Study> selectMemberCreateStudy(String id) {
 		Connection conn=getConnection();
 		List<Study> list = dao.selectMemberCreateStudy(conn,id);
 		close(conn);
 		return list;
 	}
+	
 	public List<Study> selectMemberJoinStudy(String id) {
 		Connection conn=getConnection();
 		List<Study> list = dao.selectMemberJoinStudy(conn,id);
 		close(conn);
 		return list;
 	}
+	
+	public List<StudyJoin> selectMemberJoinStudyCount(String id) {
+		Connection conn=getConnection();
+		List<StudyJoin> list = dao.selectMemberJoinStudyCount(conn,id);
+		close(conn);
+		return list;
+	}
+
 	public List<Lector> selectMemberCreateLector(String id) {
 		Connection conn=getConnection();
 		List<Lector> list = dao.selectMemberCreateLector(conn,id);
 		close(conn);
 		return list;
 	}
+	
 	public List<Lector> selectMemberJoinLector(String id) {
 		Connection conn=getConnection();
 		List<Lector> list = dao.selectMemberJoinLector(conn,id);
 		close(conn);
 		return list;
 	}
+	
 	public List<LectorJoin> selectMemberJoinLectorCount(String id) {
 		Connection conn=getConnection();
 		List<LectorJoin> list = dao.selectMemberJoinLectorCount(conn,id);
