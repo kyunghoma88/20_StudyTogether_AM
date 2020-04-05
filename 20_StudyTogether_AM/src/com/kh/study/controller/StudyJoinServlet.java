@@ -31,9 +31,11 @@ public class StudyJoinServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int no=Integer.parseInt(request.getParameter("no1"));
-		System.out.println(no);
-		String writer=request.getParameter("member");
+		int no=Integer.parseInt(request.getParameter("no"));
+		System.out.println("no:"+no);
+		String writer=request.getParameter("userId");
+		System.out.println("userId"+writer);
+		
 		StudyJoin sj=new StudyJoin(no,writer);
 		
 		int result=new StudyService().insertJoin(sj);
@@ -45,6 +47,7 @@ public class StudyJoinServlet extends HttpServlet {
 		if(result>0) {
 			msg="참가 되었습니다.";
 			loc="/study/studyView?no="+no;
+			request.setAttribute("sj", sj);
 		}
 		else {
 			msg="참가 실패하였습니다. 다시 시도해주세요.";

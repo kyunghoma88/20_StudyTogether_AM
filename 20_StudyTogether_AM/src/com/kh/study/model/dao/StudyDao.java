@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.dao.LectorDao;
 import com.kh.lector.model.vo.Lector;
 import com.kh.study.model.vo.Study;
@@ -239,4 +240,24 @@ public class StudyDao {
 		}
 		return result;
 	}
+
+	public int insertJoin(Connection conn, StudyJoin sj) {
+		
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertStudyJoin");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sj.getStudyNo());
+			pstmt.setString(2, sj.getUserId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+		
+	
 }
