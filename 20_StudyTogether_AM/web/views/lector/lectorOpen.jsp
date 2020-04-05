@@ -33,20 +33,17 @@ button{
           <option value="일본어">일본어</option>
           <option value="스페인어">스페인어</option>
           <option value="불어">불어</option>
-          <option value="기타">기타</option>
       </optgroup>
       <optgroup label="자격증">
           <option value="제빵">제빵</option>
           <option value="정보처리기사" >정보처리기사</option>
           <option value="컴퓨터활용">컴퓨터활용</option>
           <option value="토익" >토익</option>
-          <option value="기타" >기타</option>
       </optgroup>
       <optgroup label="IT">
           <option value="알고리즘" >알고리즘</option>
           <option value="데이터베이스" >데이터베이스</option>
           <option value="자바프로그래밍">자바프로그래밍</option>
-          <option value="기타" >기타</option>
       </optgroup>
       </select>
             <br>

@@ -40,24 +40,21 @@ button{
       <select id="searchType" name="searchType" > 
      	<option value="카테고리">카테고리</option>
      	 <optgroup label="어학,회화">
-          <option value="영어">영어</option>
-          <option value="일본어">일본어</option>
-          <option value="스페인어">스페인어</option>
-          <option value="불어">불어</option>
-          <option value="기타">기타</option>
+          <option value="영어" <%=l!=null&&l.getLectorCategory().equals("영어")?"selected":"" %>>영어</option>
+          <option value="일본어" <%=l!=null&&l.getLectorCategory().equals("일본어")?"selected":"" %>>일본어</option>
+          <option value="스페인어" <%=l!=null&&l.getLectorCategory().equals("스페인어")?"selected":"" %>>스페인어</option>
+          <option value="불어" <%=l!=null&&l.getLectorCategory().equals("불어")?"selected":"" %>>불어</option>
       	</optgroup>
       	<optgroup label="자격증">
-          <option value="제빵">제빵</option>
-          <option value="정보처리기사" >정보처리기사</option>
-          <option value="컴퓨터활용">컴퓨터활용</option>
-          <option value="토익" >토익</option>
-          <option value="기타" >기타</option>
+          <option value="제빵" <%=l!=null&&l.getLectorCategory().equals("제빵")?"selected":"" %>>제빵</option>
+          <option value="정보처리기사" <%=l!=null&&l.getLectorCategory().equals("정보처리기사")?"selected":"" %>>정보처리기사</option>
+          <option value="컴퓨터활용" <%=l!=null&&l.getLectorCategory().equals("컴퓨터활용")?"selected":"" %>>컴퓨터활용</option>
+          <option value="토익" <%=l!=null&&l.getLectorCategory().equals("토익")?"selected":"" %>>토익</option>
       	</optgroup>
       	<optgroup label="IT">
-          <option value="알고리즘" >알고리즘</option>
-          <option value="데이터베이스" >데이터베이스</option>
-          <option value="자바프로그래밍">자바프로그래밍</option>
-          <option value="기타" >기타</option>
+          <option value="알고리즘" <%=l!=null&&l.getLectorCategory().equals("알고리즘")?"selected":"" %> >알고리즘</option>
+          <option value="데이터베이스" <%=l!=null&&l.getLectorCategory().equals("데이터베이스")?"selected":"" %>>데이터베이스</option>
+          <option value="자바프로그래밍" <%=l!=null&&l.getLectorCategory().equals("자바프로그래밍")?"selected":"" %>>자바프로그래밍</option>
       	</optgroup>
       </select>
        <br>

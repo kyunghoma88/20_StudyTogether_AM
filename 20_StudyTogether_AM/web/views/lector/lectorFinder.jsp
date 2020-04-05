@@ -19,7 +19,8 @@
     <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
   </div>
   	<div id=title>강좌 스터디 찾기 </div>
-  	<h3> 검색 결과 입니다.</h3>
+  <p style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue;">
+   검색하신 결과는 총 <%=list.size() %>개 입니다.</p>
 	
 	<div class="main_list">
 	 <!-- 상단 제목 -->
