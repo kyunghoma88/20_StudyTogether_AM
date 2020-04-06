@@ -32,12 +32,12 @@
       <%=s.getStudyDetail() %>
     </div>
      
-     <%if(s.getMaxMember()==list.size()){ %>
+      <%if(s.getMaxMember()==list.size()){ %>
      <input type="button" class="basket" onclick="" value="마감된스터디입니다."></button>
-     <%}else{ %>
-    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
-    <%} %>
-  </div>
+      <%}else{ %>
+   <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
+     <%} %>
+   </div>
 </section>
 <style>
 	#detail2{
@@ -51,7 +51,7 @@
 function apply(){
     var result= confirm("스터디에 참여하시겠습니까?");
      if(result==true){
-    	 location.replace('<%=request.getContextPath()%>/study/studyJoin?no=<%=s.getStudyNo()%>&userId=<%=s.getStudyWriter()%>');
+    	 location.replace('<%=request.getContextPath()%>/study/studyJoin?no=<%=s.getStudyNo()%>&userId=<%=loginMember.getUserId()%>');
      }
    else{
     	 alert("취소 되었습니다.");

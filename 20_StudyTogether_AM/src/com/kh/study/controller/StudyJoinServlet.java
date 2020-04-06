@@ -43,6 +43,7 @@ public class StudyJoinServlet extends HttpServlet {
 		
 		StudyJoin sj=new StudyJoin(no,writer);
 		int result=new StudyService().insertJoin(sj);//참여하기버튼클릭!
+		
 		System.out.println(result);
 		
 		System.out.println("userId"+writer);
@@ -59,6 +60,7 @@ public class StudyJoinServlet extends HttpServlet {
 			msg="이미 가입된 스터디 입니다.";
 			loc="/study/studyView?no="+no;
 		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
