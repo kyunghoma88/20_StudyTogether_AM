@@ -100,9 +100,9 @@
         <input type="checkbox" id="store" name="saveId" <%=saveId!=null ? "checked" : "" %>>아이디 저장
       </label>
       
-      <label>
+     <!--  <label>
       <input type="checkbox" id="keeplogin" name="keeplogin"> 로그인 유지
-   	  </label>
+   	  </label> -->
     </div>
     
    
