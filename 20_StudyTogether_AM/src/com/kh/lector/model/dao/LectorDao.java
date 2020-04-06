@@ -82,25 +82,6 @@ public class LectorDao {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {

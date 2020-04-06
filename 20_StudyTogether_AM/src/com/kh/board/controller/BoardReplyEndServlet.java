@@ -18,6 +18,7 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardReplyEndServlet
@@ -50,10 +51,11 @@ public class BoardReplyEndServlet extends HttpServlet {
 		//파일 저장 크기
 		int maxSize=1024*1024*10;//10MB
 		MultipartRequest mr=new MultipartRequest(request, path, maxSize,
-				"UTF-8",new MyFileRenamePolicy());
+				"UTF-8",new DefaultFileRenamePolicy());
 		fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
 		System.out.println("file "+fileCnt);
 		String title=mr.getParameter("title");
+		String category=mr.getParameter("category");
 		int no=Integer.parseInt(mr.getParameter("no"));
 		String write_text=mr.getParameter("write_text");
 		String oriFileName[]= new String[fileCnt];
@@ -71,11 +73,12 @@ public class BoardReplyEndServlet extends HttpServlet {
 			}
 		}
 		String fileNames=String.join(",", list);
+		String id=mr.getParameter("id");
 		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
 		System.out.println(fileNames);
-		Board b=new Board(0,no,2,"admin",title,write_text,"",fileNames,new Date(),0,0,0);
+		Board b=new Board(0,no,2,id,title,write_text,category,fileNames,new Date(),0,0,0,0);
 		new BoardService().insertReplyBoard(b);
-		response.sendRedirect(request.getContextPath()+"/board/boardList");
+		response.sendRedirect(request.getContextPath()+"/board/boardList?category="+category);
 	}
 
 	/**

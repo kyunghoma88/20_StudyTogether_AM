@@ -28,7 +28,7 @@ public class BoardDao {
 		}
 	}
 	
-	public List<Board> boardList(Connection conn, int cPage, int numPerPage){
+	public List<Board> boardList(Connection conn, String category, int cPage, int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("boardList");
@@ -36,8 +36,9 @@ public class BoardDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//1=1~15, 2=16~30, 3=31
-			pstmt.setInt(1, (cPage-1)*numPerPage+1);
-			pstmt.setInt(2, cPage*numPerPage);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Board b=new Board();
@@ -47,12 +48,13 @@ public class BoardDao {
 				b.setNickname(rs.getString("nickname"));
 				b.setTitle(rs.getString("title"));
 				b.setContent(rs.getString("content"));
-				b.setImg_file(rs.getString("img_file"));
+				b.setCategory(rs.getString("category"));
 				b.setFile_upload(rs.getString("file_upload"));
 				b.setWrite_date(rs.getDate("write_date"));
 				b.setCnt(rs.getInt("cnt"));
 				b.setGood_cnt(rs.getInt("good_cnt"));
 				b.setBad_cnt(rs.getInt("bad_cnt"));
+				b.setComment_cnt(rs.getInt("comment_cnt"));
 				list.add(b);
 			}
 		}catch(SQLException e) {
@@ -80,12 +82,13 @@ public class BoardDao {
 				b.setNickname(rs.getString("nickname"));
 				b.setTitle(rs.getString("title"));
 				b.setContent(rs.getString("content"));
-				b.setImg_file(rs.getString("img_file"));
+				b.setCategory(rs.getString("category"));
 				b.setFile_upload(rs.getString("file_upload"));
 				b.setWrite_date(rs.getDate("write_date"));
 				b.setCnt(rs.getInt("cnt"));
 				b.setGood_cnt(rs.getInt("good_cnt"));
 				b.setBad_cnt(rs.getInt("bad_cnt"));
+				b.setComment_cnt(rs.getInt("comment_cnt"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -185,7 +188,7 @@ public class BoardDao {
 			pstmt.setString(3, b.getNickname());
 			pstmt.setString(4, b.getTitle());
 			pstmt.setString(5, b.getContent());
-			pstmt.setString(6, b.getImg_file());
+			pstmt.setString(6, b.getCategory());
 			pstmt.setString(7, b.getFile_upload());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
@@ -235,101 +238,79 @@ public class BoardDao {
 		String sql="";
 		int d;
 		try {
-			if(date.equals("week")) {
-				if(content.equals("titleContent")) {
-					sql=prop.getProperty("weekFindTitleContent");
-					System.out.println("'%"+searchText+"%'");
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, searchText);
-					pstmt.setString(2, searchText);
-					pstmt.setInt(3, (cPage-1)*numPerPage+1);
-					pstmt.setInt(4, cPage*numPerPage);
-					rs=pstmt.executeQuery();
-					while(rs.next()) {
-						Board b=new Board();
-						b.setBoard_no(rs.getInt("board_no"));
-						b.setReply_no(rs.getInt("reply_no"));
-						b.setReply_level(rs.getInt("reply_level"));
-						b.setNickname(rs.getString("nickname"));
-						b.setTitle(rs.getString("title"));
-						b.setContent(rs.getString("content"));
-						b.setImg_file(rs.getString("img_file"));
-						b.setFile_upload(rs.getString("file_upload"));
-						b.setWrite_date(rs.getDate("write_date"));
-						b.setCnt(rs.getInt("cnt"));
-						b.setGood_cnt(rs.getInt("good_cnt"));
-						b.setBad_cnt(rs.getInt("bad_cnt"));
-						list.add(b);
-					}
-				}else if(content.equals("title")) {
-					sql=prop.getProperty("weekFindTitle");
-					System.out.println("'%"+searchText+"%'");
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, searchText);
-					pstmt.setInt(2, (cPage-1)*numPerPage+1);
-					pstmt.setInt(3, cPage*numPerPage);
-					rs=pstmt.executeQuery();
-					while(rs.next()) {
-						Board b=new Board();
-						b.setBoard_no(rs.getInt("board_no"));
-						b.setReply_no(rs.getInt("reply_no"));
-						b.setReply_level(rs.getInt("reply_level"));
-						b.setNickname(rs.getString("nickname"));
-						b.setTitle(rs.getString("title"));
-						b.setContent(rs.getString("content"));
-						b.setImg_file(rs.getString("img_file"));
-						b.setFile_upload(rs.getString("file_upload"));
-						b.setWrite_date(rs.getDate("write_date"));
-						b.setCnt(rs.getInt("cnt"));
-						b.setGood_cnt(rs.getInt("good_cnt"));
-						b.setBad_cnt(rs.getInt("bad_cnt"));
-						list.add(b);
-					}
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
+			if(content.equals("titleContent")) {
+				sql=prop.getProperty("weekFindTitleContent");
+				System.out.println("'%"+searchText+"%'");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				pstmt.setString(2, searchText);
+				pstmt.setInt(3, (cPage-1)*numPerPage+1);
+				pstmt.setInt(4, cPage*numPerPage);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Board b=new Board();
+					b.setBoard_no(rs.getInt("board_no"));
+					b.setReply_no(rs.getInt("reply_no"));
+					b.setReply_level(rs.getInt("reply_level"));
+					b.setNickname(rs.getString("nickname"));
+					b.setTitle(rs.getString("title"));
+					b.setContent(rs.getString("content"));
+					b.setCategory(rs.getString("category"));
+					b.setFile_upload(rs.getString("file_upload"));
+					b.setWrite_date(rs.getDate("write_date"));
+					b.setCnt(rs.getInt("cnt"));
+					b.setGood_cnt(rs.getInt("good_cnt"));
+					b.setBad_cnt(rs.getInt("bad_cnt"));
+					b.setComment_cnt(rs.getInt("comment_cnt"));
+					list.add(b);
 				}
-			}else if(date.equals("month")) {
-				d=1;
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
+			}else if(content.equals("title")) {
+				sql=prop.getProperty("weekFindTitle");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				pstmt.setInt(2, (cPage-1)*numPerPage+1);
+				pstmt.setInt(3, cPage*numPerPage);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Board b=new Board();
+					b.setBoard_no(rs.getInt("board_no"));
+					b.setReply_no(rs.getInt("reply_no"));
+					b.setReply_level(rs.getInt("reply_level"));
+					b.setNickname(rs.getString("nickname"));
+					b.setTitle(rs.getString("title"));
+					b.setContent(rs.getString("content"));
+					b.setCategory(rs.getString("category"));
+					b.setFile_upload(rs.getString("file_upload"));
+					b.setWrite_date(rs.getDate("write_date"));
+					b.setCnt(rs.getInt("cnt"));
+					b.setGood_cnt(rs.getInt("good_cnt"));
+					b.setBad_cnt(rs.getInt("bad_cnt"));
+					b.setComment_cnt(rs.getInt("comment_cnt"));
+					list.add(b);
 				}
-			}else if(date.equals("halfYear")) {
-				d=6;
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}
-			}if(date.equals("year")) {
-				d=1;
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
+			}else if(content.equals("writer")) {
+				sql=prop.getProperty("weekFindWriter");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				pstmt.setInt(2, (cPage-1)*numPerPage+1);
+				pstmt.setInt(3, cPage*numPerPage);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Board b=new Board();
+					b.setBoard_no(rs.getInt("board_no"));
+					b.setReply_no(rs.getInt("reply_no"));
+					b.setReply_level(rs.getInt("reply_level"));
+					b.setNickname(rs.getString("nickname"));
+					b.setTitle(rs.getString("title"));
+					b.setContent(rs.getString("content"));
+					b.setCategory(rs.getString("category"));
+					b.setFile_upload(rs.getString("file_upload"));
+					b.setWrite_date(rs.getDate("write_date"));
+					b.setCnt(rs.getInt("cnt"));
+					b.setGood_cnt(rs.getInt("good_cnt"));
+					b.setBad_cnt(rs.getInt("bad_cnt"));
+					b.setComment_cnt(rs.getInt("comment_cnt"));
+					list.add(b);
 				}
 			}
 		}catch(SQLException e) {
@@ -346,70 +327,35 @@ public class BoardDao {
 		String sql="";
 		int result=0;
 		try {
-			if(date.equals("week")) {
-				if(content.equals("titleContent")) {
-					sql=prop.getProperty("weekFindTitleContent_count");
-					System.out.println("'%"+searchText+"%'");
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, searchText);
-					pstmt.setString(2, searchText);
-					rs=pstmt.executeQuery();
-					if(rs.next()) {
-						result=rs.getInt(1);
-					}
-				}else if(content.equals("title")) {
-					sql=prop.getProperty("weekFindTitle_count");
-					System.out.println("'%"+searchText+"%'");
-					pstmt=conn.prepareStatement(sql);
-					pstmt.setString(1, searchText);
-					rs=pstmt.executeQuery();
-					if(rs.next()) {
-						result=rs.getInt(1);
-					}
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
+			if(content.equals("titleContent")) {
+				sql=prop.getProperty("weekFindTitleContent_count");
+				System.out.println("'%"+searchText+"%'");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				pstmt.setString(2, searchText);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					result=rs.getInt(1);
 				}
-			}else if(date.equals("month")) {
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
+			}else if(content.equals("title")) {
+				sql=prop.getProperty("weekFindTitle_count");
+				System.out.println("'%"+searchText+"%'");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					result=rs.getInt(1);
 				}
-			}else if(date.equals("halfYear")) {
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}
-			}if(date.equals("year")) {
-				if(content.equals("titleContent")) {
-					
-				}else if(content.equals("title")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}else if(content.equals("replyContent")) {
-					
-				}else if(content.equals("writer")) {
-					
-				}
+			}else if(content.equals("writer")) {
+				sql=prop.getProperty("weekFindWriter_count");
+				System.out.println("'%"+searchText+"%'");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchText);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					result=rs.getInt(1);
 			}
+		}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -506,7 +452,7 @@ public class BoardDao {
 			pstmt.setString(3, b.getNickname());
 			pstmt.setString(4, b.getTitle());
 			pstmt.setString(5, b.getContent());
-			pstmt.setString(6, b.getImg_file());
+			pstmt.setString(6, b.getCategory());
 			pstmt.setString(7, b.getFile_upload());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
@@ -532,12 +478,13 @@ public class BoardDao {
 				b.setNickname(rs.getString("nickname"));
 				b.setTitle(rs.getString("title"));
 				b.setContent(rs.getString("content"));
-				b.setImg_file(rs.getString("img_file"));
+				b.setCategory(rs.getString("category"));
 				b.setFile_upload(rs.getString("file_upload"));
 				b.setWrite_date(rs.getDate("write_date"));
 				b.setCnt(rs.getInt("cnt"));
 				b.setGood_cnt(rs.getInt("good_cnt"));
 				b.setBad_cnt(rs.getInt("bad_cnt"));
+				b.setComment_cnt(rs.getInt("comment_cnt"));
 				list.add(b);
 			}
 		}catch(SQLException e) {
@@ -547,6 +494,29 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public List<Board> commentCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Board> result = new ArrayList();
+		String sql=prop.getProperty("commentCount");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Board b = new Board();
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				result.add((Board)rs.getInt(3));
+				result.add(b);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
 	}
 }
 

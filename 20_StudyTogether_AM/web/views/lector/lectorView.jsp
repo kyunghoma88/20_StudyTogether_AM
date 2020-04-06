@@ -46,8 +46,10 @@ background-color:#ffc107;
 	    <div id="video-inform">
 	    <%=l.getLectorDetail() %>
 	    </div>
-	    <input type="submit" onclick="apply();" class="basket" value="구매하기">
-   <!-- </form> -->
+	    
+
+    <input type="button" class="basket" onclick="apply();" value="구매하기">
+
   </div>
   
 <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
@@ -68,6 +70,7 @@ background-color:#ffc107;
 	</ul> 
  <%} %>
  
+ 
 <style>
 	.pagination{
 		margin-left:600px;
@@ -76,57 +79,21 @@ background-color:#ffc107;
 	}
 </style>
 
-<%-- </div>
- <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
-<div class="container">
-  <div class="list-group">
-    <a href="javascript:void(0)" onclick="changeLector('<%=l.getLectorNo()%>')" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
-  	<%if(list!=null&&!list.isEmpty()){
-	for(LectorWatch lw: list){%>
-  	<a href="javascript:void(0)" onclick="changeLector('<%=l.getLectorNo()%>','<%=lw.getWatchNo() %>')" class="list-group-item list-group-item-action"><%=lw.getWatchTitle()%></a>
-	 <%}
-	}%>
-  </div> 
-</div> --%>
 </section>
 
  <script>
- <%--
-//동영상만 바뀌는 ajax
-function changeLector(pNo, cNo){
-	$.ajax({
-		url:"<%=request.getContextPath()%>/lector/videoSource",
-		//lectorVideo서블릿 url주소
-		type:"post",//post방식
-		data:{pNo:pNo,cNo:cNo},//pNo=lectorNo ,cNo=lectorWatchNo
-		success:function(data){
-			//alert("sadf");
-			console.log(data);
-			console.log($("#video"));
-			//비디오
-			$("#video").attr("src","<%=request.getContextPath()%>/upload/lector/"+data);
-			//콘텐트
-			
-			console.log($("#video"));
-		},
-		error:function(r,e,m){
-			//console.log(r);
-		}
-	})
-} --%>
-
-function apply(){
-var result= confirm("장바구니에 강좌를 담았습니다. 장바구니로 이동하시겠습니까?");
- if(result==true){
-   location.href="<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>";
-   
-   
- }
- else{
-   location.reload;
- }
-}
+//study참가하기 버튼을 누르면 현재인원이 카운트 된다.
+   function apply(){
+   var result= confirm("구매하시겠습니까?");
+    if(result==true){
+   	 location.replace('<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>');
+    }
+  else{
+   	 alert("취소 되었습니다.");
+   	 loaction.reload;
+    }
+   }
+ </script>
  
-</script>
 
 <%@ include file="/views/common/footer.jsp"%>
