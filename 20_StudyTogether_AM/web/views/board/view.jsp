@@ -125,7 +125,7 @@
 			<div style="padding-top: 15px;">
 				<ul class="listbtn" style="float: left;">
 					<%if(loginMember!=null) {%>
-            			<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?id=<%=loginMember.getUserId()%>&?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
+            			<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?id=<%=loginMember.getUserId()%>&category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
 					<%}else{ %>
 						<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
 					<%} %>
@@ -169,6 +169,7 @@
 	                	<input type="hidden" name="no"/>
 	                	<input type="hidden" name="cPage"/>
 	                	<input type="hidden" name="category"/>
+	                	<input type="hidden" name="id"/>
 	            </form>
 		</div>
 	</div>
@@ -292,10 +293,13 @@
 	    	f.method="post";
 	    	f.submit();
 		}
-		function boareReply(no, category){
+		function boareReply(no, category, id){
 			var f=document.paging;
 	    	f.no.value=no;
 	    	f.category.value=category;
+	    	<%if(loginMember!=null){%>	    		
+	    		f.id.value="<%=loginMember.getUserId()%>";
+	    	<%}%>
 	    	f.action="<%=request.getContextPath()%>/board/replyWrite";
 	    	f.method="post";
 	    	f.submit();

@@ -35,15 +35,16 @@ public class BoardReplyServlet extends HttpServlet {
 		Board b=new BoardService().boardView(no);
 		String category=request.getParameter("category");
 		request.setAttribute("category", category);
+		System.out.println("너도 안나오니? "+id);
 		
 		request.setAttribute("board", b);
 		
-		if(id!=null) {			
+		if(id!=null&&!id.isEmpty()) {			
 			request.getRequestDispatcher("/views/board/boardReply.jsp")
 			.forward(request, response);
 		}else {
 			request.setAttribute("msg", "로그인후 이용 부탁 드립니다. ");
-			request.setAttribute("loc", "/board/boardList?category=free");
+			request.setAttribute("loc", "/board/boardList");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 		}
 	}

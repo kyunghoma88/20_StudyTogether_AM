@@ -32,8 +32,19 @@ public class BoardDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("no"));
 		
-		new BoardService().deleteBoard(no);
-		response.sendRedirect(request.getContextPath()+"/board/boardList");
+		int result=new BoardService().deleteBoard(no);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			request.setAttribute("msg", "게시물 삭제 완료");
+			request.setAttribute("loc", "/board/boardList");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+		}else {
+			request.setAttribute("msg", "게시물 삭제 실패 ");
+			request.setAttribute("loc", "/board/boardList");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+		}
+		
 	}
 
 	/**

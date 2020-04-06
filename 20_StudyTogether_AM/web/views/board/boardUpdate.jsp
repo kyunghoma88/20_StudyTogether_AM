@@ -7,7 +7,7 @@
 %>
 <%@ include file="/views/board/aside.jsp"%>
         <div class="write_content">
-            <%if(category.equals("free")) {%>
+            <%if(category=="free") {%>
         	<div class="category_name">자유게시판</div>
         	<%}else{ %>
         	<div class="category_name">묻고 답하기</div>

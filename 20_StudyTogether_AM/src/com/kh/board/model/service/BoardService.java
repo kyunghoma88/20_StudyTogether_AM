@@ -116,7 +116,7 @@ public class BoardService {
 		}
 		close(conn);
 	}
-	public void deleteBoard(int no) {
+	public int deleteBoard(int no) {
 		Connection conn=getConnection();
 		int result=dao.deleteBoard(conn, no);
 		if(result>0) {
@@ -125,6 +125,7 @@ public class BoardService {
 			rollback(conn);
 		}
 		close(conn);
+		return result;
 	}
 	public void insertComment(Comment c) {
 		Connection conn=getConnection();

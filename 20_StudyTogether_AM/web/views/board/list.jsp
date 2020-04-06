@@ -9,7 +9,11 @@
 %>
 <%@ include file="/views/board/aside.jsp"%>
 		<div class="board_content">
-			<span class="category_name">서버에서 넘어올 커뮤니티 이름</span>
+		<%if(category.equals("free")) {%>
+			<span class="category_name">자유게시판</span>			
+		<%}else{ %>
+			<span class="category_name">묻고 답하기</span>
+		<%} %>
 			<table class="table">
         		<thead>
             	<tr>
@@ -76,7 +80,7 @@
 					 <%=request.getAttribute("pageBar") %>
 				</ul>
 				<div>
-					<select name="searchContent" id="searchContent" style="background-color:white;">
+					<select name="searchContent" id="searchContent" style="background-color:white; height:29px;">
 						<option value="titleContent" selected>제목+내용</option>
 						<option value="title">제목만</option>
 						<option value="writer">글작성자</option>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/board/aside.jsp"%>
-<%String category=(String)request.getAttribute("category");
+<%
+	String category=(String)request.getAttribute("category");
 %>
         <div class="write_content">
         <%if(category.equals("free")) {%>
