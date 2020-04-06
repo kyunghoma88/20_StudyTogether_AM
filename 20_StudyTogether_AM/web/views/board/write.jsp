@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/board/aside.jsp"%>
+<%
+	String category=(String)request.getAttribute("category");
+%>
         <div class="write_content">
-            <div class="category_name">카테고리 이름</div>
+        <%if(category.equals("free")) {%>
+        	<div class="category_name">자유게시판</div>
+        <%}else{ %>
+        	<div class="category_name">묻고 답하기</div>
+        <%} %>
             <form action="<%=request.getContextPath()%>/board/boardWriteEnd" 
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
                 <input type="hidden" name="fileCnt"/>
+                <input type="hidden" name="category" value="<%=category%>"/>
+                <%if(loginMember!=null) {%>
                 <input type="hidden" name="id" value="<%=loginMember.getUserId()%>"/>
+                <%} %>
             <div class="write_title">
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>

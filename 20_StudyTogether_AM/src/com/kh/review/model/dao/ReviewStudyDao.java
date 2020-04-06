@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.review.model.vo.ReviewStudy;
 
+
 public class ReviewStudyDao {
 	private Properties prop = new Properties();
 	
@@ -84,8 +85,8 @@ public class ReviewStudyDao {
 			pstmt.setString(1, revS.getReviewStuWriter());
 			pstmt.setString(2, revS.getStudyName());
 			pstmt.setString(3, revS.getReviewStuCategory());
-			pstmt.setInt(4, revS.getReviewStuStar());
-			pstmt.setString(5, revS.getReviewStuContent());
+			pstmt.setString(4, revS.getReviewStuContent());
+			pstmt.setInt(5, revS.getReviewStuStar());
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

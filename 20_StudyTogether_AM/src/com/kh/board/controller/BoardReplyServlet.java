@@ -31,11 +31,22 @@ public class BoardReplyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("no"));
+		String id=request.getParameter("id");
 		Board b=new BoardService().boardView(no);
+		String category=request.getParameter("category");
+		request.setAttribute("category", category);
+		System.out.println("너도 안나오니? "+id);
 		
 		request.setAttribute("board", b);
-		request.getRequestDispatcher("/views/board/boardReply.jsp")
-		.forward(request, response);
+		
+		if(id!=null&&!id.isEmpty()) {			
+			request.getRequestDispatcher("/views/board/boardReply.jsp")
+			.forward(request, response);
+		}else {
+			request.setAttribute("msg", "로그인후 이용 부탁 드립니다. ");
+			request.setAttribute("loc", "/board/boardList");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+		}
 	}
 
 	/**

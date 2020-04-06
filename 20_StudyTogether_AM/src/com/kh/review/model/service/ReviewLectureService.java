@@ -55,4 +55,13 @@ public class ReviewLectureService {
 		return result;
 	}
 
+	public int insertReviewLecture(ReviewLecture revL) {
+		Connection conn = getConnection();
+		int result = dao.insertReviewLecture(conn,revL);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

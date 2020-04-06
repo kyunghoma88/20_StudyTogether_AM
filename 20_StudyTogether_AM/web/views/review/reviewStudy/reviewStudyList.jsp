@@ -15,7 +15,7 @@
 </div>
     <div>
     <br><br>
-     
+   
     <div id="selectReview" style="font-size:15px">
         <a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">강좌 후기</a>
     </div>
@@ -39,14 +39,18 @@
 	                       <h2><%=revS.getStudyName() %></h2>
 	         </a>
            
-            <%-- <%if(%> --%>
-            <p id="star_grade">
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-            </p>
+            <%if(revS.getReviewStuStar()==1){%>
+            	<td>★</td>
+            <%}else if(revS.getReviewStuStar()==2){ %>
+            	<td>★★</td>
+            <%}else if(revS.getReviewStuStar()==3){ %>
+            	<td>★★★</td>
+            <%}else if(revS.getReviewStuStar()==4){ %>
+          		<td>★★★★</td>
+          	<%}else if(revS.getReviewStuStar()==5){ %>
+          		<td>★★★★★</td>
+          	<%} %>
+          	<br><br>
             <h4><%=revS.getReviewStuContent() %></h4>
         
             <td><span style="float:right;"><%=revS.getReviewStuWriter() %></span></td>
@@ -57,25 +61,23 @@
 	<%}
     } %>
 
-       		<ul class="pagination" style="margin-left:670px">
+       		<ul class="pagination" style="margin-left:650px">
        		<%if(!list.isEmpty()){ %>
 				<%=request.getAttribute("pageBar") %>
 			<%} %>
 			</ul>
         <%if(loginMember!=null){%>
 			<input type="button" value="스터디 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewStudy()"/>
+		<%}else{ %>
+			<input type="hidden" >
 		<%} %>
        
     </div>
 
     <script>
-         $('#star_grade a').click(function(){
-            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-            return false;
-        });
          function fn_writeReviewStudy(){
- 			location.replace("<%=request.getContextPath()%>/review/reviewStudyWrite");
+ 				location.replace("<%=request.getContextPath()%>/review/reviewStudyWrite?writer=<%=loginMember.getUserId()%>");
+	
  		}
     </script>
 <%@ include file="/views/common/footer.jsp"%>

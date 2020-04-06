@@ -31,13 +31,14 @@ public class ReviewLectureUpdateEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		 ReviewLecture revL = new
-		 ReviewLecture(Integer.parseInt(request.getParameter("no")),
-				 		request.getParameter("writer"), request.getParameter("allStudy"),
-				 		request.getParameter("field"), request.getParameter("content"),
-				 		Integer.parseInt(request.getParameter("star")),
-				 		null);
+		int no = Integer.parseInt(request.getParameter("no"));
+ 		String writer = request.getParameter("writer");
+ 		String allLecture = request.getParameter("allLecture");
+ 		String field = request.getParameter("field");
+ 		String content = request.getParameter("content");
+ 		int star = Integer.parseInt(request.getParameter("star"));
+
+		 ReviewLecture revL = new ReviewLecture(no,writer,allLecture,field,content,star,null);
 		
 		 String msg="";
 			String loc="/review/reviewLectureView?no="+request.getParameter("no");

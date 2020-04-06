@@ -103,7 +103,12 @@ table.revWrite td {
 		location.replace("<%=request.getContextPath()%>/review/reviewLectureUpdate?no=<%=revL.getReviewLecNo()%>")
 	}
 	function deleteChk(){
-		location.replace("<%=request.getContextPath()%>/review/reviewLectureDelete?no=<%=revL.getReviewLecNo()%>")
+		 if (confirm("정말 삭제 하시겠습니까??") == true){    //확인
+			 location.replace("<%=request.getContextPath()%>/review/reviewLectureDelete?no=<%=revL.getReviewLecNo()%>")
+         }else{   //취소
+            return false;
+         }
+		
 	}
 </script>
 <%@ include file="/views/common/footer.jsp"%>

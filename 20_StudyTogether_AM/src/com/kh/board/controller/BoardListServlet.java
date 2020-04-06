@@ -34,6 +34,11 @@ public class BoardListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//현재 페이지 번호
 		int cPage;
+		String category=request.getParameter("category");
+		if(category==null) {
+			category="free";
+		}
+		System.out.println("카테고리 : "+category);
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -42,7 +47,7 @@ public class BoardListServlet extends HttpServlet {
 		//한페이지에 보여줄 데이터 갯수
 		int numPerPage=15;
 		
-		List<Board> list = new BoardService().boardList(cPage, numPerPage);
+		List<Board> list = new BoardService().boardList(category, cPage, numPerPage);
 		List<Board> replyList = new BoardService().boardReplyList();
 		
 		//총 게시판 갯수 구하기
@@ -54,6 +59,8 @@ public class BoardListServlet extends HttpServlet {
 		int pageBarSize=10;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
+		//댓글 갯수 구하기
+		//List<Board> commentCount = new BoardService().commentCount();
 		
 		String pageBar="";
 		if(pageNo>10) {
@@ -72,7 +79,7 @@ public class BoardListServlet extends HttpServlet {
 		}else {
 			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+")'>다음></a>";
 		}
-		
+		request.setAttribute("category", category);
 		request.setAttribute("list", list);
 		request.setAttribute("replyList", replyList);
 		request.setAttribute("pageBar", pageBar);

@@ -77,7 +77,7 @@ table.revWrite select {
 div#revWBtn{
 	margin-left:550px;
 }
-#revWCancelBtn, #revWenrollBtn{
+#revWCancelBtn, #revWenrollBtn, #revLCancelBtn, #revLenrollBtn{
     /* background-color: #4CAF50; */
     color: black;
     padding: 12px 20px;

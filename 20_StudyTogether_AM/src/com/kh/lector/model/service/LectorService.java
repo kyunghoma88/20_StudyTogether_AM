@@ -178,6 +178,14 @@ public class LectorService {
 		close(conn);
 		return list;
 	}
+
+//	지현 - 리뷰
+	public List<Lector> selectLectureName(String writer) {
+		Connection conn = getConnection();
+		List<Lector> list = dao.selectLectureName(conn,writer);
+		close(conn);
+		return list;
+	}
 	
 
 
