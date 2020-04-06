@@ -15,9 +15,9 @@ import com.kh.board.model.vo.Comment;
 public class BoardService {
 	private BoardDao dao=new BoardDao();
 	
-	public List<Board> boardList(int cPage, int numPerPage){
+	public List<Board> boardList(String category, int cPage, int numPerPage){
 		Connection conn=getConnection();
-		List<Board> list=dao.boardList(conn, cPage, numPerPage);
+		List<Board> list=dao.boardList(conn, category, cPage, numPerPage);
 		close(conn);
 		return list;
 	}
@@ -157,6 +157,12 @@ public class BoardService {
 		List<Board> replyList=dao.boardReplyList(conn);
 		close(conn);
 		return replyList;
+	}
+	public List<Board> commentCount() {
+		Connection conn=getConnection();
+		List<Board> result=dao.boardCount(conn);
+		close(conn);
+		return result;
 	}
 }
 

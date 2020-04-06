@@ -5,6 +5,7 @@
 	List<Board> list=(List)request.getAttribute("list");
 	int cPage=(int)request.getAttribute("cPage");
 	List<Board> replyList=(List)request.getAttribute("replyList");
+	String category=(String)request.getAttribute("category");
 %>
 <%@ include file="/views/board/aside.jsp"%>
 		<div class="board_content">
@@ -32,7 +33,7 @@
 		        	<tr>
 						<td><%=b.getBoard_no() %></td>
 						<td>
-							<a class="board_title" href="javascript:boardView(<%=b.getBoard_no()%>,<%=cPage%>)">
+							<a class="board_title" href="javascript:boardView(<%=b.getBoard_no()%>,<%=cPage%>,'<%=category%>')">
 								<%=b.getTitle() %>
 							</a>
 						</td>
@@ -47,7 +48,7 @@
 	            		if(b.getBoard_no()==reply.getReply_no()){%>
 	            	<tr>
 						<td colspan="2" style="text-align: right;">
-							<a class="board_title" href="javascript:boardView(<%=reply.getBoard_no()%>,<%=cPage%>)">
+							<a class="board_title" href="javascript:boardView(<%=reply.getBoard_no()%>,<%=cPage%>,'<%=category%>')">
 								ㄴ<%=reply.getTitle() %>
 							</a>
 						</td>
@@ -64,30 +65,24 @@
 	            </tbody>
     		</table>
     		<div style="text-align: right;">
-            	<a id="write_btn" class="write_btn" href="<%=request.getContextPath()%>/board/boardWrite"><i class="fas fa-edit"></i>글쓰기</a>
+    		<%if(loginMember!=null) {%>
+            	<a id="write_btn" class="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?id=<%=loginMember.getUserId()%>&category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a>
+			<%}else{ %>
+				<a id="write_btn" class="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a>
+			<%} %>
 			</div>
 			<div>
 				<ul class="pagination justify-content-center" id="page">
 					 <%=request.getAttribute("pageBar") %>
 				</ul>
 				<div>
-						<select name="searchDate" id="searchDate" style="background-color:white;">
-							<option value="full"selected>전체기간</option>
-							<option value="week">1주일</option>
-							<option value="month">1개월</option>
-							<option value="halfYear">6개월</option>
-							<option value="year">1년</option>
-						</select>
-						<select name="searchContent" id="searchContent" style="background-color:white;">
-							<option value="titleContent" selected>제목+내용</option>
-							<option value="title">제목만</option>
-							<option value="writer">글작성자</option>
-							<option value="replyContent">댓글내용</option>
-							<option value="replyWriter">댓글작성자</option>
-						</select>
-						<input type="text" id="searchText" placeholder="검색어를 입력해주세요" size="30"><!--
-						--><input type="submit" id="searchBtn" class="search_btn" value="검색"/>
-					
+					<select name="searchContent" id="searchContent" style="background-color:white;">
+						<option value="titleContent" selected>제목+내용</option>
+						<option value="title">제목만</option>
+						<option value="writer">글작성자</option>
+					</select>
+					<input type="text" id="searchText" placeholder="검색어를 입력해주세요" size="30"><!--
+					--><input type="submit" id="searchBtn" class="search_btn" value="검색"/>
 				</div>
 			</div>
 		</div>
@@ -97,6 +92,7 @@
 	        <input type="hidden" name="date"/>
 	        <input type="hidden" name="content"/>
 	        <input type="hidden" name="searchText"/>
+	        <input type="hidden" name="category"/>
 	    </form>
 	</div>
 	<script>
@@ -188,10 +184,11 @@
 				}
 			})
 		})
-	function boardView(no, cPage){
+	function boardView(no, cPage, category){
     	var f=document.paging;
     	f.no.value=no;
     	f.cPage.value=cPage;
+    	f.category.value=category;
     	f.action="<%=request.getContextPath()%>/board/boardView";
     	f.method="post";
     	f.submit();

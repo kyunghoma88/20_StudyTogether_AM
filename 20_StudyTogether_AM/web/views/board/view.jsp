@@ -9,10 +9,11 @@
 	Board nextView=(Board)request.getAttribute("nextView");
 	int cPage=(int)request.getAttribute("cPage");
 	List<Comment> commentList=(List)request.getAttribute("commentList");
+	String category=(String)request.getAttribute("category");
 %>
 <%@ include file="/views/board/aside.jsp"%>
 		<div class="view_content">
-			<div class="category_name">서버에서 넘어올 커뮤니티 이름</div>
+			<div class="category_name">커뮤니티</div>
 			<div class="view_content2">	
 				<ul class="view_topMenu" style="text-align: right;">
 					<li style="color: blue;"><i class="fas fa-home"></i></li>
@@ -72,7 +73,11 @@
 						<div class="comment_area">
 						<ul class="view_comment">
 							<li style="font-size: 14px; font-weight: bold;"><%=c.getComment_writer() %></li>
-							<li>작성자이면표시</li>
+							<%if(b.getNickname().equals(c.getComment_writer())) {%>
+							<li>
+								<span style="color:red; border-radius:8px; border:1px solid red; padding: 2px 5px;">작성자</span>
+							</li>
+							<%} %>
 							<li><%=c.getComment_date() %></li>
 							<li><a id="comment<%=i %>" class="comment" href="javascript:void(0)" value="<%=c.getComment_no()%>">
 								<i class="fas fa-reply fas-lg"></i>답글</a>
@@ -84,7 +89,11 @@
 						<div class="comment_area">
 						<ul class="view_comment2">
 							ㄴ<li style="font-size: 14px; font-weight: bold;"><%=c.getComment_writer() %></li>
-							<li>작성자이면표시</li>
+							<%if(b.getNickname().equals(c.getComment_writer())) {%>
+							<li>
+								<span style="color:red; border-radius:8px; border:1px solid red; padding: 2px 5px;">작성자</span>
+							</li>
+							<%} %>
 							<li><%=c.getComment_date() %></li>
 						</ul>
 						<p class="comment_content" style="padding-left:98px;"><%=c.getComment_content() %></p>
@@ -103,7 +112,9 @@
 						</div>
 						<form name="commentInsert" method="post" action="<%=request.getContextPath()%>/board/comment">
 							<input type="hidden" name="board_ref" value="<%=b.getBoard_no()%>">
-							<input type="hidden" name="comment_writer" value="<%=b.getNickname()%>">
+							<%if(loginMember!=null) {%>
+							<input type="hidden" name="comment_writer" value="<%=loginMember.getUserId()%>">
+							<%} %>
 							<input type="hidden" name="comment_no_ref" value="0">
 							<input type="hidden" name="comment_level" value="1">
 							<input type="hidden" name="comment_text">
@@ -113,24 +124,28 @@
 			</div>
 			<div style="padding-top: 15px;">
 				<ul class="listbtn" style="float: left;">
-					<li><a href="<%=request.getContextPath()%>/board/boardWrite"><i class="fas fa-pen"></i> 글쓰기</a></li>
-					<li><a href="javascript:boareReply(<%=b.getBoard_no()%>)"><i class="fas fa-comment-dots"></i> 답글</a></li>
-					<li><a href="javascript:boardList(<%=cPage%>)">목록</a></li>
+					<%if(loginMember!=null) {%>
+            			<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?id=<%=loginMember.getUserId()%>&?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
+					<%}else{ %>
+						<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
+					<%} %>
+					<li><a href="javascript:boareReply(<%=b.getBoard_no()%>,'<%=category%>')"><i class="fas fa-comment-dots"></i> 답글</a></li>
+					<li><a href="javascript:boardList(<%=cPage%>,'<%=category%>')">목록</a></li>
 				</ul>
 				<ul class="listbtn" style="float: right;">
-					<li><a href="javascript:boardDelete(<%=b.getBoard_no()%>)">삭제</a></li>
-					<li><a href="javascript:boardUpdate(<%=b.getBoard_no()%>)">수정</a></li>
+					<li><a href="javascript:boardDelete(<%=b.getBoard_no()%>,'<%=category%>')">삭제</a></li>
+					<li><a href="javascript:boardUpdate(<%=b.getBoard_no()%>,'<%=category%>')">수정</a></li>
 				</ul>
 			</div>
 			<table class="table" style="clear: both; width: 100%; font-size: 13px;">
                 <%if(b.getBoard_no()!=maxNo) {%>
                     <tr>
-                        <td style="width: 100px;"><a href="javascript:boardView(<%=b.getBoard_no()+1 %>)" style="text-decoration: none; color:black;">
+                        <td style="width: 100px;"><a href="javascript:boardView(<%=b.getBoard_no()+1 %>,'<%=category%>')" style="text-decoration: none; color:black;">
                         <i class="fas fa-angle-up" style="color: orange;"></i> 	
                         	이전글</a>
                        	</td>
                         <td style="width: 530px;">
-                        	<a href="javascript:boardView(<%=b.getBoard_no()+1 %>)" style="text-decoration: none; color:black;"><%=preView.getTitle() %></a>
+                        	<a href="javascript:boardView(<%=b.getBoard_no()+1 %>,'<%=category%>')" style="text-decoration: none; color:black;"><%=preView.getTitle() %></a>
                         </td>
                         <td><%=preView.getNickname() %></td>
                         <td style="text-align: center;"><%=preView.getWrite_date() %></td>
@@ -138,12 +153,12 @@
                  <%} %>
                  <%if(b.getBoard_no()!=1) {%>
                     <tr>
-                        <td><a href="javascript:boardView(<%=b.getBoard_no()-1 %>)" style="text-decoration: none; color:black;">
+                        <td><a href="javascript:boardView(<%=b.getBoard_no()-1 %>,'<%=category%>')" style="text-decoration: none; color:black;">
                         <i class="fas fa-angle-down" style="color: orange;"></i> 
                         	다음글</a>
                         </td>
                         <td>
-                        	<a href="javascript:boardView(<%=b.getBoard_no()-1 %>)" style="text-decoration: none; color:black;"><%=nextView.getTitle() %></a>
+                        	<a href="javascript:boardView(<%=b.getBoard_no()-1 %>,'<%=category%>')" style="text-decoration: none; color:black;"><%=nextView.getTitle() %></a>
                         </td>
                         <td><%=nextView.getNickname() %></td>
                         <td style="text-align: center;"><%=nextView.getWrite_date() %></td>
@@ -153,6 +168,7 @@
                 <form name="paging">
 	                	<input type="hidden" name="no"/>
 	                	<input type="hidden" name="cPage"/>
+	                	<input type="hidden" name="category"/>
 	            </form>
 		</div>
 	</div>
@@ -244,49 +260,57 @@
 			},700) --%>
 			
 		})
-		function boardView(no){
+		function boardView(no, category){
 	    	var f=document.paging;
 	    	f.no.value=no;
+	    	f.category.value=category;
 	    	f.action="<%=request.getContextPath()%>/board/boardView";
 	    	f.method="post";
 	    	f.submit();
 	    }
-		function boardUpdate(no){
+		function boardUpdate(no, category){
 			var f=document.paging;
 	    	f.no.value=no;
+	    	f.category.value=category;
 	    	f.action="<%=request.getContextPath()%>/board/update";
 	    	f.method="post";
 	    	f.submit();
 		}
-		function boardList(cPage){
+		function boardList(cPage, category){
 	    	var f=document.paging;
 	    	f.cPage.value=cPage;
+	    	f.category.value=category;
 	    	f.action="<%=request.getContextPath()%>/board/boardList";
 	    	f.method="post";
 	    	f.submit();
 		}
-		function boardDelete(no){
+		function boardDelete(no, category){
 			var f=document.paging;
 	    	f.no.value=no;
+	    	f.category.value=category;
 	    	f.action="<%=request.getContextPath()%>/board/delete";
 	    	f.method="post";
 	    	f.submit();
 		}
-		function boareReply(no){
+		function boareReply(no, category){
 			var f=document.paging;
 	    	f.no.value=no;
+	    	f.category.value=category;
 	    	f.action="<%=request.getContextPath()%>/board/replyWrite";
 	    	f.method="post";
 	    	f.submit();
 		}
 		function commentInsert(){
+			<%if(loginMember==null){%>
+			alert("로그인후 이용 부탁 드립니다.");
+			<%}else{%>
 			$.ajax({
 				url:"<%=request.getContextPath()%>/board/comment",
 				type:"post",
 				dataType:"json",
 				data:{"comment_text":$("#comment_text").val(),
 					  "board_ref":<%=b.getBoard_no()%>,
-					  "comment_writer":"<%=b.getNickname()%>",
+					  "comment_writer":"<%=loginMember!=null?loginMember.getUserId():"null"%>",
 					  "comment_no_ref":0,
 					  "comment_level":1},
 				success:function(data){
@@ -301,15 +325,19 @@
 					$("#comment_text").focus();
 				}
 			});
+			<%}%>
 		};
 		function commentInsert2(){
+			<%if(loginMember==null){%>
+			alert("로그인후 이용 부탁 드립니다.");
+			<%}else{%>
 			$.ajax({
 				url:"<%=request.getContextPath()%>/board/comment",
 				type:"post",
 				dataType:"json",
 				data:{"comment_text":$("#comment_text").val(),
 					  "board_ref":<%=b.getBoard_no()%>,
-					  "comment_writer":"<%=b.getNickname()%>",
+					  "comment_writer":"<%=loginMember!=null?loginMember.getUserId():"null"%>",
 					  "comment_no_ref":comment_no,
 					  "comment_level":2},
 				success:function(data){
@@ -324,6 +352,7 @@
 					$("#comment_text").focus();
 				}
 			});
+			<%}%>
 		};
 		
 	</script>

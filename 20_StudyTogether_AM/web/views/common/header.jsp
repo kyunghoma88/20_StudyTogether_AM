@@ -275,10 +275,10 @@
       <a href="<%=request.getContextPath()%>/board/boardList">커뮤니티</a>
         <ul  class='menu4-submenu'>
           <li>
-            <a href="">대나무 숲</a>
+            <a href="<%=request.getContextPath()%>/board/boardList?category=free">자유게시판</a>
           </li>
           <li>
-            <a href="">자유 게시판</a>
+            <a href="<%=request.getContextPath()%>/board/boardList?category=qna">묻고 답하기</a>
           </li>
         </ul>
     </li>

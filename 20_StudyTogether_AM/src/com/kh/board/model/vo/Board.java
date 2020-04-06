@@ -9,19 +9,20 @@ public class Board {
     private String nickname;
     private String title;
     private String content;
-    private String img_file;
+    private String category;
     private String file_upload;
     private Date write_date;
     private int cnt;
     private int good_cnt;
     private int bad_cnt;
+    private int comment_cnt;
     
     public Board() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Board(int board_no, int reply_no, int reply_level, String nickname, String title, String content,
-			String img_file, String file_upload, Date write_date, int cnt, int good_cnt, int bad_cnt) {
+			String category, String file_upload, Date write_date, int cnt, int good_cnt, int bad_cnt, int comment_cnt) {
 		super();
 		this.board_no = board_no;
 		this.reply_no = reply_no;
@@ -29,12 +30,13 @@ public class Board {
 		this.nickname = nickname;
 		this.title = title;
 		this.content = content;
-		this.img_file = img_file;
+		this.category = category;
 		this.file_upload = file_upload;
 		this.write_date = write_date;
 		this.cnt = cnt;
 		this.good_cnt = good_cnt;
 		this.bad_cnt = bad_cnt;
+		this.comment_cnt = comment_cnt;
 	}
 
 	public int getBoard_no() {
@@ -85,12 +87,12 @@ public class Board {
 		this.content = content;
 	}
 
-	public String getImg_file() {
-		return img_file;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setImg_file(String img_file) {
-		this.img_file = img_file;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getFile_upload() {
@@ -133,12 +135,21 @@ public class Board {
 		this.bad_cnt = bad_cnt;
 	}
 
+	public int getComment_cnt() {
+		return comment_cnt;
+	}
+
+	public void setComment_cnt(int comment_cnt) {
+		this.comment_cnt = comment_cnt;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [board_no=" + board_no + ", reply_no=" + reply_no + ", reply_level=" + reply_level + ", nickname="
-				+ nickname + ", title=" + title + ", content=" + content + ", img_file=" + img_file + ", file_upload="
+				+ nickname + ", title=" + title + ", content=" + content + ", category=" + category + ", file_upload="
 				+ file_upload + ", write_date=" + write_date + ", cnt=" + cnt + ", good_cnt=" + good_cnt + ", bad_cnt="
-				+ bad_cnt + "]";
+				+ bad_cnt + ", comment_cnt=" + comment_cnt + "]";
 	}
+    
     
 }

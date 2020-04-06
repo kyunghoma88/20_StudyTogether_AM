@@ -3,10 +3,15 @@
 <%
 	Board b=(Board)request.getAttribute("board");
 	String files[]=(String[])request.getAttribute("files");
+	String category=(String)request.getAttribute("category");
 %>
 <%@ include file="/views/board/aside.jsp"%>
         <div class="write_content">
-            <div class="category_name">카테고리 이름</div>
+            <%if(category.equals("free")) {%>
+        	<div class="category_name">자유게시판</div>
+        	<%}else{ %>
+        	<div class="category_name">묻고 답하기</div>
+        	<%} %>
             <form action="<%=request.getContextPath()%>/board/updateEnd" 
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
                 <input type="hidden" name="no" value="<%=b.getBoard_no()%>"/>

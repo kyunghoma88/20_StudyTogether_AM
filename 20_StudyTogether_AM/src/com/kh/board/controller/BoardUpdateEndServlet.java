@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardUpdateEndServlet
@@ -42,7 +43,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 		//파일 업로드 로직 수행
 		String path=getServletContext().getRealPath("/upload/board/");
 		int maxSize=1024*1024*10;//10MB
-		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new MyFileRenamePolicy());
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		int fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
 		int no=Integer.parseInt(mr.getParameter("no"));
