@@ -85,9 +85,12 @@ public class FAQListAjaxServlet extends HttpServlet {
 			}
 			
 			if(pageNo>totalPage) {
-				pageBar+="<li class='page-item'><span class='page-link'>다음</span></li>";
+				//pageBar+="<li class='page-item'><span class='page-link'>다음</span></li>";
+				pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>다음</a></li>";
 			} else {
-				pageBar+="<li class='page-item'><a class='page-link' href='javascript:void(0)' onclick='fn_btn("+(pageNo)+",\""+category+"\")'>[다음]</a></li>";
+				//pageBar+="<li class='page-item'><a class='page-link' href='javascript:void(0)' onclick='fn_btn("+(pageNo)+",\""+category+"\")'>[다음]</a></li>";
+				pageBar += "<li class='page-item'><a class='page-link' href='javascript:void(0)' onclick='fn_btn("+(pageNo)+",\""+category+"\")'>다음</a></li>";
+				
 			}
 			
 			request.setAttribute("list", list);
