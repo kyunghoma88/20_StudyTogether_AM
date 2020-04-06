@@ -22,11 +22,11 @@
 	}
 	
 	.btn-faq-category{
-		font-size : 20px;
+		font-size : 13px;
 	}
 	
 	.tbl-container{
-		font-size : 20px;
+		font-size : 15px;
 	}
 	
 	#btn-faq-write{

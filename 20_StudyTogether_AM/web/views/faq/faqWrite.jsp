@@ -10,7 +10,7 @@
 	}
 	
 	section{
-		font-size : 20px;
+		font-size : 15px;
 	}
 	
 	#faq-content{
@@ -19,12 +19,17 @@
 	
 	#blank{
 		
-		margin-right : 750px;
+		margin-right : 650px;
 	}
 	
 	table {
 	  border-collapse: separate;
 	  border-spacing: 0 15px;
+	}
+	
+	.write-container{
+		width : 800px;
+	
 	}
 	
 	
@@ -81,7 +86,7 @@
 			<div style="display:flex; margin-top:30px;">
 				<div id="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div id="btn-regist">
-					<button class="btn btn-outline-dark" type="submit">등록하기</button>
+					<button class="btn btn-outline-dark" style="font-size:13px" type="submit">등록하기</button>
 				</div>
 			</div>
 			
