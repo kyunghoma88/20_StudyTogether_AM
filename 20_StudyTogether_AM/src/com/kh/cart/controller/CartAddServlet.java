@@ -38,25 +38,28 @@ public class CartAddServlet extends HttpServlet {
 		System.out.println("CartAddServlet호출");
 		String userId = request.getParameter("userId");
 		int lectorNo = Integer.parseInt(request.getParameter("pNo"));
+		
 		int result = new CartService().insertCart(userId, lectorNo);
 		List<LectorJoin> list=new LectorService().selectLectorJoin(lectorNo);
+		
 		LectorJoin lj=new LectorService().searchLectorJoin(lectorNo,userId);
- 		
+		
+		System.out.println("ljlj"+lj);
 		System.out.println("누가들어있니?"+userId);
  		System.out.println("no는 누구니?"+lectorNo);
+ 		System.out.println("너는?"+list);
 		
 		String msg = "";
 		String loc = "";
 		if(result>0) {
 			msg = "장바구니 담기 성공";
-			loc = "/lector/lectorView?no="+lectorNo;
+			loc = "/lector/lectorView?pNo="+lectorNo;
 			request.setAttribute("list", list);
 			request.setAttribute("lj", lj);
-
 			
 		} else {
 			msg = "이미 장바구니에 담겨 있습니다.";
-			loc = "/lector/lectorList?no="+lectorNo;
+			loc = "/lector/lectorView?no="+lectorNo;
 			request.setAttribute("list", list);
 			request.setAttribute("lj", lj);
 

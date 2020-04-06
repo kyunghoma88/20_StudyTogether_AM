@@ -687,7 +687,7 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 				lj.setUserId(rs.getString("user_id"));
 				lj.setBuyNo(rs.getInt("buy_no"));
 				lj.setProcess(rs.getString("process"));
-			}catch(SQLException e) {
+		}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
 				close(rs);

@@ -33,8 +33,6 @@ background-color:#ffc107;
 
 <!--분기처리해서 강좌개설자&admin에게만 보일수 있는 강좌추가,수정,(삭제는 관리자페이지에서만가능) 버튼  -->
 <div id="intro">
-<%-- <form action="<%=request.getContextPath()%>/cart/cartAdd" method="post">
- --%>
 	  <h2><<%=l.getLectorCategory() %>&nbsp;강좌><h2>
 	  	<p>제목:&nbsp;&nbsp;<%=l.getLectorTitle() %><br>
 	  	강사:&nbsp;&nbsp;<%=l.getLectorWriter() %><br>
@@ -54,19 +52,22 @@ background-color:#ffc107;
 	    </div>
     <input type="button" class="basket" onclick="apply();" value="구매하기">
 
-  </div>
-  
+  </div>  
+
 <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
 <div class="container">
-<%if(!clist.isEmpty()){ %>
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
-    <%for(LectorChannel lc:clist){ %>
-    <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-  <%}
+  <%for(LectorChannel lc:clist){ %>
+	<%if(!clist.isEmpty()&&lj.getUserId().equals(loginMember.getUserId())||loginMember.getUserId().equals(l.getLectorWriter())){ %>
+    <a id="clist" onclick="channel();" href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+  <%}else{%>
+	<a id="clist" href='javascript:void(0);' class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+	<%}
 	}%>
   </div>
 </div>
+
 <%if(!clist.isEmpty()){ %>
  	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
@@ -82,9 +83,19 @@ background-color:#ffc107;
 </style>
  <script>
 //study참가하기 버튼을 누르면 현재인원이 카운트 된다.
+   
    function apply(){
-   	 location.replace('<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>');
-   }
+	   	 location.replace('<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>');
+
+}
+   
+   
+ 
+   
+	  
+  
+  
+   
  </script>
  
 
