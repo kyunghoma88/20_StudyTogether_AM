@@ -1,12 +1,15 @@
 package com.kh.buy.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.cart.model.vo.Cart;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -45,13 +48,16 @@ public class BuyServlet extends HttpServlet {
 			int totalPrice=Integer.parseInt(stotalPrice);			
 		}
 		
+		List<Cart> list=(List)request.getAttribute("list");
+		
 		request.setAttribute("name", name);
 		request.setAttribute("email", email);
 		request.setAttribute("phone", phone);
 		request.setAttribute("postcode", postcode);
 		request.setAttribute("address", address);
 		request.setAttribute("totalPrice", stotalPrice);
-		
+		request.setAttribute("list", list);
+				
 		request.getRequestDispatcher("/views/buy/buyTest.jsp").forward(request, response);
 	}
 

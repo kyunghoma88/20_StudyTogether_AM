@@ -1,11 +1,16 @@
 package com.kh.review.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.lector.model.service.LectorService;
+import com.kh.lector.model.vo.Lector;
 
 /**
  * Servlet implementation class ReviewLectureWriteServlet
@@ -27,6 +32,11 @@ public class ReviewLectureWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String writer = request.getParameter("writer");
+		
+		List<Lector> list = new LectorService().selectLectureName(writer);
+		
+		request.setAttribute("list",list);
 		request.getRequestDispatcher("/views/review/reviewLecture/reviewLectureWrite.jsp").forward(request, response);
 		
 	}

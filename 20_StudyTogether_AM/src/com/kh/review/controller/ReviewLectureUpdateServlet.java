@@ -36,8 +36,8 @@ public class ReviewLectureUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 		int no = Integer.parseInt(request.getParameter("no"));
-		ReviewLecture revS = new ReviewLectureService().searchReviewLecture(no);
-		request.setAttribute("reviewLecture", revS);
+		ReviewLecture revL = new ReviewLectureService().searchReviewLecture(no);
+		request.setAttribute("reviewLecture", revL);
 		
 		request.getRequestDispatcher("/views/review/reviewLecture/reviewLectureUpdate.jsp").forward(request, response);
 	

@@ -42,12 +42,22 @@ public class ReviewLectureService {
 		int result = dao.updateReviewLecture(conn,revL);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
 		return result;
 	}
 
 	public int deleteReviewLecture(int no) {
 		Connection conn=getConnection();
 		int result=dao.deleteReviewLecture(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertReviewLecture(ReviewLecture revL) {
+		Connection conn = getConnection();
+		int result = dao.insertReviewLecture(conn,revL);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
