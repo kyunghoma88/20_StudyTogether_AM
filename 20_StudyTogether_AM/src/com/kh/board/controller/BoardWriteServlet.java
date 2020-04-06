@@ -27,8 +27,18 @@ public class BoardWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/board/write.jsp")
-		.forward(request, response);
+		String id=request.getParameter("id");
+		String category=request.getParameter("category");
+		System.out.println("안나오니? "+category);
+		if(id!=null) {			
+			request.setAttribute("category", category);
+			request.getRequestDispatcher("/views/board/write.jsp")
+			.forward(request, response);
+		}else {
+			request.setAttribute("msg", "로그인후 이용 부탁 드립니다. ");
+			request.setAttribute("loc", "/board/boardList?category="+category);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+		}
 	}
 
 	/**

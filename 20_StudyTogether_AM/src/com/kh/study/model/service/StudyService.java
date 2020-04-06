@@ -47,6 +47,15 @@ public class StudyService {
 		close(conn);
 		return s;
 	}
+
+//	지현 - 리뷰
+	public List<Study> selectStudyName(String writer) {
+		Connection conn = getConnection();
+		List<Study> list = dao.selectStudyName(conn,writer);
+		close(conn);
+		return list;
+	}
+
 	public int deleteStudy(int no) {
 		Connection conn=getConnection();
 		int result=dao.deleteStudy(conn,no);
@@ -80,12 +89,14 @@ public class StudyService {
 		return result;
 	}
 
+
 	public List<StudyJoin> searchStudyJoin(int no) {
 		Connection conn=getConnection();
 		List<StudyJoin> slist=dao.searchStudyJoin(conn,no);
 		close(conn);
 		return slist;
 	}
+
 
 
 	

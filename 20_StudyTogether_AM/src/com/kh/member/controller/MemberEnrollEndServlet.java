@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.common.encrypt.AESEncrypt;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
@@ -39,7 +40,8 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		String userName=request.getParameter("userName");
 		String email=request.getParameter("email");
-		
+		System.out.println("암호화 이메일 : "+AESEncrypt.encrypt(email));
+		email=AESEncrypt.encrypt(email);
 		int result=new MemberService().memberEnroll(id, password, userName, email);
 		
 		String msg="";

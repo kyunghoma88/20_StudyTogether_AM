@@ -37,13 +37,18 @@
            <a href="<%=request.getContextPath()%>/review/reviewLectureView?no=<%=revL.getReviewLecNo()%>">
 	                       <h2><%=revL.getLectureName() %></h2>
 	         </a>
-            <p id="star_grade">
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-                <a href="#">★</a>
-            </p>
+           <%if(revL.getReviewLecStar()==1){%>
+            	<td>★</td>
+            <%}else if(revL.getReviewLecStar()==2){ %>
+            	<td>★★</td>
+            <%}else if(revL.getReviewLecStar()==3){ %>
+            	<td>★★★</td>
+            <%}else if(revL.getReviewLecStar()==4){ %>
+          		<td>★★★★</td>
+          	<%}else if(revL.getReviewLecStar()==5){ %>
+          		<td>★★★★★</td>
+          	<%} %>
+          	<br><br>
             <h4><%=revL.getReviewLecContent() %></h4>
         
             <td><span style="float:right;"><%=revL.getReviewLecWriter() %></span></td>
@@ -61,18 +66,16 @@
 			</ul>
         <%if(loginMember!=null){%>
 			<input type="button" value="강좌 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
+		<%}else{ %>
+			<input type="hidden" >
 		<%} %>
        
     </div>
 
     <script>
-         $('#star_grade a').click(function(){
-            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-            return false;
-        });
+      
          function fn_writeReviewLecture(){
- 			location.replace("<%=request.getContextPath()%>/review/reviewLectureWrite");
+ 			location.replace("<%=request.getContextPath()%>/review/reviewLectureWrite?writer=<%=loginMember.getUserId()%>");
  		}
     </script>
 <%@ include file="/views/common/footer.jsp"%>

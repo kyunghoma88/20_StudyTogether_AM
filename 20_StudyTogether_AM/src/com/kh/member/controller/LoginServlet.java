@@ -44,22 +44,21 @@ public class LoginServlet extends HttpServlet {
 		//2.DB에 id,pw일치한 값이 있는지 확인, 일치하는 값이 있으면 그 데이터를 가져오자
 		Member m=new MemberService().selectId(id,pw);
 		//m 일치하는 값이 있으면 값이 있고, 없으면  null
-		//화면을 분기처리!
-		//메세지 출력 jsp를 만들고 로그인 성공하면, 성공메세지
-		//실패하면 실패메세지 출력하고
-		//메인화면으로 돌아가게 처리하기
+		
 		System.out.println(m);
 		String msg="";
 		HttpSession session = request.getSession();	
 		
 		if(m!=null) {	
-			msg="로그인 성공";
+			//msg="로그인 성공";
 
 			session.setAttribute("loginedMember", m);
 
 			//cookie로 아이디 저장 유지하기
 			String saveId = request.getParameter("saveId");
+			
 			System.out.println("saveId : " + saveId);
+			
 			if(saveId!=null) {
 				//아이디를 쿠키에 저장하게함.
 				Cookie c = new Cookie("saveId",id);
@@ -76,15 +75,48 @@ public class LoginServlet extends HttpServlet {
 			//로그인 실페
 			msg="로그인 실패";
 		}
-			System.out.println(msg);
-			request.setAttribute("msg", msg);
-			String loc="/";
-			request.setAttribute("loc", loc);
 			
-			response.sendRedirect(request.getContextPath());
 		
-		}
+		
+/*if(m!=null) {	
+		//msg="로그인 성공";
 
+		session.setAttribute("loginedMember", m);
+
+		//cookie로 아이디 저장 유지하기
+		String keeplogin = request.getParameter("keeplogin");
+		System.out.println("keeplogin : " + keeplogin);
+		
+	if(keeplogin!=null) {
+		Cookie[] ck = new Cookie("keeplogin",id);
+		ck.setMaxAge(7*24*60*60);//초단위라~
+		Cookie[] cookie = request.getCookies();
+		for(Cookie ck2 : cookie) {
+			if(ck2.getName().equals("id")) {
+				session.setAttribute("id", ck2.getValue());
+			}
+		}
+		response.addCookie(ck);
+		
+	}else {
+		Cookie ck = new Cookie("keeplogin",id);
+		ck.setMaxAge(0);
+		response.addCookie(ck);
+	}
+	}else {
+		//로그인 실페
+		msg="로그인 실패";
+	}
+	*/
+	System.out.println(msg);
+	request.setAttribute("msg", msg);
+	String loc="/";
+	request.setAttribute("loc", loc);
+	
+	response.sendRedirect(request.getContextPath());
+	
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

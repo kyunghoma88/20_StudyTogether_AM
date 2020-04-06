@@ -9,12 +9,16 @@
  //cookie값 받아오기
    Cookie[] cookies = request.getCookies();
    String saveId=null;
+   String keeplogin=null;
    if(cookies != null){
       for(Cookie c : cookies){
          String key = c.getName();
          String value=c.getValue();
          if(key.equals("saveId")){
             saveId=value;
+         }
+         if(key.equals("keeplogin")){
+        	 keeplogin = value;
          }
       }
    }
@@ -111,13 +115,14 @@
   <!-- 로그인 끝 --> 
   
      <!-- lookPw Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal modal2">
 	<div class="modal-content2">
 		<form action="<%=request.getContextPath()%>/lookforpassword" method="post">
-			아이디<br><input type="text" name="id" id="userId" placeholder="ID"><br>
-			이름<br><input type="text" name="name" id="name" placeholder="이름"><br>
-			이메일<br><input type="email" name="email" id="email" placeholder="EMAIL">
-			<input class="form-button" type="submit" value="전송">
+			<h4 id="hID">비밀번호 찾기</h2>
+			<input type="text" name="id" id="userId" placeholder="ID"><br>
+			<input type="text" name="name" id="name" placeholder="이름"><br>
+			<input type="email" name="email" id="email" placeholder="EMAIL">
+			<input class="form-button" id="pwbtn" type="submit" value="전송">
 		</form>
 	</div>
 </div> 
@@ -270,16 +275,20 @@
       <a href="<%=request.getContextPath()%>/study/studyList">일반 스터디</a>
     </li>
     <li class='menu3'>
+    <%if(loginMember!=null) {%>
       <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
+      <%}else{ %>
+      	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
+      <%} %>
     </li>
     <li class='menu4'>
       <a href="<%=request.getContextPath()%>/board/boardList">커뮤니티</a>
         <ul  class='menu4-submenu'>
           <li>
-            <a href="">대나무 숲</a>
+            <a href="<%=request.getContextPath()%>/board/boardList?category=free">자유게시판</a>
           </li>
           <li>
-            <a href="">자유 게시판</a>
+            <a href="<%=request.getContextPath()%>/board/boardList?category=qna">묻고 답하기</a>
           </li>
         </ul>
     </li>
@@ -339,6 +348,8 @@
            modal.style.display = "none";
        }
    }
-   
+   function loginErrorMsg(){
+	   alert("로그인 후 이용해 주세요!");
+   }
    
 </script>

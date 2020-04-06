@@ -58,6 +58,8 @@ public class LectorService {
 		int result=dao.deleteLector(conn,no);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
+
 		
 		return result;
 	}
@@ -152,6 +154,7 @@ public class LectorService {
 		int result=dao.deleteChannel(conn,pNo,cNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
 		return result;
 	}
 
@@ -172,6 +175,14 @@ public class LectorService {
 	public List<Lector> searchLectorPage(String type, String key) {
 		Connection conn=getConnection();
 		List<Lector> list=dao.searchLectorPage(conn,type,key);
+		close(conn);
+		return list;
+	}
+
+//	지현 - 리뷰
+	public List<Lector> selectLectureName(String writer) {
+		Connection conn = getConnection();
+		List<Lector> list = dao.selectLectureName(conn,writer);
 		close(conn);
 		return list;
 	}

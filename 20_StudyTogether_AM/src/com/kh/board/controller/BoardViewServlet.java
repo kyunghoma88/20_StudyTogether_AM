@@ -41,7 +41,7 @@ public class BoardViewServlet extends HttpServlet {
 			cPage=1;
 		}
 		System.out.println("페이지 "+cPage);
-		
+		String category=request.getParameter("category");
 		Board b=new BoardService().boardView(no);
 		
 		int maxNo=new BoardService().maxNo(no);
@@ -59,6 +59,7 @@ public class BoardViewServlet extends HttpServlet {
 		request.setAttribute("preView", preView);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("commentList", commentList);
+		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/views/board/view.jsp")
 		.forward(request, response);

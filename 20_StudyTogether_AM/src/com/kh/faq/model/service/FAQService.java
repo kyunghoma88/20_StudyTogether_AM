@@ -54,6 +54,9 @@ public class FAQService {
 			rollback(conn);
 		}
 		
+		close(conn);
+
+		
 		return result;
 		
 		
@@ -70,6 +73,9 @@ public class FAQService {
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
+
 		return flag;
 		
 		
@@ -84,6 +90,9 @@ public class FAQService {
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
+
 		return flag;
 		
 	}

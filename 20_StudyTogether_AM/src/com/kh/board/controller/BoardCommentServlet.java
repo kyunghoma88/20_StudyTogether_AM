@@ -39,6 +39,7 @@ public class BoardCommentServlet extends HttpServlet {
 		String comment=request.getParameter("comment_text");
 		
 		String writer=request.getParameter("comment_writer");
+		
 		int level=Integer.parseInt(request.getParameter("comment_level"));
 		int commentRef=Integer.parseInt(request.getParameter("comment_no_ref"));
 		System.out.println(comment);

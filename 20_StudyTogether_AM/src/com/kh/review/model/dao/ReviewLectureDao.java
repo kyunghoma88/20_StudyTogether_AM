@@ -143,4 +143,23 @@ private Properties prop = new Properties();
 		return result;
 	}
 
+	public int insertReviewLecture(Connection conn, ReviewLecture revL) {
+		PreparedStatement pstmt=null; //변경되는게 없어
+		int result=0;
+		String sql=prop.getProperty("insertReviewLecture");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, revL.getReviewLecWriter());
+			pstmt.setString(2, revL.getLectureName());
+			pstmt.setString(3, revL.getReviewLecCategory());
+			pstmt.setString(4, revL.getReviewLecContent());
+			pstmt.setInt(5, revL.getReviewLecStar());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
 }

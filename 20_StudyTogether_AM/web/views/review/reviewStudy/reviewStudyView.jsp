@@ -101,7 +101,11 @@ table.revWrite td {
 		location.replace("<%=request.getContextPath()%>/review/reviewStudyUpdate?no=<%=revS.getReviewStuNo()%>")
 	}
 	function deleteChk(){
-		location.replace("<%=request.getContextPath()%>/review/reviewStudyDelete?no=<%=revS.getReviewStuNo()%>")
+		if (confirm("정말 삭제 하시겠습니까??") == true){    //확인
+			location.replace("<%=request.getContextPath()%>/review/reviewStudyDelete?no=<%=revS.getReviewStuNo()%>")
+        }else{   //취소
+           return false;
+        }
 	}
 </script>
 <%@ include file="/views/common/footer.jsp"%>

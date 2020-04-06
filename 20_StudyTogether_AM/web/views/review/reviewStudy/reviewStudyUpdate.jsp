@@ -121,7 +121,7 @@ table.revWrite td {
           
    </table>
    <br>		
-     <div style="mrgin:0 auto;">
+     <div style="text-align:center">
 	    	 <button type="button" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
 	    	  <button type="submit" id="revUpdate">수정 완료</button>
 	</div>	
