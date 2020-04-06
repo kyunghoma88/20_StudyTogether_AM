@@ -6,8 +6,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyView.css" type="text/css"/>
 
 <%	
-	List<StudyJoin> list=(List)request.getAttribute("sList");
+	List<StudyJoin> list=(List)request.getAttribute("list");
 	Study s=(Study)request.getAttribute("study");
+	
 %>
 <section>
 
@@ -23,19 +24,19 @@
       <p id="detail">희망 일자 : <%=s.getStudyPossibleDay() %>  </p>
         스터디 지역 : <%=s.getStudyArea() %></br>
         	<p id="detail2">모집 인원 : <%=s.getMaxMember() %>명 /
-         	참가 인원 :<%=list.size() %>명</br></p><!--(nowmember추가  -->
+         	참가 인원 :<%-- <%=list.size() %> --%>명</br></p><!--(nowmember추가  -->
           <input type="hidden" name="nowMember" value=""><p id="endDate"> 모집 기간 : <%=s.getEndDate() %> 까지</p>
           <input type="hidden" name="student" value="">
     <div class="video-inform">
       <%=s.getStudyDetail() %>
     </div>
      
-    <%if(!(boolean)request.getAttribute("attendAble")){ %>
-		<input type="text" value="참여한강좌입니다.">
- 	<%}else{ %>
-    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
-     <%}%>
-  </div>
+<%--     <%if(!(boolean)request.getAttribute("attendAble")){ %>
+ --%>		<!-- <input type="text" value="참여한강좌입니다."> -->
+<%--  	<%}else{ %>
+ --%>    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
+<%--      <%}%>
+ --%>  </div>
 </section>
 <style>
 	#detail2{
@@ -44,7 +45,9 @@
 </style>
   <script>
 //study참가하기 버튼을 누르면 현재인원이 카운트 된다.
-    function apply(){
+   
+
+function apply(){
     var result= confirm("스터디에 참여하시겠습니까?");
      if(result==true){
     	 location.replace('<%=request.getContextPath()%>/study/studyJoin?no=<%=s.getStudyNo()%>&userId=<%=s.getStudyWriter()%>');

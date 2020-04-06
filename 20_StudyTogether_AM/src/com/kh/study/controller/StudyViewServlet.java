@@ -44,6 +44,7 @@ public class StudyViewServlet extends HttpServlet {
 		
 		
 		HttpSession session=request.getSession();
+		
 		String loginId=((Member)session.getAttribute("loginedMember")).getUserId();
 		//System.out.println("로그인아이디"+loginId);
 		
@@ -57,9 +58,10 @@ public class StudyViewServlet extends HttpServlet {
 				break;
 			}
 		}
+		
 		String msg="";
 		String loc="";
-		System.out.println(attendAble);
+		
 		if(s==null) {
 			request.setAttribute("msg", "조회할 강좌가 없습니다.");
 			request.setAttribute("loc", "study/studyList");
