@@ -59,12 +59,14 @@ background-color:#ffc107;
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
   <%for(LectorChannel lc:clist){ %>
-	<%if(!clist.isEmpty()&&lj.getUserId().equals(loginMember.getUserId())||loginMember.getUserId().equals(l.getLectorWriter())){ %>
-    <a id="clist" onclick="channel();" href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-  <%}else{%>
-	<a id="clist" href='javascript:void(0);' class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-	<%}
-	}%>
+	
+	<%-- <%if(!clist.isEmpty()&&lj.getUserId().equals(loginMember.getUserId())||loginMember.getUserId().equals(l.getLectorWriter())){ %> --%>
+    	<a id="clist" onclick="channel();" href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+<%--   	<%}else{%> --%>
+	
+		<a id="clist" href='javascript:void(0);' class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+	<%-- <%}	}%> --%>
+ <%} %>
   </div>
 </div>
 
