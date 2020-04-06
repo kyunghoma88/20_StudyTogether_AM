@@ -54,7 +54,7 @@
 	}
 	
 	.pageBar-container{
-		margin-left : 400px;
+		margin-left : 250px;
 	}
 	
 </style>
