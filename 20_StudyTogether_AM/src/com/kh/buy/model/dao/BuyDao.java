@@ -81,6 +81,7 @@ public class BuyDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(lectorNo+" "+userId+" "+buyNo);
 			pstmt.setInt(1, lectorNo);
 			pstmt.setString(2, userId);
 			pstmt.setInt(3, buyNo);

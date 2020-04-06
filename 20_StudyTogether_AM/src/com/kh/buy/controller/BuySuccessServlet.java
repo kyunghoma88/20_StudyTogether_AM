@@ -59,13 +59,13 @@ public class BuySuccessServlet extends HttpServlet {
 			//LectorJoin에 lectorNo, userId, buyNo를 입력 
 			int buyNo=b.getBuyNo();
 			result=new BuyService().insertLectorJoin(lectorNo,userId, buyNo);
+			System.out.println(result>0?"강좌신청테이블 입력성공":"강좌신청테이블 입력실패");
 			
 			//중복구매를 막는 로직은??
+			//cart에서 중복장바구니 입력 방지
 			
 		}
 		
-		
-		request.setAttribute("list", list);
 		request.getRequestDispatcher("/member/myPage.jsp").forward(request, response);
 	}
 
