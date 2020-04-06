@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.kh.cart.model.vo.Cart"%>
-<%
-	System.out.println("buyForm으로 넘어온 내용");
-	String[] result= request.getParameterValues("cartList");
-	
-	for(int i=0; i<result.length; i++){
-		System.out.println(result[i]);		
-	}
-	
-%>
 
 <!-- header페이지 불러오기 -->
 <%@ include file="/views/common/header.jsp"%>
