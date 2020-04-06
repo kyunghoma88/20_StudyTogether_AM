@@ -72,42 +72,9 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(c);
 			}
 		}else {
-			//로그인 실페
 			msg="로그인 실패";
 		}
-			
 		
-		
-/*if(m!=null) {	
-		//msg="로그인 성공";
-
-		session.setAttribute("loginedMember", m);
-
-		//cookie로 아이디 저장 유지하기
-		String keeplogin = request.getParameter("keeplogin");
-		System.out.println("keeplogin : " + keeplogin);
-		
-	if(keeplogin!=null) {
-		Cookie[] ck = new Cookie("keeplogin",id);
-		ck.setMaxAge(7*24*60*60);//초단위라~
-		Cookie[] cookie = request.getCookies();
-		for(Cookie ck2 : cookie) {
-			if(ck2.getName().equals("id")) {
-				session.setAttribute("id", ck2.getValue());
-			}
-		}
-		response.addCookie(ck);
-		
-	}else {
-		Cookie ck = new Cookie("keeplogin",id);
-		ck.setMaxAge(0);
-		response.addCookie(ck);
-	}
-	}else {
-		//로그인 실페
-		msg="로그인 실패";
-	}
-	*/
 	System.out.println(msg);
 	request.setAttribute("msg", msg);
 	String loc="/";
