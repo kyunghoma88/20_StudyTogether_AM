@@ -21,6 +21,7 @@ public class CartService {
 		int result = dao.insertCart(conn, userId, lectorNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
 		return result;
 	}
 	
@@ -48,12 +49,13 @@ public class CartService {
 		return c;
 	}
 	
-	public int updateCartForCartNo(int cartNo) {
+	public int updateCartForCartNo(int cartNo, String userId) {
 		Connection conn = getConnection();
-		int result = dao.updateCartForCartNo(conn, cartNo);
+		int result = dao.updateCartForCartNo(conn, cartNo, userId);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
 		return result;
 	}
+
 }

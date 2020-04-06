@@ -17,6 +17,8 @@
 	System.out.println(address);
 	System.out.println(postcode);
 	System.out.println(stotalPrice);
+	
+	session.setAttribute("cartList", list);
 %>
 <!DOCTYPE html>
 <html>
@@ -64,21 +66,12 @@
           });
   	  
 	  	  function buySuccess(){
-	  		  
 	  		  let newForm = document.createElement('form');
-	  			newForm.method = 'POST';
-	  			newForm.action = '<%=request.getContextPath()%>/buy/buySuccess';
-	  			newForm.name = 'newForm';
-	  			
-	  			let data = document.createElement('input');
-	  			data.setAttribute('type', 'hidden');
-	  			data.setAttribute('name', 'list');
-	  			data.setAttribute('value', <%=list%>);
-	  			newForm.appendChild(data);
-	  			
-	  			document.body.appendChild(newForm);
-	  			newForm.submit();
-	  			
+	  		  newForm.method = 'POST';
+	  		  newForm.action = '<%=request.getContextPath()%>/buy/buySuccess';
+	  		  newForm.name = 'newForm';
+	  		  document.body.appendChild(newForm);
+	  		  newForm.submit();
 	  	  }
       });
 	  

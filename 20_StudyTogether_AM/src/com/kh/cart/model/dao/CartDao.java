@@ -104,6 +104,7 @@ public class CartDao {
 			while(rs.next()) {
 				c = new Cart();
 				c.setCartNo(rs.getInt("cart_no"));
+				c.setUserId(rs.getString("user_id"));
 				c.setLectorNo(rs.getInt("lector_no"));
 				c.setLectorTitle(rs.getString("lector_title"));
 				c.setLectorWriter(rs.getString("lector_writer"));
@@ -120,13 +121,14 @@ public class CartDao {
 		return c;
 	}
 
-	public int updateCartForCartNo(Connection conn, int cartNo) {
+	public int updateCartForCartNo(Connection conn, int cartNo, String userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("updateCartForCartNo");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cartNo);
+			pstmt.setString(2, userId);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

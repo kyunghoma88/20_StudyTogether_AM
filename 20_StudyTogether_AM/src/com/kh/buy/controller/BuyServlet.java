@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.cart.model.vo.Cart;
 import com.kh.member.model.vo.Member;
@@ -32,7 +33,6 @@ public class BuyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		String name=request.getParameter("order_name");
 		String email=request.getParameter("order_email");
 		String phone=request.getParameter("order_phone");
@@ -48,7 +48,12 @@ public class BuyServlet extends HttpServlet {
 			int totalPrice=Integer.parseInt(stotalPrice);			
 		}
 		
-		List<Cart> list=(List)request.getAttribute("list");
+		System.out.println("구매테이블에 가는중");
+		List<Cart> list=(List)(request.getSession()).getAttribute("cartList");
+		for(Cart c:list) {
+			System.out.println(c);
+		}
+		System.out.println("장바구니객체넘어왔니??");
 		
 		request.setAttribute("name", name);
 		request.setAttribute("email", email);
