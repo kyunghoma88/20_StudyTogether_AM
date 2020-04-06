@@ -71,7 +71,7 @@ public class FAQListServlet extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>이전</a></li>";
 		} else {
-			pageBar+="<li class='page-item'><a class='page-link'  href='"+request.getContextPath()+"/faq/faqList?cPage="+(pageNo-1)+"'>[이전]</a></li>";
+			pageBar+="<li class='page-item'><a class='page-link'  href='"+request.getContextPath()+"/faq/faqList?cPage="+(pageNo-1)+"'>이전</a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -84,9 +84,14 @@ public class FAQListServlet extends HttpServlet {
 		}
 		
 		if(pageNo>totalPage) {
-			pageBar+="<li class='page-item'><span class='page-link'>다음</span></li>";
+			pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>다음</a></li>";
+			/* pageBar+="<li class='page-item'><span class='page-link'>다음</span></li>"; */
 		} else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/faq/faqList?cPage="+(pageNo)+"'>[다음]</a></li>";
+			pageBar += "<li class='page-item'><a class='page-link'  href='"+request.getContextPath()+"/faq/faqList?cPage="+(pageNo)+"'>다음</a></li>";
+			/*
+			 * pageBar+="<li class='page-item'><a class='page-link' href='"+request.
+			 * getContextPath()+"/faq/faqList?cPage="+(pageNo)+"'>[다음]</a></li>";
+			 */
 		}
 		
 		request.setAttribute("list", list);

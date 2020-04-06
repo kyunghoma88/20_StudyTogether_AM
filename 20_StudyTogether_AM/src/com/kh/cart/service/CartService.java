@@ -40,4 +40,20 @@ public class CartService {
 		return result;
 	}
 
+	
+	public Cart searchCartForCartNo(int cartNo) {
+		Connection conn = getConnection();
+		Cart c= dao.searchCartForCartNo(conn, cartNo);
+		close(conn);
+		return c;
+	}
+	
+	public int updateCartForCartNo(int cartNo) {
+		Connection conn = getConnection();
+		int result = dao.updateCartForCartNo(conn, cartNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }
