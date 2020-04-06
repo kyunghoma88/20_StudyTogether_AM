@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyView.css" type="text/css"/>
 
 <%	
-	List<StudyJoin> list=(List)request.getAttribute("list");
+	
+	List<StudyJoin> list=(List)request.getAttribute("sList");
 	Study s=(Study)request.getAttribute("study");
 	
 %>
@@ -24,19 +25,19 @@
       <p id="detail">희망 일자 : <%=s.getStudyPossibleDay() %>  </p>
         스터디 지역 : <%=s.getStudyArea() %></br>
         	<p id="detail2">모집 인원 : <%=s.getMaxMember() %>명 /
-         	참가 인원 :<%-- <%=list.size() %> --%>명</br></p><!--(nowmember추가  -->
+         	참가 인원 : <%=list.size() %> 명</br></p><!--(nowmember추가  -->
           <input type="hidden" name="nowMember" value=""><p id="endDate"> 모집 기간 : <%=s.getEndDate() %> 까지</p>
           <input type="hidden" name="student" value="">
     <div class="video-inform">
       <%=s.getStudyDetail() %>
     </div>
      
-<%--     <%if(!(boolean)request.getAttribute("attendAble")){ %>
- --%>		<!-- <input type="text" value="참여한강좌입니다."> -->
-<%--  	<%}else{ %>
- --%>    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
-<%--      <%}%>
- --%>  </div>
+     <%if(s.getMaxMember()==list.size()){ %>
+     <input type="button" class="basket" onclick="" value="마감된스터디입니다."></button>
+     <%}else{ %>
+    <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
+    <%} %>
+  </div>
 </section>
 <style>
 	#detail2{
