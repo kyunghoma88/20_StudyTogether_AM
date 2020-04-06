@@ -37,14 +37,13 @@ public class DeleteCartServlet extends HttpServlet {
 		String loc = "";
 		for(int i = 0; i < cartList.length; i++) {
 			System.out.println("cartList 데이터 : " + cartList[i]);
-//		for(int i=0; i < cartList.length; i++) {
-//			System.out.println("cartList 데이터 : " + cartList[i]);
-//			String cartNo = cartList[i].substring(13,15);
-//			int result = new CartService().deleteCart(Integer.parseInt(cartNo));
-//			if(result > 0) {
-//				msg = "장바구니 삭제 성공";
-//				loc = "/index.jsp";
-//			}
+
+			String cartNo = cartList[i];
+			int result = new CartService().deleteCart(Integer.parseInt(cartNo));
+			if(result > 0) {
+				msg = "장바구니 삭제 성공";
+				loc = "/index.jsp";
+			}
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 		}

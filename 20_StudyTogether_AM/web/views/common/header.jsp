@@ -110,13 +110,14 @@
   <!-- 로그인 끝 --> 
   
      <!-- lookPw Modal -->
-<div id="myModal" class="modal">
+<div id="myModal" class="modal modal2">
 	<div class="modal-content2">
 		<form action="<%=request.getContextPath()%>/lookforpassword" method="post">
-			아이디<br><input type="text" name="id" id="userId" placeholder="ID"><br>
-			이름<br><input type="text" name="name" id="name" placeholder="이름"><br>
-			이메일<br><input type="email" name="email" id="email" placeholder="EMAIL">
-			<input class="form-button" type="submit" value="전송">
+			<h4 id="hID">비밀번호 찾기</h2>
+			<input type="text" name="id" id="userId" placeholder="ID"><br>
+			<input type="text" name="name" id="name" placeholder="이름"><br>
+			<input type="email" name="email" id="email" placeholder="EMAIL">
+			<input class="form-button" id="pwbtn" type="submit" value="전송">
 		</form>
 	</div>
 </div> 
