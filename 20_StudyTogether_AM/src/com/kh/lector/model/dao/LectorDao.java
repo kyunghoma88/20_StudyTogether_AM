@@ -15,6 +15,7 @@ import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
 import com.kh.member.model.vo.Member;
 
+
 public class LectorDao {
 
 	private Properties prop=new Properties();
@@ -63,7 +64,7 @@ public class LectorDao {
 		return list;
 	}
 
-	//총 로우수 받아오는 메서드
+	//총 로우수 받아오는 메서드////////////////////////////
 	public int lectorCount(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -81,6 +82,25 @@ public class LectorDao {
 		}
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {
@@ -479,8 +499,8 @@ public class LectorDao {
 			pstmt.setDate(7, lc.getChannelEnrollDate());
 			pstmt.setInt(8, lc.getChannelLevel());
 			pstmt.setString(9, lc.getChannelAssign());
-			pstmt.setInt(9, lc.getChannelNo());
-			pstmt.setInt(10, lc.getChannelNoRef());
+			pstmt.setInt(10, lc.getChannelNo());
+			pstmt.setInt(11, lc.getChannelNoRef());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -594,6 +614,36 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 				l.setLectorDate(rs.getDate("lector_date"));
 				l.setLectorAssign(rs.getString("lector_assign"));
 				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	//지현 -리뷰
+	public List<Lector> selectLectureName(Connection conn, String writer) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=prop.getProperty("selectLectureName");
+		List<Lector> list = new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, writer);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Lector s =new Lector();
+			
+				s.setLectorTitle(rs.getString("LECTOR_TITLE"));
+		
+				list.add(s);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

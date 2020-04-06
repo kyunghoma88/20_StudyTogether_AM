@@ -8,7 +8,7 @@
 %>
   <!-- 참여한 강좌가 없으면 row가 0이면..등록이 안되도록
 참여한 강좌 리스트에는 로그인 되어있는 강좌만 표시 되도롣!!!! -->
-<form style="margin:0 auto;" name="studyWrite" method="post" action="<%=request.getContextPath() %>/review/reviewFormEnd">
+<form style="margin:0 auto;" name="studyWrite" method="post" action="<%=request.getContextPath() %>/review/reviewStuFormEnd">
 <br>
 <h2 id="revWTitle">스터디후기작성</h2>
 
@@ -100,7 +100,11 @@
    <br>
  		<div id="revWBtn">
           <button type="reset" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
+          <%if(list.size()!=0){ %>
           <button type="submit" id="revWenrollBtn">등록</button>
+          <%}else{ %>
+          <button onclick="revWChk()" type="button" id="revWenrollBtn">등록</button>
+          <%} %>
        	</div>
 
 </form>
@@ -123,6 +127,11 @@
                   return false;
                }
            }
+          
+          function revWChk(){
+       		  alert("참여중인 스터디가 없습니다. 후기 등록을 할 수 없습니다.");
+       		  location.replace("<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList");
+          }
           
       </script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -6,7 +6,7 @@
 <form style="margin:0 auto;" id="frmOpen" action="<%=request.getContextPath()%>/study/studyOpenEnd" method="post" enctype="multipart/form-data">
  <br>
  <h2 id="openTitle">스터디 개설</h2>
-         <table class="openWrite">
+        <table class="openWrite">
                  <tr>
                      <td>스터디<br>이름</td>
                      <td>개설자<input type="text" name="studyWriter" value=""></td>

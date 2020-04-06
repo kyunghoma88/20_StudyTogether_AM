@@ -46,6 +46,14 @@ public class FAQListServlet extends HttpServlet {
 		}
 		
 		int numPerPage = 5;
+		
+		String category = request.getParameter("category");
+		if(category==null) {
+			category="전체보기";
+		}
+		
+		// 2020 04 03 수정해야함
+		
 		List<FAQ> list = new FAQService().searchFAQ(cPage, numPerPage);
 		
 		

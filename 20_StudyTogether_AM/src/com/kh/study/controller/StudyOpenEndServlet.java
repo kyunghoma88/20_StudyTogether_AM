@@ -36,7 +36,9 @@ public class StudyOpenEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		if(!ServletFileUpload.isMultipartContent(request)) {
+			
 			request.setAttribute("msg", "업로드에러 [form:enctype 관리자에게 문의] ");
 			request.setAttribute("loc", "/study/studyOpen");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response );
@@ -72,8 +74,8 @@ public class StudyOpenEndServlet extends HttpServlet {
 		Study s=new Study(0,title,writer,category,days,area,intro,maxMember,null,endDate,oriImg,reImg,null,null);
 		
 		int result=new StudyService().insertStudy(s);
-		System.out.println(result);
-		System.out.println(s);
+		System.out.println("s"+result);
+		System.out.println("s"+s);
 		
 		String msg="";//사용자에게 띄울 메세지 내용
 		String loc="";//메세지 띄운 후 이동할 페이지
@@ -87,7 +89,7 @@ public class StudyOpenEndServlet extends HttpServlet {
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
-		
+
 		RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
 		rd.forward(request, response);
 

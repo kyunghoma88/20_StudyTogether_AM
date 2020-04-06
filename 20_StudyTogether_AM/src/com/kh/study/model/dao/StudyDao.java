@@ -154,6 +154,7 @@ public class StudyDao {
 		return s;
 	}
 
+
 	//지현 -리뷰
 	public List<Study> selectStudyName(Connection conn,String writer) {
 		PreparedStatement pstmt = null;
@@ -164,7 +165,7 @@ public class StudyDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, writer); //시박 데이터 번호 -> rnum기준
+			pstmt.setString(1, writer);
 			
 			rs=pstmt.executeQuery();
 			
@@ -182,5 +183,23 @@ public class StudyDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public int deleteStudy(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteStudy");
+		
+		try {
+			Study s=new Study();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+
 	}
 }

@@ -10,6 +10,11 @@
 %>
 
 <section>
+	<div class="container" >
+    	<a href="<%=request.getContextPath()%>/study/studyUpdate?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">수정</a>
+    	<a href="<%=request.getContextPath() %>/study/studyDelete?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">삭제</a>
+	</div>
+
   <div id="intro">
   	<h2>일반 스터디<br><%=s.getStudyCategory()%>:<%=s.getStudyName() %></h2></div>
   <div class="watch">

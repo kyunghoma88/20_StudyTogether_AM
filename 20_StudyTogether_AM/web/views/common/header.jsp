@@ -267,7 +267,11 @@
       <a href="<%=request.getContextPath()%>/study/studyList">일반 스터디</a>
     </li>
     <li class='menu3'>
+    <%if(loginMember!=null) {%>
       <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
+      <%}else{ %>
+      	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
+      <%} %>
     </li>
     <li class='menu4'>
       <a href="">커뮤니티</a>
@@ -336,6 +340,8 @@
            modal.style.display = "none";
        }
    }
-   
+   function loginErrorMsg(){
+	   alert("로그인 후 이용해 주세요!");
+   }
    
 </script>

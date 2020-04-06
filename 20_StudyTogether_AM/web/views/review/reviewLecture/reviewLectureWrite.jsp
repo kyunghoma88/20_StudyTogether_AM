@@ -2,11 +2,11 @@
    pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/reviewBoard.css" type="text/css"/>
-
-  <!-- 참여한 강좌가 없으면 row가 0이면..등록이 안되도록
-참여한 강좌 리스트에는 로그인 되어있는 강좌만 표시 되도롣!!!! -->
-
-<form style="margin:0 auto;">
+ <%@ page import="java.util.List, com.kh.lector.model.vo.Lector" %>
+<%
+	List<Lector> list = (List)request.getAttribute("list");
+%>
+<form style="margin:0 auto;" name="LetureWrite" method="post" action="<%=request.getContextPath() %>/lecture/reviewLecFormEnd">
 <br>
 <h2 id="revWTitle">강좌 후기작성</h2>
    <table class="revWrite">
@@ -18,8 +18,11 @@
         <tr>
             <td>강좌</td>
             <td>
-                <select name="allStudy" > 
+                <select name="allLecture" > 
                     <option value="강좌 선택">강좌 선택</option>
+                   <%--  <%for(Lector l : list) {%>
+                    <option value="<%l.getLectorTitle()%>"><%l.getLectorTitle()%></option>
+                    <%} %> --%>
                 </select>
             </td>
         </tr>
@@ -77,7 +80,8 @@
         </tr>
         <tr>
             <td>만족도</td>
-            <td><p id="star_grade">
+            <input type="text" id="starCnt" name="starCnt">
+            <td><p id="star_grade" name="star">
                 <a href="#">★</a>
                 <a href="#">★</a>
                 <a href="#">★</a>
@@ -94,19 +98,26 @@
    <br>
  		<div id="revWBtn">
           <button type="reset" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
-          <button onclick="revWriteChk()" type="submit" id="revWenrollBtn">등록</button>
+         <%if(list.size()!=0){ %>
+          	<button type="submit" id="revLenrollBtn">등록</button>
+          <%}else{ %>
+         	 <button onclick="revLecChk()" type="button" id="revLenrollBtn">등록</button>
+          <%} %>
+          
        	</div>
 
 </form>
-      <script>
-          var starCnt=0;
-          $('#star_grade a').click(function(){
-              $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-              $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-              starCnt =  $('#star_grade a').length - 1;
-              console.log(starCnt);
-              return false;
-          });
+      <script language=javascript>
+	      var starCnt=0;
+	      $('#star_grade a').click(function(){
+	          $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
+	          $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+	          starCnt =  $(this).addClass("on").prevAll("a").addClass("on").length+1;
+				//별 개수 jsp로 보내기
+	          var form = $("#LetureWrite");            
+	          $("#starCnt").attr({type:'text',name:'starCnt',value:starCnt}).appendTo(form);
+	
+	      });
   
           function cancelChk(){
              if (confirm("정말 취소하시겠습니까??") == true){    //확인
@@ -115,8 +126,9 @@
                   return false;
                }
            }
-          function revWriteChk(){
-             
+          function revLecChk(){
+       		  alert("참여중인 강의가 없습니다. 후기 등록을 할 수 없습니다.");
+       		  <%-- location.replace("<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList"); --%>
           }
       </script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -19,7 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class ReviewStudyWriteEndServlet
  */
-@WebServlet("/review/reviewFormEnd")
+@WebServlet("/review/reviewStuFormEnd")
 public class ReviewStudyWriteEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -4,6 +4,7 @@
 
 <%
 	Lector l=(Lector)request.getAttribute("lector");
+
 %>
 
 <%@ include file="/views/common/header.jsp"%>
