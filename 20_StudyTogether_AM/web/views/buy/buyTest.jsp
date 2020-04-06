@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.kh.cart.model.vo.Cart"%>
 <%
 	String name=(String)request.getAttribute("name");
 	String email=(String)request.getAttribute("email");
@@ -8,6 +9,8 @@
 	String postcode=(String)request.getAttribute("postcode");	
 	String stotalPrice=(String)request.getAttribute("totalPrice");
 	int totalPrice=Integer.parseInt(stotalPrice);
+	
+	List<Cart> list=(List)request.getAttribute("list");
 	System.out.println(name);
 	System.out.println(email);
 	System.out.println(phone);
@@ -42,31 +45,44 @@
 			buyer_tel : '<%=phone%>',
 			buyer_addr : '<%=address%>',
             buyer_postcode : '<%=postcode%>',
-            m_redirect_url : '<%=request.getContextPath()%>'
           }, function (rsp) { // callback
         	  var msg="";
         	  if (rsp.success) {
             	  msg = '결제가 완료되었습니다.';
                   msg += '\n고유ID : ' + rsp.imp_uid;
                   msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                  msg += '\결제 금액 : ' + rsp.paid_amount;
-                  msg += '카드 승인번호 : ' + rsp.apply_num;
-				alert(msg);
-             	location.href='<%=request.getContextPath()%>/buy/buySuccess';
+                  msg += '\n결제 금액 : ' + rsp.paid_amount;
+				  alert(msg);
+		  		  buySuccess();
               } else {
             	  msg = '결제에 실패하였습니다.';
-                  msg += '에러내용 : ' + rsp.error_msg;
+                  msg += '\n에러내용 : ' + rsp.error_msg;
                   //실패시 이동할 페이지
 	             alert(msg);
-             	 location.go(-1);
+             	 history.go(-1);
              }	
           });
+  	  
+	  	  function buySuccess(){
+	  		  
+	  		  let newForm = document.createElement('form');
+	  			newForm.method = 'POST';
+	  			newForm.action = '<%=request.getContextPath()%>/buy/buySuccess';
+	  			newForm.name = 'newForm';
+	  			
+	  			let data = document.createElement('input');
+	  			data.setAttribute('type', 'hidden');
+	  			data.setAttribute('name', 'list');
+	  			data.setAttribute('value', <%=list%>);
+	  			newForm.appendChild(data);
+	  			
+	  			document.body.appendChild(newForm);
+	  			newForm.submit();
+	  			
+	  	  }
       });
-	
-	
-	  function buySuccess(){
-		  
-	  }
+	  
+	  
 </script>
 
 </body>

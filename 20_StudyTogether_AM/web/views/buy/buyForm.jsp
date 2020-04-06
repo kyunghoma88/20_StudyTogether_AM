@@ -215,6 +215,7 @@
 				</tbody>
 			</table>
 			<input type="hidden" name="totalPrice" value="<%=totalSum%>">
+			<input type="hidden" name="cartList" value="<%=list%>">
 		</div>
 	</form>
 	<div class="row mb-5">
