@@ -88,8 +88,7 @@
 				</div>
 				
 			<% } %>	
-			
-			</br>
+		
 			<div id="btn-list">
 				<button class="btn btn-outline-dark" onclick="fn_backToList()">목록으로</button>			
 			</div>
