@@ -17,11 +17,9 @@
 </head>
 <body>
 	<script>
-		alert('<%=msg%>');//alert(유병승);
-		<%-- <%=request.getAttribute("script")!=null?request.getAttribute("script"):""%> --%>
+		alert('<%=msg%>');
 		<%=script!=null?script:""%>
 		location.replace("<%=request.getContextPath()%><%=loc%>")
-	/* 	06-helloMvc/ memberenroll */
 	</script>
 </body>
 </html>
