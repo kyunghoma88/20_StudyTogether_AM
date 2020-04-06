@@ -51,7 +51,7 @@
 	</div>
 	
 		<div class="container tbl-container">
-			<table id="tbl-faq">
+			<table id="tbl-faq" class="table table-hover">
 				<colgroup>
 					<col width="150px;" />
 					<col width="750px;" />

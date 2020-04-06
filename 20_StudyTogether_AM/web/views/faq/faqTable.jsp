@@ -20,7 +20,7 @@
 	
 	<%for(FAQ f : list){ %>
 		<tr>
-			<td><%= f.getFaqCategory() %></td>				
+			<td class="faq-category"><%= f.getFaqCategory() %></td>				
 			<td><a href="<%= request.getContextPath() %>/faq/faqView?no=<%=f.getFaqNo() %>">
 					<%= f.getFaqTitle() %>
 				</a>

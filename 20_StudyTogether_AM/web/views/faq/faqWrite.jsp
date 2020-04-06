@@ -2,6 +2,36 @@
    pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 
+<style>
+	.faq-header{
+		margin : 0px;
+		margin-top : 50px;
+		
+	}
+	
+	section{
+		font-size : 20px;
+	}
+	
+	#faq-content{
+		margin-top : 5px;
+	}
+	
+	#blank{
+		
+		margin-right : 750px;
+	}
+	
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0 15px;
+	}
+	
+	
+
+
+</style>
+
 
 <section id="faq-container" style="height:800px;">
 	<div class="row">
