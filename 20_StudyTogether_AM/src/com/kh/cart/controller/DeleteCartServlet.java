@@ -32,11 +32,13 @@ public class DeleteCartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("삭제하기 서블릿");
 		String[] cartList = request.getParameterValues("cartList");
-		System.out.println("cartList 데이터 : " + cartList);
+
 		String msg = "";
 		String loc = "";
-		for(int i=0; i < cartList.length; i++) {
-			String cartNo = cartList[i].substring(13,15);
+		for(int i = 0; i < cartList.length; i++) {
+			System.out.println("cartList 데이터 : " + cartList[i]);
+
+			String cartNo = cartList[i];
 			int result = new CartService().deleteCart(Integer.parseInt(cartNo));
 			if(result > 0) {
 				msg = "장바구니 삭제 성공";
