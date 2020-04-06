@@ -6,18 +6,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyView.css" type="text/css"/>
 
 <%	
-	
 	List<StudyJoin> list=(List)request.getAttribute("sList");
 	Study s=(Study)request.getAttribute("study");
-	
 %>
 <section>
-
 	<div class="container" >
     	<a href="<%=request.getContextPath()%>/study/studyUpdate?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">수정</a>
     	<a href="<%=request.getContextPath() %>/study/studyDelete?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">삭제</a>
 	</div>
-
  <input type="text" name="member" value="<%=loginMember.getUserId() %>">
  <input type="text" name="no1" value="<%=s.getStudyNo() %>">
   <div style="margin-top:100px;margin-bottom:150px;" class="watch">
@@ -31,7 +27,6 @@
     <div class="video-inform">
       <%=s.getStudyDetail() %>
     </div>
-     
       <%if(s.getMaxMember()==list.size()){ %>
      <input type="button" class="basket" onclick="" value="마감된스터디입니다."></button>
       <%}else{ %>

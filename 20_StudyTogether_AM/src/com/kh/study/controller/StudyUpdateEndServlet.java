@@ -55,6 +55,7 @@ public class StudyUpdateEndServlet extends HttpServlet {
 		String detail=mr.getParameter("intro1");
 		int maxMember=Integer.parseInt(mr.getParameter("maxMember"));
 		String endDate=mr.getParameter("endDate");
+		
 		String oriImg=mr.getOriginalFileName("thumbnail");
 		String reImg=mr.getFilesystemName("thumbnail");
 		System.out.println("ori"+oriImg);
