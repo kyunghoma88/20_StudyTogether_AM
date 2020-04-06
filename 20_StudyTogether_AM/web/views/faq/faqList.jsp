@@ -53,6 +53,10 @@
 		float : right;
 	}
 	
+	.pageBar-container{
+		margin-left : 400px;
+	}
+	
 </style>
 
 
@@ -134,7 +138,7 @@
 		<%} %>
 		</table>
 		
-		<div id="pageBar" class="container">
+		<div id="pageBar" class="container pageBar-container">
 			<ul class="pagination">
 				<%= request.getAttribute("pageBar") %>
 			</ul>	

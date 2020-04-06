@@ -34,7 +34,7 @@
 
 
 
-<div id="pagebar"  class="container">
+<div id="pagebar"  class="container pageBar-container">
 	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul>
