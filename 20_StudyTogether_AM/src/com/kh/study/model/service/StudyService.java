@@ -87,7 +87,7 @@ public class StudyService {
 		close(conn);
 		return result;
 	}
-	
+
 	public List<StudyJoin> searchStudyJoin(int no) {
 		Connection conn=getConnection();
 		List<StudyJoin> slist=dao.searchStudyJoin(conn,no);

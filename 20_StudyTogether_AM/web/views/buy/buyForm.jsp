@@ -5,9 +5,14 @@
 
 <%
 	List<Cart> list=(List)request.getAttribute("cartList");
+	String[] cartNoArr=(String[])request.getAttribute("cartNoArr");
+	System.out.println(cartNoArr);
+	
 	String totalSum=(String)request.getAttribute("totalSum");
 	System.out.println(totalSum);
 	DecimalFormat formatter=new DecimalFormat();
+	
+	session.setAttribute("cartList", list);
 %>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -215,7 +220,6 @@
 				</tbody>
 			</table>
 			<input type="hidden" name="totalPrice" value="<%=totalSum%>">
-			<input type="hidden" name="cartList" value="<%=list%>">
 		</div>
 	</form>
 	<div class="row mb-5">

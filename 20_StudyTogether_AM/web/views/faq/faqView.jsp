@@ -19,7 +19,7 @@
 	}
 
 	.tbl-container{
-		font-size : 20px;
+		font-size : 15px;
 	}
 	#bottons{
 		float : right;
@@ -30,11 +30,13 @@
 	}
 	
 	#faq-container{
+		width : 800px;
 		height : 800px;
+		margin-left : 100px;
 	}
 	
 	.btn-container button{
-		font-size : 18px;
+		font-size : 13px;
 		font-weight : bold;
 	}
 	
@@ -46,8 +48,8 @@
 
 <section id = "faq-container" style="height:800px;">
 	<div class="row">
-		<div class="col-2"></div>
-		<div class="container faq-header col-10">
+		<div class="col-1"></div>
+		<div class="container faq-header col-9">
 			<h2>FAQ</h2>
 		</div>
 	</div>
