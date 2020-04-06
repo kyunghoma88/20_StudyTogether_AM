@@ -258,6 +258,31 @@ public class StudyDao {
 		}
 		return result;
 	}
+
+	public List<StudyJoin> searchStudyJoin(Connection conn, int no) {
+
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchStudyJoin");
+		List<StudyJoin> slist=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			rs=pstmt.executeQuery();
+		while(rs.next()) {
+			StudyJoin sj=new StudyJoin();
+				sj.setStudyNo(rs.getInt("STUDY_NO"));
+				sj.setUserId(rs.getString("USER_ID"));
+				slist.add(sj);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return slist;
+	}
 		
 	
 }

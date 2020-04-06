@@ -1,6 +1,7 @@
 package com.kh.study.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.join.model.vo.StudyJoin;
 import com.kh.study.model.service.StudyService;
+import com.kh.study.model.vo.Study;
 
 /**
  * Servlet implementation class StudyJoinServlet
@@ -39,7 +41,6 @@ public class StudyJoinServlet extends HttpServlet {
 		StudyJoin sj=new StudyJoin(no,writer);
 		
 		int result=new StudyService().insertJoin(sj);
-		System.out.println("참가?"+result);
 		
 		String msg="";
 		String loc="";
@@ -47,20 +48,16 @@ public class StudyJoinServlet extends HttpServlet {
 		if(result>0) {
 			msg="참가 되었습니다.";
 			loc="/study/studyView?no="+no;
-			request.setAttribute("sj", sj);
 		}
 		else {
-			msg="참가 실패하였습니다. 다시 시도해주세요.";
+			msg="이미 가입한 스터디 입니다.";
 			loc="/study/studyView?no="+no;
 			
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
 	}
-	
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

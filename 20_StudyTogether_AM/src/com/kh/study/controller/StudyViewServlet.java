@@ -1,14 +1,17 @@
 package com.kh.study.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.lector.model.service.LectorService;
-import com.kh.lector.model.vo.Lector;
+import com.kh.join.model.vo.StudyJoin;
+import com.kh.member.model.vo.Member;
 import com.kh.study.model.service.StudyService;
 import com.kh.study.model.vo.Study;
 
@@ -37,17 +40,34 @@ public class StudyViewServlet extends HttpServlet {
 		/*
 		 * System.out.println(no); System.out.println(s.getEndDate());
 		 */
+		List<StudyJoin> sList=new StudyService().searchStudyJoin(no);
 		
 		
+		HttpSession session=request.getSession();
+		String loginId=((Member)session.getAttribute("loginedMember")).getUserId();
+		//System.out.println("로그인아이디"+loginId);
+		
+		//no where 
+		boolean attendAble=true;
+		
+		for(StudyJoin sj : sList) {
+			System.out.println("아이디출력!!!!!!"+sj.getUserId());
+			if(sj.getUserId().equals(loginId)) {
+				attendAble=false;
+				break;
+			}
+		}
 		String msg="";
 		String loc="";
-		
+		System.out.println(attendAble);
 		if(s==null) {
 			request.setAttribute("msg", "조회할 강좌가 없습니다.");
 			request.setAttribute("loc", "study/studyList");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			
 		}else {
+			request.setAttribute("sList", sList);
+			request.setAttribute("attendAble", attendAble);
 			request.setAttribute("study", s);
 			request.getRequestDispatcher("/views/study/studyView.jsp").forward(request, response);
 		}

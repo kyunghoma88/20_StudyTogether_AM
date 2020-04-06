@@ -5,6 +5,7 @@
    //Member m = (Member)request.getAttribute("loginedMember");
    Member loginMember = (Member)session.getAttribute("loginedMember");
    
+   
  //cookie값 받아오기
    Cookie[] cookies = request.getCookies();
    String saveId=null;
