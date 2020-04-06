@@ -4,11 +4,11 @@
     
 <footer class="footer">
   <div class="footer-wrapper">
-  <h2>고객센터</h2>
-  <div class="ask-wrapper">
+  <h2 style="margin-left:50px;">고객센터</h2>
+  <div class="ask-wrapper" style="margin-left:50px;">
       <p><span>전화문의(1234 - 5678)</span><br><br>평일 오전 8시-오후4시<br>[점심시간 오후12시-오후1시30분]<br>토요일, 일요일&공휴일 오전8시-오후12시</p>
       <p><span>카카오톡문의</span>&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Kakao_logo.jpg" width="30" height="30"><br><span>카카오톡ID : khRclassAM </span><br><br>평일 오전 8시-오후4시<br>[점심시간 오후12시-오후1시30분]<br>토요일, 일요일&공휴일 오전8시-오후12시</p>
-      <p><span><a href="#">스터디투게더 소개</a></span></p>
+      <p><span>고객센터<a style="text-decoration:none;" href="<%=request.getContextPath()%>/faq/faqList">&nbsp;&nbsp;&nbsp;[바로가기]</a></span></p>
       <!-- <p><span>1:1문의</span><br><br>궁금한 점이 있으신가요?<br>1:1문의에 남겨주시면<br>친절히 답변 드리겠습니다.</p> -->
   </div>
   <hr id="footer-hr"><br>
