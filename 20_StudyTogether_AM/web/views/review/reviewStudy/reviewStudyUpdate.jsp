@@ -61,7 +61,7 @@ table.revWrite td {
         <tr>
           <td style="text-align: center;">분야</td>
           <td><select name="field" > 
-            <option value="<%=revS.getReviewStuCategory() %>"></option>
+            <option value="<%=revS.getReviewStuCategory() %>"><%=revS.getReviewStuCategory() %></option>
             <optgroup label="어학,회화">
                 <option value="불어">불어</option>
                 <option value="스페인어">스페인어</option>
@@ -121,7 +121,7 @@ table.revWrite td {
           
    </table>
    <br>		
-     <div style="mrgin:0 auto;">
+     <div style="text-align:center">
 	    	 <button type="button" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
 	    	  <button type="submit" id="revUpdate">수정 완료</button>
 	</div>	

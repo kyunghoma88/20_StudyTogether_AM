@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.review.model.service.ReviewLectureService;
+import com.kh.review.model.vo.ReviewLecture;
+
 /**
  * Servlet implementation class ReviewLectureWriteEndServlet
  */
@@ -27,7 +30,30 @@ public class ReviewLectureWriteEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String writer = request.getParameter("writer");
+		String lecture = request.getParameter("allLecture");
+		String category = request.getParameter("field"); 
+		int star = Integer.parseInt(request.getParameter("starCnt"));
+		System.out.println("star : " + star);
+		
+		String content = request.getParameter("content");
+		
+		ReviewLecture revL = new ReviewLecture(0,writer,lecture,category,content,star,null);
+		
+		int result = new ReviewLectureService().insertReviewLecture(revL);
+		
+		String msg="";
+		String loc="/review/reviewLecture/reviewLectureList";
+		if(result>0) {
+		//저장 성공 : 공지사항 저장성공 메세지출력,리스트페이지로 이동
+			msg="스터디 후기 작성 성공";
+		}else {
+		//저장 실패 : 공지사항 저장이 실패 메세지 출력, 공지사항 작성페이지로 이동
+			msg="스터디 후기 작성 실패";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

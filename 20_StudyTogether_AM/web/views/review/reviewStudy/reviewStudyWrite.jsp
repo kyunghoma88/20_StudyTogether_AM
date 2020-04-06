@@ -82,7 +82,7 @@
         </tr>
         <tr>
             <td>만족도</td>
-            <input type="text" id="starCnt" name="starCnt">
+            <input type="hidden" id="starCnt" name="starCnt">
             <td><p id="star_grade" name="star">
                 <a href="#">★</a>
                 <a href="#">★</a>
@@ -116,7 +116,7 @@
               starCnt =  $(this).addClass("on").prevAll("a").addClass("on").length+1;
 				//별 개수 jsp로 보내기
               var form = $("#studyWrite");            
-              $("#starCnt").attr({type:'text',name:'starCnt',value:starCnt}).appendTo(form);
+              $("#starCnt").attr({type:'hidden',name:'starCnt',value:starCnt}).appendTo(form);
 
           });
   

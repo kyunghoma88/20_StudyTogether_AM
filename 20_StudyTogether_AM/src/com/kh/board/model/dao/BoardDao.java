@@ -418,6 +418,7 @@ public class BoardDao {
 		}
 		return result;
 	}
+	
 	public int updateBoard(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -431,6 +432,7 @@ public class BoardDao {
 		}
 		return result;
 	}
+	
 	public int deleteBoard(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		int result=0;

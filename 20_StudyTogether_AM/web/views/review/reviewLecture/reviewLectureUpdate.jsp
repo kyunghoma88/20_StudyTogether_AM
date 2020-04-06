@@ -49,7 +49,7 @@ table.revWrite td {
 </style>
 <form action="<%=request.getContextPath() %>/review/reviewLectureUpdateEnd">
 <br>
-<h2 style="text-align:center"><%=revL.getLectureName() %><input type="hidden" name="allStudy" value="<%=revL.getLectureName()%>" readonly required></h2>
+<h2 style="text-align:center"><%=revL.getLectureName() %><input type="hidden" name="allLecture" value="<%=revL.getLectureName()%>" readonly required></h2>
 <br>
 <input type="hidden" name="no" value=<%=revL.getReviewLecNo() %>>
    <table class="revWrite">
@@ -121,22 +121,13 @@ table.revWrite td {
           
    </table>
    <br>		
-     <div style="mrgin:0 auto;">
+     <div style="text-align:center">
 	    	 <button type="button" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
 	    	  <button type="submit" id="revUpdate">수정 완료</button>
 	</div>	
 </form>
 	  
  <script>
-          var starCnt=0;
-          $('#star_grade a').click(function(){
-              $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-              $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-              starCnt =  $('#star_grade a').length - 1;
-              console.log(starCnt);
-              return false;
-          });
-  
           function cancelChk(){
              if (confirm("정말 취소하시겠습니까??") == true){    //확인
                    location.replace("<%=request.getContextPath()%>/review/reviewStudyView?no=<%=revL.getReviewLecNo()%>");

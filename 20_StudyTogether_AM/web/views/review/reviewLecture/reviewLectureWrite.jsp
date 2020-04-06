@@ -6,7 +6,7 @@
 <%
 	List<Lector> list = (List)request.getAttribute("list");
 %>
-<form style="margin:0 auto;" name="LetureWrite" method="post" action="<%=request.getContextPath() %>/lecture/reviewLecFormEnd">
+<form style="margin:0 auto;" name="letureWrite" method="post" action="<%=request.getContextPath() %>/lecture/reviewLecFormEnd">
 <br>
 <h2 id="revWTitle">강좌 후기작성</h2>
    <table class="revWrite">
@@ -20,9 +20,9 @@
             <td>
                 <select name="allLecture" > 
                     <option value="강좌 선택">강좌 선택</option>
-                   <%--  <%for(Lector l : list) {%>
-                    <option value="<%l.getLectorTitle()%>"><%l.getLectorTitle()%></option>
-                    <%} %> --%>
+                    <%for(Lector lec : list){ %>
+                   	 <option value="<%=lec.getLectorTitle()%>"><%=lec.getLectorTitle()%></option>
+                   	 <%} %>
                 </select>
             </td>
         </tr>
@@ -80,7 +80,7 @@
         </tr>
         <tr>
             <td>만족도</td>
-            <input type="text" id="starCnt" name="starCnt">
+            <input type="hidden" id="starCnt" name="starCnt">
             <td><p id="star_grade" name="star">
                 <a href="#">★</a>
                 <a href="#">★</a>
@@ -97,7 +97,7 @@
    </table>
    <br>
  		<div id="revWBtn">
-          <button type="reset" onclick ="cancelChk()" id="revWCancelBtn" >취소</button>
+          <button type="reset" onclick ="cancelChk()" id="revLCancelBtn" >취소</button>
          <%if(list.size()!=0){ %>
           	<button type="submit" id="revLenrollBtn">등록</button>
           <%}else{ %>
@@ -114,8 +114,8 @@
 	          $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
 	          starCnt =  $(this).addClass("on").prevAll("a").addClass("on").length+1;
 				//별 개수 jsp로 보내기
-	          var form = $("#LetureWrite");            
-	          $("#starCnt").attr({type:'text',name:'starCnt',value:starCnt}).appendTo(form);
+	          var form = $("#letureWrite");            
+	          $("#starCnt").attr({type:'hidden',name:'starCnt',value:starCnt}).appendTo(form);
 	
 	      });
   
@@ -128,7 +128,7 @@
            }
           function revLecChk(){
        		  alert("참여중인 강의가 없습니다. 후기 등록을 할 수 없습니다.");
-       		  <%-- location.replace("<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList"); --%>
+       		  location.replace("<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList");
           }
       </script>
 <%@ include file="/views/common/footer.jsp"%>

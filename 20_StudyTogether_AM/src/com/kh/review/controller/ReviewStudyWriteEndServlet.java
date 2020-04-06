@@ -40,13 +40,13 @@ public class ReviewStudyWriteEndServlet extends HttpServlet {
 	
 		String writer = request.getParameter("writer");
 		String study = request.getParameter("allStudy");
-		String categoey = request.getParameter("field");
+		String category = request.getParameter("field");
 		
 		int star = Integer.parseInt(request.getParameter("starCnt"));
-		System.out.println("star : " + star);
+		//System.out.println("star : " + star);
 		String content = request.getParameter("content");
 
-		ReviewStudy revS = new ReviewStudy(0,writer,study,categoey,content,star,null);
+		ReviewStudy revS = new ReviewStudy(0,writer,study,category,content,star,null);
 		
 		int result =  new ReviewStudyService().insertReviewStudy(revS);
 
