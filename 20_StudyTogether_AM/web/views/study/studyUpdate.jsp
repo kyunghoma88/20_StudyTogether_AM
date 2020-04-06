@@ -157,7 +157,7 @@
 
                  <tr>
                      <td>상세 소개</td>
-                     <td><textarea name="intro1" cols="85" rows="10" style="resize: none;"  placeholder="*이 강좌에 대해 자세히 소개해주세요."> <%=s.getStudyDetail() %></textarea>
+                     <td><textarea name="intro1" cols="80" rows="10" style="resize: none;"  placeholder="*이 강좌에 대해 자세히 소개해주세요."> <%=s.getStudyDetail() %></textarea>
                     </td>
                  </tr>
                  <br>

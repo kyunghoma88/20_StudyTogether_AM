@@ -49,7 +49,7 @@
       </script>
       <tr>
 		<td>상세 소개</td>
-		<td><textarea name="intro" cols="85" rows="10" style="resize: none;"  placeholder=""><%=l.getLectorDetail()%></textarea></td>
+		<td><textarea name="intro" cols="80" rows="10" style="resize: none;"  placeholder=""><%=l.getLectorDetail()%></textarea></td>
 	  </tr>	
       <tr>
 		<td>썸네일<br>이미지</td>
