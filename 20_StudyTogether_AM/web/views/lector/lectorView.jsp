@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@page import="java.util.List,com.kh.lector.model.vo.Lector,com.kh.lector.model.vo.LectorChannel,java.util.List" %>
-//엄마강좌View!!
+<%@page import="com.kh.join.model.vo.LectorJoin,java.util.List,com.kh.lector.model.vo.Lector,com.kh.lector.model.vo.LectorChannel,java.util.List" %>
+
 <%
+	
 	Lector l=(Lector)request.getAttribute("l");
-	List<LectorChannel> clist=(List)request.getAttribute("clist");
+	
+	LectorJoin lj=(LectorJoin)request.getAttribute("lj");
+ List<LectorJoin> list=(List)request.getAttribute("list");
+	
+ 	List<LectorChannel> clist=(List)request.getAttribute("clist");
  	int cPage=(int)request.getAttribute("cPage");
 %>
 
@@ -14,11 +19,12 @@
 
 <section>
  <div class="container" >
-<%--     <a href="<%=request.getContextPath() %>/lectorWatch/lectorInsert" class="btn btn-info" role="button">강좌 추가</a>
+<%--  <a href="<%=request.getContextPath() %>/lectorWatch/lectorInsert" class="btn btn-info" role="button">강좌 추가</a>
  --%> <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 추가</a>
     <a href="<%=request.getContextPath()%>/lector/lectorUpdate?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 수정</a>
     <a href="<%=request.getContextPath() %>/lector/lectorDelete?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 삭제</a><!--관리자만 삭제  -->
   </div>
+
 <style>
 .btn btn-info{
 background-color:#ffc107;
@@ -46,8 +52,6 @@ background-color:#ffc107;
 	    <div id="video-inform">
 	    <%=l.getLectorDetail() %>
 	    </div>
-	    
-
     <input type="button" class="basket" onclick="apply();" value="구매하기">
 
   </div>
@@ -63,14 +67,12 @@ background-color:#ffc107;
 	}%>
   </div>
 </div>
-
 <%if(!clist.isEmpty()){ %>
  	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
  <%} %>
- 
- 
+</section>
 <style>
 	.pagination{
 		margin-left:600px;
@@ -78,20 +80,10 @@ background-color:#ffc107;
 		margin-bottom:100px;	
 	}
 </style>
-
-</section>
-
  <script>
 //study참가하기 버튼을 누르면 현재인원이 카운트 된다.
    function apply(){
-   var result= confirm("구매하시겠습니까?");
-    if(result==true){
    	 location.replace('<%=request.getContextPath()%>/cart/cartAdd?pNo=<%=l.getLectorNo()%>&userId=<%=loginMember.getUserId()%>');
-    }
-  else{
-   	 alert("취소 되었습니다.");
-   	 loaction.reload;
-    }
    }
  </script>
  

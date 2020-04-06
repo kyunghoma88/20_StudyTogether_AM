@@ -9,6 +9,7 @@
 	List<StudyJoin> list=(List)request.getAttribute("sList");
 	Study s=(Study)request.getAttribute("study");
 %>
+
 <section>
 	<div class="container" >
     	<a href="<%=request.getContextPath()%>/study/studyUpdate?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">수정</a>
