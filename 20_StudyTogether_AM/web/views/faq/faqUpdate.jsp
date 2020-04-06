@@ -26,12 +26,23 @@
 	
 	#blank{
 		
-		margin-right : 750px;
+		margin-right : 500px;
 	}
 	
 	table {
 	  border-collapse: separate;
 	  border-spacing: 0 15px;
+	}
+	
+	.btn-container button{
+		font-size : 11px;
+		font-weight : bolder;
+	}
+	
+	#faq-container{
+		width : 800px;
+		margin-left : 150px;
+		
 	}
 	
 	
@@ -99,7 +110,7 @@
 				</tr> -->
 			</table>
 			
-			<div style="display:flex; margin-top:30px;">
+			<div class="btn-container" style="display:flex; margin-top:30px;">
 				<div id="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div id="btn-regist">
 					<button class="btn btn-outline-dark" type="submit">등록하기</button>
