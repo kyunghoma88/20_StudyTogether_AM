@@ -58,6 +58,8 @@ public class LectorService {
 		int result=dao.deleteLector(conn,no);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
+
 		
 		return result;
 	}
@@ -152,6 +154,7 @@ public class LectorService {
 		int result=dao.deleteChannel(conn,pNo,cNo);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
 		return result;
 	}
 

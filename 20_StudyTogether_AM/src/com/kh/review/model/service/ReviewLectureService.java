@@ -42,6 +42,7 @@ public class ReviewLectureService {
 		int result = dao.updateReviewLecture(conn,revL);
 		if(result>0) commit(conn);
 		else rollback(conn);
+		close(conn);
 		return result;
 	}
 
