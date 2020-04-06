@@ -29,64 +29,128 @@ public class FAQDao {
 		}
 	}
 
-	public List<FAQ> searchFAQ(Connection conn, int cPage, int numPerPage) {
+	public List<FAQ> searchFAQ(Connection conn, int cPage, int numPerPage, String category) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = prop.getProperty("searchFaq");
-		List<FAQ> list = new ArrayList();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage-1)*numPerPage+1);
-			pstmt.setInt(2, cPage*numPerPage);
-			
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				FAQ f = new FAQ();
-				f.setFaqNo(rs.getInt("faq_no"));
-				f.setFaqTitle(rs.getString("faq_title"));
-				f.setFaqCategory(rs.getString("faq_category"));
-				f.setFaqContent(rs.getString("faq_content"));
-				f.setFaqDate(rs.getDate("faq_date"));
-				f.setFaqDeleteStatus(rs.getString("faq_delete_status"));
-				
-				list.add(f);
-				
-			}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-			
-		} 
-		return list;
 		
-	}
+		if(category.equals("전체보기")) {
+			String sql = prop.getProperty("faqAll");
+			List<FAQ> list = new ArrayList();
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (cPage-1)*numPerPage+1);
+				pstmt.setInt(2, cPage*numPerPage);
+				
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					FAQ f = new FAQ();
+					f.setFaqNo(rs.getInt("faq_no"));
+					f.setFaqTitle(rs.getString("faq_title"));
+					f.setFaqCategory(rs.getString("faq_category"));
+					f.setFaqContent(rs.getString("faq_content"));
+					f.setFaqDate(rs.getDate("faq_date"));
+					f.setFaqDeleteStatus(rs.getString("faq_delete_status"));
+					
+					list.add(f);
+					
+					}
+					
+				} catch(SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rs);
+					close(pstmt);
+					
+				} 
+				return list;
+				
+			} else {
+				String sql = prop.getProperty("faqCategory");
+				List<FAQ> list = new ArrayList();
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, category);
+					pstmt.setInt(2, (cPage-1)*numPerPage+1);
+					pstmt.setInt(3, cPage*numPerPage);
+					
+					rs = pstmt.executeQuery();
+					while(rs.next()) {
+						FAQ f = new FAQ();
+						f.setFaqNo(rs.getInt("faq_no"));
+						f.setFaqTitle(rs.getString("faq_title"));
+						f.setFaqCategory(rs.getString("faq_category"));
+						f.setFaqContent(rs.getString("faq_content"));
+						f.setFaqDate(rs.getDate("faq_date"));
+						f.setFaqDeleteStatus(rs.getString("faq_delete_status"));
+						
+						list.add(f);
+						
+					}
+					
+				} catch(SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rs);
+					close(pstmt);
+					
+				} 
+				return list;
+			}
+				
+		}
 
-	public int faqCount(Connection conn) {
+	public int faqCount(Connection conn, String category) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql = prop.getProperty("faqCount");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return result;
 		
+		
+		////////////// 2020 04 04 수정
+		
+		if(category.equals("전체보기")) {
+		
+			String sql = prop.getProperty("faqCount");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt(1);
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return result;
+			
+		} else {
+			String sql = prop.getProperty("categoryCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, category);
+				
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt(1);					
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return result;
+			
+		}
+			
+			
 	}
 
 	public FAQ selectFAQ(Connection conn, int no) {
@@ -153,7 +217,6 @@ public class FAQDao {
 		String sql = prop.getProperty("updateFaq");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//pstmt.setString(1, f.getFaqWriter());
 			pstmt.setString(1, f.getFaqTitle());
 			pstmt.setString(2, f.getFaqCategory());
 			pstmt.setString(3, f.getFaqContent());

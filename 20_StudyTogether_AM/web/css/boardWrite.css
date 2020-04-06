@@ -1,0 +1,78 @@
+    /*글쓰기 컨테이너*/
+    .write_content{
+        float: left;
+        margin-top: 40px;
+    }
+    /*게시판 커뮤니티 이름*/
+	.category_name{
+		font-weight: bold;
+		font-size: 30px;
+		margin-left: 20px;
+		margin-bottom: 20px;
+	}
+    /*제목 영역*/
+    .write_title{
+        margin-left: 20px;
+		margin-bottom: 20px;
+    }
+    .write_item{ 
+        width: 100px;
+        height: 36px;
+        display: inline-block;
+    }
+    #title{
+        height:30px;
+        font-size:16px;
+    }
+    /*파일추가 버튼*/
+    .fileAdd, .fileAdd:active, .fileAdd:focus{
+        background-color: red;
+        padding: 5px 10px;
+        margin-right: 10px;
+        color: white;
+        border: 0px;
+        outline: none;;
+    }
+    /*파일삭제 버튼*/
+    .fileDelete, .fileDelete:active, .fileDelete:focus{
+        background-color: gray;
+        padding: 5px 10px;
+        margin-right: 10px;
+        color: white;
+        border: 0px;
+        outline:none;
+    }
+    /*파일보내는 영역*/
+    #fileArea{
+        padding-left: 106px; 
+        clear: both;
+        position: relative;
+        top: 16px;
+    }
+    /*버튼 클릭시 서버에 전송할 영역*/
+    .sendArea{
+        text-align: center; 
+        margin-left: 106px; 
+        position: relative;
+        top: 32px;
+    }
+    /*보내는 버튼 속성*/
+    .write, .write:hover, .write:active, .write:focus{
+        text-decoration: none;
+        color: white;
+        margin-right: 10px;
+        background-color: red;
+        padding: 5px 10px;
+        outline: none;
+        border: 0px;
+    }
+    .item{
+        font-weight: bold;
+    }
+    .fname{
+    	position:relative;
+    	left:-209px;
+    	width: 562px;
+    	display: inline-block;
+    	background-color: white;
+    }

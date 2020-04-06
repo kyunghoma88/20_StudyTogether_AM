@@ -8,6 +8,7 @@ import static com.kh.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.vo.Lector;
 import com.kh.study.model.dao.StudyDao;
 import com.kh.study.model.vo.Study;
@@ -63,4 +64,29 @@ public class StudyService {
 		return result;
 	}
 
+	public List<Study> searchStudyPage(String area, String searchType, String day) {
+		Connection conn=getConnection();
+		List<Study> list=dao.searchStudyPage(conn,area,searchType,day);
+		close(conn);
+		return list;
+	}
+
+	public int updateStudy(Study s) {
+			Connection conn=getConnection();
+			int result=dao.updateStudy(conn,s);
+			if(result>0) commit(conn);
+			else rollback(conn);
+			close(conn);
+			return result;
+		}
+
+	public int insertJoin(StudyJoin sj) {
+		Connection conn=getConnection();
+		int result=dao.insertJoin(conn,sj);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
 }

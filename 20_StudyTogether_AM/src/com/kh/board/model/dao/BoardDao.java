@@ -1,5 +1,7 @@
 package com.kh.board.model.dao;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,8 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
-
-import static com.kh.common.JDBCTemplate.*;
+import com.kh.board.model.vo.Comment;
 
 public class BoardDao {
 	
@@ -150,6 +151,400 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int minNo(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("minNo");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertBoard(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertBoard");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,b.getReply_no());
+			pstmt.setInt(2,b.getReply_level());
+			pstmt.setString(3, b.getNickname());
+			pstmt.setString(4, b.getTitle());
+			pstmt.setString(5, b.getContent());
+			pstmt.setString(6, b.getImg_file());
+			pstmt.setString(7, b.getFile_upload());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateGood(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateGood");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateBad(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateBad");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public List<Board> boardFindList(Connection conn, int cPage, int numPerPage, String date, String content, String searchText){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Board> list=new ArrayList();
+		String sql="";
+		int d;
+		try {
+			if(date.equals("week")) {
+				if(content.equals("titleContent")) {
+					sql=prop.getProperty("weekFindTitleContent");
+					System.out.println("'%"+searchText+"%'");
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, searchText);
+					pstmt.setString(2, searchText);
+					pstmt.setInt(3, (cPage-1)*numPerPage+1);
+					pstmt.setInt(4, cPage*numPerPage);
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						Board b=new Board();
+						b.setBoard_no(rs.getInt("board_no"));
+						b.setReply_no(rs.getInt("reply_no"));
+						b.setReply_level(rs.getInt("reply_level"));
+						b.setNickname(rs.getString("nickname"));
+						b.setTitle(rs.getString("title"));
+						b.setContent(rs.getString("content"));
+						b.setImg_file(rs.getString("img_file"));
+						b.setFile_upload(rs.getString("file_upload"));
+						b.setWrite_date(rs.getDate("write_date"));
+						b.setCnt(rs.getInt("cnt"));
+						b.setGood_cnt(rs.getInt("good_cnt"));
+						b.setBad_cnt(rs.getInt("bad_cnt"));
+						list.add(b);
+					}
+				}else if(content.equals("title")) {
+					sql=prop.getProperty("weekFindTitle");
+					System.out.println("'%"+searchText+"%'");
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, searchText);
+					pstmt.setInt(2, (cPage-1)*numPerPage+1);
+					pstmt.setInt(3, cPage*numPerPage);
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						Board b=new Board();
+						b.setBoard_no(rs.getInt("board_no"));
+						b.setReply_no(rs.getInt("reply_no"));
+						b.setReply_level(rs.getInt("reply_level"));
+						b.setNickname(rs.getString("nickname"));
+						b.setTitle(rs.getString("title"));
+						b.setContent(rs.getString("content"));
+						b.setImg_file(rs.getString("img_file"));
+						b.setFile_upload(rs.getString("file_upload"));
+						b.setWrite_date(rs.getDate("write_date"));
+						b.setCnt(rs.getInt("cnt"));
+						b.setGood_cnt(rs.getInt("good_cnt"));
+						b.setBad_cnt(rs.getInt("bad_cnt"));
+						list.add(b);
+					}
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}else if(date.equals("month")) {
+				d=1;
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}else if(date.equals("halfYear")) {
+				d=6;
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}if(date.equals("year")) {
+				d=1;
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int boardFindCount(Connection conn, String date, String content, String searchText) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="";
+		int result=0;
+		try {
+			if(date.equals("week")) {
+				if(content.equals("titleContent")) {
+					sql=prop.getProperty("weekFindTitleContent_count");
+					System.out.println("'%"+searchText+"%'");
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, searchText);
+					pstmt.setString(2, searchText);
+					rs=pstmt.executeQuery();
+					if(rs.next()) {
+						result=rs.getInt(1);
+					}
+				}else if(content.equals("title")) {
+					sql=prop.getProperty("weekFindTitle_count");
+					System.out.println("'%"+searchText+"%'");
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, searchText);
+					rs=pstmt.executeQuery();
+					if(rs.next()) {
+						result=rs.getInt(1);
+					}
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}else if(date.equals("month")) {
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}else if(date.equals("halfYear")) {
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}if(date.equals("year")) {
+				if(content.equals("titleContent")) {
+					
+				}else if(content.equals("title")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}else if(content.equals("replyContent")) {
+					
+				}else if(content.equals("writer")) {
+					
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateBoard(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateBoard");
+		try {
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int deleteBoard(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteBoard");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int insertComment(Connection conn, Comment c) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getComment_level());
+			pstmt.setString(2, c.getComment_writer());
+			pstmt.setString(3, c.getComment_content());
+			pstmt.setInt(4, c.getBoard_ref());
+			pstmt.setInt(5, c.getComment_no_ref());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Comment> selectBoardComment(Connection conn, int no){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Comment> list=new ArrayList();
+		String sql=prop.getProperty("selectBoardComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setComment_no(rs.getInt("comment_no"));
+				c.setComment_level(rs.getInt("comment_level"));
+				c.setComment_writer(rs.getString("comment_writer"));
+				c.setComment_content(rs.getString("comment_content"));
+				c.setBoard_ref(rs.getInt("board_ref"));
+				c.setComment_no_ref(rs.getInt("comment_no_ref"));
+				c.setComment_date(rs.getDate("comment_date"));
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int insertReplyBoard(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertReplyBoard");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,b.getReply_no());
+			pstmt.setInt(2,b.getReply_level());
+			pstmt.setString(3, b.getNickname());
+			pstmt.setString(4, b.getTitle());
+			pstmt.setString(5, b.getContent());
+			pstmt.setString(6, b.getImg_file());
+			pstmt.setString(7, b.getFile_upload());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Board> boardReplyList(Connection conn){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("boardReplyList");
+		List<Board> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Board b=new Board();
+				b.setBoard_no(rs.getInt("board_no"));
+				b.setReply_no(rs.getInt("reply_no"));
+				b.setReply_level(rs.getInt("reply_level"));
+				b.setNickname(rs.getString("nickname"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setImg_file(rs.getString("img_file"));
+				b.setFile_upload(rs.getString("file_upload"));
+				b.setWrite_date(rs.getDate("write_date"));
+				b.setCnt(rs.getInt("cnt"));
+				b.setGood_cnt(rs.getInt("good_cnt"));
+				b.setBad_cnt(rs.getInt("bad_cnt"));
+				list.add(b);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
 	}
 }
 

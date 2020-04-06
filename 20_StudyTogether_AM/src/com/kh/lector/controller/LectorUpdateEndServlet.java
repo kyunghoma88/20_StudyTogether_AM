@@ -64,6 +64,7 @@ public class LectorUpdateEndServlet extends HttpServlet {
 		Lector l=new Lector(no,title,writer,category,intro,price,oriFileName,renamedFileName,oriVideo,renamedVideo,null,null);
 		System.out.println(l);
 		//upfile새로 추가한 파일이 있으면 orifile삭제해야함
+		
 		java.io.File f=mr.getFile("lectorImg");
 		
 		if(f!=null&&f.length()>0) {

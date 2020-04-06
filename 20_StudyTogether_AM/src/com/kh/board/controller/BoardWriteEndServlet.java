@@ -1,16 +1,24 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
+import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardWriteEndServlet
@@ -42,14 +50,30 @@ public class BoardWriteEndServlet extends HttpServlet {
 		//파일 저장 크기
 		int maxSize=1024*1024*10;//10MB
 		MultipartRequest mr=new MultipartRequest(request, path, maxSize,
-				"UTF-8",new DefaultFileRenamePolicy());
+				"UTF-8",new MyFileRenamePolicy());
 		fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
 		String title=mr.getParameter("title");
 		String write_text=mr.getParameter("write_text");
 		String oriFileName[]= new String[fileCnt];
+		String renamedFileName[]= new String[fileCnt];
 		for(int i=0;i<fileCnt;i++) {
-			oriFileName[i]=mr.getOriginalFileName("fileup"+(i+1));			
+			oriFileName[i]=mr.getOriginalFileName("fileup"+(i+1));
+			renamedFileName[i]=mr.getFilesystemName("fileup"+(i+1));
+			System.out.println(oriFileName[i]);
+			System.out.println(renamedFileName[i]);
 		}
+		List<String> list = new ArrayList<>(Arrays.asList(oriFileName));
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i)==null) {				
+				list.remove(null);
+			}
+		}
+		String fileNames=String.join(",", list);
+		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
+		String id=mr.getParameter("id");
+		System.out.println("id : "+id);
+		Board b=new Board(0,0,1,id,title,write_text,"",fileNames,new Date(),0,0,0);
+		int result=new BoardService().insertBoard(b);
 		response.sendRedirect(request.getContextPath()+"/board/boardList");
 	}
 

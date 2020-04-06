@@ -1,142 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<style>
-	/*게시판 전체 크기*/
-	.boardContainer{
-		width:1401px;
-		margin:0 auto;
-		padding-top: 50px;
-		display:flex;
-	}
-	/*사이드바 컨테이너*/
-    .aside{
-        width: 300px;
-        padding-right: 50px;
-        margin-top: 40px;
-        border-right: 2px solid #e6e6e6;
-		float: left;
-    }
-    /*사이드바 메뉴*/
-    .aside_list{
-        list-style-type: none;
-        padding-left: 20px;   
-        margin-top: 20px;
-    }
-    /*커뮤니티 이름*/
-    .aside_title{
-        display: block;
-        font-weight: bold;
-        font-size: 24px;
-        padding-left: 20px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid red;
-    }
-    /*글쓰기 컨테이너*/
-    .write_content{
-        float: left;
-        margin-top: 40px;
-    }
-    /*게시판 커뮤니티 이름*/
-	.category_name{
-		font-weight: bold;
-		font-size: 30px;
-		margin-left: 20px;
-		margin-bottom: 20px;
-	}
-    /*제목 영역*/
-    .write_title{
-        margin-left: 20px;
-		margin-bottom: 20px;
-    }
-    .write_item{ 
-        width: 100px;
-        height: 36px;
-        display: inline-block;
-    }
-    #title{
-        height:30px;
-        font-size:16px;
-    }
-    /*파일추가 버튼*/
-    .fileAdd, .fileAdd:active, .fileAdd:focus{
-        background-color: red;
-        padding: 5px 10px;
-        margin-right: 10px;
-        color: white;
-        border: 0px;
-        outline: none;;
-    }
-    /*파일삭제 버튼*/
-    .fileDelete, .fileDelete:active, .fileDelete:focus{
-        background-color: gray;
-        padding: 5px 10px;
-        margin-right: 10px;
-        color: white;
-        border: 0px;
-        outline:none;
-    }
-    /*파일보내는 영역*/
-    #fileArea{
-        padding-left: 106px; 
-        clear: both;
-        position: relative;
-        top: 16px;
-    }
-    /*버튼 클릭시 서버에 전송할 영역*/
-    .sendArea{
-        text-align: center; 
-        margin-left: 106px; 
-        position: relative;
-        top: 32px;
-    }
-    /*보내는 버튼 속성*/
-    .write, .write:hover, .write:active, .write:focus{
-        text-decoration: none;
-        color: white;
-        margin-right: 10px;
-        background-color: red;
-        padding: 5px 10px;
-        outline: none;
-        border: 0px;
-    }
-    .item{
-        font-weight: bold;
-    }
-</style>
-</head>
-<body>
-	<div class="boardContainer">
-		<div class="aside">
-	        <span class="aside_title">커뮤니티</span>
-	        <ul class="aside_list">
-	            <li style="margin-bottom: 5px;">자유게시판</li>
-	            <li>묻고 답하기</li>
-			</ul>
-        </div>
+<%@ include file="/views/board/aside.jsp"%>
         <div class="write_content">
             <div class="category_name">카테고리 이름</div>
             <form action="<%=request.getContextPath()%>/board/boardWriteEnd" 
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
-                <input type="hidden" name="fileCnt" value="2"/>
+                <input type="hidden" name="fileCnt"/>
+                <input type="hidden" name="id" value="<%=loginMember.getUserId()%>"/>
             <div class="write_title">
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>
@@ -243,5 +113,4 @@
             })
         })      
     </script> 
-</body>
-</html>
+<%@ include file="/views/common/footer.jsp"%>

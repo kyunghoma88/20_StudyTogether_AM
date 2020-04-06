@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+
 <style>
 fieldset {
     box-sizing: border-box;
@@ -21,9 +22,9 @@ button{
 </style>
        <h2>강좌 개설</h2><br>
     <form id="frmOpen" action="<%=request.getContextPath()%>/lector/lectorOpenEnd" method="post" enctype="multipart/form-data">
-     강사명 <input type="text" name="lectorWriter"><br>
+     강사명 <input type="text" name="lectorWriter" value="<%=loginMember.getUserId()%>"><br>
        <input type="hidden" name="lectorDate" ><br>
-        강좌 이름 <input type="text" name="lectorTitle" required><br><br>
+        강좌 이름 <input type="text" name="lectorTitle" maxlength="20" required><br><br>
         강좌 분야
       <select id="searchType" name="searchType"> 
      	<option value="카테고리">카테고리</option>
@@ -32,20 +33,17 @@ button{
           <option value="일본어">일본어</option>
           <option value="스페인어">스페인어</option>
           <option value="불어">불어</option>
-          <option value="기타">기타</option>
       </optgroup>
       <optgroup label="자격증">
           <option value="제빵">제빵</option>
           <option value="정보처리기사" >정보처리기사</option>
           <option value="컴퓨터활용">컴퓨터활용</option>
           <option value="토익" >토익</option>
-          <option value="기타" >기타</option>
       </optgroup>
       <optgroup label="IT">
           <option value="알고리즘" >알고리즘</option>
           <option value="데이터베이스" >데이터베이스</option>
           <option value="자바프로그래밍">자바프로그래밍</option>
-          <option value="기타" >기타</option>
       </optgroup>
       </select>
             <br>

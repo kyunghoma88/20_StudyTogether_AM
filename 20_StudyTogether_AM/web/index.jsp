@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <!-- header페이지 불러오기 -->
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
@@ -94,7 +94,6 @@
         var date=new Date();
        container.innerHTML="현재 시간 "+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds()+" :   "+date.getMilliseconds();
    
-
     var min=new Date().getMinutes();//현재시간의 분
 
 },6);
