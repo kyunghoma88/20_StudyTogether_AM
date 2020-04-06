@@ -25,7 +25,6 @@
                              <option value="홍대">홍대</option>
                          </optgroup>
                          <optgroup label="경기도">   
-                             <option value="남양주">남양주</option>
                              <option value="수원">수원</option>
                              <option value="안산">안산</option>
                              <option value="안양">안양</option>
@@ -34,29 +33,18 @@
                          <optgroup label="강원도"> 
                              <option value="강릉">강릉</option>
                              <option value="속초">속초</option>
-                             <option value="인제">인제</option>
-                             <option value="평창">평창</option>
-                             <option value="횡성">횡성</option>
                          </optgroup>
                          <optgroup label="충청도"> 
-                             <option value="논산">논산</option>
                              <option value="대전">대전</option>
-                             <option value="아산">아산</option>
-                             <option value="보령">보령</option>
                              <option value="천안">천안</option>
                          </optgroup>
                          <optgroup label="전라도"> 
                              <option value="광주">광주</option>
-                             <option value="군산">군산</option>
-                             <option value="부안">부안</option>
-                             <option value="순창">순창</option>
                              <option value="전주">전주</option>
                          </optgroup>
                          <optgroup label="경상도"> 
                              <option value="대구">대구</option>
                              <option value="부산">부산</option>
-                             <option value="안동">안동</option>
-                             <option value="울산">울산</option>
                              <option value="포항">포항</option>
                          </optgroup>
                          </select>
@@ -68,45 +56,25 @@
                      <td><select name="studyCategory" > 
                          <option value="카테고리">카테고리</option>
                          <optgroup label="어학,회화">
-                             <option value="불어">불어</option>
-                             <option value="스페인어">스페인어</option>
                              <option value="영어">영어</option>
                              <option value="일본어">일본어</option>
-                             <option value="중국어">중국어</option>
+                           	<option value="스페인어">스페인어</option>
+                             <option value="불어">불어</option>
                          </optgroup>
                          
                          <optgroup label="자격증">
-                             <option value="공인중개사">제빵</option>
-                             <option value="미용">미용</option>
+                             <option value="제빵">제빵</option>
                              <option value="정보처리기사">정보처리기사</option>
                              <option value="컴퓨터활용">컴퓨터활용</option>
                              <option value="토익">토익</option>
                          </optgroup>
              
-                         <optgroup label="취미">
-                             <option value="공예">공예</option>
-                             <option value="맛집탐방">맛집탐방</option>
-                             <option value="밴드">밴드</option>
-                             <option value="요리">요리</option>
-                             <option value="운동">운동</option>
-                         </optgroup>
-                 
-             
                          <optgroup label="IT">
                              <option value="알고리즘">알고리즘</option>
                              <option value="데이터베이스">데이터베이스</option>
                              <option value="자바프로그래밍">자바프로그래밍</option>
-                             <option value="운영체제">운영체제</option>
-                             <option value="파이썬">파이썬</option>
                          </optgroup>
              
-                         <optgroup label="대학생">
-                             <option value="취업">취업</option>
-                             <option value="면접">면접</option>
-                             <option value="인문학과">인문학과</option>
-                             <option value="자연과학">자연과학</option>
-                             <option value="예체능">예체능</option>
-                         </optgroup>
                          </select>
                          </td>
                  </tr>

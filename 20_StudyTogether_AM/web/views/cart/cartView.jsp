@@ -8,7 +8,8 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/cartView.css" type="text/css" />
 <section>
-	<form name="mapping" action="<%=request.getContextPath()%>/test" method="post">
+	<form name="mapping" action="<%=request.getContextPath()%>/test"
+		method="post">
 		<table id="cartTbl">
 			<tr id="cartHead">
 				<!-- <th>번호</th> -->
@@ -46,23 +47,22 @@
 			}
 			%> --%>
 			<%if(list.isEmpty()) {%>
-				<tr>
-					<td colspan='4'>장바구니가 비었습니다.</td>
-				</tr>
+			<tr>
+				<td colspan='4'>장바구니가 비었습니다.</td>
+			</tr>
 			<%}else { %>
 			<%for(int i = 0; i < list.size(); i++) {%>
 				<%if(list.get(i).getStatus().equals("N")){ %>
-				<tr>
-					<td>
-						<input type="checkbox" name="cartList" value="<%=list.get(i) %>" onclick="itemSum();">
-						<%=list.get(i).getLectorTitle() %>
-					</td>
-					<td><%=list.get(i).getLectorWriter() %></td>
-					<td><%=list.get(i).getLectorCategory() %></td>
-					<td><%=list.get(i).getLectorPrice() %></td>
-					<td></td>
-				</tr>
-				<%} %>
+			<tr>
+				<td><input type="checkbox" name="cartList" onclick="priceSum(this);" value="<%=list.get(i).getCartNo()%>">
+					 <%=list.get(i).getLectorTitle() %>
+				</td>
+				<td><%=list.get(i).getLectorWriter() %></td>
+				<td><%=list.get(i).getLectorCategory() %></td>
+				<td><%=list.get(i).getLectorPrice() %></td>
+				<td></td>
+			</tr>
+			<% }%>
 			<%}
 			}%>
 		</table>
@@ -74,27 +74,51 @@
 				</div>
 			</td>
 		</tr>
-		<br><span><input type="button" value="결제하기" id="subBtn" onclick="mappingAction('payment');"></span>
-			<span><input type="button" value="삭제" id="subBtn" onclick="mappingAction('delete');"></span>
+		<br>
+		<span><input type="button" value="결제하기" id="subBtn"
+			onclick="mappingAction('payment');"></span> <span><input
+			type="button" value="삭제" id="subBtn"
+			onclick="mappingAction('delete');"></span>
 	</form>
 	<script>
-		function itemSum() {
+		<%-- function itemSum() {
 			var sum = 0;
-			var totalSum = document.getElementById("totalSum")
+			var totalSum = document.getElementById('totalSum');
+			var cartList = document.getElementById('cartList');
+
+			
 			<%for(int i = 0; i < list.size(); i++) {%>
-				if (frm.cartList[i].checked == true) {
-					sum += <%=list.get(i).getLectorPrice()%>;
+				if (cartList[i].checked == true) {
+					sum += list.get(i).getLectorPrice();
 				}
-			<%} %>
+			
 			totalSum.value = sum;
 			console.log(sum);
-		}
-		
+		<%}%>
+		 --%>
+		 function priceSum(box){
+	         var sum=0;
+	         var totalSum=document.getElementById("totalSum");
+	         var boxValue=box.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.data
+	         console.log(totalSum.value);
+	         console.log(boxValue);
+	         console.log(Number(boxValue));
+	         if(box.checked==true) {
+	            totalSum.value=Number(totalSum.value)+Number(boxValue);
+	            console.log(totalSum.value);
+	         } 
+	         if(box.checked==false) {
+	            totalSum.value=Number(totalSum.value)-Number(boxValue);
+	            console.log(totalSum.value);
+	         }
+	         console.log(totalSum.value);
+	      }
+		 
 		function mappingAction(val){
 			var form = document.mapping;
 			
 			if(val == "payment"){
-				form.action = "";
+				form.action = "<%=request.getContextPath()%>/buy/buyForm";
 			} else if(val == "delete"){
 				form.action = "<%=request.getContextPath()%>/cart/deleteCart";
 			}

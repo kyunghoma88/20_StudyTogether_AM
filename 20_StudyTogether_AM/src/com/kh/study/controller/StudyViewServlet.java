@@ -34,9 +34,9 @@ public class StudyViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("no"));
 		Study s=new StudyService().selectStudy(no);
-		System.out.println(no);
-		System.out.println(s.getEndDate());
-		
+		/*
+		 * System.out.println(no); System.out.println(s.getEndDate());
+		 */
 		
 		
 		String msg="";

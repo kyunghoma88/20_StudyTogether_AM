@@ -90,6 +90,51 @@ public class CartDao {
 		}
 		return result;
 	}
+
+	public Cart searchCartForCartNo(Connection conn, int cartNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("searchCartForCartNo");
+		List<Cart> list = new ArrayList();
+		Cart c = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cartNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				c = new Cart();
+				c.setCartNo(rs.getInt("cart_no"));
+				c.setLectorNo(rs.getInt("lector_no"));
+				c.setLectorTitle(rs.getString("lector_title"));
+				c.setLectorWriter(rs.getString("lector_writer"));
+				c.setLectorCategory(rs.getString("lector_category"));
+				c.setLectorPrice(rs.getInt("lector_price"));
+				c.setStatus(rs.getString("status"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return c;
+	}
+
+	public int updateCartForCartNo(Connection conn, int cartNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateCartForCartNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cartNo);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

@@ -47,9 +47,9 @@ public class LectorDao {
 				l.setLectorDetail(rs.getString("lector_detail"));
 				l.setLectorPrice(rs.getInt("lector_price"));
 				l.setLectorOriginalImg(rs.getString("lector_original_img"));
-				l.setLectorRenamedImg("lector_renamed_img");
-				l.setLectorOriginalVideo("lector_original_video");
-				l.setLectorRenamedVideo("lector_renamed_video");
+				l.setLectorRenamedImg(rs.getString("lector_renamed_img"));
+				l.setLectorOriginalVideo(rs.getString("lector_original_video"));
+				l.setLectorRenamedVideo(rs.getString("lector_renamed_video"));
 				l.setLectorDate(rs.getDate("lector_date"));
 				l.setLectorAssign(rs.getString("lector_assign"));
 				list.add(l);
@@ -121,8 +121,8 @@ public class LectorDao {
 			l.setLectorPrice(rs.getInt("lector_price"));
 			l.setLectorOriginalImg(rs.getString("lector_original_img"));
 			l.setLectorRenamedImg(rs.getString("lector_renamed_img"));
-			l.setLectorOriginalVideo("lector_original_video");
-			l.setLectorRenamedVideo("lector_renamed_video");
+			l.setLectorOriginalVideo(rs.getString("lector_original_video"));
+			l.setLectorRenamedVideo(rs.getString("lector_renamed_video"));
 		//	l.setLectorVideo(rs.getString("lector_video"));
 			l.setLectorDate(rs.getDate("lector_date"));
 			l.setLectorAssign(rs.getString("lector_assign"));

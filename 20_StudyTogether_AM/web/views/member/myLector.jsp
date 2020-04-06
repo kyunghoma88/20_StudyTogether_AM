@@ -32,8 +32,8 @@
               <th>등록 번호</th>
               <th>강좌명</th>
               <th>개설 승인 여부</th>
-              <th>현재 참여자 수</th>
-              <th>강좌 등록일</th>
+              <th>등록한 인원</th>
+              <th>개설한 날짜</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -41,15 +41,11 @@
             <tr>
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>"><%=l.getLectorTitle() %></a></td>
-                <td><%=l.getLectorAssign().equals("N")?"관리자 승인 대기중"
-                		:l.getLectorAssign().equals("F")?"관리자 승인거절"
-                		:l.getLectorAssign().equals("Y")?"관리자 승인":"잘못된 상태" %></td>
+                <td><%=l.getLectorAssign().equals("N")?"승인 대기중"
+                		:l.getLectorAssign().equals("F")?"승인 거절"
+                		:l.getLectorAssign().equals("Y")?"승인 완료":"잘못된 상태" %></td>
                 <td>현재 <%=ljMemberList.size() %>명 수강</td>
-                <td class="">
-                  <div class="form-check-inline">
-                  		<%=l.getLectorDate() %>
-                  </div>                        
-                </td>
+                <td class=""><%=l.getLectorDate() %></td>
             </tr>
             <%} %>
           </tbody>
@@ -84,8 +80,8 @@
               <th>등록 번호</th>
               <th>강사명</th>
               <th>강좌명</th>
+              <th>수강한 인원</th>
               <th>등록일</th>
-              <th>현재 참여자 수</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -94,12 +90,8 @@
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><%=l.getLectorWriter() %></td>
                 <td class=""><%=l.getLectorTitle() %></td>
-                <td class="">
-                  <div class="form-check-inline">
-                     <%=l.getLectorDate() %>
-                  </div>                        
-                </td>
                 <td>현재 <%=ljMemberList.size() %>명 수강</td>
+                <td class=""><%=l.getLectorDate() %></td>
             </tr>      
             <%} %>
           </tbody>

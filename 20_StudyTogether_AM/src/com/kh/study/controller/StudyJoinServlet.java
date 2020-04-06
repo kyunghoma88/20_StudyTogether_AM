@@ -1,4 +1,4 @@
-package com.kh.cart.controller;
+package com.kh.study.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.cart.service.CartService;
+import com.kh.join.model.vo.StudyJoin;
+import com.kh.study.model.service.StudyService;
 
 /**
- * Servlet implementation class DeleteCartServlet
+ * Servlet implementation class StudyJoinServlet
  */
-@WebServlet("/cart/deleteCart")
-public class DeleteCartServlet extends HttpServlet {
+@WebServlet("/study/studyJoin")
+public class StudyJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCartServlet() {
+    public StudyJoinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,28 +30,36 @@ public class DeleteCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("삭제하기 서블릿");
-		String[] cartList = request.getParameterValues("cartList");
-
-		String msg = "";
-		String loc = "";
-		for(int i = 0; i < cartList.length; i++) {
-			System.out.println("cartList 데이터 : " + cartList[i]);
-//		for(int i=0; i < cartList.length; i++) {
-//			System.out.println("cartList 데이터 : " + cartList[i]);
-//			String cartNo = cartList[i].substring(13,15);
-//			int result = new CartService().deleteCart(Integer.parseInt(cartNo));
-//			if(result > 0) {
-//				msg = "장바구니 삭제 성공";
-//				loc = "/index.jsp";
-//			}
-			request.setAttribute("msg", msg);
-			request.setAttribute("loc", loc);
+		
+		int no=Integer.parseInt(request.getParameter("no"));
+		System.out.println("no:"+no);
+		String writer=request.getParameter("userId");
+		System.out.println("userId"+writer);
+		
+		StudyJoin sj=new StudyJoin(no,writer);
+		
+		int result=new StudyService().insertJoin(sj);
+		System.out.println("참가?"+result);
+		
+		String msg="";
+		String loc="";
+		
+		if(result>0) {
+			msg="참가 되었습니다.";
+			loc="/study/studyView?no="+no;
+			request.setAttribute("sj", sj);
 		}
+		else {
+			msg="참가 실패하였습니다. 다시 시도해주세요.";
+			loc="/study/studyView?no="+no;
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

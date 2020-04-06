@@ -33,7 +33,7 @@ public class CartAddServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("CartAddServlet호출");
 		String userId = request.getParameter("userId");
-		int lectorNo = Integer.parseInt(request.getParameter("lectorNo"));
+		int lectorNo = Integer.parseInt(request.getParameter("pNo"));
 
 		int result = new CartService().insertCart(userId, lectorNo);
 		

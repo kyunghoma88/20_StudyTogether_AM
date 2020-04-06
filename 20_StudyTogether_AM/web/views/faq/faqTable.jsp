@@ -5,7 +5,14 @@
 <%
 	List<FAQ> list=(List)request.getAttribute("list");
 %>
-<table>
+<table class="table table-hover tbl-faq">
+	
+	<colgroup>
+		<col width="150px;" />
+		<col width="750px;" />
+		<col/>
+	</colgroup>
+	
 	<tr>
 		<th>카테고리</th>
 		<th>제 목</th>
@@ -27,6 +34,8 @@
 
 
 
-<div id="pagebar">
-	<%=request.getAttribute("pageBar") %>
+<div id="pagebar"  class="container">
+	<ul class="pagination">
+		<%=request.getAttribute("pageBar") %>
+	</ul>
 </div>

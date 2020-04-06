@@ -1,23 +1,28 @@
-package com.kh.admin.controller;
+package com.kh.study.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.study.model.service.StudyService;
+import com.kh.study.model.vo.Study;
+
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class StudyFinderServlet
  */
-@WebServlet("/admin/adminManageLector")
-public class AdminManageLectorServlet extends HttpServlet {
+@WebServlet("/study/studyFinder")
+public class StudyFinderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminManageLectorServlet() {
+    public StudyFinderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +31,25 @@ public class AdminManageLectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/admin/adminManageLector.jsp").forward(request, response);
+		
+		String area=request.getParameter("area");
+		String searchType=request.getParameter("searchType");
+		String day=request.getParameter("day");
+		System.out.println(area+" "+searchType+" "+day);
+		
+		List<Study> list=new StudyService().searchStudyPage(area,searchType,day);
+		
+		System.out.println(list);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("searchType", searchType);
+		request.setAttribute("day", day);
+		request.setAttribute("area", area);
+
+		request.getRequestDispatcher("/views/study/studyFinder.jsp").forward(request, response);
+
+		
+		
 	}
 
 	/**
