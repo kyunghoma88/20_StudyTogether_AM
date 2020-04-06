@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cart.model.vo.Cart;
+import com.kh.cart.service.CartService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class PaymentFormServlet
@@ -33,22 +35,41 @@ public class BuyFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("buyForm으로 넘어온 내용");
+		String userId=((Member)request.getSession().getAttribute("loginedMember")).getUserId();
+		System.out.println(userId);
+
 		String[] cartNoArr= request.getParameterValues("cartList");
-		Cart c=null;
 		
-		for(int i=0; i<cartNoArr.length; i++) {
-			new Cart
+		if(cartNoArr==null) {
+			request.setAttribute("msg", "장바구니를 선택하지 않았습니다");
+			request.setAttribute("loc", "/cart/cartView?id="+userId);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		} else {
+			for(int i=0;i<cartNoArr.length;i++) {
+				System.out.println(cartNoArr[i]);
+			}
+			
+			int cartNo=0;
+			Cart c=null;
+			List<Cart> list=new ArrayList<Cart>();
+			
+			for(int i=0; i<cartNoArr.length; i++) {
+				cartNo=Integer.parseInt(cartNoArr[i]);
+				System.out.println(cartNo);
+				c=new CartService().searchCartForCartNo(cartNo);
+				System.out.println(c);
+				list.add(c);
+			}
+			
+			String totalSum=request.getParameter("total_sum");
+			System.out.println(totalSum);
+			
+			request.setAttribute("totalSum", totalSum);
+			request.setAttribute("cartList", list);
+			
+			request.getRequestDispatcher("/views/buy/buyForm.jsp").forward(request, response);
 		}
 		
-		
-		List<Cart> list=new ArrayList<Cart>();
-		
-		String totalSum=request.getParameter("total_sum");
-		System.out.println(totalSum);
-		
-		request.setAttribute("totalSum", totalSum);
-				
-		request.getRequestDispatcher("/views/buy/buyForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class PaymentServlet
  */
@@ -26,6 +28,30 @@ public class BuyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		String name=request.getParameter("order_name");
+		String email=request.getParameter("order_email");
+		String phone=request.getParameter("order_phone");
+		String postcode=request.getParameter("sample3_postcode");
+		String address1=request.getParameter("sample3_address");
+		String address2=request.getParameter("sample3_detailAddress");
+		String address3=request.getParameter("sample3_extraAddress");
+		String address=address1+" "+address2+" "+address3;
+		
+		String stotalPrice=request.getParameter("totalPrice");
+		System.out.println(stotalPrice);
+		if(stotalPrice!=null) {
+			int totalPrice=Integer.parseInt(stotalPrice);			
+		}
+		
+		request.setAttribute("name", name);
+		request.setAttribute("email", email);
+		request.setAttribute("phone", phone);
+		request.setAttribute("postcode", postcode);
+		request.setAttribute("address", address);
+		request.setAttribute("totalPrice", stotalPrice);
+		
 		request.getRequestDispatcher("/views/buy/buyTest.jsp").forward(request, response);
 	}
 
