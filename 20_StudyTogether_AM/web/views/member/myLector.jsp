@@ -5,7 +5,7 @@
 <%
 	List<Lector> lcList = (List<Lector>)request.getAttribute("lcList");
 	List<Lector> ljList = (List<Lector>)request.getAttribute("ljList");
-	List<LectorJoin> ljMemberList = (List<LectorJoin>)request.getAttribute("ljMemberList");
+	
 %>
 
 <div class="row">
@@ -32,7 +32,6 @@
               <th>등록 번호</th>
               <th>강좌명</th>
               <th>개설 승인 여부</th>
-              <th>등록한 인원</th>
               <th>개설한 날짜</th>
             </tr>
           </thead>
@@ -44,7 +43,6 @@
                 <td><%=l.getLectorAssign().equals("N")?"승인 대기중"
                 		:l.getLectorAssign().equals("F")?"승인 거절"
                 		:l.getLectorAssign().equals("Y")?"승인 완료":"잘못된 상태" %></td>
-                <td>현재 <%=ljMemberList.size() %>명 수강</td>
                 <td class=""><%=l.getLectorDate() %></td>
             </tr>
             <%} %>
@@ -80,7 +78,6 @@
               <th>등록 번호</th>
               <th>강사명</th>
               <th>강좌명</th>
-              <th>수강한 인원</th>
               <th>등록일</th>
             </tr>
           </thead>
@@ -90,7 +87,6 @@
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><%=l.getLectorWriter() %></td>
                 <td class=""><%=l.getLectorTitle() %></td>
-                <td>현재 <%=ljMemberList.size() %>명 수강</td>
                 <td class=""><%=l.getLectorDate() %></td>
             </tr>      
             <%} %>

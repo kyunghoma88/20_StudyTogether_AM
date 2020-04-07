@@ -378,34 +378,6 @@ public class MemberDao {
 		}
 		return list;
 	}
-	public List<LectorJoin> selectMemberJoinLectorCount(Connection conn, String id) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql= prop.getProperty("selectMemberJoinLectorCount");
-		List<LectorJoin> list=new ArrayList<LectorJoin>();
-		LectorJoin lj = null;
-		try {			
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-			while(rs.next()) {
-				lj=new LectorJoin();
-				lj.setLectorNo(rs.getInt("LECTOR_NO"));
-				lj.setUserId(rs.getString("USER_ID"));
-				list.add(lj);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}
-	public List<StudyJoin> selectMemberJoinStudyCount(Connection conn, String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
