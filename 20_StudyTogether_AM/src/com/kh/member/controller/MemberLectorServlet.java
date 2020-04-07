@@ -46,11 +46,13 @@ public class MemberLectorServlet extends HttpServlet {
 		
 		List<Lector> lcList=new MemberService().selectMemberCreateLector(id); //이용자가 개설한 강좌 모두 조회
 		List<Lector> ljList=new MemberService().selectMemberJoinLector(id); //이용자가 수강한 강좌 모두 조회
-		List<LectorJoin> ljMemberList =new MemberService().selectMemberJoinLectorCount(id); //강좌에 어떤 회원이 수강했는지에 대한 행 개수, 회원아이디
 		
+		/*
+		 * int[] memberLC int[] memberLCCount //개설한 강좌에 회원들이 얼마나 수강했는지에 대한 행 개수, 회원아이디
+		 * int[] memberLJCount //수강한 강좌에 회원들이 얼마나 수강했는지에 대한 행 개수, 회원아이디
+		 */		
 		request.setAttribute("lcList", lcList);
 		request.setAttribute("ljList", ljList);
-		request.setAttribute("ljMemberList", ljMemberList);
 		request.getRequestDispatcher("/views/member/myLector.jsp").forward(request, response);
 	}
 
