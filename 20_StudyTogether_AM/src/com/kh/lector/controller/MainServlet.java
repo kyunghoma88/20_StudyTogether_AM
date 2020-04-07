@@ -17,7 +17,7 @@ import com.kh.lector.model.vo.Lector;
 /**
  * Servlet implementation class MainServlet
  */
-@WebServlet("/")
+@WebServlet("/main/main")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
