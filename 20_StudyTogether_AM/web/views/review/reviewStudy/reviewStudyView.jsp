@@ -74,6 +74,7 @@ table.revWrite td {
           		<td>★★★★★</td>
           	<%} %>
         </tr>
+           <tr><td></td><td></td></tr>
         <tr>
           <!--  <td style="text-align: center;">내용</td> -->
            <td colspan="2" style="height:auto"><%=revS.getReviewStuContent() %></td>

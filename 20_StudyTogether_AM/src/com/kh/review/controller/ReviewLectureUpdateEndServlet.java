@@ -44,7 +44,7 @@ public class ReviewLectureUpdateEndServlet extends HttpServlet {
 			String loc="/review/reviewLectureView?no="+request.getParameter("no");
 			
 			int result = new ReviewLectureService().updateReviewLecture(revL);
-			System.out.println(result);
+			//System.out.println(result);
 			if(result>0) {
 				msg="수정이 완료되었습니다";		
 			}else {
