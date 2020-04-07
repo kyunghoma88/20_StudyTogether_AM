@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.kh.member.model.vo.Member, com.kh.common.listener.SessionCheckListener" %>
+ <link rel = "shortcut icon" href="<%=request.getContextPath() %>/images/favicon.ico" type="image/x-icon">
 <%
    //Member m = (Member)request.getAttribute("loginedMember");
    Member loginMember = (Member)session.getAttribute("loginedMember");
-   
    
  //cookie값 받아오기
    Cookie[] cookies = request.getCookies();
