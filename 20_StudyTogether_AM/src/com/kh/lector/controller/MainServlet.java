@@ -1,28 +1,30 @@
-package com.kh.cart.controller;
+package com.kh.lector.controller;
 
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.cart.model.vo.Cart;
-import com.kh.cart.service.CartService;
+import com.google.gson.Gson;
+import com.kh.lector.model.service.LectorService;
+import com.kh.lector.model.vo.Lector;
 
 /**
- * Servlet implementation class CartViewServlet
+ * Servlet implementation class MainServlet
  */
-@WebServlet("/cart/cartView")
-public class CartViewServlet extends HttpServlet {
+@WebServlet("/main/main")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartViewServlet() {
+    public MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +34,12 @@ public class CartViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userId = request.getParameter("id");
-		List<Cart> list = new CartService().searchCart(userId);
 		
-		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
+		  List<Lector> list=new LectorService().lectorRank();
+		  
+		  response.setContentType("application/json;charset=UTF-8");
+		  new Gson().toJson(list,response.getWriter());
 	}
 
 	/**

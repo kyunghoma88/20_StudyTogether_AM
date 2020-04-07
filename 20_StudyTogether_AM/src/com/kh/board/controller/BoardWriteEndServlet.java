@@ -54,7 +54,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 				"UTF-8",new DefaultFileRenamePolicy());
 		//String category=mr.getParameter("category");
 		String category=mr.getParameter("category");
-		System.out.println("글쓰기 : "+category);
+		
 		fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
 		String title=mr.getParameter("title");
 		String write_text=mr.getParameter("write_text");
@@ -63,8 +63,6 @@ public class BoardWriteEndServlet extends HttpServlet {
 		for(int i=0;i<fileCnt;i++) {
 			oriFileName[i]=mr.getOriginalFileName("fileup"+(i+1));
 			renamedFileName[i]=mr.getFilesystemName("fileup"+(i+1));
-			System.out.println(oriFileName[i]);
-			System.out.println(renamedFileName[i]);
 		}
 		List<String> list = new ArrayList<>(Arrays.asList(oriFileName));
 		for(int i=0;i<list.size();i++) {
@@ -73,11 +71,9 @@ public class BoardWriteEndServlet extends HttpServlet {
 			}
 		}
 		String fileNames=String.join(",", list);
-		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
-		String id=mr.getParameter("id");
-		System.out.println("파일명 : "+fileNames);
 		
-		System.out.println("id : "+id);
+		String id=mr.getParameter("id");
+
 		Board b=new Board(0,0,1,id,title,write_text,category,fileNames,new Date(),0,0,0,0);
 		int result=new BoardService().insertBoard(b);
 		response.sendRedirect(request.getContextPath()+"/board/boardList?category="+category);

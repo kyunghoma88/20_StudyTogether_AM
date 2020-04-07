@@ -252,7 +252,7 @@
         <div class="row">
             <fieldset>
                 <legend>회원 탈퇴</legend>
-                <form method="POST" name="deleteForm" class="form-group">
+                <form method="POST" name="deleteForm" class="form-group" action="<%=request.getContextPath()%>/member/deleteMember">
                     <table class="table">
                         <tbody>
                         	<h5>가입시 입력한 비밀번호를 한번 더 입력하세요</h5>
@@ -263,20 +263,22 @@
                                     <label for="deletePwdCheck">비밀번호 확인</label>
                                 </td>
                                 <td>
-                                    <input type="password" name="deletePwdCheck" id="deletePwdCheck" value="">
+                                    	<input type="password" name="psw" id="deletePwdCheck">
+                                    
                                 </td>
                             </tr>
                             <tr>
 		                        <td colspan="2">
                             		<p>정말 탈퇴하시겠습니까?</p>
-      		                        <input type="button" class="btn btn-light col" id="deactiveMember" value="회원탈퇴">
+      		                        	<input type="submit" class="btn btn-light col" id="deactiveMember" value="회원탈퇴">
+      		                      
 		                        </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
                 <script>
-                	$("#deactiveMember").click(function(){
+                	<%-- $("#deactiveMember").click(function(){
                 		if($("#deletePwdCheck").val()!=null && $("#deletePwdCheck").val()=="<%=loginMember.getPassword()%>"){
                 			
                 			let newForm = document.createElement('form');
@@ -305,7 +307,7 @@
                 		} else {
                 			alert('비밀번호가 일치하지 않습니다.');
                 		}
-                	})
+                	}) --%>
                 </script>
             </fieldset>
         </div>
