@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.List,com.kh.study.model.vo.Study" %>
+<%@page import="java.util.List,com.kh.study.model.vo.Study, java.text.*" %>
 	
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyList.css" type="text/css"/>
@@ -12,6 +12,7 @@
 	String day=request.getParameter("day");
 	String type=request.getParameter("searchType");
 %>
+
 
 
 <section>
@@ -106,8 +107,9 @@
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
       <%-- 모집인원<%=s.getMaxMember() %>/0 명 --%></div>
-    모집마감&nbsp;~<%=s.getEndDate() %>까지
-    </div>
+    <%-- 모집마감&nbsp;~<%=s.getEndDate()%>까지 --%>
+    <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
+    모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div>
   </a>
   <%}
  }%>
