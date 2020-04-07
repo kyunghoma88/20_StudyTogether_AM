@@ -97,22 +97,13 @@ public class LookPasswordServlet extends HttpServlet {
 				msg2.addRecipient(Message.RecipientType.TO, toAddr);
 				msg2.setContent(content, "text/html; charset=UTF-8");
 				Transport.send(msg2);
-//				writer.println("<script>");
-//				writer.println("alert('Complete');location.href='index.jsp'");
-//				writer.println("</script>");
-//				writer.close();
 				msg = "전송성공. 이메일을 확인해주세요.";
 				loc = "/index.jsp";
 				request.setAttribute("msg", msg);
 				request.setAttribute("loc", loc);
 				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
-//				writer.println("<script>");
-//				writer.println("alert('exception');location.href='index.jsp'");
-//				writer.println("</script>");
-//				writer.close();
-				
+				e.printStackTrace();	
 			}
 
 		} else {
