@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //import org.apache.catalina.Session;
 
@@ -55,18 +56,20 @@ public class LookPasswordServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		
+		HttpSession session2 = request.getSession();
+		session2.setAttribute("id", id);
+		
 		String msg = "";
 		String loc = "";
 
 		Member m = new MemberService().lookforPassword(id, name, email);
 
-		PrintWriter writer = response.getWriter();
 
 		String host = "http://localhost:9090/20_StudyTogether_AM/";
 		String from = "studySemiproject@gmail.com";
 		String to = email;
 		String subject = "비밀번호 변경을 위한 인증 메일입니다.";
-		String content = "링크에 접속하여 비밀번호를 변경 해주세요." + "<a href =" + host + "/views/member/lookPassword.jsp?id=" + id
+		String content = "링크에 접속하여 비밀번호를 변경 해주세요." + "<a href =" + host + "/views/member/lookPassword.jsp"
 				+ ">비밀번호 변경하기</a>";
 
 		// SMTP 서버 정보를 설정
