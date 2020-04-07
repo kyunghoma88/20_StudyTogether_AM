@@ -1,6 +1,7 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -60,7 +61,12 @@ public class BoardListServlet extends HttpServlet {
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		//댓글 갯수 구하기
-		//List<Board> commentCount = new BoardService().commentCount();
+		List<Integer> commentCount = new ArrayList();
+		for(Board b : list) {
+			commentCount=new BoardService().commentCount(b.getBoard_no());
+			System.out.println(b);
+		}
+		
 		
 		String pageBar="";
 		if(pageNo>10) {
@@ -80,6 +86,7 @@ public class BoardListServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+")'>다음></a>";
 		}
 		request.setAttribute("category", category);
+		request.setAttribute("commentCount", commentCount);
 		request.setAttribute("list", list);
 		request.setAttribute("replyList", replyList);
 		request.setAttribute("pageBar", pageBar);

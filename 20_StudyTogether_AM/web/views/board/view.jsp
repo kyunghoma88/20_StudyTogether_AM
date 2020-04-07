@@ -84,7 +84,7 @@
 							</li>
 							<li style="float:right;">
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
-								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none;">삭제</a>
 							</li>
 							<%} %>
 						</ul>
@@ -102,7 +102,7 @@
 							<li><%=c.getComment_date() %></li>
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
 							<li style="float:right;">
-								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none;">삭제</a>
 							</li>
 							<%} %>
 						</ul>
