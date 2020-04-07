@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.review.model.vo.ReviewStudy;
+import com.kh.study.model.vo.Study;
 
 
 public class ReviewStudyDao {
@@ -154,6 +155,31 @@ public class ReviewStudyDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public String selectStudyCategory(Connection conn, String study) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=prop.getProperty("selectStudyCategory");
+		String category ="";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, study);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				category=rs.getString("STUDY_CATEGORY");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return category;
 	}
 
 }

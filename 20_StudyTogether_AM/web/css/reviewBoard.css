@@ -56,7 +56,7 @@ table.revWrite{
 table.revWrite tr {
         width: 100px;
         padding: 10px;
-        font-weight: bold;
+       /*  font-weight: bold; */
         vertical-align: top;
         border-bottom: 1px solid #ccc;
 }
@@ -70,7 +70,7 @@ table.revWrite td {
 table.revWrite select {
         width: 300px;
         padding: 8px;
-        border: 1px solid #ccc;
+       /*  border: 1px solid #ccc; */
         border-radius: 4px;
         resize: vertical;
 }
@@ -96,9 +96,7 @@ div#revWBtn{
     border-radius: 4px;
     cursor: pointer;
     display: inline-block; 
-    margin-: 0px auto; 
-    width: 10%;
-    align: center;
+    width: 10%;  
 }
   #star_grade a{
     text-decoration: none;

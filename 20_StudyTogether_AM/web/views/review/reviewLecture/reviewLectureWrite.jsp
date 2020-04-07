@@ -22,9 +22,10 @@
                     <option value="강좌 선택">강좌 선택</option>
                     <%for(Lector lec : list){ %>
                    	 <option value="<%=lec.getLectorTitle()%>"><%=lec.getLectorTitle()%></option> 
-                </select>
-                	<input type="hidden" name="field" value="<%=lec.getLectorCategory()%>">	
                     <%} %>
+                </select>
+              
+                  
             </td>
         </tr>
         <tr>

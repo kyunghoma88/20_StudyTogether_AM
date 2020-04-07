@@ -32,7 +32,7 @@ public class ReviewLectureWriteEndServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String writer = request.getParameter("writer");
 		String lecture = request.getParameter("allLecture");
-		String category = request.getParameter("field"); 
+		String category = new ReviewLectureService().selectLectureCategory(lecture); 
 		int star = Integer.parseInt(request.getParameter("starCnt"));
 		System.out.println("star : " + star);
 		

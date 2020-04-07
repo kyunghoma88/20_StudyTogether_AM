@@ -22,14 +22,15 @@
             <td>
                 <select name="allStudy" > 
                     <option value="스터디 선택">스터디 선택</option>
-                    <%for(Study s : list){ %>
-                   	 <option value="<%=s.getStudyName()%>"><%=s.getStudyName()%></option>	 
-                </select>
-       				<input type="hidden" name="field" value="<%=s.getStudyCategory()%>">	                
-                <%} %>
+                   <%for(Study s : list){ %>
+                   	 <option value="<%=s.getStudyName()%>"><%=s.getStudyName()%></option> 	 
+                   <%} %> 
+                 </select>               
             </td>
         </tr>
- 	   
+ 	    <tr>
+
+        </tr>
         <tr>
             <td>만족도</td>
             <input type="hidden" id="starCnt" name="starCnt">
@@ -59,6 +60,22 @@
 
 </form>
       <script language=javascript>
+    <%--   $(function(){
+    	  var arr = new Array();
+    	  var cnt=0;
+    	  <%for(Study s : list){ %>
+    	  	var option=$("<option value='<%=s.getStudyName()%>'><%=s.getStudyName()%>");
+        	 //$("select").append(option);
+        	//console.log(document.category);
+        	 var f=document.studyWrite;
+        	 f.field.value="<%=s.getStudyCategory()%>";
+        	arr[cnt]=f.field.value;
+        	 cnt++;
+       	  <%} %> 
+        	 
+       	  console.log(arr);
+      });
+    	 --%>
           var starCnt=0;
           $('#star_grade a').click(function(){
               $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
