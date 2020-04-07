@@ -26,17 +26,14 @@ first
 
 /* 이미지리스트간 속성 */
 .list_detail{
-	border-radius:20px;
-	color:black;
 	text-align:center;
     display: inline-block;
     width: 220px;
     height: 260px;
+	border: 1px solid;
     margin-left: 130px;
     margin-bottom: 50px;
     opacity: 0;
-    text-decoration:none;
-    background-color:grey;
    /* 	float:left; */
 }  
 

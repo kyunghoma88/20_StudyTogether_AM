@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
 <!-- header페이지 불러오기 -->
 <%@ include file="/views/common/header.jsp" %>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
 
 <div id="myCarousel" class="carousel slide" style="height:500px;" data-ride="carousel">
@@ -77,7 +78,7 @@
   </div>
 <!-- 동영상 강의 -->
   <div class="parent">
-    <div class="first">first</div>
+    <div id="first">first</div>
     <div class="second">second</div>
     <div class="third">third</div>
 </div>
@@ -104,13 +105,14 @@
         setInterval(function(){tick()},3000);
 
         
-     <%--    $(function(){
+         $(function(){
         	$.ajax({
         		url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
         		type:"post",
         		success:function(data){
         			console.log(data);
+        			
         		},
         		error:function(request,status,error){
         			if(request.status==404){
@@ -119,7 +121,7 @@
         		}
         		
         	})
-        }) --%>
+        }) 
         
         
 </script>
