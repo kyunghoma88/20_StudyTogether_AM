@@ -33,10 +33,12 @@ public class BoardUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("no"));
 		Board b=new BoardService().boardView(no);
+		String category=request.getParameter("category");
 		
 		String[] files=b.getFile_upload().split(",");
 		request.setAttribute("board", b);
 		request.setAttribute("files", files);
+		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/views/board/boardUpdate.jsp")
 		.forward(request, response);

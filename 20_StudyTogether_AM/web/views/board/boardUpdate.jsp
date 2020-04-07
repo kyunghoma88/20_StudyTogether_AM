@@ -16,6 +16,10 @@
                 method="post" enctype="multipart/form-data" onsubmit="return valiwrite();">
                 <input type="hidden" name="no" value="<%=b.getBoard_no()%>"/>
                 <input type="hidden" name="fileCnt"/>
+                <input type="hidden" name="category" value="<%=category%>"/>
+                <%if(loginMember!=null) {%>
+                <input type="hidden" name="id" value="<%=loginMember.getUserId()%>"/>
+                <%} %>
             <div class="write_title">
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>
