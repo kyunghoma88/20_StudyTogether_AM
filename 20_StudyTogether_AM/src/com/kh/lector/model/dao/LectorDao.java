@@ -625,7 +625,7 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 				Lector s =new Lector();
 			
 				s.setLectorTitle(rs.getString("LECTOR_TITLE"));
-		
+				s.setLectorCategory(rs.getString("LECTOR_CATEGORY"));
 				list.add(s);
 			}
 		}catch(SQLException e) {

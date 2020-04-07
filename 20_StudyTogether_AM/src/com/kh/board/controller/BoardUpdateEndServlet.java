@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -70,28 +68,22 @@ public class BoardUpdateEndServlet extends HttpServlet {
 		System.out.println("파일명 : "+fileNames);
 		
 
+		Board b = new Board(no, 0, 0, id, title, write_text, category, fileNames, new Date(), 0, 0, 0, 0);
 		// upfile새로 추가한 파일이 있으면, 없으면
 		// 있으면 orifile삭제, 없으면 업로드 되고 끝!~
-//		File f = mr.getFile("upfile");// 클라이언트가 넘긴 파일이 있는지 없는지 확인
-//		if (f != null && f.length() > 0) {// 파일이 있을경우!
-//			File deleteFile = new File(path + mr.getParameter("oriFile"));
-//			boolean flag = deleteFile.delete();
-//			System.out.println(flag ? "파일삭제 성공" : "파일삭제실패");
-//		} else {
-//			n.setFilePath(mr.getParameter("oriFile"));
-//		}
-//		
-//		String msg = "";
-//		String loc = "/notice/noticeView?no=" + mr.getParameter("no");
-//		if (result > 0) {
-//			msg = "수정이 완료되었습니다.";
-//		} else {
-//			msg = "수정을 실패하였습니다.";
-//		}
-//
-//		Board b = new Board(no, 0, 0, id, title, write_text, category, fileNames, new Date(), 0, 0, 0);
+		File f = null;// 클라이언트가 넘긴 파일이 있는지 없는지 확인
+		for(int i=0;i<fileCnt;i++) {
+			f = mr.getFile("fileup"+(i+1));
+			if (f != null && f.length() > 0) {// 파일이 있을경우!
+				File deleteFile = new File(path + mr.getParameter("oriFile"+(i+1)));
+				boolean flag = deleteFile.delete();
+				System.out.println(flag ? "파일삭제 성공" : "파일삭제실패");
+			} else {
+				b.setFile_upload(fileNames);
+			}
+		}
+		int result = new BoardService().updateBoard(b);
 
-		//int result = new BoardService().updateBoard(no);
 		response.sendRedirect(request.getContextPath() + "/board/boardList");
 	}
 
