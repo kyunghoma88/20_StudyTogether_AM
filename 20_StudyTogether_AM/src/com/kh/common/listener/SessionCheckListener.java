@@ -27,7 +27,7 @@ public class SessionCheckListener implements HttpSessionListener, HttpSessionAtt
      */
     public void sessionCreated(HttpSessionEvent arg0)  { 
          // TODO Auto-generated method stub
-    	System.out.println("세션생성");
+    	//System.out.println("세션생성");
     	lifeCount++;
     }
 
@@ -36,7 +36,7 @@ public class SessionCheckListener implements HttpSessionListener, HttpSessionAtt
      */
     public void sessionDestroyed(HttpSessionEvent arg0)  { 
          // TODO Auto-generated method stub
-    	System.out.println("세션삭제");
+    	//System.out.println("세션삭제");
     	lifeCount--;
     }
 
@@ -45,7 +45,7 @@ public class SessionCheckListener implements HttpSessionListener, HttpSessionAtt
      */
     public void attributeAdded(HttpSessionBindingEvent arg0)  { 
          // TODO Auto-generated method stub
-    	System.out.println("사용자 로그인");
+    	//System.out.println("사용자 로그인");
     	sessionCount++;
     }
 
@@ -54,7 +54,7 @@ public class SessionCheckListener implements HttpSessionListener, HttpSessionAtt
      */
     public void attributeRemoved(HttpSessionBindingEvent arg0)  { 
          // TODO Auto-generated method stub
-    	System.out.println("사용자 로그아웃");
+    	//System.out.println("사용자 로그아웃");
     	sessionCount--;
     }
 

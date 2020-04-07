@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			//cookie로 아이디 저장 유지하기
 			String saveId = request.getParameter("saveId");
 			
-			System.out.println("saveId : " + saveId);
+		//	System.out.println("saveId : " + saveId);
 			
 			if(saveId!=null) {
 				//아이디를 쿠키에 저장하게함.
@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 	request.setAttribute("msg", msg);
 	request.setAttribute("loc", loc);
 	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-	response.sendRedirect(request.getContextPath());
+	//response.sendRedirect(request.getContextPath());
 	
 	}
 	
