@@ -199,7 +199,6 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("memberDelete");
 		int result=0;
-		System.out.println(id+","+password);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//memberDelete=DELETE FROM MEMBER WHERE USER_ID=? AND PASSWORD=?

@@ -5,16 +5,16 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" style="height:500px;" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" alt="Seoul">
+      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" height="500px" alt="Seoul">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100" alt="Los Angeles">
+      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100"  height="500px" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-3.jpg" class="d-block w-100" alt="China">
+      <img src="<%=request.getContextPath() %>/images/library_third.jpg" class="d-block w-100"  height="500px" alt="China">
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

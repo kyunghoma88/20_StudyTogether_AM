@@ -35,7 +35,6 @@ public class CartAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("CartAddServlet호출");
 		String userId = request.getParameter("userId");
 		int lectorNo = Integer.parseInt(request.getParameter("pNo"));
 		

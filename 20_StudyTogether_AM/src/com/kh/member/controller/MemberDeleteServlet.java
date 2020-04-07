@@ -12,7 +12,7 @@ import com.kh.member.model.service.MemberService;
 /**
  * Servlet implementation class MemberDeleteServlet
  */
-@WebServlet("/member/deleteMember")
+@WebServlet(name="MemberDeleteServlet", urlPatterns = "/member/deleteMember")
 public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,12 +29,10 @@ public class MemberDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String id=request.getParameter("id");
-		String password=request.getParameter("pw");
-		System.out.println(id+", "+password);
+		String id=request.getParameter("dId");
+		String password = request.getParameter("psw"); //사용자가 입력한 비밀번호
 		
 		int result=new MemberService().memberDelete(id,password);
-		System.out.println(result!=0?"탈퇴성공":"탈퇴실패");
 		
 		String msg="";
 		String loc="/";
