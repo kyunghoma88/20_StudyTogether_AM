@@ -39,12 +39,12 @@
                       <td>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio<%=l.getLectorNo()%>" value="Y">허용
+                                <input type="radio" class="form-check-input" id="optradio<%=l.getLectorNo()%>" name="optradio" value="Y">허용
                             </label>
                         </div>
                         <div class="form-check-inline">
 	                        <label class="form-check-label">
-	                          <input type="radio" class="form-check-input" name="optradio<%=l.getLectorNo()%>" value="N">거부
+	                          <input type="radio" class="form-check-input" id="optradio<%=l.getLectorNo()%>" name="optradio" value="N">거부
 	                        </label>
                         </div>
                       </td>
@@ -63,20 +63,20 @@
 				var str="".concat(String(no));
 				console.log(str);
 				console.log('lec'.concat(str));
-				let id='lec'.concat(str));
+				let id='lec'.concat(str);
 				let form=document.getElementById(id);
 				console.log(form);
-				let opt="optradio".concat(str));
+				let opt="optradio".concat(str);
 				console.log(opt);
-				console.log(document.getElementsByName(opt)[0].value);
-				let val=document.getElementsByName(opt)[0].value;
+				console.log(document.getElementById(opt).value);
+				let val=document.getElementById(opt).value;
 				var check=false;
 				if(val=='Y'){
-					check=confirm("강좌 개설을 승인하시겠습니까?");
+					check=confirm(str+"번 강좌 개설을 승인하시겠습니까?");
 					if(check) document.getElementById(id).submit();
 					else return;
 				}else if(val='N'){
-					check=confirm("번 강좌 개설을 거절하시겠습니까?");
+					check=confirm(str+"번 강좌 개설을 거절하시겠습니까?");
 					if(check) document.getElementById(id).submit();
 					else return;
 				}

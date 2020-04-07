@@ -23,4 +23,29 @@ public class AdminService {
 		return list;
 	}
 
+	public int updateGrantLector(String lectorNo) {
+		Connection conn = getConnection();
+		int result=dao.updateGrantLector(conn,lectorNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int updateRejectLector(String lectorNo) {
+		Connection conn = getConnection();
+		int result=dao.updateRejectLector(conn,lectorNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public List<Lector> selectLectorM() {
+		Connection conn = getConnection();
+		List<Lector> list= dao.selectLectorM(conn);
+		close(conn);
+		return list;
+	}
+
 }

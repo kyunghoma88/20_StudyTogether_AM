@@ -36,8 +36,11 @@ public class AdminGrantLectorServlet extends HttpServlet {
 		System.out.println("강좌관리서블릿");
 		
 		List<Lector> list=new AdminService().selectLectorA();
-		request.setAttribute("lectorGrantList", list);
+		for(Lector l:list) {
+			System.out.println(l);
+		}
 		
+		request.setAttribute("lectorGrantList", list);
 		request.getRequestDispatcher("/views/admin/adminGrantLector.jsp").forward(request, response);
 	}
 
