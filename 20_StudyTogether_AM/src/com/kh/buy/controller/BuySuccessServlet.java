@@ -66,7 +66,7 @@ public class BuySuccessServlet extends HttpServlet {
 			
 		}
 		
-		request.getRequestDispatcher("/member/memberView").forward(request, response);
+		request.getRequestDispatcher("/member/memberLector").forward(request, response);
 	}
 
 	/**
