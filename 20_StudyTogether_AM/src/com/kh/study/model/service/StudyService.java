@@ -70,7 +70,6 @@ public class StudyService {
 		close(conn);
 		return list;
 	}
-
 	public int updateStudy(Study s) {
 			Connection conn=getConnection();
 			int result=dao.updateStudy(conn,s);
@@ -89,15 +88,10 @@ public class StudyService {
 		return result;
 	}
 
-
 	public List<StudyJoin> searchStudyJoin(int no) {
 		Connection conn=getConnection();
 		List<StudyJoin> slist=dao.searchStudyJoin(conn,no);
 		close(conn);
 		return slist;
 	}
-
-
-
-	
 }

@@ -8,10 +8,13 @@ import static com.kh.common.JDBCTemplate.rollback;//static  import!!!!!!!!!
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.join.model.vo.LectorJoin;
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.dao.LectorDao;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
 import com.kh.member.model.vo.Member;
+import com.kh.study.model.vo.Study;
 
 public class LectorService {
 
@@ -186,7 +189,21 @@ public class LectorService {
 		close(conn);
 		return list;
 	}
+
+	public List<LectorJoin> selectLectorJoin(int lectorNo) {
+		Connection conn=getConnection();
+		List<LectorJoin> list=dao.selectLectorJoin(conn,lectorNo);
+		close(conn);
+		return list;
+	}
+
+	public LectorJoin searchLectorJoin(int lectorNo, String userId) {
+		Connection conn=getConnection();
+		LectorJoin lj=dao.searchLectorJoin(conn,lectorNo,userId);
+		close(conn);
+		return lj;
+	}
 	
-
-
+	
+	
 }

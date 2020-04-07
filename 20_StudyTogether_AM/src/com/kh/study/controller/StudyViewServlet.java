@@ -40,6 +40,7 @@ public class StudyViewServlet extends HttpServlet {
 		/*
 		 * System.out.println(no); System.out.println(s.getEndDate());
 		 */
+		
 		List<StudyJoin> sList=new StudyService().searchStudyJoin(no);
 		
 		

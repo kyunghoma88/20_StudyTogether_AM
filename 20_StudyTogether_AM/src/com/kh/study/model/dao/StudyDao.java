@@ -300,7 +300,8 @@ public class StudyDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1,no);
 			rs=pstmt.executeQuery();
-		while(rs.next()) {
+		
+			while(rs.next()) {
 			StudyJoin sj=new StudyJoin();
 				sj.setStudyNo(rs.getInt("STUDY_NO"));
 				sj.setUserId(rs.getString("USER_ID"));
