@@ -36,7 +36,7 @@ public class ReviewLectureUpdateEndServlet extends HttpServlet {
  		String allLecture = request.getParameter("allLecture");
  		String field = request.getParameter("field");
  		String content = request.getParameter("content");
- 		int star = Integer.parseInt(request.getParameter("star"));
+ 		int star = Integer.parseInt(request.getParameter("starCnt"));
 
 		 ReviewLecture revL = new ReviewLecture(no,writer,allLecture,field,content,star,null);
 		

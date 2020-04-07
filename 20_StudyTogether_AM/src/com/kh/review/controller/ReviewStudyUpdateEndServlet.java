@@ -44,8 +44,8 @@ public class ReviewStudyUpdateEndServlet extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String allStudy = request.getParameter("allStudy");
 		String field = request.getParameter("field");
+		int star = Integer.parseInt(request.getParameter("starCnt"));
 		String content = request.getParameter("content");
-		int star = Integer.parseInt(request.getParameter("star"));
 		
 		System.out.println("번호 : " + no);
 		System.out.println("작성자 : " + writer);
