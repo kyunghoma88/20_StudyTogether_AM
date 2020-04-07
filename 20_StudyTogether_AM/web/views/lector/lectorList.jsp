@@ -56,7 +56,7 @@
 	<%for(Lector lector:list){ %>
   		<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
     <div class="list_detail">
-      <h4><%=lector.getLectorCategory() %></h4>
+      <h4 ><%=lector.getLectorCategory() %></h4>
       <%if(lector.getLectorOriginalImg()!=null){ %>
      <div>
      <!-- 리네임된 파일업로드  -->
