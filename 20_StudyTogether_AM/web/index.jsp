@@ -8,13 +8,13 @@
 <div id="myCarousel" class="carousel slide" style="height:500px;" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" height="500px" alt="Seoul">
+      <img src="<%=request.getContextPath() %>/images/main.JPG" class="d-block w-100" height="600px" alt="Seoul">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100"  height="500px" alt="Los Angeles">
+      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100"  height="600px" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/library_third.jpg" class="d-block w-100"  height="500px" alt="China">
+      <img src="<%=request.getContextPath() %>/images/library_third.jpg" class="d-block w-100"  height="600px" alt="China">
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -94,9 +94,7 @@
         var container=document.getElementById("clock");
         var date=new Date();
        container.innerHTML="현재 시간 "+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds()+" :   "+date.getMilliseconds();
-   
     var min=new Date().getMinutes();//현재시간의 분
-
 },60);
 // 게시판롤링
         function tick(){
