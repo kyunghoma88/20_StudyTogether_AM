@@ -68,8 +68,8 @@
 </div>
   </div>
   <div class="container1">
-    <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList%>'">더 많은 후기 보러가기</button>
-
+    <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList'">더 많은 후기 보러가기</button>
+</div>
   <div id="hr">
     <i>행복은 성적순이 아닐지 몰라도 성공은 성적순이다.</i></div>
   <div id="hr2">
@@ -81,6 +81,7 @@
     <div class="second">second</div>
     <div class="third">third</div>
 </div>
+
 <div class="container1">
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'">더 많은 강좌 보러가기</button>
 </div>
@@ -103,7 +104,7 @@
         setInterval(function(){tick()},3000);
 
         
-        $(function(){
+     <%--    $(function(){
         	$.ajax({
         		url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
@@ -118,7 +119,7 @@
         		}
         		
         	})
-        })
+        }) --%>
         
         
 </script>
