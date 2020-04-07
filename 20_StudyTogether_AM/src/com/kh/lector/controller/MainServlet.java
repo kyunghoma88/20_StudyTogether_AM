@@ -1,27 +1,30 @@
-package com.kh.board.controller;
+package com.kh.lector.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
+import com.google.gson.Gson;
+import com.kh.lector.model.service.LectorService;
+import com.kh.lector.model.vo.Lector;
 
 /**
- * Servlet implementation class BoardUpdateServlet
+ * Servlet implementation class MainServlet
  */
-@WebServlet("/board/update")
-public class BoardUpdateServlet extends HttpServlet {
+@WebServlet("/main/main")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateServlet() {
+    public MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +34,12 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int no=Integer.parseInt(request.getParameter("no"));
-		Board b=new BoardService().boardView(no);
-		String category=request.getParameter("category");
 		
-		String[] files=b.getFile_upload().split(",");
-		request.setAttribute("board", b);
-		request.setAttribute("files", files);
-		request.setAttribute("category", category);
 		
-		request.getRequestDispatcher("/views/board/boardUpdate.jsp")
-		.forward(request, response);
+		  List<Lector> list=new LectorService().lectorRank();
+		  
+		  response.setContentType("application/json;charset=UTF-8");
+		  new Gson().toJson(list,response.getWriter());
 	}
 
 	/**

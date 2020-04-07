@@ -68,9 +68,8 @@
 </div>
   </div>
   <div class="container1">
-    <button type="button" class="btn btn-danger" onClick="후기게시판">더 많은 후기 보러가기</button>
-  </div>
-
+    <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList'">더 많은 후기 보러가기</button>
+</div>
   <div id="hr">
     <i>행복은 성적순이 아닐지 몰라도 성공은 성적순이다.</i></div>
   <div id="hr2">
@@ -82,6 +81,7 @@
     <div class="second">second</div>
     <div class="third">third</div>
 </div>
+
 <div class="container1">
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'">더 많은 강좌 보러가기</button>
 </div>
@@ -97,13 +97,31 @@
     var min=new Date().getMinutes();//현재시간의 분
 
 },6);
-
 // 게시판롤링
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});
         }
         setInterval(function(){tick()},3000);
 
+        
+     <%--    $(function(){
+        	$.ajax({
+        		url:"<%=request.getContextPath()%>/main/main",
+        		datatype:"json",
+        		type:"post",
+        		success:function(data){
+        			console.log(data);
+        		},
+        		error:function(request,status,error){
+        			if(request.status==404){
+        				
+        			}
+        		}
+        		
+        	})
+        }) --%>
+        
+        
 </script>
 <!-- footer페이지 불러오기 -->
 <%@ include file="/views/common/footer.jsp" %>

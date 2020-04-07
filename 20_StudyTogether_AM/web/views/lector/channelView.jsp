@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 	
 <%@page import="com.kh.lector.model.vo.Lector,java.util.List,com.kh.lector.model.vo.LectorChannel" %>
-///자식강좌 View!
 <%
 	List<LectorChannel> clist=(List)request.getAttribute("clist");
 	int cPage=(int)request.getAttribute("cPage");
@@ -14,11 +13,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lectorWatch.css" type="text/css"/>
 
 <section>
+<%if(loginMember!=null && loginMember.getUserId().equals("admin")||loginMember.getUserId().equals(l.getLectorWriter())){ %>
 <div class="container" >
     <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">자식강좌 추가</a>
     <a href="<%=request.getContextPath()%>/lector/ChannelUpdate?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 수정</a>
     <a href="<%=request.getContextPath() %>/lector/ChannelDelete?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 삭제</a><!--관리자만 삭제  -->
 </div>
+<%} %>
 
 <!--분기처리해서 강좌개설자&admin에게만 보일수 있는 강좌추가,수정,(삭제는 관리자페이지에서만가능) 버튼  -->
   
@@ -39,7 +40,6 @@
     <div id="video-inform">
     	<%=lc.getChannelDetail() %>
     </div>
-   	 <button type="button" class="basket" onclick="apply();">수강신청</button>
  </div>
 	
 <p id="list">
