@@ -40,8 +40,9 @@ public class ReviewStudyWriteEndServlet extends HttpServlet {
 	
 		String writer = request.getParameter("writer");
 		String study = request.getParameter("allStudy");
-		String category = request.getParameter("field");
 		
+		String category = new ReviewStudyService().selectStudyCategory(study);
+//		System.out.println(category);
 		int star = Integer.parseInt(request.getParameter("starCnt"));
 		//System.out.println("star : " + star);
 		String content = request.getParameter("content");

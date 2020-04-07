@@ -77,7 +77,7 @@ public class LectorDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			if(rs.next())result=rs.getInt(1);//카운트행
+			if(rs.next())result=rs.getInt(1);			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -86,7 +86,29 @@ public class LectorDao {
 		}
 		return result;
 	}
+//	
+//	public int noticeCount(Connection conn) {
+//		PreparedStatement pstmt=null;
+//		ResultSet rs=null;
+//		int result=0;
+//		String sql=prop.getProperty("noticeCount");
+//		try {
+//			pstmt=conn.prepareStatement(sql);
+//			rs=pstmt.executeQuery();
+//			if(rs.next())result=rs.getInt(1);
+//						
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		return result;
+//	}
 
+	
+	
+	
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {
 		PreparedStatement pstmt=null;
@@ -552,7 +574,7 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 	public int lectorCount(Connection conn, String type, String key) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql=prop.getProperty("lectorCount");
+		String sql=prop.getProperty("lectorCount2");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);

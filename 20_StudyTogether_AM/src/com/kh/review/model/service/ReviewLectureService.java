@@ -64,4 +64,11 @@ public class ReviewLectureService {
 		return result;
 	}
 
+	public String selectLectureCategory(String lecture) {
+		Connection conn = getConnection();
+		String category = dao.selectLectureCategory(conn,lecture);
+		close(conn);
+		return category;
+	}
+
 }

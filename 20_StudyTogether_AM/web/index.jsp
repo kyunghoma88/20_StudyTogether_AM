@@ -97,7 +97,7 @@
    
     var min=new Date().getMinutes();//현재시간의 분
 
-},6);
+},60);
 // 게시판롤링
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});

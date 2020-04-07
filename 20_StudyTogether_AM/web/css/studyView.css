@@ -1,3 +1,5 @@
+
+
 /* 강좌스터디 시청 */
 #intro{
     padding-top:100px;
@@ -54,9 +56,13 @@
  }
  #detail{
    padding-top: 50px;
-   font-size:20px;
-   font-weight:bolder;
+   font-size:25px;;
  }
+ 
+
+.video-inform{
+ font-size:50px;
+ line-height:80px;}
  
  .container{
   margin-bottom:0px;

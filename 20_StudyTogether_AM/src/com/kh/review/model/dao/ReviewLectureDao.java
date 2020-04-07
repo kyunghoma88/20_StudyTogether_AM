@@ -162,4 +162,28 @@ private Properties prop = new Properties();
 		}return result;
 	}
 
+	public String selectLectureCategory(Connection conn, String lecture) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=prop.getProperty("selectLectureCategory");
+		String category ="";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, lecture);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				category=rs.getString("LECTOR_CATEGORY");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return category;
+	}
+
 }

@@ -1,4 +1,5 @@
 #revWTitle{
+	 font-family: Sunflower;
 	text-align:center;
 	height:50px;
 	border:1px solid #ccc;
@@ -16,7 +17,7 @@ table.revWrite{
 table.revWrite tr {
         width: 100px;
         padding: 10px;
-        font-weight: bold;
+        /* font-weight: bold; */
         vertical-align: top;
         border-bottom: 1px solid #ccc;
 }

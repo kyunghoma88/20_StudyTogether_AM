@@ -6,8 +6,11 @@
 	List<Lector> lcList = (List<Lector>)request.getAttribute("lcList");
 	List<Lector> ljList = (List<Lector>)request.getAttribute("ljList");
 	
+<<<<<<< HEAD
 	DecimalFormat formatter=new DecimalFormat();
 
+=======
+>>>>>>> branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git
 %>
 
 <div class="row">

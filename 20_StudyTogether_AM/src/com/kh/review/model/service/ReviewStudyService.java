@@ -63,4 +63,11 @@ public class ReviewStudyService {
 		return result;
 	}
 
+	public String selectStudyCategory(String study) {
+		Connection conn = getConnection();
+		String category = dao.selectStudyCategory(conn,study);
+		close(conn);
+		return category;
+	}
+
 }
