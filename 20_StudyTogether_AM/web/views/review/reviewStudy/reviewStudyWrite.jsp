@@ -28,7 +28,6 @@
                 </select>
             </td>
         </tr>
-        
         <tr>
             <td>만족도</td>
             <input type="hidden" id="starCnt" name="starCnt">

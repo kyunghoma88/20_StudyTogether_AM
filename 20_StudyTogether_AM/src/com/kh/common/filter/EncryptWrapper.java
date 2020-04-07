@@ -18,11 +18,11 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	public String getParameter(String name) {
 		String value="";
 		if(name!=null && (name.equals("psw"))||(name.contentEquals("psw_new"))||(name.equals("jPsw"))) {
-			System.out.println(name.equals("jPsw")?"회원 비밀번호 입력됨":"회원정보 필터에안옴");
+			//System.out.println(name.equals("jPsw")?"회원 비밀번호 입력됨":"회원정보 필터에안옴");
 			//암호화 처리하여 값 전송하기
-			System.out.println("암호화전 : "+super.getParameter(name));
+			//System.out.println("암호화전 : "+super.getParameter(name));
 			value=getSha512(super.getParameter(name));
-			System.out.println("암호화 후 : "+value);
+			//System.out.println("암호화 후 : "+value);
 		}else {
 			value=super.getParameter(name);
 		}
