@@ -6,10 +6,8 @@
 <%
 	
 	Lector l=(Lector)request.getAttribute("l");
-	
 	LectorJoin lj=(LectorJoin)request.getAttribute("lj");
- List<LectorJoin> list=(List)request.getAttribute("list");
-	
+	 List<LectorJoin> list=(List)request.getAttribute("list");
  	List<LectorChannel> clist=(List)request.getAttribute("clist");
  	int cPage=(int)request.getAttribute("cPage");
 %>
@@ -69,16 +67,19 @@ background-color:#ffc107;
 
 <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
 <div class="container">
-<%if(!clist.isEmpty()){ %>
+<%if(lj==null){ %>
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
-    <%for(LectorChannel lc:clist){ %>
+
+	  <%}  else if(!clist.isEmpty()&&lj!=null){
+		  for(LectorChannel lc:clist){ %>
     <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-  <%}
-	}%>
+  		<%}
+  	}%>
+
+	
   </div>
 </div>
-
 
 <%if(!clist.isEmpty()){ %>
  	<ul class="pagination">

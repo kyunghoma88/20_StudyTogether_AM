@@ -9,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.join.model.vo.LectorJoin;
 import com.kh.lector.model.service.LectorService;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class LectorWatch
@@ -34,10 +38,18 @@ public class LectorViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("pNo"));
 		System.out.println("viewNo"+no);
+
+		HttpSession session=request.getSession();
 		
-		///////////////LectorChannel lc=new LectorService().selectChannel(no);
-		//lectorChannelRefNo를 이용하여 엄마강좌의 자기자식만 출력할것임
+		String loginId=((Member)session.getAttribute("loginedMember")).getUserId();
+		//System.out.println("로그인아이디"+loginId);
 		
+		LectorJoin lj=new LectorService().searchLectorJoin(no,loginId);
+		//로그인한 사람이 결제를 했는지 조회하는 메서드
+		System.out.println("로그인한id :"+loginId);
+		System.out.println("강좌번호 :"+no);
+		System.out.println(lj);
+	
 		//channel페이징처리시작
 		/*	1.	cPage : 현재 페이지를 의미(1페이지를 보고있는지 2페이지를 보고있는지)
 		2.	numPerPage : 한 개 페이지에 출력될 데이터 수
@@ -104,6 +116,7 @@ public class LectorViewServlet extends HttpServlet {
 			request.setAttribute("loc", "lector/lectorList");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
+			request.setAttribute("lj", lj);
 			request.setAttribute("clist", clist);
 			request.setAttribute("l", l);
 			request.setAttribute("RefTotalChannel", RefTotalChannel);//엄마강좌의 자식들갯수
