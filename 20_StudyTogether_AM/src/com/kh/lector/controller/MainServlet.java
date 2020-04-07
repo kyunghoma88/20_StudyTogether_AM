@@ -37,7 +37,6 @@ public class MainServlet extends HttpServlet {
 		
 		
 		  List<Lector> list=new LectorService().lectorRank();
-		  System.out.println("리스트받아와라ㄴ"+list);
 		  
 		  response.setContentType("application/json;charset=UTF-8");
 		  new Gson().toJson(list,response.getWriter());

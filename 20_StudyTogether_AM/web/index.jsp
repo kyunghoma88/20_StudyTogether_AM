@@ -68,8 +68,7 @@
 </div>
   </div>
   <div class="container1">
-    <button type="button" class="btn btn-danger" onClick="후기게시판">더 많은 후기 보러가기</button>
-  </div>
+    <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList%>'">더 많은 후기 보러가기</button>
 
   <div id="hr">
     <i>행복은 성적순이 아닐지 몰라도 성공은 성적순이다.</i></div>
