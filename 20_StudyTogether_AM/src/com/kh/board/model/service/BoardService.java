@@ -165,6 +165,17 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	public int deleteComment(int no) {
+		Connection conn=getConnection();
+		int result=dao.deleteComment(conn, no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
 
 
