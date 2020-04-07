@@ -120,7 +120,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public void updateBoard(int no) {
+	public int updateBoard(int no) {
 		Connection conn=getConnection();
 		int result=dao.updateBoard(conn, no);
 		if(result>0) {
@@ -129,6 +129,7 @@ public class BoardService {
 			rollback(conn);
 		}
 		close(conn);
+		return result;
 	}
 	public int deleteBoard(int no) {
 		Connection conn=getConnection();

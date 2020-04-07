@@ -39,17 +39,17 @@
                       <td>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio" value="Y">허용
+                                <input type="radio" class="form-check-input" name="optradio<%=l.getLectorNo()%>" value="Y">허용
                             </label>
                         </div>
                         <div class="form-check-inline">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio" value="N">거부
-                        </label>
+	                        <label class="form-check-label">
+	                          <input type="radio" class="form-check-input" name="optradio<%=l.getLectorNo()%>" value="N">거부
+	                        </label>
                         </div>
                       </td>
                       <td>
-                          <button type="button" class="btn btn-primary btn-sm" onclick="confirmGrant(this);">전송</button>
+                          <button type="button" class="btn btn-primary btn-sm" onclick="confirmGrant(<%=l.getLectorNo()%>);">전송</button>
                       </td>
                   </tr>      
 		          </form>
@@ -58,20 +58,26 @@
               </table>
         </div>
 		<script>
-			function confirmGrant(){
-				console.log(this);
-				console.log(this.optradio.value);
-				console.log(this.lecNo.value);
+			function confirmGrant(no){
 				
-				var opt=this.optradio.value;
+				var str="".concat(String(no));
+				console.log(str);
+				console.log('lec'.concat(str));
+				let id='lec'.concat(str));
+				let form=document.getElementById(id);
+				console.log(form);
+				let opt="optradio".concat(str));
+				console.log(opt);
+				console.log(document.getElementsByName(opt)[0].value);
+				let val=document.getElementsByName(opt)[0].value;
 				var check=false;
-				if(lecNo=='Y'){
+				if(val=='Y'){
 					check=confirm("강좌 개설을 승인하시겠습니까?");
-					if(check) document.getElementById(lecNoc).submit();
+					if(check) document.getElementById(id).submit();
 					else return;
-				}else if(lecNo='N'){
+				}else if(val='N'){
 					check=confirm("번 강좌 개설을 거절하시겠습니까?");
-					if(check) document.getElementById(lecNoc).submit();
+					if(check) document.getElementById(id).submit();
 					else return;
 				}
 

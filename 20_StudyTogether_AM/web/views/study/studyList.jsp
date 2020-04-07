@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.List,com.kh.study.model.vo.Study, java.text.*" %>
+<%@page import="com.kh.join.model.vo.StudyJoin,java.util.List,com.kh.study.model.vo.Study, java.text.*" %>
 	
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyList.css" type="text/css"/>
 
 <%
+List<StudyJoin> jlist=(List)request.getAttribute("sList");
 	List<Study> list=(List)request.getAttribute("list");
  	int cPage=(int)request.getAttribute("cPage");
 	String area=(String)request.getAttribute("area");
@@ -100,21 +101,20 @@
     	<div class="list_detail">
       		<h4><%=s.getStudyCategory() %></h4>
      <%if(s.getOriImg()!=null){ %>
-      	<div>
+     <div>
     <img src="<%=request.getContextPath() %>/upload/study/<%=s.getOriImg() %>" class="" width="190px" height="120px">
       </div>
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-      <%-- 모집인원<%=s.getMaxMember() %>/0 명 --%></div>
-    <%-- 모집마감&nbsp;~<%=s.getEndDate()%>까지 --%>
+       모집인원<%=s.getMaxMember() %>/ <%=jlist.size() %>명 </div>
+     모집마감&nbsp;~<%=s.getEndDate()%>까지 
     <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
     모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div>
   </a>
   <%}
  }%>
 </div>
-
  	<ul class="pagination" style="margin-left:500px;margin-bottom:50px; margin-top:100px;">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
