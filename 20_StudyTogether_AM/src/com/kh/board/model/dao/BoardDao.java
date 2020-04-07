@@ -365,12 +365,17 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int updateBoard(Connection conn, int no) {
+	public int updateBoard(Connection conn, Board b) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("updateBoard");
 		try {
-			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getTitle());
+			pstmt.setString(2, b.getContent());
+			pstmt.setString(3, b.getFile_upload());
+			pstmt.setInt(4, b.getBoard_no());
+			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
