@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.kh.lector.model.vo.Lector, com.kh.join.model.vo.LectorJoin, java.util.List" %>
+<%@ page import = "com.kh.lector.model.vo.Lector, com.kh.join.model.vo.LectorJoin, java.util.List, java.text.DecimalFormat" %>
 <%@ include file="/views/member/myPageHeader.jsp" %>
 <%
 	List<Lector> lcList = (List<Lector>)request.getAttribute("lcList");
 	List<Lector> ljList = (List<Lector>)request.getAttribute("ljList");
 	
+	DecimalFormat formatter=new DecimalFormat();
 %>
 
 <div class="row">
@@ -40,8 +41,8 @@
             <tr>
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>"><%=l.getLectorTitle() %></a></td>
-                <td><%=l.getLectorAssign().equals("N")?"승인 대기중"
-                		:l.getLectorAssign().equals("F")?"승인 거절"
+                <td><%=l.getLectorAssign().equals("N")?"승인 거절"
+                		:l.getLectorAssign().equals("F")?"승인 대기중"
                 		:l.getLectorAssign().equals("Y")?"승인 완료":"잘못된 상태" %></td>
                 <td class=""><%=l.getLectorDate() %></td>
             </tr>
@@ -78,6 +79,7 @@
               <th>등록 번호</th>
               <th>강사명</th>
               <th>강좌명</th>
+              <th>금액</th>
               <th>등록일</th>
             </tr>
           </thead>
@@ -86,7 +88,8 @@
             <tr>
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><%=l.getLectorWriter() %></td>
-                <td class=""><%=l.getLectorTitle() %></td>
+                <td class=""><a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>"><%=l.getLectorTitle() %></a></td>
+                <td class=""><%=formatter.format(l.getLectorPrice()) %>원</td>
                 <td class=""><%=l.getLectorDate() %></td>
             </tr>      
             <%} %>

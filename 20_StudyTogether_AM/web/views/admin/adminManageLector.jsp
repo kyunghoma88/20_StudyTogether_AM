@@ -23,7 +23,7 @@
           <tbody class="text-center">
            	<%for(Lector l:list){ %>
             <tr>
-                <td class=""><input type="checkbox"></td>
+                <td class=""><input type="checkbox" name="checked" value="<%=l.getLectorNo() %>"></td>
                 <td class=""><%=l.getLectorNo() %></td>
                 <td class=""><%=l.getLectorWriter() %></td>
                 <td class=""><%=l.getLectorTitle()%></td>

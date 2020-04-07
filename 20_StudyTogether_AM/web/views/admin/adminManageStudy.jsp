@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8" %>
+<%@ page import = "com.kh.study.model.vo.Study, com.kh.join.model.vo.StudyJoin, java.util.List" %>
 <%@ include file="/views/admin/adminHeader.jsp" %>
+<%
+	List<Study> sList = (List)request.getAttribute("sList");
+%>
 <div class="row">
   <form action="" class="form-group col" name="frm1">
     <h3>개설스터디 목록</h3>
@@ -16,14 +20,20 @@
             </tr>
           </thead>
           <tbody class="text-center">
+          <%if(sList.size()==0){ %>
+          <tr>
+          	<td colspan="5">조회된 스터디 목록이 없습니다</td>
+          </tr>
+          <%}else{ %>
+          	<%for(Study s:sList){ %>
             <tr>
                 <td class=""><input type="checkbox"></td>
-                <td class="">1</td>
-                <td class="">한지현</td>
-                <td class="">영어회화 스터디</td>
+                <td class=""><%=s.getStudyNo() %></td>
+                <td class=""><%=s.getStudyWriter() %></td>
+                <td class=""><%=s.getStudyName() %></td>
                 <td class="">
                   <div class="form-check-inline">
-                     2020-04-01
+                     <%=s.getEnrollDate() %>
                   </div>                        
                 </td>
                 <td class="">
@@ -33,43 +43,9 @@
                     </label>
                   </div>
                 </td>
-            </tr>      
-            <tr>
-                <td class=""><input type="checkbox"></td>
-                <td class="">2</td>
-                <td class="">김용진</td>
-                <td class="">정보처리기사 스터디</td>
-                <td class="">
-                  <div class="form-check-inline">
-                     2020-03-31
-                  </div>                        
-                </td>
-                <td class="">
-                  <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <button type="button" class="form-check-input btn btn-primary btn-sm">전송</button>
-                    </label>
-                  </div>
-                </td>
-            </tr>      
-            <tr>
-                <td class=""><input type="checkbox"></td>
-                <td class="">3</td>
-                <td class="">한지현</td>
-                <td class="">JSP 강의</td>
-                <td class="">
-                  <div class="form-check-inline">
-                     2020-02-22
-                  </div>                        
-                </td>
-                <td class="">
-                  <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <button type="button" class="form-check-input btn btn-primary btn-sm">전송</button>
-                    </label>
-                  </div>
-                </td>
-            </tr>      
+            </tr>
+            <%} 
+          	} %>
           </tbody>
       </table>
     </form>
