@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();	
 		
 		if(m!=null) {	
-			//msg="로그인 성공";
+			msg=id + "님 환영합니다!";
 
 			session.setAttribute("loginedMember", m);
 
@@ -72,47 +72,15 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(c);
 			}
 		}else {
-			//로그인 실페
-			msg="로그인 실패";
+			msg="로그인 실패하였습니다. 다시 시도 하세요!";
 		}
-			
 		
-		
-/*if(m!=null) {	
-		//msg="로그인 성공";
-
-		session.setAttribute("loginedMember", m);
-
-		//cookie로 아이디 저장 유지하기
-		String keeplogin = request.getParameter("keeplogin");
-		System.out.println("keeplogin : " + keeplogin);
-		
-	if(keeplogin!=null) {
-		Cookie[] ck = new Cookie("keeplogin",id);
-		ck.setMaxAge(7*24*60*60);//초단위라~
-		Cookie[] cookie = request.getCookies();
-		for(Cookie ck2 : cookie) {
-			if(ck2.getName().equals("id")) {
-				session.setAttribute("id", ck2.getValue());
-			}
-		}
-		response.addCookie(ck);
-		
-	}else {
-		Cookie ck = new Cookie("keeplogin",id);
-		ck.setMaxAge(0);
-		response.addCookie(ck);
-	}
-	}else {
-		//로그인 실페
-		msg="로그인 실패";
-	}
-	*/
 	System.out.println(msg);
-	request.setAttribute("msg", msg);
 	String loc="/";
+
+	request.setAttribute("msg", msg);
 	request.setAttribute("loc", loc);
-	
+	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	response.sendRedirect(request.getContextPath());
 	
 	}

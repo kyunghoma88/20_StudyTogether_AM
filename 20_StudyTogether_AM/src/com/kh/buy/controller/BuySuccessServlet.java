@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.buy.model.service.BuyService;
+import com.kh.buy.model.vo.Buy;
 import com.kh.cart.model.vo.Cart;
+import com.kh.cart.service.CartService;
 
 /**
  * Servlet implementation class BuySuccessServlet
@@ -30,12 +33,39 @@ public class BuySuccessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Cart> list=(List)request.getAttribute("list");
 		
-		System.out.println(list.get(0));
+		List<Cart> list=(List)(request.getSession()).getAttribute("cartList");
+		int result=0;
+		for(Cart c:list) {
+			//결제가 성공했습니다
+			String userId=c.getUserId();
+			int cartNo=c.getCartNo();
+			int lectorNo=c.getLectorNo();
+			int amount=c.getLectorPrice();
+			System.out.println(cartNo+" "+userId+" "+lectorNo+" "+amount);
+			
+			//결제정보를 Buy테이블에 입력
+			result=new BuyService().insertBuy(userId,cartNo,lectorNo,amount);
+			System.out.println(result>0?"buy테이블 입력성공":"buy테이블 입력실패");
+			
+			//장바구니에 구매한 Cart를 제거
+			result=new CartService().updateCartForCartNo(cartNo, userId);
+			System.out.println(result>0?"cart테이블 수정성공":"cart테이블 수정실패");
+			
+			//구매한 결제정보가 입력된 buyNo를 조회
+			Buy b=new BuyService().selectBuyForUserId(userId);
+			System.out.println(b);
+			
+			//LectorJoin에 lectorNo, userId, buyNo를 입력 
+			int buyNo=b.getBuyNo();
+			result=new BuyService().insertLectorJoin(lectorNo,userId, buyNo);
+			System.out.println(result>0?"강좌신청테이블 입력성공":"강좌신청테이블 입력실패");
+			
+			//중복구매를 막는 로직은??
+			//cart에서 중복장바구니 입력 방지
+			
+		}
 		
-		
-		request.setAttribute("list", list);
 		request.getRequestDispatcher("/member/myPage.jsp").forward(request, response);
 	}
 

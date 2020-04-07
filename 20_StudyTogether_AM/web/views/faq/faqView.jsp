@@ -6,47 +6,99 @@
    
 <%
    	FAQ f = (FAQ)request.getAttribute("faq");
-   %>
-   
-
+%>
+  
 <%@ include file="/views/common/header.jsp"%>
 
-
-<div id = "faq-container">
-
-	<h2> FAQ 상세화면</h2>
-		<table id="tbl-faq">
-			<tr>
-				<th>제목</th>
-				<td><%=f.getFaqTitle() %></td>
-			</tr>
-			
-			<tr>
-				<th>카테고리</th>
-				<td><%=f.getFaqCategory() %></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><%=f.getFaqContent() %></td>
-			</tr>		
-		</table>
+<style>
+	.faq-header{
+		margin : 0px;
+		margin-top : 50px;
+		margin-bottom : 30px;
 		
-		<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
-			<div id="btn-update">
-				<button onclick="fn_updateFaq()">수 정</button>
-			</div>
-			
-			<div id="div-delete">
-				<button onclick="fn_deleteFaq()">삭 제</button>
-			</div>
-		<% } %>	
+	}
+
+	.tbl-container{
+		font-size : 15px;
+	}
+	#bottons{
+		float : right;
+		display : flex;
+	}
+	#btn-list{
+		float : left;
+	}
+	
+	#faq-container{
+		width : 800px;
+		height : 800px;
+		margin-left : 100px;
+	}
+	
+	.btn-container button{
+		font-size : 13px;
+		font-weight : bold;
+	}
+	
+	
+	
+</style>
+
+
+
+<section id = "faq-container" style="height:800px;">
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="container faq-header col-9">
+			<h2>FAQ</h2>
+		</div>
+	</div>
+	
+		<div class="container tbl-container">
+			<table id="tbl-faq" class="table table-hover">
+				<colgroup>
+					<col width="150px;" />
+					<col width="750px;" />
+					<col/>
+				</colgroup>
+				<tr>
+					<th>제목</th>
+					<td><%=f.getFaqTitle() %></td>
+				</tr>
+				
+				<tr>
+					<th>카테고리</th>
+					<td><%=f.getFaqCategory() %></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><%=f.getFaqContent() %></td>
+				</tr>		
+			</table>
+		</div>
 		
-		</br>
-		<div id="btn-list">
-			<button onclick="fn_backToList()">목록으로</button>			
+		
+		<div class="container btn-container">
+			<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
+				
+				<div id="bottons">
+					<div id="btn-update">
+						<button class="btn btn-outline-dark" onclick="fn_updateFaq()">수 정</button>
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<div id="div-delete">
+						<button class="btn btn-outline-dark" onclick="fn_deleteFaq()">삭 제</button>
+					</div>
+				</div>
+				
+			<% } %>	
+		
+			<div id="btn-list">
+				<button class="btn btn-outline-dark" onclick="fn_backToList()">목록으로</button>			
+			</div>
 		</div>
 
-</div>
+</section>
 
 <script>
 	function fn_updateFaq(){

@@ -11,9 +11,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import com.kh.join.model.vo.LectorJoin;
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.vo.Lector;
 import com.kh.lector.model.vo.LectorChannel;
 import com.kh.member.model.vo.Member;
+import com.kh.study.model.vo.Study;
 
 
 public class LectorDao {
@@ -82,25 +86,6 @@ public class LectorDao {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	//no이용해서 특정강좌select
 	public Lector selectLector(Connection conn, int no) {
@@ -652,7 +637,66 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 		return list;
 	}
 	
+	
+//
+	public List<LectorJoin> selectLectorJoin(Connection conn, int lectorNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectLectorJoin");
+		List<LectorJoin> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,lectorNo);
+			rs=pstmt.executeQuery();
+			
+		while(rs.next()) {
+			LectorJoin lj=new LectorJoin();
+			lj.setLecterJoin(rs.getInt("lector_join"));
+			lj.setLectorNo(rs.getInt("lector_no"));
+			lj.setUserId(rs.getString("user_id"));
+			lj.setBuyNo(rs.getInt("buy_no"));
+			lj.setProcess(rs.getString("process"));
+			list.add(lj);
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+/////////////////////////////	
+	public LectorJoin searchLectorJoin(Connection conn, int lectorNo, String userId) {
 
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql=prop.getProperty("searchLectorJoin");
+		LectorJoin lj=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, lectorNo);
+			pstmt.setString(2, userId);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				lj=new LectorJoin();
+				lj.setLecterJoin(rs.getInt("lector_join"));
+				lj.setLectorNo(rs.getInt("lector_no"));
+				lj.setUserId(rs.getString("user_id"));
+				lj.setBuyNo(rs.getInt("buy_no"));
+				lj.setProcess(rs.getString("process"));
+		}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return lj;
+		
+		
+	}
 }
 		
 	

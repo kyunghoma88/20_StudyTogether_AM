@@ -21,10 +21,15 @@
  <br>
  <h2 id="openTitle">스터디 개설</h2>
         <table class="openWrite">
+      			<tr>
+               
+                     <td>개설자</td>
+                     <td><%=loginMember.getUserId()%><input type="hidden" name="studyWriter" value="<%=loginMember.getUserId()%>"></td>
+        		
+                 </tr>
                  <tr>
-                     <td>스터디<br></td>
-                     <td>개설자<input type="text" name="studyWriter" value="<%=s.getStudyWriter()%>"></td>
-                     <td>스터디명<input type = "text" name = "studyName" value="<%=s.getStudyName()%>"size=50> </td>
+                     <td>스터디명</td>
+                     <td><input type = "text" name = "studyName" value="<%=s.getStudyName()%>"size=50> </td>
                  </tr>
                  <tr>
                      <td> 희망 지역</td>
@@ -152,7 +157,7 @@
 
                  <tr>
                      <td>상세 소개</td>
-                     <td><textarea name="intro1" cols="85" rows="10" style="resize: none;"  placeholder="*이 강좌에 대해 자세히 소개해주세요."> <%=s.getStudyDetail() %></textarea>
+                     <td><textarea name="intro1" cols="80" rows="10" style="resize: none;"  placeholder="*이 강좌에 대해 자세히 소개해주세요."> <%=s.getStudyDetail() %></textarea>
                     </td>
                  </tr>
                  <br>

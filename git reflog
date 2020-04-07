@@ -1,0 +1,35 @@
+[33m36bb755[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/developer[m[33m)[m HEAD@{0}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m1d653fe[m HEAD@{1}: checkout: moving from 0cf8316f9dfcf492834de3c25ea24a0b62ecd1ff to 1d653fea7beb8da8f2f6e248d35de11d8348f14d
+[33m0cf8316[m HEAD@{2}: commit: #200406 결제 구현 막바지
+[33m3f4db3a[m HEAD@{3}: checkout: moving from c5f6d01924c0d2400c5aec236ec54809fd5dde4b to 3f4db3afe0c12629755696ae768a763f461f08e0
+[33mc5f6d01[m HEAD@{4}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33mdd83f6c[m HEAD@{5}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m226f240[m HEAD@{6}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33maa11421[m HEAD@{7}: commit: #200406 SJW close(conn) 추가
+[33m231d4cf[m HEAD@{8}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m35fbd3a[m HEAD@{9}: commit: #200406 SJW 결제 성공 구현 결제 세부 후처리 미구현
+[33md548f33[m HEAD@{10}: commit: #200406 SJW 결제구현 90%
+[33m5ebed6f[m HEAD@{11}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Merge made by recursive.
+[33m6925278[m HEAD@{12}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Merge made by recursive.
+[33md0fcf0c[m HEAD@{13}: commit: #200406 SJW buyForm구현중2
+[33m4237346[m HEAD@{14}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m15f0024[m HEAD@{15}: checkout: moving from 42373466efee86fadc747d859b0b91ba8ceb38b8 to 15f0024983880c79c5a7c8a3346bd79ce95b0643
+[33m4237346[m HEAD@{16}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m15f0024[m HEAD@{17}: commit: #200405 SJW cartView와 buyForm연결
+[33m0bbd6c8[m[33m ([m[1;32mdeveloper[m[33m)[m HEAD@{18}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33ma90e313[m HEAD@{19}: checkout: moving from developer to a90e31390a76eab08cf3af5901aa7e7467367f4a
+[33m0bbd6c8[m[33m ([m[1;32mdeveloper[m[33m)[m HEAD@{20}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m9d1e4f9[m HEAD@{21}: commit: #200404 sjw 마이페이지 내 강좌 조회, 내 스터디 조회 기능 추가중
+[33m1eb1770[m HEAD@{22}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Merge made by recursive.
+[33m9f17e67[m HEAD@{23}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Merge made by recursive.
+[33ma0b81e4[m HEAD@{24}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Merge made by recursive.
+[33m3bf691e[m HEAD@{25}: commit: #10 200403 SJW 구매 테이블 경로 변경 내 스터디 조회 구현중
+[33m983fd0a[m HEAD@{26}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33m137037d[m HEAD@{27}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33ma6301e8[m HEAD@{28}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33mc5feda9[m HEAD@{29}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33md551971[m HEAD@{30}: merge branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git: Fast-forward
+[33mf59c4cf[m[33m ([m[1;31morigin/yongjin[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/jihyun[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{31}: checkout: moving from master to developer
+[33mf59c4cf[m[33m ([m[1;31morigin/yongjin[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/jihyun[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{32}: checkout: moving from developer to master
+[33mf59c4cf[m[33m ([m[1;31morigin/yongjin[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/jihyun[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{33}: checkout: moving from master to developer
+[33mf59c4cf[m[33m ([m[1;31morigin/yongjin[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/jihyun[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{34}: 

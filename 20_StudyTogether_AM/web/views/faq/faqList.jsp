@@ -22,11 +22,11 @@
 	}
 	
 	.btn-faq-category{
-		font-size : 20px;
+		font-size : 13px;
 	}
 	
 	.tbl-container{
-		font-size : 20px;
+		font-size : 15px;
 	}
 	
 	#btn-faq-write{
@@ -51,6 +51,10 @@
 	
 	#btn-write{
 		float : right;
+	}
+	
+	.pageBar-container{
+		margin-left : 250px;
 	}
 	
 </style>
@@ -134,7 +138,7 @@
 		<%} %>
 		</table>
 		
-		<div id="pageBar" class="container">
+		<div id="pageBar" class="container pageBar-container">
 			<ul class="pagination">
 				<%= request.getAttribute("pageBar") %>
 			</ul>	

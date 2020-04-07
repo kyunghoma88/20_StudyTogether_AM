@@ -5,6 +5,7 @@
    //Member m = (Member)request.getAttribute("loginedMember");
    Member loginMember = (Member)session.getAttribute("loginedMember");
    
+   
  //cookie값 받아오기
    Cookie[] cookies = request.getCookies();
    String saveId=null;
@@ -62,18 +63,24 @@
 		<button class="main2" type="button" data-target="#loginModalCenter" data-toggle="modal">회원가입</button>
 	    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="main2">로그인</button>
 	   <%}else{ %>
+	   
 	   <a id=mainlogo href="<%=request.getContextPath() %>">
 			<img src="<%=request.getContextPath() %>/images/logo.png" width="180px" height="100px">
 		</a>
+		
       <button class="main2" type="button" onclick="location.href='<%=request.getContextPath() %>/faq/faqList'">고객센터</button>
       <%if(loginMember!=null && loginMember.getUserId().equals("admin")){ %>
 		<button onclick="location.href='<%=request.getContextPath()%>/admin/adminPage'" class="main2">관리페이지</button>                                                                              
       <%} %>
+      
 		<button onclick="location.href='<%=request.getContextPath()%>/member/memberView'" class="main2">내정보보기</button>
          
 		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView?id=<%=loginMember.getUserId() %>'" class="main2">장바구니</button>                                                                             
      
 		<button onclick="location.replace('<%=request.getContextPath()%>/logout.do')" class="main2">로그아웃</button>
+  		<%-- <div style="text-align:right;">
+			<%=loginMember.getUserId() %> 님 환영합니다.
+		</div> --%>
    <%} %>
   </div>
   
@@ -99,9 +106,9 @@
         <input type="checkbox" id="store" name="saveId" <%=saveId!=null ? "checked" : "" %>>아이디 저장
       </label>
       
-      <label>
+     <!--  <label>
       <input type="checkbox" id="keeplogin" name="keeplogin"> 로그인 유지
-   	  </label>
+   	  </label> -->
     </div>
     
    
@@ -347,5 +354,5 @@
    function loginErrorMsg(){
 	   alert("로그인 후 이용해 주세요!");
    }
-   
+ 
 </script>

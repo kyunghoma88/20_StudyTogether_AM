@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.cart.model.vo.Cart;
 import com.kh.cart.service.CartService;
@@ -66,6 +67,7 @@ public class BuyFormServlet extends HttpServlet {
 			
 			request.setAttribute("totalSum", totalSum);
 			request.setAttribute("cartList", list);
+			request.setAttribute("cartNoArr", cartNoArr);
 			
 			request.getRequestDispatcher("/views/buy/buyForm.jsp").forward(request, response);
 		}

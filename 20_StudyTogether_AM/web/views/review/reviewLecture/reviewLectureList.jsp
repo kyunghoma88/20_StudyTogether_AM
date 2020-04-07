@@ -59,7 +59,7 @@
 	<%} 
 	}%>
 
-       		<ul class="pagination" style="margin-left:650px">
+       		<ul class="pagination" style="margin-left:580px">
 			<%if(!list.isEmpty()){ %>
 			<%=request.getAttribute("pageBar") %>
 			<%} %>
