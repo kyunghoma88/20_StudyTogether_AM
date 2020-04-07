@@ -166,7 +166,7 @@
                                             <path fill-rule="evenodd" d="M5.646 5.646a.5.5 0 000 .708l8 8a.5.5 0 00.708-.708l-8-8a.5.5 0 00-.708 0z" clip-rule="evenodd"></path>
                                             <path fill-rule="evenodd" d="M14.354 5.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                        영문 대.소문자, 숫자 _,-만 입력 가능합니다
+                                        영문 대.소문자, 숫자 _,- 6글자 이상만 입력 가능합니다
                                     </div>
                                     <div class="alert alert-danger" id="alert-idDuplicated">
                                         <svg class="bi bi-x" width="1.2em" height="1.2em" viewBox="0 0 20 20" fill="red" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <div class="form-group">
-                                        <input type="password" id="password1" class="form-control" name="password" placeholder="Password" required>
+                                        <input type="password" id="password1" class="form-control" name="jPsw" placeholder="Password" required>
                                     </div>
                                 </tr>
                                 <tr>

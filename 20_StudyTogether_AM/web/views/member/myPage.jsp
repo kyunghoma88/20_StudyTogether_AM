@@ -229,7 +229,7 @@
                         			
                         		}
                         		
-                        		if($('#myPagePwdCheck').val()==$('#myPagePwd').val() && $('#myPagePwd').val()=='<%=loginMember.getPassword()%>'){
+                        		if($('#myPagePwdCheck').val()==$('#myPagePwd').val()){
                         			updateOK();
                         		}else if($('#myPagePwdCheck').val()==""){
                         			alert('회원정보 수정을 위해 비밀번호를 입력하세요.');

@@ -2,6 +2,11 @@ $(function(){
     
     //로그인 깃발
     var joinFlag=false;
+    var joinIdFlag=false;
+    var joinPwStateFlag=false;
+    var joinPwSameFlag=false;
+    var joinNameFlag=false;
+    var joinEmailFlag=false;
     
     //경고창 숨기기
     $("#alert-idSuccess").hide();
@@ -25,43 +30,45 @@ $(function(){
     	console.log(ctx+'/member/idDuplicateCheck');
     	//console.log($(this).val().trim());
     	var str="";
+    	
+    	var idVal=$(this).val().trim();
+    	console.log(idVal);
+    	
     	$.ajax({
     		url:ctx+'/member/idDuplicateCheck',
 			dataType:"json",
 			type:"post",
-			data:{"id":$(this).val().trim()},
+			data:{"id":idVal},
 			//async: false, //결과값 받아서 if분기문에 사용해야하므로 동기로 전환
 			success:function(data) {
 				console.log(data.result);
 				str=data.result;
 				
-				
 				var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
-		        if(!$(this).val().trim()==""){        	
+		        if(!(idVal=="")){        	
 		        	console.log(str);
 		        	//db에 아이디가 있지 않고, 유효성검증 통과
 		        	if(str=="NO"){
 		                 $("#alert-idSuccess").hide();
 		                 $("#alert-idDanger").hide();
 		                 $("#alert-idDuplicated").show();
-		                 $("#submit").attr("disabled", "disabled");
-		            }else if(!userIdCheck.test($(this).val().trim())){  
+		                 joinIdFlag=false;
+		            } else if(!userIdCheck.test(idVal)){  
 		                $("#alert-idSuccess").hide();
 		                $("#alert-idDanger").show();
 		                $("#alert-idDuplicated").hide();
-		                $("#submit").attr("disabled", "disabled");
+		                joinIdFlag=false;
 		            }else {
 		            	$("#alert-idSuccess").show();
 		            	$("#alert-idDanger").hide();
 		            	$("#alert-idDuplicated").hide();
-		            	$("#submit").removeAttr("disabled");
-		            	joinFlag=true;
+		            	joinIdFlag=true;
 		            } 
 		        }else{
 		            $("#alert-idSuccess").hide();
 		            $("#alert-idDanger").hide();
 		            $("#alert-idDuplicated").hide();
-		            $("#submit").attr("disabled", "disabled");
+		            joinIdFlag=false;
 		        }
 			}
 		});
@@ -77,19 +84,17 @@ $(function(){
             if(!passwdCheck.test($(this).val().trim())){
                 $("#alert-pwSuccess").hide();
                 $("#alert-pwDanger").show();
-                $("#submit").attr("disabled", "disabled");
-                joinFlag=false;
+                joinPwStateFlag=false;
             }
             if(passwdCheck.test($(this).val().trim())){
                 $("#alert-pwSuccess").show();
                 $("#alert-pwDanger").hide();
-                $("#submit").removeAttr("disabled");
-                joinFlag=true;
+                joinPwStateFlag=true;
             } 
         } else{
             $("#alert-pwSuccess").hide();
             $("#alert-pwDanger").hide();
-            $("#submit").attr("disabled", "disabled");
+            joinPwStateFlag=false;
         }
     });
 
@@ -102,19 +107,16 @@ $(function(){
             if(!(password1 == password2)){ 
                 $("#alert-pwSameSuccess").hide();
                 $("#alert-pwSameDanger").show();
-                $("#submit").attr("disabled", "disabled");
-                joinFlag=false;
+                joinPwSameFlag=false;
             }else { 
                 $("#alert-pwSameSuccess").show();
                 $("#alert-pwSameDanger").hide();
-                $("#submit").removeAttr("disabled");
-                joinFlag=true;
+                joinPwSameFlag=true;
             }
         }  else {
             $("#alert-pwSameSuccess").hide();
             $("#alert-pwSameDanger").hide();
-            $("#submit").removeAttr("disabled");
-            joinFlag=false;
+            joinPwSameFlag=false;
         }
     });
     
@@ -126,19 +128,16 @@ $(function(){
             if(!nameCheck.test($(this).val().trim())){
                 $("#alert-nameSuccess").hide();
                 $("#alert-nameDanger").show();
-                $("#submit").attr("disabled", "disabled");
-                joinFlag=false;
+                joinNameFlag=false;
             }else if(nameCheck.test($(this).val().trim())){
                 $("#alert-nameSuccess").show();
                 $("#alert-nameDanger").hide();
-                $("#submit").removeAttr("disabled");
-                joinFlag=true;
+                joinNameFlag=true;
             } 
         }else{
             $("#alert-nameSuccess").hide();
             $("#alert-nameDanger").hide();
-            $("#submit").attr("disabled", "disabled");
-            joinFlag=false;
+            joinNameFlag=false;
         }
     });
     //이메일 유효값 체크
@@ -149,19 +148,16 @@ $(function(){
             if(!emailCheck.test($(this).val().trim())){
                 $("#alert-emailSuccess").hide();
                 $("#alert-emailDanger").show();
-                $("#submit").attr("disabled", "disabled");
-                joinFlag=false;
+                joinEmailFlag=false;
             }else if(emailCheck.test($(this).val().trim())){
                 $("#alert-emailSuccess").show();
                 $("#alert-emailDanger").hide();
-                $("#submit").removeAttr("disabled");
-                joinFlag=true;
+                joinEmailFlag=true;
             }             
         }else{            
             $("#alert-emailSuccess").hide();
             $("#alert-emailDanger").hide();
-            $("#submit").attr("disabled", "disabled");
-            joinFlag=false;
+            joinEmailFlag=false;
         }
     });
                 
@@ -173,9 +169,31 @@ $(function(){
     // var phonNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);
 
     //회원가입 폼 전송 제어
-    return joinFlag;
-
-
+    if(!joinIdFlag){
+    	joinFlag=false;
+    	$("#submit").attr("disabled", "disabled");
+    	return joinFlag;
+    }else if(!joinPwStateFlag){
+    	joinFlag=false;
+    	$("#submit").attr("disabled", "disabled");
+    	return joinFlag;
+    }else if(!joinPwSameFlag){
+    	joinFlag=false;
+    	$("#submit").attr("disabled", "disabled");
+    	return joinFlag;
+    }else if(!joinNameFlag){
+    	joinFlag=false;
+    	$("#submit").attr("disabled", "disabled");
+    	return joinFlag;
+    }else if(!joinEmailFlag){
+    	joinFlag=false;
+    	$("#submit").attr("disabled", "disabled");
+    	return joinFlag;
+    }else{
+    	joinFlag=true;
+    	$("#submit").removeAttr("disabled");
+    	return joinFlag;
+    }
 
 })
 
