@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.kh.member.model.vo.Member, com.kh.common.listener.SessionCheckListener" %>
- <link rel = "shortcut icon" href="<%=request.getContextPath() %>/images/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+
 <%
    //Member m = (Member)request.getAttribute("loginedMember");
    Member loginMember = (Member)session.getAttribute("loginedMember");
@@ -31,6 +32,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    
 	    <!-- CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
@@ -41,7 +43,6 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardView.css" type="text/css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-<link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap" rel="stylesheet">	
 	<!-- JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -51,6 +52,11 @@
 	<script src="<%=request.getContextPath()%>/js/main.js"></script>
 	   
 	<title>Study Together</title>
+	
+	<!-- <style>
+		@import url('https://fonts.googleapis.com/css2?family=Sunflower&display=swap');
+	</style> -->
+	
 </head>
 <body>
 	<div class=main>
