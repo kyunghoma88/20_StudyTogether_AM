@@ -2,8 +2,9 @@
 /* css 브라우저캐쉬삭제 적용 ctrl+f5 */
 
 body{
-    font-family:"Sunflower" ;
-  }
+     font-family: "굴림체";
+    }
+    
 .main{
   background-color: white;
   border-bottom: 1px solid silver;

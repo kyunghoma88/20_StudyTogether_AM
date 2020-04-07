@@ -30,7 +30,6 @@ public class DeleteCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("삭제하기 서블릿");
 		String[] cartList = request.getParameterValues("cartList");
 
 		String msg = "";

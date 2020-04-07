@@ -64,27 +64,45 @@ public class BoardUpdateEndServlet extends HttpServlet {
 				list.remove(null);
 			}
 		}
-		String fileNames=String.join(",", list);
-		System.out.println("파일명 : "+fileNames);
-		
+		String fileNames=String.join(",", list);	
 
 		Board b = new Board(no, 0, 0, id, title, write_text, category, fileNames, new Date(), 0, 0, 0, 0);
 		// upfile새로 추가한 파일이 있으면, 없으면
 		// 있으면 orifile삭제, 없으면 업로드 되고 끝!~
 		File f = null;// 클라이언트가 넘긴 파일이 있는지 없는지 확인
+		List<String> nFile=new ArrayList();
+		for(int i=0;i<fileCnt;i++) {
+			nFile.add(mr.getParameter("oriFile"+(i+1)));
+			nFile.add(mr.getOriginalFileName("fileup"+(i+1)));
+		}
+		for(int i=0;i<nFile.size();i++) {
+			if(i%2==1) {
+				if(nFile.get(i)!=null) {					
+					nFile.set(i-1, nFile.get(i));
+					nFile.set(i, null);
+				}
+			}
+		}
+		for(int i=0;i<nFile.size();i++) {
+			if(nFile.get(i)==null) {				
+				nFile.remove(null);
+			}
+		}
+		String nFileNames=String.join(",", nFile);
 		for(int i=0;i<fileCnt;i++) {
 			f = mr.getFile("fileup"+(i+1));
 			if (f != null && f.length() > 0) {// 파일이 있을경우!
 				File deleteFile = new File(path + mr.getParameter("oriFile"+(i+1)));
 				boolean flag = deleteFile.delete();
-				System.out.println(flag ? "파일삭제 성공" : "파일삭제실패");
 			} else {
-				b.setFile_upload(fileNames);
+				b.setFile_upload(nFileNames);
 			}
 		}
+		
 		int result = new BoardService().updateBoard(b);
-
-		response.sendRedirect(request.getContextPath() + "/board/boardList");
+		request.setAttribute("msg", "게시글 수정 완료. ");
+		request.setAttribute("loc", "/board/boardList");
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 	}
 
 	/**

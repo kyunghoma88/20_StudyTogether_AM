@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
 <!-- header페이지 불러오기 -->
 <%@ include file="/views/common/header.jsp" %>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" style="height:500px;" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" alt="Seoul">
+      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" height="500px" alt="Seoul">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100" alt="Los Angeles">
+      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100"  height="500px" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-3.jpg" class="d-block w-100" alt="China">
+      <img src="<%=request.getContextPath() %>/images/library_third.jpg" class="d-block w-100"  height="500px" alt="China">
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -77,7 +78,7 @@
   </div>
 <!-- 동영상 강의 -->
   <div class="parent">
-    <div class="first">first</div>
+    <div id="first">first</div>
     <div class="second">second</div>
     <div class="third">third</div>
 </div>
@@ -104,13 +105,14 @@
         setInterval(function(){tick()},3000);
 
         
-     <%--    $(function(){
+         $(function(){
         	$.ajax({
         		url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
         		type:"post",
         		success:function(data){
         			console.log(data);
+        			
         		},
         		error:function(request,status,error){
         			if(request.status==404){
@@ -119,7 +121,7 @@
         		}
         		
         	})
-        }) --%>
+        }) 
         
         
 </script>

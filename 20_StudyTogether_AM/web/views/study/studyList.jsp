@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyList.css" type="text/css"/>
 
 <%
-List<StudyJoin> jlist=(List)request.getAttribute("sList");
+	List<StudyJoin> jlist=(List)request.getAttribute("list");
 	List<Study> list=(List)request.getAttribute("list");
  	int cPage=(int)request.getAttribute("cPage");
 	String area=(String)request.getAttribute("area");
@@ -107,8 +107,7 @@ List<StudyJoin> jlist=(List)request.getAttribute("sList");
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-       모집인원<%=s.getMaxMember() %>/ <%=jlist.size() %>명 </div>
-     모집마감&nbsp;~<%=s.getEndDate()%>까지 
+       모집인원<%=s.getMaxMember() %>/  <%=jlist.size() %> 명 </div>
     <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
     모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div>
   </a>
