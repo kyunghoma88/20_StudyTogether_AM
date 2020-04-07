@@ -36,7 +36,7 @@ public class BoardListServlet extends HttpServlet {
 		int cPage;
 		String category=request.getParameter("category");
 		if(category==null) {
-			category="free";
+			category="qna";
 		}
 		System.out.println("카테고리 : "+category);
 		try {

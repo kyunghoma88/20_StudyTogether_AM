@@ -23,7 +23,7 @@
                 <div class="write_item">
                     <span style="font-weight: bold;">제목</span>
                 </div>
-                <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70" value="[답글]<%=b.getTitle() %>"/>
+                <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70" value="[답글]<%=b.getTitle() %>" readonly/>
                 <div style="padding-left: 106px; margin-top:16px">
                     <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"></textarea>
                 </div>
