@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @WebFilter(
 		servletNames = { 
+				"MemberUpdate",
 				"MemberEnrollEndServlet", 
 				"LoginServlet", 
 				"UpdatePasswordServlet"

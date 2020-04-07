@@ -94,12 +94,6 @@ private MemberDao dao = new MemberDao();
 		return list;
 	}
 	
-	public List<StudyJoin> selectMemberJoinStudyCount(String id) {
-		Connection conn=getConnection();
-		List<StudyJoin> list = dao.selectMemberJoinStudyCount(conn,id);
-		close(conn);
-		return list;
-	}
 
 	public List<Lector> selectMemberCreateLector(String id) {
 		Connection conn=getConnection();
@@ -115,12 +109,11 @@ private MemberDao dao = new MemberDao();
 		return list;
 	}
 	
-	public List<LectorJoin> selectMemberJoinLectorCount(String id) {
-		Connection conn=getConnection();
-		List<LectorJoin> list = dao.selectMemberJoinLectorCount(conn,id);
-		close(conn);
-		return list;
-	}
+	/*
+	 * public int[] selectMemberJoinLectorCount(String id) { Connection
+	 * conn=getConnection(); List<LectorJoin> list =
+	 * dao.selectMemberJoinLectorCount(conn,id); close(conn); return list; }
+	 */
 
 
 }

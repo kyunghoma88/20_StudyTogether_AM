@@ -14,7 +14,7 @@ import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/member/memberUpdate")
+@WebServlet(name="MemberUpdate",urlPatterns="/member/memberUpdate")
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
