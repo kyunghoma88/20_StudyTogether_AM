@@ -36,7 +36,6 @@ public class CartViewServlet extends HttpServlet {
 		List<Cart> list = new CartService().searchCart(userId);
 		
 		request.setAttribute("list", list);
-		System.out.println(list);
 		
 		request.getRequestDispatcher("/views/cart/cartView.jsp").forward(request, response);
 	}
