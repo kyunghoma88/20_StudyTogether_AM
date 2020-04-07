@@ -6,10 +6,8 @@
 <%
 	
 	Lector l=(Lector)request.getAttribute("l");
-	
 	LectorJoin lj=(LectorJoin)request.getAttribute("lj");
- List<LectorJoin> list=(List)request.getAttribute("list");
-	
+	 List<LectorJoin> list=(List)request.getAttribute("list");
  	List<LectorChannel> clist=(List)request.getAttribute("clist");
  	int cPage=(int)request.getAttribute("cPage");
 %>
@@ -51,22 +49,35 @@ background-color:#ffc107;
 	    <%=l.getLectorDetail() %>
 	    </div>
     <input type="button" class="basket" onclick="apply();" value="구매하기">
-
   </div>  
 
-<p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
+<%-- <p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
 <div class="container">
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
   <%for(LectorChannel lc:clist){ %>
+	<%if(!clist.isEmpty()&&lj.getUserId().equals(loginMember.getUserId())||loginMember.getUserId().equals(l.getLectorWriter())){ %>
+    <a id="clist" onclick="channel();" href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+  <%}else{%>
+	<a id="clist" href='javascript:void(0);' class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+	<%}
+	}%>
+  </div>
+</div> --%>
+
+<p id="list"><img src="<%=request.getContextPath() %>/images/list.svg" width="30px" height="auto">&nbsp;&nbsp;강의목록</p>
+<div class="container">
+<%if(lj==null){ %>
+  <div class="list-group">
+  	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
+
+	  <%}  else if(!clist.isEmpty()&&lj!=null){
+		  for(LectorChannel lc:clist){ %>
+    <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
+  		<%}
+  	}%>
+
 	
-	<%-- <%if(!clist.isEmpty()&&lj.getUserId().equals(loginMember.getUserId())||loginMember.getUserId().equals(l.getLectorWriter())){ %> --%>
-    	<a id="clist" onclick="channel();" href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-<%--   	<%}else{%> --%>
-	
-		<a id="clist" href='javascript:void(0);' class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
-	<%-- <%}	}%> --%>
- <%} %>
   </div>
 </div>
 
