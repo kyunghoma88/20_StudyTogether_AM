@@ -175,7 +175,7 @@ public class StudyDao {
 				Study s =new Study();
 			
 				s.setStudyName(rs.getString("STUDY_NAME"));
-		
+				s.setStudyCategory(rs.getString("STUDY_CATEGORY"));
 				list.add(s);
 			}
 		}catch(SQLException e) {

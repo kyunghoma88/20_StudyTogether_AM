@@ -23,11 +23,13 @@
                 <select name="allStudy" > 
                     <option value="스터디 선택">스터디 선택</option>
                     <%for(Study s : list){ %>
-                   	 <option value="<%=s.getStudyName()%>"><%=s.getStudyName()%></option>
-                   	 <%} %>
+                   	 <option value="<%=s.getStudyName()%>"><%=s.getStudyName()%></option>	 
                 </select>
+       				<input type="hidden" name="field" value="<%=s.getStudyCategory()%>">	                
+                <%} %>
             </td>
         </tr>
+ 	   
         <tr>
             <td>만족도</td>
             <input type="hidden" id="starCnt" name="starCnt">
