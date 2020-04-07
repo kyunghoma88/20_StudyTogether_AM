@@ -86,9 +86,6 @@
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
 								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
 							</li>
-							<li style="float:right;">
-								<a class="comment_modify" href="javascript:comment_modify(<%=c.getComment_no()%>)">수정</a>
-							</li>
 							<%} %>
 						</ul>
 						<p class="comment_content"><%=c.getComment_content() %></p>
@@ -106,9 +103,6 @@
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
 							<li style="float:right;">
 								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
-							</li>
-							<li style="float:right;">
-								<a class="comment_modify" href="javascript:comment_modify(<%=c.getComment_no()%>)">수정</a>
 							</li>
 							<%} %>
 						</ul>
@@ -322,30 +316,6 @@
 	    	f.action="<%=request.getContextPath()%>/board/replyWrite";
 	    	f.method="post";
 	    	f.submit();
-		}
-			$(".comment_modify").click(function(){
-				$(".comment_container").not(".comment_container:last").remove();
-				var div=$("<div class='comment_container' style='padding-left: 100px; padding-bottom: 20px; border-bottom: 1px dotted blue;'>");
-				var textarea="ㄴ<textarea cols='50' rows='3' class='comment_text' id='comment_text'>"+$(this).parents().eq(1).next().html()+"</textarea>"+
-							"<div style='float: left; margin-left: 20px;'>"+
-							"<a href='javascript:commentInsert2()' class='comment_insert' id='comment_insert2'>등록</a>"+
-							"</div>";
-				div.append(textarea);
-				var html=$(this).parents().eq(2).html();
-				console.log($(this).parents().eq(1).next().html());
-				$(this).parents().eq(2).html(div);
-				
-			});
-		function comment_modify(no){
-	    	$.ajax({
-	    		url:"<%=request.getContextPath()%>/comment/modify",
-	    		type:"post",
-				dataType:"json",
-				data:{"no":no},
-				success:function(data){
-					console.log(data);
-				}
-	    	})
 		}
 		function comment_delete(no){
 	    	$.ajax({
