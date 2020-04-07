@@ -77,11 +77,8 @@
       <%if(loginMember!=null && loginMember.getUserId().equals("admin")){ %>
 		<button onclick="location.href='<%=request.getContextPath()%>/admin/adminPage'" class="main2">관리페이지</button>                                                                              
       <%} %>
-      
 		<button onclick="location.href='<%=request.getContextPath()%>/member/memberView'" class="main2">내정보보기</button>
-         
 		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView?id=<%=loginMember.getUserId() %>'" class="main2">장바구니</button>                                                                             
-     
 		<button onclick="location.replace('<%=request.getContextPath()%>/logout.do')" class="main2">로그아웃</button>
   		<%-- <div style="text-align:right;">
 			<%=loginMember.getUserId() %> 님 환영합니다.
@@ -294,11 +291,11 @@
     </li>
     <li class='menu4'>
       <a href="<%=request.getContextPath()%>/board/boardList">커뮤니티</a>
-        <ul  class='menu4-submenu'>
+       <%--  <ul  class='menu4-submenu'>
           <li>
             <a href="<%=request.getContextPath()%>/board/boardList?category=qna">묻고 답하기</a>
           </li>
-        </ul>
+        </ul> --%>
     </li>
   </ul>
 </div>
