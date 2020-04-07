@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%String id = (String)session.getAttribute("id"); %>
 <%@ include file="/views/common/header.jsp" %>
 <section>
 	<h2 id="pwh2">비밀번호 변경 페이지 입니다.<h2>
 	<form action="<%=request.getContextPath()%>/updatePassword" method="post" onsubmit="return checkIt()">
+	<input type="hidden" name="id" value="<%=id%>"/>
 		<table>
 			<tr id="tr1">
 				<td id="td1">새 비밀번호&nbsp;</td>

@@ -28,6 +28,20 @@ public class BoardService {
 		close(conn);
 		return b;
 	}
+	public Board boardView(int no, boolean hasRead) {
+		Connection conn=getConnection();
+		Board b=dao.boardView(conn, no);
+		if(b!=null&&!hasRead) {
+			int result=dao.viewCount(conn,no);
+			if(result>0) {
+				b.setCnt(dao.boardView(conn, no).getCnt());
+				commit(conn);
+			}
+			else rollback(conn);
+		}
+		close(conn);
+		return b;
+	}
 	
 	public int boardCount() {
 		Connection conn=getConnection();
@@ -167,7 +181,7 @@ public class BoardService {
 	}
 	public int deleteComment(int no) {
 		Connection conn=getConnection();
-		int result=dao.deleteComment(conn, no);
+		int result=dao.delete(conn, no);
 		if(result>0) {
 			commit(conn);
 		}else {

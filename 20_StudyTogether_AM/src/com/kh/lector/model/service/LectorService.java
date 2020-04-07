@@ -203,6 +203,13 @@ public class LectorService {
 		close(conn);
 		return lj;
 	}
+
+	public List<LectorJoin> selectLectorA() {
+		Connection conn=getConnection();
+		List<LectorJoin> list=dao.selectLectorA(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 	

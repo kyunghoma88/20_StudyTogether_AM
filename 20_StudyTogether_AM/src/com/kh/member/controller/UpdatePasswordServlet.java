@@ -12,7 +12,7 @@ import com.kh.member.model.service.MemberService;
 /**
  * Servlet implementation class UpdatePasswordServlet
  */
-@WebServlet("/updatePassword")
+@WebServlet(name = "UpdatePasswordServlet",urlPatterns = "/updatePassword")
 public class UpdatePasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
