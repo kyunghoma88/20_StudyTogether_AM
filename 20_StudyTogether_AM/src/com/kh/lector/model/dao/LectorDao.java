@@ -697,32 +697,6 @@ public List<Lector> searchLectorPage(Connection conn, int cPage, int numPerPage,
 		
 		
 	}
-	public List<LectorJoin> selectLectorA(Connection conn) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql=prop.getProperty("selectLectorA");
-		List<LectorJoin> list=new ArrayList<LectorJoin>();
-		LectorJoin lj=null;
-		try {
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			if(rs.next())
-				lj=new LectorJoin();
-				lj.setLecterJoin(rs.getInt("lector_join"));
-				lj.setLectorNo(rs.getInt("lector_no"));
-				lj.setUserId(rs.getString("user_id"));
-				lj.setBuyNo(rs.getInt("buy_no"));
-				lj.setProcess(rs.getString("process"));
-				list.add(lj);
-		}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				close(rs);
-				close(pstmt);
-			}
-			return list;
-	}
 }
 		
 	
