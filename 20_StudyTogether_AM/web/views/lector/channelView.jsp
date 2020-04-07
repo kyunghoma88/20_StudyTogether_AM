@@ -57,6 +57,7 @@
 		}%>
   	</div>
 </div>
+
 <%if(!clist.isEmpty()){ %>
 	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>

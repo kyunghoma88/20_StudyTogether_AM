@@ -82,6 +82,11 @@
 							<li><a id="comment<%=i %>" class="comment" href="javascript:void(0)" value="<%=c.getComment_no()%>">
 								<i class="fas fa-reply fas-lg"></i>답글</a>
 							</li>
+							<li style="float:right;">
+							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
+							</li>
+							<%} %>
 						</ul>
 						<p class="comment_content"><%=c.getComment_content() %></p>
 						</div>
@@ -95,6 +100,11 @@
 							</li>
 							<%} %>
 							<li><%=c.getComment_date() %></li>
+							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
+							<li style="float:right;">
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)">삭제</a>
+							</li>
+							<%} %>
 						</ul>
 						<p class="comment_content" style="padding-left:98px;"><%=c.getComment_content() %></p>
 						</div>			
@@ -132,10 +142,12 @@
 					<li><a href="javascript:boareReply(<%=b.getBoard_no()%>,'<%=category%>')"><i class="fas fa-comment-dots"></i> 답글</a></li>
 					<li><a href="javascript:boardList(<%=cPage%>,'<%=category%>')">목록</a></li>
 				</ul>
+				<%if(loginMember!=null&&loginMember.getUserId().equals(b.getNickname())) {%>
 				<ul class="listbtn" style="float: right;">
 					<li><a href="javascript:boardDelete(<%=b.getBoard_no()%>,'<%=category%>')">삭제</a></li>
 					<li><a href="javascript:boardUpdate(<%=b.getBoard_no()%>,'<%=category%>')">수정</a></li>
 				</ul>
+				<%} %>
 			</div>
 			<table class="table" style="clear: both; width: 100%; font-size: 13px;">
                 <%if(b.getBoard_no()!=maxNo) {%>
@@ -170,6 +182,7 @@
 	                	<input type="hidden" name="cPage"/>
 	                	<input type="hidden" name="category"/>
 	                	<input type="hidden" name="id"/>
+	                	<input type="hidden" name="comment_no"/>
 	            </form>
 		</div>
 	</div>
@@ -304,6 +317,23 @@
 	    	f.method="post";
 	    	f.submit();
 		}
+		function comment_delete(no){
+	    	$.ajax({
+	    		url:"<%=request.getContextPath()%>/comment/delete",
+	    		type:"post",
+				dataType:"json",
+				data:{"no":no},
+				success:function(data){
+					console.log(data);
+					if(data>0){						
+						alert("댓글 삭제 성공");
+						location.reload();
+					}else{
+						alert("댓글 삭제 실패");
+					}
+				}
+	    	})
+		}
 		function commentInsert(){
 			<%if(loginMember==null){%>
 			alert("로그인후 이용 부탁 드립니다.");
@@ -323,6 +353,7 @@
 						alert("댓글을 입력하세요!");
 					}else{						
 						alert("댓글 등록 성공!");
+						location.reload();
 					}
 					
 					$("#comment_text").val("");
@@ -350,10 +381,9 @@
 						alert("댓글을 입력하세요!");
 					}else{						
 						alert("댓글 등록 성공!");
+						location.reload();
 					}
 					
-					$("#comment_text").val("");
-					$("#comment_text").focus();
 				}
 			});
 			<%}%>

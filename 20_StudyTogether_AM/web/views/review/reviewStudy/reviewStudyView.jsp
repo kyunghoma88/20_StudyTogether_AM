@@ -31,7 +31,7 @@ table.revWrite tr {
 table.revWrite td {
          font-size: 15px;
          width: 100px;
-         padding: 10px;
+         padding: 5px;
          vertical-align: top;
          border-bottom: 1px solid #ccc;
 }
@@ -75,8 +75,8 @@ table.revWrite td {
           	<%} %>
         </tr>
         <tr>
-           <td style="text-align: center;">내용</td>
-           <td style="height:auto"><%=revS.getReviewStuContent() %></td>
+          <!--  <td style="text-align: center;">내용</td> -->
+           <td colspan="2" style="height:auto"><%=revS.getReviewStuContent() %></td>
         </tr>
           
    </table>

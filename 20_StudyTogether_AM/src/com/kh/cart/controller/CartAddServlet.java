@@ -1,6 +1,8 @@
 package com.kh.cart.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.cart.service.CartService;
+import com.kh.join.model.vo.LectorJoin;
+import com.kh.lector.model.service.LectorService;
 
 /**
  * Servlet implementation class CartAddServlet
@@ -34,17 +38,28 @@ public class CartAddServlet extends HttpServlet {
 		System.out.println("CartAddServlet호출");
 		String userId = request.getParameter("userId");
 		int lectorNo = Integer.parseInt(request.getParameter("pNo"));
-
+		
 		int result = new CartService().insertCart(userId, lectorNo);
+		
+		//List<LectorJoin> list=new LectorService().selectLectorJoin(lectorNo);
+		
+		//LectorJoin lj=new LectorService().searchLectorJoin(lectorNo,userId);
+
 		
 		String msg = "";
 		String loc = "";
 		if(result>0) {
 			msg = "장바구니 담기 성공";
-			loc = "/lector/lectorList";
+			loc = "/lector/lectorView?pNo="+lectorNo;
+			//request.setAttribute("list", list);
+			//request.setAttribute("lj", lj);
+			
 		} else {
 			msg = "이미 장바구니에 담겨 있습니다.";
-			loc = "/lector/lectorList";
+			loc = "/lector/lectorView?no="+lectorNo;
+			//request.setAttribute("list", list);
+			//request.setAttribute("lj", lj);
+
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

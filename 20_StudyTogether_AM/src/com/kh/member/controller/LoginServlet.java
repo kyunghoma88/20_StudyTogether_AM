@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();	
 		
 		if(m!=null) {	
-			//msg="로그인 성공";
+			msg=id + "님 환영합니다!";
 
 			session.setAttribute("loginedMember", m);
 
@@ -72,14 +72,15 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(c);
 			}
 		}else {
-			msg="로그인 실패";
+			msg="로그인 실패하였습니다. 다시 시도 하세요!";
 		}
 		
 	System.out.println(msg);
-	request.setAttribute("msg", msg);
 	String loc="/";
+
+	request.setAttribute("msg", msg);
 	request.setAttribute("loc", loc);
-	
+	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	response.sendRedirect(request.getContextPath());
 	
 	}
