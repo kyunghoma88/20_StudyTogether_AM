@@ -107,3 +107,6 @@ div#revWBtn{
   #star_grade a.on{
     color: red;
   }
+a:link { color: red; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: green; text-decoration: underline;}
