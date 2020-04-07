@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.study.model.service.StudyService;
 import com.kh.study.model.vo.Study;
 
@@ -33,6 +34,8 @@ public class StudyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+	
 	int cPage;
 		
 		try {
@@ -83,6 +86,7 @@ public class StudyListServlet extends HttpServlet {
 			}else {
 				pageBar+="<a class='page-link' href='"+request.getContextPath()+"//study/studyList?cPage="+(pageNo)+"'>다음</a>";
 			}
+		
 		
 		request.setAttribute("totalStudy", totalStudy);
 		request.setAttribute("list", list);

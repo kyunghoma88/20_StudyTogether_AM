@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.admin.model.service.AdminService;
 import com.kh.join.model.vo.LectorJoin;
 import com.kh.lector.model.service.LectorService;
+import com.kh.lector.model.vo.Lector;
 
 /**
  * Servlet implementation class AdminServlet
@@ -31,9 +33,14 @@ public class AdminGrantLectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("강좌관리서블릿");
 		
-		List<LectorJoin> list=new LectorService().selectLectorA();
-		request.setAttribute("lectorJoinList", list);
+		List<Lector> list=new AdminService().selectLectorA();
+		for(Lector l:list) {
+			System.out.println(l);
+		}
+		
+		request.setAttribute("lectorGrantList", list);
 		request.getRequestDispatcher("/views/admin/adminGrantLector.jsp").forward(request, response);
 	}
 

@@ -500,20 +500,17 @@ public class BoardDao {
 		}
 		return list;
 	}
-	public List<Board> commentCount(Connection conn) {
+	public List<Integer> commentCount(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<Board> result = new ArrayList();
+		List<Integer> list = new ArrayList();
 		String sql=prop.getProperty("commentCount");
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				Board b = new Board();
-				b.setTitle(rs.getString("title"));
-				b.setContent(rs.getString("content"));
-				result.add((Board)rs.getInt(3));
-				result.add(b);
+				list.add(rs.getInt(1));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -521,7 +518,7 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
-		return result;
+		return list;
 	}
 	public int deleteComment(Connection conn, int no) {
 		PreparedStatement pstmt=null;

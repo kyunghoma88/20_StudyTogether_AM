@@ -1,11 +1,16 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.admin.model.service.AdminService;
+import com.kh.lector.model.vo.Lector;
 
 /**
  * Servlet implementation class AdminServlet
@@ -26,6 +31,12 @@ public class AdminManageLectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Lector> list=new AdminService().selectLectorM();
+		for(Lector l:list) {
+			System.out.println(l);
+		}
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/adminManageLector.jsp").forward(request, response);
 	}
 
