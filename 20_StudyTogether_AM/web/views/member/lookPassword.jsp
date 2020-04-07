@@ -9,7 +9,7 @@
 		<table>
 			<tr id="tr1">
 				<td id="td1">새 비밀번호&nbsp;</td>
-				<td><input type="password" name="pw" id="changePw" placeholder="" class="form-pw"></td><br>
+				<td><input type="password" name="psw" id="changePw" placeholder="" class="form-pw"></td><br>
 			</tr>
 			<tr id="tr1">
 				<td id="td1">비밀번호 확인&nbsp;</td>

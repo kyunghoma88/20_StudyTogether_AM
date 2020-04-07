@@ -55,8 +55,8 @@ public class CartAddServlet extends HttpServlet {
 			//request.setAttribute("lj", lj);
 			
 		} else {
-			msg = "이미 장바구니에 담겨 있습니다.";
-			loc = "/lector/lectorView?no="+lectorNo;
+			msg = "이미 장바구니에 담겨 있거나 결제 하신 강좌입니다.";
+			loc = "/lector/lectorView?pNo="+lectorNo;
 			//request.setAttribute("list", list);
 			//request.setAttribute("lj", lj);
 
