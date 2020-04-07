@@ -77,6 +77,7 @@ private MemberDao dao = new MemberDao();
 	public int duplicateCheck(String id) {
 		Connection conn = getConnection();
 		int result=dao.duplicateCheck(conn,id);
+		close(conn);
 		return result;
 	}
 	
