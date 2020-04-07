@@ -9,14 +9,15 @@
 	List<StudyJoin> list=(List)request.getAttribute("sList");
 	Study s=(Study)request.getAttribute("study");
 %>
-
 <section>
+<%if(loginMember!=null && loginMember.getUserId().equals("admin")||loginMember.getUserId().equals(s.getStudyWriter())){ %>
 	<div class="container" >
     	<a href="<%=request.getContextPath()%>/study/studyUpdate?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">수정</a>
     	<a href="<%=request.getContextPath() %>/study/studyDelete?no=<%=s.getStudyNo() %>" class="btn btn-info" role="button">삭제</a>
 	</div>
- <input type="text" name="member" value="<%=loginMember.getUserId() %>">
- <input type="text" name="no1" value="<%=s.getStudyNo() %>">
+<%} %>
+<%--  <input type="text" name="member" value="<%=loginMember.getUserId() %>">
+ <input type="text" name="no1" value="<%=s.getStudyNo() %>"> --%>
   <div style="margin-top:100px;margin-bottom:150px;" class="watch">
       <p id="watchtitle"><h2><%=s.getStudyName() %></h2></p>
       <p id="detail">희망 일자 : <%=s.getStudyPossibleDay() %>  </p>

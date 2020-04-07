@@ -33,13 +33,6 @@ public class ReviewStudyUpdateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		/*
-		 * ReviewStudy revS = new
-		 * ReviewStudy(Integer.parseInt(request.getParameter("no")),
-		 * request.getParameter("writer"), request.getParameter("allStudy"),
-		 * request.getParameter("field"), request.getParameter("content"),
-		 * Integer.parseInt(request.getParameter("star")), null);
-		 */
 		int no = Integer.parseInt(request.getParameter("no"));
 		String writer = request.getParameter("writer");
 		String allStudy = request.getParameter("allStudy");
@@ -47,12 +40,12 @@ public class ReviewStudyUpdateEndServlet extends HttpServlet {
 		int star = Integer.parseInt(request.getParameter("starCnt"));
 		String content = request.getParameter("content");
 		
-		System.out.println("번호 : " + no);
-		System.out.println("작성자 : " + writer);
-		System.out.println("스터디명 : " + allStudy);
-		System.out.println("분야 : " + field);
-		System.out.println("내용 : " + content);
-		System.out.println("만족 : " + star);
+		/*
+		 * System.out.println("번호 : " + no); System.out.println("작성자 : " + writer);
+		 * System.out.println("스터디명 : " + allStudy); System.out.println("분야 : " +
+		 * field); System.out.println("내용 : " + content); System.out.println("만족 : " +
+		 * star);
+		 */
 		
 		ReviewStudy revS = new ReviewStudy(no,writer,allStudy,field,content,star,null);
 		

@@ -120,15 +120,16 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public void updateBoard(int no) {
+	public int updateBoard(Board b) {
 		Connection conn=getConnection();
-		int result=dao.updateBoard(conn, no);
+		int result=dao.updateBoard(conn, b);
 		if(result>0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		close(conn);
+		return result;
 	}
 	public int deleteBoard(int no) {
 		Connection conn=getConnection();
@@ -181,7 +182,7 @@ public class BoardService {
 	}
 	public int deleteComment(int no) {
 		Connection conn=getConnection();
-		int result=dao.delete(conn, no);
+		int result=dao.deleteComment(conn, no);
 		if(result>0) {
 			commit(conn);
 		}else {

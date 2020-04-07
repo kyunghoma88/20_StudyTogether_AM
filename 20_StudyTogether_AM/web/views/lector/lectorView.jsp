@@ -16,12 +16,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lectorWatch.css" type="text/css"/>
 
 <section>
+<%if(loginMember!=null && loginMember.getUserId().equals("admin")||loginMember.getUserId().equals(l.getLectorWriter())){ %>
  <div class="container" >
 <%--  <a href="<%=request.getContextPath() %>/lectorWatch/lectorInsert" class="btn btn-info" role="button">강좌 추가</a>
  --%> <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 추가</a>
     <a href="<%=request.getContextPath()%>/lector/lectorUpdate?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 수정</a>
     <a href="<%=request.getContextPath() %>/lector/lectorDelete?pNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 삭제</a><!--관리자만 삭제  -->
   </div>
+  <%} %>
 
 <style>
 .btn btn-info{
@@ -70,9 +72,10 @@ background-color:#ffc107;
 <%if(lj==null){ %>
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
-
+	  <a href="javascript:void(0);" class="list-group-item list-group-item-action">다음강의는 결제를 해야 볼 수 있습니다.</a>
 	  <%}  else if(!clist.isEmpty()&&lj!=null){
 		  for(LectorChannel lc:clist){ %>
+	<a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
     <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
   		<%}
   	}%>
