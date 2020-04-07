@@ -174,11 +174,11 @@ public class BoardService {
 		close(conn);
 		return replyList;
 	}
-	public List<Board> commentCount() {
+	public List<Integer> commentCount(int no) {
 		Connection conn=getConnection();
-		List<Board> result=dao.boardCount(conn);
+		List<Integer> list=dao.commentCount(conn, no);
 		close(conn);
-		return result;
+		return list;
 	}
 	public int deleteComment(int no) {
 		Connection conn=getConnection();
