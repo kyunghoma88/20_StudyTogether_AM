@@ -97,13 +97,31 @@
     var min=new Date().getMinutes();//현재시간의 분
 
 },6);
-
 // 게시판롤링
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});
         }
         setInterval(function(){tick()},3000);
 
+        
+        $(function(){
+        	$.ajax({
+        		url:"<%=request.getContextPath()%>/main/main",
+        		datatype:"json",
+        		type:"post",
+        		success:function(data){
+        			console.log(data);
+        		},
+        		error:function(request,status,error){
+        			if(request.status==404){
+        				
+        			}
+        		}
+        		
+        	})
+        })
+        
+        
 </script>
 <!-- footer페이지 불러오기 -->
 <%@ include file="/views/common/footer.jsp" %>

@@ -210,6 +210,14 @@ public class LectorService {
 		close(conn);
 		return list;
 	}
+
+	
+	public List<Lector> lectorRank() {
+		Connection conn=getConnection();
+		List<Lector> list=dao.lectorRank(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 	
