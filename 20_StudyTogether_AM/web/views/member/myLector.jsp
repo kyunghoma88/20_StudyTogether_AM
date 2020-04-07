@@ -6,6 +6,7 @@
 	List<Lector> lcList = (List<Lector>)request.getAttribute("lcList");
 	List<Lector> ljList = (List<Lector>)request.getAttribute("ljList");
 	
+	
 %>
 
 <div class="row">

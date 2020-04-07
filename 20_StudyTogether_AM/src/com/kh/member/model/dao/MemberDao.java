@@ -249,6 +249,7 @@ public class MemberDao {
 				rs = pstmt.executeQuery();
 				
 			while(rs.next()) {
+				s=new Study();
 				s.setStudyNo(rs.getInt("STUDY_NO"));
 				s.setStudyName(rs.getString("STUDY_NAME"));
 				s.setStudyWriter(rs.getString("STUDY_WRITER"));
@@ -286,6 +287,7 @@ public class MemberDao {
 				rs = pstmt.executeQuery();
 				
 			while(rs.next()) {
+				s=new Study();
 				s.setStudyNo(rs.getInt("STUDY_NO"));
 				s.setStudyName(rs.getString("STUDY_NAME"));
 				s.setStudyWriter(rs.getString("STUDY_WRITER"));

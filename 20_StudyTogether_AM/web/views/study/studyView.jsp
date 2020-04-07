@@ -24,9 +24,15 @@
         스터디 지역 : <%=s.getStudyArea() %></br>
         	<p id="detail2">모집 인원 : <%=s.getMaxMember() %>명 /
          	참가 인원 : <%=list.size() %> 명</br></p><!--(nowmember추가  -->
-          <input type="hidden" name="nowMember" value=""><p id="endDate"> 모집 기간 : <%=s.getEndDate() %> 까지</p>
-          <input type="hidden" name="student" value="">
-    <div class="video-inform">
+          <input type="hidden" name="nowMember" value="">
+          <p id="endDate">
+		
+		<%SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd"); %>
+    	모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%>  까지</p>
+         
+        <input type="hidden" name="student" value="">
+    	
+    	<div class="video-inform">
       <%=s.getStudyDetail() %>
     </div>
       <%if(s.getMaxMember()==list.size()){ %>

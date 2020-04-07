@@ -71,9 +71,7 @@ public class BoardViewServlet extends HttpServlet {
 		int minNo=new BoardService().minNo(no);
 		Board nextView=new BoardService().boardView(no-1);
 		Board preView=new BoardService().boardView(no+1);
-		//String preContent=new BoardService().boardPreView(no+1);
-		//new BoardService().viewCount(no);
-		//System.out.println("최대값 : "+maxNo+"no 값 : "+no);
+		
 		List<Comment> commentList=new BoardService().selectBoardComment(no);
 		request.setAttribute("board", b);
 		request.setAttribute("maxNo", maxNo);

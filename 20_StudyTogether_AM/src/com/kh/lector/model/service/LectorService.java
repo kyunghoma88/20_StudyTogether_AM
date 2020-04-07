@@ -203,14 +203,6 @@ public class LectorService {
 		close(conn);
 		return lj;
 	}
-
-	public List<LectorJoin> selectLectorA() {
-		Connection conn=getConnection();
-		List<LectorJoin> list=dao.selectLectorA(conn);
-		close(conn);
-		return list;
-	}
-
 	
 	public List<Lector> lectorRank() {
 		Connection conn=getConnection();
@@ -218,7 +210,5 @@ public class LectorService {
 		close(conn);
 		return list;
 	}
-	
-	
 	
 }

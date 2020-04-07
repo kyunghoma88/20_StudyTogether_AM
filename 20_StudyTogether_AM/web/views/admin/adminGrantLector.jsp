@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8" %>
+<%@ page import="java.util.List, com.kh.lector.model.vo.Lector" %>
 <%@ include file="/views/admin/adminHeader.jsp" %>
+
+<%
+	List<Lector> list=(List)request.getAttribute("lectorGrantList");
+%>
 <div class="row">
-          <form action="" class="form-group col">
             <h3>승인요청한 강좌</h3>
             <table class="table">
               <thead class="text-center">
@@ -17,35 +21,66 @@
                   </tr>
                 </thead>
                 <tbody class="text-center">
+                  <%for(Lector l:list){ %>
+		          <form id="lec<%=l.getLectorNo()%>" action="<%=request.getContextPath() %>/admin/adminGrantLectorEnd" class="form-group col">
                   <tr>
-                      <td>1</td>
+                      <td>
+                      	<%=l.getLectorNo()%>
+                      	<input type="hidden" name="lecNo" value="<%=l.getLectorNo()%>">
+                      </td>
                       <td>
                           <img class="img-thumbnail" style="width:100px;height:100px;" src="http://placehold.it/100x100" alt="">
                       </td>
                       <td>
-                        <a href="#">영기씨의 지각안하는 방법</a>
+                        <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo()%>"><%=l.getLectorTitle() %></a>
                       </td>
-                      <td>김선생</td>
-                      <td>36,000원</td>
+                      <td><%=l.getLectorWriter() %></td>
+                      <td><%=l.getLectorPrice() %>원</td>
                       <td>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">허용
+                                <input type="radio" class="form-check-input" id="optradio<%=l.getLectorNo()%>" name="optradio" value="Y">허용
                             </label>
                         </div>
                         <div class="form-check-inline">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">거부
-                        </label>
+	                        <label class="form-check-label">
+	                          <input type="radio" class="form-check-input" id="optradio<%=l.getLectorNo()%>" name="optradio" value="N">거부
+	                        </label>
                         </div>
                       </td>
                       <td>
-                          <button type="button" class="btn btn-primary btn-sm">전송</button>
+                          <button type="button" class="btn btn-primary btn-sm" onclick="confirmGrant(<%=l.getLectorNo()%>);">전송</button>
                       </td>
                   </tr>      
+		          </form>
+                  <%} %>      
                 </tbody>
               </table>
-          </form>
         </div>
+		<script>
+			function confirmGrant(no){
+				
+				var str="".concat(String(no));
+				console.log(str);
+				console.log('lec'.concat(str));
+				let id='lec'.concat(str);
+				let form=document.getElementById(id);
+				console.log(form);
+				let opt="optradio".concat(str);
+				console.log(opt);
+				console.log(document.getElementById(opt).value);
+				let val=document.getElementById(opt).value;
+				var check=false;
+				if(val=='Y'){
+					check=confirm(str+"번 강좌 개설을 승인하시겠습니까?");
+					if(check) document.getElementById(id).submit();
+					else return;
+				}else if(val='N'){
+					check=confirm(str+"번 강좌 개설을 거절하시겠습니까?");
+					if(check) document.getElementById(id).submit();
+					else return;
+				}
 
+			}
+		</script>
 <%@ include file="/views/admin/adminFooter.jsp" %>
