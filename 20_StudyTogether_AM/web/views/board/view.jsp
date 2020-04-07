@@ -27,7 +27,7 @@
 					<ul class="view_topMenu" style="margin-bottom: 0px; padding-left: 20px;">
 						<li><%=b.getNickname() %>&nbsp;</li>
 						<li><%=b.getWrite_date() %> &nbsp;</li>
-						<li>조회수 <%=b.getCnt()+1 %>&nbsp;</li>
+						<li>조회수 <%=b.getCnt() %>&nbsp;</li>
 						<li>좋아요 <%=b.getGood_cnt() %>&nbsp;</li>
 						<li>싫어요 <%=b.getBad_cnt() %>&nbsp;</li>
 					</ul>

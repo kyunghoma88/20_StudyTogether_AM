@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,16 +41,38 @@ public class BoardViewServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		System.out.println("페이지 "+cPage);
+		Cookie[] cookies=request.getCookies();
+		String cookieVal="";//데이터를 보관용
+		boolean hasRead=false;//읽은표시
+		//cookie값에 있는 읽은 게시판을 확인
+		if(cookies!=null) {
+			for(Cookie c : cookies) {
+				String name=c.getName();
+				String value=c.getValue();
+				if("boardCookie".equals(name)) {
+					cookieVal=value;
+					if(value.contains("|"+no+"|")) {
+						hasRead=true;
+						break;
+					}
+				}
+			}
+		}
+		//읽지 않았다면 쿠키에 데이터를 추가
+		if(!hasRead) {
+			Cookie c=new Cookie("boardCookie",cookieVal+"|"+no+"|");
+			c.setMaxAge(-1);//session이 종료시에 삭제
+			response.addCookie(c);
+		}		
 		String category=request.getParameter("category");
-		Board b=new BoardService().boardView(no);
+		Board b=new BoardService().boardView(no,hasRead);
 		
 		int maxNo=new BoardService().maxNo(no);
 		int minNo=new BoardService().minNo(no);
 		Board nextView=new BoardService().boardView(no-1);
 		Board preView=new BoardService().boardView(no+1);
 		//String preContent=new BoardService().boardPreView(no+1);
-		new BoardService().viewCount(no);
+		//new BoardService().viewCount(no);
 		//System.out.println("최대값 : "+maxNo+"no 값 : "+no);
 		List<Comment> commentList=new BoardService().selectBoardComment(no);
 		request.setAttribute("board", b);
