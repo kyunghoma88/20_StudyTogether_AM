@@ -29,7 +29,7 @@ public class UpdatePasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pw = request.getParameter("pw");
+		String pw = request.getParameter("psw");
 		String id = request.getParameter("id");
 		
 		int result = new MemberService().updatePassword(id, pw);
