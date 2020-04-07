@@ -44,7 +44,6 @@
 <optgroup label="강원도"> 
     <option value="강릉" <%=area!=null&&area.equals("강릉")?"selected":"" %>>강릉</option>
     <option value="속초" <%=area!=null&&area.equals("속초")?"selected":"" %>>속초</option>
-
 </optgroup>
 <optgroup label="충청도"> 
     <option value="대전" <%=area!=null&&area.equals("대전")?"selected":"" %>>대전</option>
@@ -107,7 +106,7 @@
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-       모집인원<%=s.getMaxMember() %>/  <%=jlist.size() %> 명 </div>
+       </div>
     <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
     모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div>
   </a>

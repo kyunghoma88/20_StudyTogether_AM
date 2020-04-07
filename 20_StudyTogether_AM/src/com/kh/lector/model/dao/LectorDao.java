@@ -197,9 +197,6 @@ public class LectorDao {
 		return result;
 	}
 
-
-
-
 	public int insertChannelLector(Connection conn, LectorChannel lc) {
 		PreparedStatement pstmt=null;
 		int result=0;
