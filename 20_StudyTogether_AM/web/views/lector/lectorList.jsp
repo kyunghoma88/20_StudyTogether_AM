@@ -14,9 +14,9 @@
 <section>
 
   <div class="make">
-    <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" >
+  <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" >
    <p>강좌 개설하기</p></a>
-  </div>
+  
   	<div id=title>강좌 스터디 찾기 </div>
 	
 	<div class="main_list">
@@ -50,11 +50,13 @@
      </form>
    </div>
   </div>
+  </div>
   <!-- 리스트 -->
 <%if(list.isEmpty()){ %>
 	<div class="list_start">
 		<h3>검색된 강좌가 없습니다.</h3>
 <%}else{ %>
+	
 	<%for(Lector lector:list){ %>
   		<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
     <div class="list_detail">
@@ -70,11 +72,14 @@
   </a>
   <%}
 	}%>
+	
 </div>
 
 	<ul class="pagination">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
+	
+	
 </section>
 	
 <script>

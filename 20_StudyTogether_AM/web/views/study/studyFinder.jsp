@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.List,com.kh.study.model.vo.Study" %>
+<%@page import="com.kh.join.model.vo.StudyJoin,java.util.List,com.kh.study.model.vo.Study, java.text.*" %>
 
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyList.css" type="text/css"/>
@@ -17,7 +17,7 @@
     <a href="<%=request.getContextPath()%>/study/studyOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>스터디개설하기</p></a>
   </div>
   
-  <div id=studytitle>스터디 찾기 </div>
+  <div id=title>스터디 찾기 </div>
   <p style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue;">
    검색하신 결과는 총 <%=list.size() %>개 입니다.</p>
 	<div class="main_list">
@@ -105,8 +105,9 @@
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-      모집인원<%=s.getMaxMember() %>/ 명</div>
-    모집마감&nbsp;~<%=s.getEndDate() %>까지
+         <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
+    모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div></div>
+
     </div>
   </a>
   <%}

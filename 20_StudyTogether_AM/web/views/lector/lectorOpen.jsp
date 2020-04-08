@@ -46,11 +46,11 @@
 	</tr>	
     <tr>
 		<td>썸네일<br>이미지</td>
-		<td> <input type="file" name="lectorImg" /></td>
+		<td> <input type="file" name="lectorImg" accept="image/*" /></td>
 	</tr>	
   	<tr>
 		<td>강좌<br>비디오<br>첨부</td>
-		<td><input type="file" name="lectorVideo" /></td>
+		<td><input type="file" name="lectorVideo" accept="video/mp4"/></td>
 	</tr>	
     <tr>
 		<td>가격</td>

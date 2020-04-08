@@ -38,7 +38,7 @@
 						<td><%=b.getBoard_no() %></td>
 						<td>
 							<a class="board_title" href="javascript:boardView(<%=b.getBoard_no()%>,<%=cPage%>,'<%=category%>')">
-								<%=b.getTitle() %><span>&nbsp;[]</span>
+								<%=b.getTitle() %>
 							</a>
 						</td>
 						<td><%=b.getNickname() %></td>

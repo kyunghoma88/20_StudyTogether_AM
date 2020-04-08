@@ -64,7 +64,7 @@ public class BoardListServlet extends HttpServlet {
 		List<Integer> commentCount = new ArrayList();
 		for(Board b : list) {
 			commentCount=new BoardService().commentCount(b.getBoard_no());
-			System.out.println(b);
+			System.out.println("댓글 수 "+commentCount);
 		}
 		
 		
