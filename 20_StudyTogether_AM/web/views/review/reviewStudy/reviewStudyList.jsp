@@ -9,18 +9,18 @@
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/reviewBoard.css" type="text/css"/>
  
 
-  
+  <br>
 <div id="reviewEntry" style=background-image:url('<%=request.getContextPath() %>/images/latter2.jpg');>
         <h1 id="reviewTitle">스터디 후기</h1>
 </div>
     <div>
-    <br><br>
+    <br>
    
-    <div id="selectReview" style="font-size:15px">
+    <%-- <div id="selectReview" style="font-size:15px">
         <a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">강좌 후기</a>
     </div>
+     --%>
     
-    <br>
     <%if(list.isEmpty()){ %>
      		<fieldset id="reviewField">
             	<tr>
