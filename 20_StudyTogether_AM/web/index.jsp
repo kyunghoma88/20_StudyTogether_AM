@@ -104,55 +104,37 @@
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});
         }
-        setInterval(function(){tick()},3000);
+        setInterval(function(){tick()},4000);
+        
 
- 
+        
  //신규강좌 top3 ajax!
-       <%--   $(function(){
+         $(function(){
         	$.ajax({
-        		url:"<%=request.getContextPath()%>/main/main",
+				url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
         		type:"post",
         		success:function(data){
         			console.log(data);
+        			console.log("강좌번호"+data[0].lectorNo);
+        			console.log("카테고리"+data[0].lectorCategory);
+        			console.log("사진"+data[0].lectorOriginalImg);
         			for(let i=0; i<data.length;i++){
-	        			$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo=data[i][lectorNo]'>"+
-	        			<div class='list_detail'>
-	        			<h4><lectorCategory></h4>
-	        			lectorOriginalImg
-	        			
-	        					
-)
-        				
-        				
-        				
+	        			$("#rank")[i].append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
+	     				"<div class='list_detail'>"+
+	     				"<h4>"+data[i].lectorCategory+"</h4>"+
+	        			"<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
+	        			"</div>"+
+	        			"<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
+	        			"</a>"); 
         			}
-        			<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
-
-        		    <div class="list_detail">
-        		      <h4 ><%=lector.getLectorCategory() %></h4>
-        		      <%if(lector.getLectorOriginalImg()!=null){ %>
-        		     <div>
-        		     <!-- 리네임된 파일업로드  -->
-        		        <img src="<%=request.getContextPath() %>/upload/lector/<%=lector.getLectorOriginalImg() %>" class="" width="200px" height="150px">
-        		     </div>
-        		      <%} %>
-        		      <div id="lectorTitle"><%=lector.getLectorTitle() %></div>
-        		    </div>
-        		  </a>
-        			
-        			
         		},
         		error:function(request,status,error){
         			if(request.status==404){
-        				
         			}
         		}
-        		
         	})
-        })  --%>
-        
-        
+        }) 
 </script>
 <!-- footer페이지 불러오기 -->
 <%@ include file="/views/common/footer.jsp" %>
