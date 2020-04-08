@@ -17,8 +17,14 @@
 <style>
 	.faq-header{
 		margin : 0px;
+		margin-left : 50px;
 		margin-top : 50px;
 		
+	}
+	
+	#category-container{
+		margin-top : 0;
+		margin-bottom : 0;
 	}
 	
 	.btn-faq-category{
@@ -61,12 +67,12 @@
 
 
 <section id="faq-container" style="height:800px;">
-	<div class="row">
-		<div class="col-2"></div>
-		<div class="container faq-header col-10">
+	<!-- <div class="row">
+		<div class="col-2"></div> -->
+		<div class="container faq-header">
 			<h2>FAQ</h2>
 		</div>
-	</div>
+	<!-- </div> -->
 	<br>
 	
 		<div id="category-container" class="container">
@@ -84,7 +90,47 @@
 
 
 
-		<div id="table-container" class="container tbl-container"></div>
+		<div id="table-container" class="container tbl-container">
+			
+			
+			<div>
+				<table id="tbl-faq" class="tbl-faq table table-hover">
+					<colgroup>
+						<col width="150px;" />
+						<col width="750px;" />
+						<col/>
+					</colgroup>
+				
+					<tr>
+						<th>카테고리</th>
+						<th>제 목</th>	
+					</tr>
+					<% if(list.isEmpty()){ %>
+						<tr>
+							<td colspan='2'> 검색된 FAQ가 없습니다!</td>
+						</tr>
+					<% } else{ %>
+						<%	for(FAQ f : list){ %>
+							<tr>
+								<td class="faq-category"><%= f.getFaqCategory() %></td>				
+								<td><a href="<%= request.getContextPath() %>/faq/faqView?no=<%=f.getFaqNo() %>">
+							<%= f.getFaqTitle() %>
+									</a>
+								</td>
+							</tr>
+						<%} %>
+					<%} %>
+				</table>
+			
+				<div id="pageBar" class="container pageBar-container">
+					<ul class="pagination">
+						<%= request.getAttribute("pageBar") %>
+					</ul>	
+				</div>
+			</div>
+			
+		
+		</div>
 
 		<script>
 			function fn_btn(cPage, category){
@@ -96,7 +142,7 @@
 					success:function(data){
 						//console.log(data);
 						//alert(category);
-						$("#tbl-faq, #pageBar").css("display","none"); 
+						$("#tbl-faq, #pageBar").hide(); 
 						
 						
 						
@@ -109,7 +155,7 @@
 		</script>
 
 
-	<div class="container tbl-container">
+	<%-- <div class="container tbl-container">
 		<table id="tbl-faq" class="table table-hover">
 			<colgroup>
 				<col width="150px;" />
@@ -143,7 +189,7 @@
 				<%= request.getAttribute("pageBar") %>
 			</ul>	
 		</div>
-	</div>
+	</div> --%>
 </section>
 
 

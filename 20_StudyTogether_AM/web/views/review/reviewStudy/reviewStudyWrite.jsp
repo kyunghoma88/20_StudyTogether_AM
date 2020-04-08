@@ -44,7 +44,7 @@
         </tr>
         <tr>
            <td>내용</td>
-           <td><textarea name="content" cols=80 rows=10 style="resize:none;"></textarea></td>
+           <td><textarea name="content" cols=80 rows=5 style="resize:none;"></textarea></td>
         </tr>
           
    </table>
