@@ -35,6 +35,7 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
+		
 		int cPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
