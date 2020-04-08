@@ -315,16 +315,17 @@ function hangul_chk(id){//{{{
 
 
 /*checkbox select all*/
-function check_class_toggle(){
+function check_class_toggle(e){
 	if(document.getElementById("classSelect").checked==true){
-		document.frm1.classSelect.checked=false;
+		e.checked==false;
+		console.log(document.frm1[0].elements[0].checked);
+		console.log(document.frm1.length);
 		for(var i=0;i<document.frm1.length;i++){
-	        document.frm1.elements[i].checked=true;
+			document.frm1[i].elements[0].checked=true;
 	    }
 	} else if(document.getElementById("classSelect").checked==false){
-		document.frm1.classSelect.checked=false;
 		for(var i=0;i<document.frm1.length;i++){
-	        document.frm1.elements[i].checked=false;
+			document.frm1[i].elements[0].checked=false;
 	    }
 	}
 }
