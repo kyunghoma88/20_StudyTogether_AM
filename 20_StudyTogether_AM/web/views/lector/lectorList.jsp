@@ -22,6 +22,7 @@
 		
 	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
+     <br>
      <select id="searchType" name="searchType">
      	<option >강좌 카테고리</option>
      	  <optgroup label="어학,회화">
@@ -52,7 +53,7 @@
 	  <div class="open-lecture-container">
 	  	<div id="owl-img">
 			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
-				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="70px" height="70px" >
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:20px;" >
 			</a>
 		</div>
 		<div id="open-lec">
@@ -88,7 +89,7 @@
 	
 </div>
 
-	<ul class="pagination">
+	<ul class="pagination" style="margin-bottom:100px; margin-top:100px;">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
 	

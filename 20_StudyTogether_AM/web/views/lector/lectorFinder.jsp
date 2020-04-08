@@ -15,42 +15,59 @@
 %>
 
 <section>
+
   <div class="make">
-    <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
-  </div>
+  
   	<div id=title>강좌 스터디 찾기 </div>
-  <p style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue;">
-   검색하신 결과는 총 <%=list.size() %>개 입니다.</p>
-	
+  
 	<div class="main_list">
-	 <!-- 상단 제목 -->
-		<div class="main_title">
 	
-   <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
-     <select id="searchType" name="searchType"> 
-     	<option >강좌 카테고리</option>
-     	  <optgroup label="어학,회화">
-          <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
-          <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
-          <option value="스페인어" <%=type!=null&&type.equals("스페인어")?"selected":"" %>>스페인어</option>
-          <option value="불어" <%=type!=null&&type.equals("불어")?"selected":"" %>>불어</option> --%>
-      </optgroup>
-       <optgroup label="자격증">
-          <option value="제빵" <%=type!=null&&type.equals("제빵")?"selected":"" %>>제빵</option>
-          <option value="정보처리기사" <%=type!=null&&type.equals("정보처리기사")?"selected":"" %>>정보처리기사</option>
-          <option value="컴퓨터활용" <%=type!=null&&type.equals("컴퓨터활용")?"selected":"" %>>컴퓨터활용</option>
-          <option value="토익" <%=type!=null&&type.equals("토익")?"selected":"" %>>토익</option>
-      </optgroup>
-      <optgroup label="IT">
-          <option value="알고리즘" <%=type!=null&&type.equals("알고리즘")?"selected":"" %>>알고리즘</option>
-          <option value="데이터베이스" <%=type!=null&&type.equals("데이터베이스")?"selected":"" %>>데이터베이스</option>
-          <option value="자바프로그래밍" <%=type!=null&&type.equals("자바프로그래밍")?"selected":"" %>>자바프로그래밍</option>
-      </optgroup>
-      </select>
-      
-      <input type="text" name="searchKeyword" value="<%=request.getAttribute("key")%>">
-      <input type="submit" value="검색">
-     </form>
+    <%-- <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a> --%>
+  <!-- </div> -->
+  <span style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue;">
+   검색하신 결과는 총 <%=list.size() %>개 입니다.</span>
+	
+	 <!-- 상단 제목 -->
+		<!-- <div class="main_title"> -->
+	
+	   <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
+	     <select id="searchType" name="searchType"> 
+	     	<option >강좌 카테고리</option>
+	     	  <optgroup label="어학,회화">
+	          <option value="영어" <%=type!=null&&type.equals("영어")?"selected":"" %>>영어</option>
+	          <option value="일본어" <%=type!=null&&type.equals("일본어")?"selected":"" %>>일본어</option>
+	          <option value="스페인어" <%=type!=null&&type.equals("스페인어")?"selected":"" %>>스페인어</option>
+	          <option value="불어" <%=type!=null&&type.equals("불어")?"selected":"" %>>불어</option> --%>
+	      </optgroup>
+	       <optgroup label="자격증">
+	          <option value="제빵" <%=type!=null&&type.equals("제빵")?"selected":"" %>>제빵</option>
+	          <option value="정보처리기사" <%=type!=null&&type.equals("정보처리기사")?"selected":"" %>>정보처리기사</option>
+	          <option value="컴퓨터활용" <%=type!=null&&type.equals("컴퓨터활용")?"selected":"" %>>컴퓨터활용</option>
+	          <option value="토익" <%=type!=null&&type.equals("토익")?"selected":"" %>>토익</option>
+	      </optgroup>
+	      <optgroup label="IT">
+	          <option value="알고리즘" <%=type!=null&&type.equals("알고리즘")?"selected":"" %>>알고리즘</option>
+	          <option value="데이터베이스" <%=type!=null&&type.equals("데이터베이스")?"selected":"" %>>데이터베이스</option>
+	          <option value="자바프로그래밍" <%=type!=null&&type.equals("자바프로그래밍")?"selected":"" %>>자바프로그래밍</option>
+	      </optgroup>
+	      </select>
+	      
+	      <input type="text" name="searchKeyword" value="<%=request.getAttribute("key")%>">
+	      <input type="submit" value="검색">
+	     </form>
+     </div>
+     <div class="open-lecture-container">
+	  	<div id="owl-img">
+			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" >
+			</a>
+		</div>
+		<div id="open-lec">
+			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
+				강좌 개설하기
+			</a>
+		</div>
+	  </div>
    <%--    <div id="search-all">
 			<form action="<%=request.getContextPath() %>/lector/lectorFinder">
 				<input type="hidden" name="searchType" value="전체"/>
@@ -77,7 +94,7 @@
 		</div>
 		 --%>
 		
-   </div>
+   
   </div>
 <script>
 //온로드

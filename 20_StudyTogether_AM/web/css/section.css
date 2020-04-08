@@ -118,7 +118,7 @@
   /* sdfdfsd */
   
   .slide{margin-left:800px; margin-top:100px; width: 400px; height:400px;overflow:hidden; display:inline-block; } 
-      .slide ul{width:calc(100% * 8); display:flex;animation:slide 5s infinite;} 
+      .slide ul{width:calc(100% * 8); display:flex;animation:slide 25s infinite;} 
       /* slide를 8초동안 진행하며 무한반복 함 */
       .slide li{width:calc(100% / 8);height:300px;}
      /* .slide li:nth-child(1){background:#ffa;}
