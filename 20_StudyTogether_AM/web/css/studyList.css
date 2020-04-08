@@ -1,19 +1,28 @@
 
 
 /* 강좌 스터디 목록 */
-#studytitle{
-    padding-top:100px;
+#title{
+    
     padding-right: 900px;
     text-align: center;
     font-weight:bolder;
+    font-size:50px;
+}
+/* 강사스터디 찾기 속성 */
+#title{
+    padding-right: 900px;
+    text-align: center;
+    font-weight: bolder;
     font-size:25px;
 }
+
 .list_start {
     text-align: center;
-    margin-top:80px;
-    display: inline-block;
-    
+    margin-top:10px;
+    display: flex;
+first    
 }
+
 
 /* 이미지리스트간 속성 */
 .list_detail{
@@ -30,7 +39,6 @@
     background-color:#E7E7E7;
    /* 	float:left; */
 }  
-
 
 .list_detail:hover{
     transform: scale(1.1);
@@ -49,19 +57,21 @@ select{
     width: 200px; /* 원하는 너비설정 */
 }
 .make{
-    margin-top:20px;
-    margin-right: 160px;
+     margin-top:20px;
+     margin-right: 160px;
 }
 .make img{
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     /* 부엉이 이미지 아래 간격 */
 }
 
     
 .make img:hover{
         transform:perspective(400px) rotateZ(30deg);
+
     }
-.make a{
+  
+    .make a{
     font-size: 20px;
     text-decoration: none;
     color:black;
@@ -70,10 +80,17 @@ select{
     padding-left: 80px;
     margin-left: 1000px;
   }
+  
  #lectorTitle{
- 	text-align:center; 
- 	margin-top:20px;
+ 	text-align:center;
+     padding-top: 15px;
+     font-weight: bolder;
+     font-size: 18px;
+ }
  
-.pagination{
-/* 	margin-left:600px;
- */}
+ .pagination{
+ margin-left:600px;
+ }
+ 
+ 
+

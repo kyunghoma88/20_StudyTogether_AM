@@ -98,7 +98,7 @@
         var date=new Date();
        container.innerHTML="현재 시간 "+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds()+" :   "+date.getMilliseconds();
     var min=new Date().getMinutes();//현재시간의 분
-},60);
+},90);
 // 게시판롤링
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});

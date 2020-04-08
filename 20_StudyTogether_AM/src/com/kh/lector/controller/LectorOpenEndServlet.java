@@ -43,7 +43,7 @@ public class LectorOpenEndServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response );
 		}
 		String path=getServletContext().getRealPath("/upload/lector/");
-		int maxSize=1024*1024*30;
+		int maxSize=1024*1024*1024;
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		String title=mr.getParameter("lectorTitle");
 		String writer=mr.getParameter("lectorWriter");
