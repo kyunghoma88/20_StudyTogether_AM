@@ -32,7 +32,7 @@
 	#faq-container{
 		width : 800px;
 		height : 800px;
-		margin-left : 100px;
+ 		margin-left : 100px;
 	}
 	
 	.btn-container button{
@@ -47,12 +47,12 @@
 
 
 <section id = "faq-container" style="height:800px;">
-	<div class="row">
-		<div class="col-1"></div>
-		<div class="container faq-header col-9">
+<!-- 	<div class="row"> -->
+<!-- 		<div class="col-1"></div> -->
+		<div class="container faq-header">
 			<h2>FAQ</h2>
 		</div>
-	</div>
+<!-- 	</div> -->
 	
 		<div class="container tbl-container">
 			<table id="tbl-faq" class="table table-hover">
