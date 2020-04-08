@@ -85,9 +85,15 @@
  
  			<button type="button" class="btn-faq-category btn btn-dark" id="btn-faq-write" onclick="fn_faqWrite();">FAQ 작성</button>
  		<% } %> 
+ 		
+ 			<!-- <form id="searchForm">
+ 				<input type="text" name="faqTitle"/>
+ 				<button type="submit">검색</button>
+ 			</form> -->
+ 		
 		</div>
 
-
+	
 
 
 		<div id="table-container" class="container tbl-container">
@@ -139,6 +145,25 @@
 					type:"post",
 					data:{cPage:cPage,
 						 "category":category},
+					success:function(data){
+						//console.log(data);
+						//alert(category);
+						$("#tbl-faq, #pageBar").hide(); 
+						
+						
+						
+						$('#table-container').html(data);
+					}
+					
+				})
+			}
+			
+			function searchFaq(){
+				var searchData = $("#searchForm").serialize();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/faq/faqSearchListAjax",
+					type:"post",
+					data:searchData,
 					success:function(data){
 						//console.log(data);
 						//alert(category);
