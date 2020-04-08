@@ -3,23 +3,44 @@
 <%@ page import="java.util.List, com.kh.review.model.vo.ReviewLecture" %>
 <%
 	List<ReviewLecture> list = (List)request.getAttribute("list");
+	String type = request.getParameter("searchType");
+	String keyword = request.getParameter("searchKeyword");
 %>
 <%@ include file="/views/common/header.jsp"%>
    <!-- css파일 호출 -->
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/reviewBoard.css" type="text/css"/>
  
-
-  <br>
-<div id="reviewEntry" style=background-image:url('<%=request.getContextPath() %>/images/latter2.jpg');>
+<section id="lecRev_container">
+<br>
+	<div id="reviewEntry" style=background-image:url('<%=request.getContextPath() %>/images/latter2.jpg');>
         <h1 id="reviewTitle">강좌 후기</h1>
-</div>
-    <div>
-    <br>
+	</div>
+	 <br>
+    <div id="revSearch_Container">
+    <div align="center"  id="revSearch">
+		<select id="searchType">
+			<option value="REVIEW_LEC_WRITER" <%=type!=null&&type.equals("REVIEW_LEC_WRITER")?"selected":"" %>>작성자</option>
+			<option value="LECTURE_TITLE" <%=type!=null&&type.equals("LECTURE_TITLE")?"selected":"" %>>스터디 이름</option>
+		</select>
+		
+		<div id="search-REVIEW_LEC_WRITER">
+            <form action="<%=request.getContextPath() %>/review/reviewLectureFinder">
+               <input type="hidden" name="searchType" value="REVIEW_LEC_WRITER"/>
+               <input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("REVIEW_LEC_WRITER")?keyword:"" %>" size="25" placeholder="검색할 작성자 입력"/>
+               <button type="submit" id="revFindBtn">검색</button>
+            </form>
+         </div>
+            
+         <div id="search-LECTURE_TITLE">
+            <form action="<%=request.getContextPath() %>/review/reviewLectureFinder">
+               <input type="hidden" name="searchType" value="LECTURE_TITLE"/>
+               <input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("LECTURE_TITLE")?keyword:"" %>" size="25" placeholder="검색할 스터디 이름 입력"/>
+               <button type="submit" id="revFindBtn">검색</button>
+            </form>
+         </div>
+         
+   </div>
      
-<%-- <div id="selectReview" style="font-size:15px">
-<a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
-</div> --%>
-    
     <%if(list.isEmpty()){ %>
      		<fieldset id="reviewField">
             	<tr>
@@ -72,7 +93,20 @@
     </div>
 
     <script>
-      
+    $(function(){
+		$("#searchType").change(()=>{
+			let type=$("#searchType").val();
+		
+			let writer=$("#search-REVIEW_LEC_WRITER");
+			let allStudy=$("#search-LECTURE_TITLE");
+			
+			writer.hide();
+			allStudy.hide();
+			
+			$("#search-"+type).css("display","inline-block");
+		})
+		$("#searchType").trigger("change");
+	});
          function fn_writeReviewLecture(){
  			location.href="<%=request.getContextPath()%>/review/reviewLectureWrite?writer=<%=loginMember.getUserId()%>";
  		}

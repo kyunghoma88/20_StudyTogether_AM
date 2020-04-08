@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 			msg="로그인 실패하였습니다. 다시 시도 하세요!";
 		}
 		
-	System.out.println(msg);
+	
 	String loc="/";
 
 	request.setAttribute("msg", msg);

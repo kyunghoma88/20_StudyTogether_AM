@@ -12,7 +12,6 @@ import com.kh.review.model.dao.ReviewLectureDao;
 import com.kh.review.model.vo.ReviewLecture;
 
 
-
 public class ReviewLectureService {
 
 	private ReviewLectureDao dao = new ReviewLectureDao();
@@ -69,6 +68,21 @@ public class ReviewLectureService {
 		String category = dao.selectLectureCategory(conn,lecture);
 		close(conn);
 		return category;
+	}
+
+	public List<ReviewLecture> searchReviewLecturePage(int cPage, int numPerPage, String type, String key) {
+		Connection conn = getConnection();
+		List<ReviewLecture> list = dao.searchReviewLecturePage(conn,cPage,numPerPage,type,key);
+		close(conn);
+		System.out.println(list);
+		return list;
+	}
+
+	public int reviewLectureCount(String type, String key) {
+		Connection conn = getConnection();
+		int result = dao.reviewLectureCount(conn,type,key);
+		close(conn);
+		return result;
 	}
 
 }

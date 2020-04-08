@@ -32,16 +32,7 @@ public class ReviewStudyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//페이지바 구성하기
-//		페이징 처리할 때 필요한 변수
-//		(데이터)
-//		1. cPage : 현재 페이지 의미
-//		2. numPerPage : 한개 페이지에 출력될 데이터 수
-//		3. totalData : 총 데이터 수
-//		(페이지)
-//		4. totalPage : 총 페이지 수 
-//		5. pageBarSize : 화면에 출력할 페이지 번호 갯수
-//		6. pageNo : 출력할 페이지의 시작번호
+
 		int cPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
@@ -53,7 +44,7 @@ public class ReviewStudyListServlet extends HttpServlet {
 		
 		int totalPage=(int)Math.ceil((double)totalReviewStudy/numPerPage);
 		
-		int pageBarSize=3;
+		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
@@ -82,6 +73,7 @@ public class ReviewStudyListServlet extends HttpServlet {
 		
 		request.setAttribute("list",list);
 		request.setAttribute("pageBar",pageBar);
+
 		request.getRequestDispatcher("/views/review/reviewStudy/reviewStudyList.jsp").forward(request, response);
 	
 	}
