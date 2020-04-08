@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.kh.member.model.vo.Member, com.kh.common.listener.SessionCheckListener" %>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+
 
 <%
    //Member m = (Member)request.getAttribute("loginedMember");
@@ -32,7 +32,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    
 	    <!-- CSS -->
-<link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
