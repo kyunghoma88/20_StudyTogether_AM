@@ -127,9 +127,9 @@
 	<div class="modal-content2">
 		<form action="<%=request.getContextPath()%>/lookforpassword" method="post">
 			<h4 id="hID">비밀번호 찾기</h2>
-			<input type="text" name="id" id="userId" placeholder="ID"><br>
-			<input type="text" name="name" id="name" placeholder="이름"><br>
-			<input type="email" name="email" id="email" placeholder="EMAIL">
+			<input type="text" autocomplete="off" name="id" id="userId" placeholder="ID"><br>
+			<input type="text" autocomplete="off" name="name" id="name" placeholder="이름"><br>
+			<input type="email" autocomplete="off" name="email" id="email" placeholder="EMAIL">
 			<input class="form-button" id="pwbtn" type="submit" value="전송">
 		</form>
 	</div>
