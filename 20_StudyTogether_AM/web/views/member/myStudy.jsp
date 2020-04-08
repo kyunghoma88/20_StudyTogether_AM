@@ -10,6 +10,7 @@
 <div class="row">
 	<h4>내가 개설한 스터디</h4>
 </div>
+<%if(scList.size()==0){%>
 <div class="row">
 	<h4><%=loginMember.getUserId()%>님께서는 아직 개설한 스터디가 없습니다</h4>
 </div>
@@ -18,7 +19,7 @@
 		<p>새 스터디 만들러 가기!</p>
 	</a>
 </div>
-
+<%}else {%>
 <!-- 개설한 스터디가 있다면... -->
 <div class="row">
   <form action="" class="form-group col" name="frm1">
@@ -33,11 +34,6 @@
             </tr>
           </thead>
           <tbody class="text-center">
-          	<%if(scList.size()==0){%>
-			<tr>
-				<td colspan="5">조회된 스터디가 없습니다</td>
-			</tr>          		
-			<%}else {%>
           		<%for(Study s:scList){ %>
 	            <tr>
 	                <td class=""><%=s.getStudyNo() %></td>
@@ -60,6 +56,7 @@
 <div class="row">
     <h4>내가 참여한 스터디</h4>
 </div>
+<%if(sjList.size()==0) {%>
 <div class="row">
 	<h6><%=loginMember.getUserId()%>님께서는 아직 참여한 스터디가 없습니다</h6>
 </div>
@@ -68,6 +65,7 @@
 		<p>새 스터디 보러가기!</p>
 	</a>
 </div>
+<%}else{ %>
 <!-- 개설한 스터디가 있다면... -->
 <p>개설한 스터디가 있다면...</p>
 <div class="row">
@@ -85,11 +83,6 @@
             </tr>
           </thead>
           <tbody class="text-center">
-          	<%if(sjList.size()==0) {%>
-			<tr>
-				<td colspan="5">조회된 스터디가 없습니다</td>
-			</tr>
-			<%}else{ %>
 				<%for(Study s:sjList){ %>
             <tr>
                 <td class=""><%=s.getStudyNo() %></td>
