@@ -48,7 +48,7 @@ public class LectorViewServlet extends HttpServlet {
 		//로그인한 사람이 결제를 했는지 조회하는 메서드
 		System.out.println("로그인한id :"+loginId);
 		System.out.println("강좌번호 :"+no);
-		System.out.println(lj);
+
 	
 		//channel페이징처리시작
 		/*	1.	cPage : 현재 페이지를 의미(1페이지를 보고있는지 2페이지를 보고있는지)
@@ -116,6 +116,7 @@ public class LectorViewServlet extends HttpServlet {
 			request.setAttribute("loc", "lector/lectorList");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
+		
 			request.setAttribute("lj", lj);
 			request.setAttribute("clist", clist);
 			request.setAttribute("l", l);
