@@ -60,24 +60,29 @@
 		<script>
 			function confirmGrant(no){
 				
+				var raCheck=document.getElementsByName('optradio');
+
+	    		var select;
+	    		for(let i=0;i>raCheck.length;i++){
+	    			if(raChecked[i].checked==true){
+	    				select=raCheck[i].value;
+	    			}
+	    		}
+	    		console.log(select);
+	    		
+				
 				var str="".concat(String(no));
 				let id='lec'.concat(str);
 				let form=document.getElementById(id);
 				let opt="optradio".concat(str);
 				let val=document.getElementById(opt).value;
-				var check=false;
-				var isChecked=$('input[name=optradio]').is(':checked');
 				
-				if(isChecked){
-					check=confirm(str+"번 강좌 개설을 승인하시겠습니까?");
+				var check=false;
+				if(val=="Y"){
+					check=confirm(str+"번 강좌입니다. 이대로 진행하시겠습니까?");
 					if(check) form.submit();
-					else return;
-				} else {
-					check=confirm(str+"번 강좌 개설을 거절하시겠습니까?");
-					if(check) form.submit();
-					else return;
+					else return;					
 				}
-
 			}
 		</script>
 <%@ include file="/views/admin/adminFooter.jsp" %>

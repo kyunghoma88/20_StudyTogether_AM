@@ -42,7 +42,7 @@
 	                <td class=""><%=s.getMaxMember() %></td>
 	                <td class="">
 	                  <div class="form-check-inline">
-	                  	<%=s.getEnrollDate() %>
+	                     <%=s.getEnrollDate() %>
 	                  </div>                        
 					</td>
 	            </tr>      
