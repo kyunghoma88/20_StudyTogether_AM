@@ -48,7 +48,7 @@
                 <%}else { 
                 	for(int i=1;i<=files.length;i++){%>
                 	<div id="data<%=i%>">
-                        <span class="item">파일#<%=i%></span> 
+                        <span class="item">파일#<%=i%></span>
                         <input type="file" name="fileup<%=i%>" id="fileup<%=i%>">
                         <span id="fname<%=i %>" class="fname" onchange="changeFile();"><%=files[i-1] %></span>
                         <input type="hidden" name="oriFile<%=i %>" value="<%=files[i-1] %>"/>
@@ -77,7 +77,7 @@
             //파일창 추가
             $("#fileAdd").click(event,function(){
                 //var span=$("<span class='item'>파일#"+cnt+"</span>");
-                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+"</span> "+
+                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+"</span>"+
                 "<input type='file' name='fileup"+(cnt+1)+"' id='fileup"+(cnt+1)+"'></div>";
                     if(cnt > 4){
                     $("#filelimit").html("※파일은 최대 5개까지만 등록가능합니다.").

@@ -16,7 +16,7 @@
 			<div class="category_name">커뮤니티</div>
 			<div class="view_content2">	
 				<ul class="view_topMenu" style="text-align: right;">
-					<li style="color: blue;"><i class="fas fa-home"></i></li>
+					<li style="color: blue;"><a href="<%=request.getContextPath()%>/"><i class="fas fa-home"></i></a></li>
 					<li><a class="view_category" href="<%=request.getContextPath()%>/board/boardList">묻고 답하기</a></li>
 					<li style="color: red; font-weight: 600;">커뮤니티</li>
 				</ul>		
@@ -200,7 +200,8 @@
 					$.ajax({
 						url:"<%=request.getContextPath()%>/ajax/goodUpdate",
 						type:"post",
-						data:{"no":<%=b.getBoard_no()%>},
+						data:{"no":<%=b.getBoard_no()%>,
+							  "id":"<%=loginMember!=null?loginMember.getUserId():""%>"},
 						success:function(data){
 							$("#goodAdd").html(data);
 							console.log($(".view_topMenu>li"));
@@ -220,7 +221,8 @@
 					$.ajax({
 						url:"<%=request.getContextPath()%>/ajax/badUpdate",
 						type:"post",
-						data:{"no":<%=b.getBoard_no()%>},
+						data:{"no":<%=b.getBoard_no()%>,
+							  "id":"<%=loginMember!=null?loginMember.getUserId():""%>"},
 						success:function(data){
 							$("#badAdd").html(data);
 							$(".view_topMenu>li").eq(7).html("싫어요 "+data+"&nbsp;");
