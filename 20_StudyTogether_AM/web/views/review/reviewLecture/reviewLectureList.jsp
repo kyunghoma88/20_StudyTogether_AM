@@ -57,19 +57,18 @@
             </fieldset>
            
 	<%} 
-	}%>
-
-       		<ul class="pagination" style="margin-left:580px">
-			<%if(!list.isEmpty()){ %>
-			<%=request.getAttribute("pageBar") %>
-			<%} %>
-			</ul>
+	}%>	
         <%if(loginMember!=null){%>
 			<input type="button" value="강좌 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewLecture()"/>
 		<%}else{ %>
 			<input type="hidden" >
 		<%} %>
-       
+		<br>
+       <ul class="pagination" style="margin-left:580px">
+			<%if(!list.isEmpty()){ %>
+			<%=request.getAttribute("pageBar") %>
+			<%} %>
+		</ul>
     </div>
 
     <script>

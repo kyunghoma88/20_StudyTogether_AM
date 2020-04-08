@@ -3,6 +3,7 @@ package com.kh.board.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,9 +32,27 @@ public class AjaxBadUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("test"+no);
-		
+		String id=request.getParameter("id");
+		System.out.println("아이디 "+id);
+		Cookie[] cookies=request.getCookies();
+		String cookieVal="";//데이터를 보관용
+		boolean hasRead=false;//읽은표시
+		//cookie값에 있는 읽은 게시판을 확인
+		if(cookies!=null) {
+			for(Cookie c : cookies) {
+				String name=c.getName();
+				String value=c.getValue();
+				if("boardCookie".equals(name)) {
+					cookieVal=value;
+					if(value.contains("|"+no+"|")) {
+						hasRead=true;
+						break;
+					}
+				}
+			}
+		}
 		new BoardService().updateBad(no);
+		
 		Board b=new BoardService().boardView(no);
 		response.getWriter().print(b.getBad_cnt());
 	}

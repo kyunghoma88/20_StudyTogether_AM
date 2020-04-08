@@ -6,7 +6,7 @@
 
 <%
 	List<FAQ> list = (List)request.getAttribute("list");
-%>	
+%>
 
 <script>
 	function fn_faqWrite(){
