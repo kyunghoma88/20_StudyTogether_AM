@@ -71,7 +71,7 @@ background-color:#ffc107;
 <div class="container">
   <div class="list-group">
   	  <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo() %>" class="list-group-item list-group-item-action"><%=l.getLectorTitle() %></a>
-	 <%if(loginMember.getUserId().equals(l.getLectorWriter())||loginMember.getUserId().equals("admin")){ %>
+	 <%if(loginMember.getUserId().equals(l.getLectorWriter())||loginMember.getUserId().equals("admin")||lj!=null){ %>
 	  	<%for(LectorChannel lc:clist){ %>
 	  	   <a href="<%=request.getContextPath() %>/lector/channelView?pNo=<%=l.getLectorNo() %>&cNo=<%=lc.getChannelNo() %>" class="list-group-item list-group-item-action"><%=lc.getChannelTitle() %></a>
 	  <%}
