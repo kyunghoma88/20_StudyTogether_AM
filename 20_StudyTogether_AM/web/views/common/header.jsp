@@ -284,7 +284,7 @@
     </li>
     <li class='menu3'>
     <%if(loginMember!=null) {%>
-      <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
+     <a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">스터디 후기</a>
       <%}else{ %>
       	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
       <%} %>
