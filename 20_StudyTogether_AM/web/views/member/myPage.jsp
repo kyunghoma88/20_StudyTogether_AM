@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/member/myPageHeader.jsp" %>
 	<!-- DAUM POSTCODE API -->
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <div name="must" class="container-fluid mt-5 mb-3">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<div class="container">
+    <div name="must" class="container-fluid justify-content-center">
         <div class="row">
             <fieldset>
                 <legend>필수입력</legend>
@@ -70,7 +71,7 @@
                                     <label for="nickname">닉네임</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="nickname" id="nickname" value="<%=loginMember.getNickName()!=null?loginMember.getNickName():""%>">                                
+                                    <input type="text" name="nickname" id="nickname" value="<%=loginMember.getNickName()!=null?loginMember.getNickName():""%>">　　　　　　　　　　　　　　　　　　　　　　　　　
                                 </td>
                             </tr>
                             <tr>
@@ -312,5 +313,6 @@
             </fieldset>
         </div>
     </div>
+</div>
 <%@ include file="/views/member/myPageFooter.jsp" %>
     

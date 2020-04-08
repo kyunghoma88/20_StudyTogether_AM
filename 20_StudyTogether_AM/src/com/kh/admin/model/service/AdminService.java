@@ -56,4 +56,57 @@ public class AdminService {
 		return list;
 	}
 
+	public int deleteLector(int lecNo) {
+		Connection conn = getConnection();
+		int result=dao.deleteLector(conn,lecNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteLectorAll(int[] lecNums) {
+		Connection conn = getConnection();
+		int result=0;
+		int check=0;
+		for(int i=0;i<lecNums.length;i++) {
+			check=dao.deleteLector(conn,lecNums[i]);
+			if(check>0) {
+				commit(conn);
+				result++;
+			}
+			else rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int deleteStudy(int stuNo) {
+		Connection conn = getConnection();
+		int result=dao.deleteStudy(conn,stuNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteStudyAll(int[] stuNums) {
+		Connection conn = getConnection();
+		int result=0;
+		int check=0;
+		for(int i=0;i<stuNums.length;i++) {
+			check=dao.deleteStudy(conn,stuNums[i]);
+			if(check>0) {
+				commit(conn);
+				result++;
+			}
+			else rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	
+
+
 }

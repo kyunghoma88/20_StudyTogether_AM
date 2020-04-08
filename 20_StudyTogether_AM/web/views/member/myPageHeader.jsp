@@ -6,14 +6,14 @@
 
 <!-- header페이지 불러오기 -->
 <div class="container">
-	<div name="nav" class="container-fluid mt-3 mb-3">
-        <div class="row">
-            <nav>
-                <ul class="navbar-nav flex-row">
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="<%=request.getContextPath()%>/member/memberView">내 계정 정보</a></li>
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="<%=request.getContextPath()%>/member/memberStudy">내 스터디 목록</a></li>
-                    <li class="nav-item ml-5"><a class="text-decoration-none text-dark" href="<%=request.getContextPath()%>/member/memberLector">내 강좌 목록</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+   	<div class="row mb-5" style="height:40px">
+	    <div class="col text-center bg-light border-0 m-1 p-2" style=" cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/member/memberView';">
+	      <a href="<%=request.getContextPath()%>/member/memberView" class="text-decoration-none text-reset text-decoration-none text-dark">내 계정 정보</a>
+	    </div>
+   	    <div class="col text-center bg-light border-0 m-1 p-2" style=" cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/member/memberLector';">
+	      <a href="<%=request.getContextPath()%>/member/memberLector" class="text-decoration-none text-reset text-decoration-none text-dark">내 강좌 목록</a>
+	    </div>
+	    <div class="col text-center bg-light border-0 m-1 p-2" style=" cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/member/memberStudy';">
+	      <a href="<%=request.getContextPath()%>/member/memberStudy" class="text-decoration-none text-reset text-decoration-none text-dark">내 스터디 목록</a>
+	    </div>
+	</div>

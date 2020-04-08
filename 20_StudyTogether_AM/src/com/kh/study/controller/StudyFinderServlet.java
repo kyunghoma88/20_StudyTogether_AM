@@ -38,9 +38,7 @@ public class StudyFinderServlet extends HttpServlet {
 		System.out.println(area+" "+searchType+" "+day);
 		
 		List<Study> list=new StudyService().searchStudyPage(area,searchType,day);
-		
 		System.out.println(list);
-		
 		request.setAttribute("list", list);
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("day", day);

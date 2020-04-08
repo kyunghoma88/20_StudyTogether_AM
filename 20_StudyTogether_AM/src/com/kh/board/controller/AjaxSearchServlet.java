@@ -39,6 +39,7 @@ public class AjaxSearchServlet extends HttpServlet {
 		String date=request.getParameter("date");
 		String content=request.getParameter("content");
 		String searchText=request.getParameter("searchText");
+		String category=request.getParameter("category");
 		JSONObject jsonObj=new JSONObject();
 		//현재 페이지 번호
 		int cPage;
@@ -55,7 +56,6 @@ public class AjaxSearchServlet extends HttpServlet {
 				
 		//총 게시판 갯수 구하기
 		int totalBoard=new BoardService().boardFindCount(date, content, searchText);
-		System.out.println("총 게시판 수 : "+totalBoard);
 		//총 페이지 갯수 구하기
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
 				
@@ -102,6 +102,7 @@ public class AjaxSearchServlet extends HttpServlet {
 //			ja.add(jsonObj);
 //		}
 		jsonObj.put("list", list);
+		jsonObj.put("category", category);
 		System.out.println(list);
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(jsonObj,response.getWriter());

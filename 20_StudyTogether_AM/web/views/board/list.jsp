@@ -39,6 +39,9 @@
 						<td>
 							<a class="board_title" href="javascript:boardView(<%=b.getBoard_no()%>,<%=cPage%>,'<%=category%>')">
 								<%=b.getTitle() %>
+								<%if(b.getComment_cnt()>0){ %>
+								&nbsp;<span style="color:red;">[<%=b.getComment_cnt() %>]</span>
+								<%} %>
 							</a>
 						</td>
 						<td><%=b.getNickname() %></td>
@@ -54,6 +57,9 @@
 						<td colspan="2" style="text-align: right;">
 							<a class="board_title" href="javascript:boardView(<%=reply.getBoard_no()%>,<%=cPage%>,'<%=category%>')">
 								ㄴ<%=reply.getTitle() %>
+								<%if(reply.getComment_cnt()>0) {%>
+								&nbsp;<span style="color:red;">[<%=reply.getComment_cnt() %>]</span>
+								<%} %>
 							</a>
 						</td>
 						<td><%=reply.getNickname() %></td>
@@ -97,6 +103,7 @@
 	        <input type="hidden" name="content"/>
 	        <input type="hidden" name="searchText"/>
 	        <input type="hidden" name="category"/>
+	        <input type="hidden" name="id"/>
 	    </form>
 	</div>
 	<script>
@@ -130,8 +137,10 @@
 							data:{"cPage":<%=cPage%>,
 								  "date":$("#searchDate").val(),
 								  "content":$("#searchContent").val(),
-								  "searchText":$("#searchText").val().trim()},
+								  "searchText":$("#searchText").val().trim(),
+								  "category":"<%=category%>"},
 							success:function(data){
+								console.log(data);
 								$("#page").html(data.pageBar);
 								var list = data.list;
 								if(list.length==0){
@@ -140,10 +149,13 @@
 								var td;
 								for(let i=0;i<list.length;i++){
 									td += "<tr><td>"+list[i].board_no+"</td>";
-									td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+")'>"+
-									list[i].title+"</a></td>";
+									td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+									list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
 									td+="<td>"+list[i].nickname+"</td>";
-									td+="<td>"+list[i].write_date+"</td>";
+									var year = list[i].write_date.substr(6,4);
+									var month = 0+list[i].write_date.substr(0,1);
+									var day = 0+list[i].write_date.substr(3,1);
+									td+="<td>"+year+"-"+month+"-"+day+"</td>";
 									td+="<td>"+list[i].cnt+"</td>";
 									td+="<td>"+list[i].good_cnt+"</td>";
 									td+="<td>"+list[i].bad_cnt+"</td></tr>";
@@ -156,6 +168,10 @@
 			});
 			$("#searchBtn").on({
 				click:function(){
+					if($("#searchText").val().trim()==""){
+						alert("검색어를 입력해주세요!");
+						return false;
+					}
 					$.ajax({
 						url:"<%=request.getContextPath()%>/ajax/search",
 						type:"post",
@@ -163,7 +179,8 @@
 						data:{"cPage":<%=cPage%>,
 							  "date":$("#searchDate").val(),
 							  "content":$("#searchContent").val(),
-							  "searchText":$("#searchText").val().trim()},
+							  "searchText":$("#searchText").val().trim(),
+							  "category":"<%=category%>"},
 						success:function(data){
 							console.log(data);
 							$("#page").html(data.pageBar);
@@ -174,10 +191,13 @@
 							var td;
 							for(let i=0;i<list.length;i++){
 								td += "<tr><td>"+list[i].board_no+"</td>";
-								td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+")'>"+
-								list[i].title+"</a></td>";
+								td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+								list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
 								td+="<td>"+list[i].nickname+"</td>";
-								td+="<td>"+list[i].write_date+"</td>";
+								var year = list[i].write_date.substr(6,4);
+								var month = 0+list[i].write_date.substr(0,1);
+								var day = 0+list[i].write_date.substr(3,1);
+								td+="<td>"+year+"-"+month+"-"+day+"</td>";
 								td+="<td>"+list[i].cnt+"</td>";
 								td+="<td>"+list[i].good_cnt+"</td>";
 								td+="<td>"+list[i].bad_cnt+"</td></tr>";

@@ -14,16 +14,11 @@
 <section>
 
   <div class="make">
-  <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" >
-   <p>강좌 개설하기</p></a>
-  
-  	<div id=title>강좌 스터디 찾기 </div>
-	
-	<div class="main_list">
-	 <!-- 상단 제목 -->
-	<div class="main_title">
-	
+	 <div id=title>강좌 스터디 찾기 </div>
+		<div class="main_list">
+		 <!-- 상단 제목 -->
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
+     <br>
      <select id="searchType" name="searchType">
      	<option >강좌 카테고리</option>
      	  <optgroup label="어학,회화">
@@ -48,15 +43,30 @@
        <input type="text" name="searchKeyword" value="<%=type!=null&&type.equals("searchKeyword")?keyword:""%>">
      <input type="submit" value="검색">
      </form>
-   </div>
+   
   </div>
+  	
+	  <div class="open-lecture-container">
+	  	<div id="owl-img">
+			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:20px;" >
+			</a>
+		</div>
+		<div id="open-lec">
+			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
+				강좌 개설하기
+			</a>
+		</div>
+	  </div>
+	  
   </div>
   <!-- 리스트 -->
+  
 <%if(list.isEmpty()){ %>
 	<div class="list_start">
 		<h3>검색된 강좌가 없습니다.</h3>
 <%}else{ %>
-	
+		
 	<%for(Lector lector:list){ %>
   		<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
     <div class="list_detail">
@@ -75,7 +85,7 @@
 	
 </div>
 
-	<ul class="pagination">
+	<ul class="pagination" style="margin-bottom:100px; margin-top:100px;">
 		<%=request.getAttribute("pageBar") %>
 	</ul> 
 	

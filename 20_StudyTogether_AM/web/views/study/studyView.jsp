@@ -41,8 +41,11 @@
     </div>
       <%if(s.getMaxMember()==list.size()){ %>
      <input type="button" class="basket" onclick="" value="마감된스터디입니다."></button>
-      <%}else{ %>
-   <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
+      <%}else if(s.getStudyWriter().equals(loginMember.getUserId())){ %>
+     <input type="button" class="basket" onclick="apply2();" value="참여하기"></button>
+     <%}else{ %>
+        <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
+     
      <%} %>
    </div>
 </section>
@@ -65,6 +68,12 @@ function apply(){
     	 loaction.reload;
      }
     }
+    
+    
+function apply2(){
+ alert("개설자는 이미 참여 되었습니다.");
+ location.reload;
+}
   </script>
  
 <%@ include file="/views/common/footer.jsp"%>
