@@ -11,7 +11,6 @@
     font-size:25px;
 }
 
-
 .main_list{
 	/* text-align: center; */
     /* margin-bottom: 100px; */
@@ -52,18 +51,12 @@
     /* padding-left: 80px; */
     /* margin-left: 1000px; */
 }
-
-
-  
 .list_start {
-  
     text-align: center;
     margin-top:10px;
     display: flex;
 	first    
 }
-
-
 /* 이미지리스트간 속성 */
 .list_detail{
 	border-radius:20px;
