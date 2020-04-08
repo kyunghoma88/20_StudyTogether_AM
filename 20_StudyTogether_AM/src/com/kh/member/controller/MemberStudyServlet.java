@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.join.model.vo.LectorJoin;
-import com.kh.join.model.vo.StudyJoin;
-import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.study.model.vo.Study;
+
 
 /**
  * Servlet implementation class MemberLectorServlet
@@ -47,13 +45,11 @@ public class MemberStudyServlet extends HttpServlet {
 		String id=m.getUserId();
 		
 		
-//		List<Study> lcList=new MemberService().selectMemberCreateStudy(id); //이용자가 개설한 강좌 모두 조회
-//		List<Study> ljList=new MemberService().selectMemberJoinStudy(id); //이용자가 수강한 강좌 모두 조회
-//		List<StudyJoin> ljMemberList =new MemberService().selectMemberJoinStudyCount(id); //강좌에 어떤 회원이 수강했는지에 대한 행 개수, 회원아이디
-//		
-//		request.setAttribute("scList", scList);
-//		request.setAttribute("sjList", sjList);
-//		request.setAttribute("sjMemberList", sjMemberList);
+		List<Study> scList=new MemberService().selectMemberCreateStudy(id); //이용자가 개설한 강좌 모두 조회
+		List<Study> sjList=new MemberService().selectMemberJoinStudy(id); //이용자가 수강한 강좌 모두 조회
+		
+		request.setAttribute("scList", scList);
+		request.setAttribute("sjList", sjList);
 		
 		request.getRequestDispatcher("/views/member/myStudy.jsp").forward(request, response);
 	}

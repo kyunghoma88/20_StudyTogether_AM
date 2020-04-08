@@ -17,7 +17,7 @@
 			<div class="view_content2">	
 				<ul class="view_topMenu" style="text-align: right;">
 					<li style="color: blue;"><i class="fas fa-home"></i></li>
-					<li><a class="view_category" href="#">현재 카테고리 값</a></li>
+					<li><a class="view_category" href="<%=request.getContextPath()%>/board/boardList">묻고 답하기</a></li>
 					<li style="color: red; font-weight: 600;">커뮤니티</li>
 				</ul>		
 				<div class="view_title">

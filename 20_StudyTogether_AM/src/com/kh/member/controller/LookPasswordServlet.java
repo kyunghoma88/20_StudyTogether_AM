@@ -65,11 +65,11 @@ public class LookPasswordServlet extends HttpServlet {
 		Member m = new MemberService().lookforPassword(id, name, email);
 
 
-		String host = "http://localhost:9090/20_StudyTogether_AM/";
+		String host = "http://rclass.iptime.org:9999/20_StudyTogether_AM/";
 		String from = "studySemiproject@gmail.com";
 		String to = email;
 		String subject = "비밀번호 변경을 위한 인증 메일입니다.";
-		String content = "링크에 접속하여 비밀번호를 변경 해주세요." + "<a href =" + host + "/views/member/lookPassword.jsp"
+		String content = "링크에 접속하여 비밀번호를 변경 해주세요." + "<a href =" + host + "/lookpwEnd"
 				+ ">비밀번호 변경하기</a>";
 
 		// SMTP 서버 정보를 설정
