@@ -49,10 +49,12 @@ public class LectorListServlet extends HttpServlet {
 			6.	pageNo : 출력할 페이지의 시작번호*/
 		int numPerPage=12;
 		List<Lector> list=new LectorService().searchLector(cPage,numPerPage);
+		
 		System.out.println("list??"+list);
 		
 		//pageBar만들기
 		int totalLector=new LectorService().lectorCount();
+		System.out.println("너왜?"+totalLector);
 		
 		int totalPage=(int)Math.ceil((double)totalLector/numPerPage);
 		
@@ -84,6 +86,7 @@ public class LectorListServlet extends HttpServlet {
 			}else {
 				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/lector/lectorList?cPage="+(pageNo)+"'>다음</a>";
 			}
+		
 		request.setAttribute("totalLector", totalLector);
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);

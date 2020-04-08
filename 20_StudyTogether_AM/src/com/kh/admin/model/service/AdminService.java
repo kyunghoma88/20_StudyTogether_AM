@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.admin.model.dao.AdminDao;
 import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.vo.Member;
+import com.kh.study.model.vo.Study;
 
 import static com.kh.common.JDBCTemplate.close;
 import static com.kh.common.JDBCTemplate.commit;
@@ -44,6 +45,13 @@ public class AdminService {
 	public List<Lector> selectLectorM() {
 		Connection conn = getConnection();
 		List<Lector> list= dao.selectLectorM(conn);
+		close(conn);
+		return list;
+	}
+
+	public List<Study> searchStudyM() {
+		Connection conn = getConnection();
+		List<Study> list= dao.searchStudyM(conn);
 		close(conn);
 		return list;
 	}

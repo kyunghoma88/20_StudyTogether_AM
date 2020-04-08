@@ -8,10 +8,10 @@
 <div id="myCarousel" class="carousel slide" style="height:500px;" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100" height="500px" alt="Seoul">
+      <img src="<%=request.getContextPath() %>/images/main.JPG" class="d-block w-100" height="500px" alt="Seoul">
     </div>
     <div class="carousel-item">
-      <img src="<%=request.getContextPath() %>/images/c-2.jpg" class="d-block w-100"  height="500px" alt="Los Angeles">
+      <img src="<%=request.getContextPath() %>/images/c-1.jpg" class="d-block w-100"  height="500px" alt="Los Angeles">
     </div>
     <div class="carousel-item">
       <img src="<%=request.getContextPath() %>/images/library_third.jpg" class="d-block w-100"  height="500px" alt="China">
@@ -76,12 +76,15 @@
   <div id="hr2">
     <p>Let's STUDY &nbsp;신규강좌 TOP3</p>
   </div>
+  
 <!-- 동영상 강의 -->
   <div class="parent">
     <div id="first">first</div>
-    <div class="second">second</div>
-    <div class="third">third</div>
+    <div id="second">second</div>
+    <div id="third">third</div>
 </div>
+
+
 
 <div class="container1">
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'">더 많은 강좌 보러가기</button>
@@ -94,24 +97,23 @@
         var container=document.getElementById("clock");
         var date=new Date();
        container.innerHTML="현재 시간 "+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds()+" :   "+date.getMilliseconds();
-   
     var min=new Date().getMinutes();//현재시간의 분
-
-},6);
+},60);
 // 게시판롤링
         function tick(){
             $('#ticker_01 li:first').slideUp(function(){$(this).appendTo($('#ticker_01')).slideDown();});
         }
         setInterval(function(){tick()},3000);
 
-        
+ 
+ //신규강좌 top3 ajax!
          $(function(){
         	$.ajax({
         		url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
         		type:"post",
         		success:function(data){
-        			console.log(data);
+        			console.log(data[0]);
         			
         		},
         		error:function(request,status,error){

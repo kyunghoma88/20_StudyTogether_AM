@@ -29,7 +29,7 @@
                       	<input type="hidden" name="lecNo" value="<%=l.getLectorNo()%>">
                       </td>
                       <td>
-                          <img class="img-thumbnail" style="width:100px;height:100px;" src="http://placehold.it/100x100" alt="">
+                          <img class="img-thumbnail" style="width:100px;height:100px;" src="" alt="">
                       </td>
                       <td>
                         <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo()%>"><%=l.getLectorTitle() %></a>
@@ -61,23 +61,20 @@
 			function confirmGrant(no){
 				
 				var str="".concat(String(no));
-				console.log(str);
-				console.log('lec'.concat(str));
 				let id='lec'.concat(str);
 				let form=document.getElementById(id);
-				console.log(form);
 				let opt="optradio".concat(str);
-				console.log(opt);
-				console.log(document.getElementById(opt).value);
 				let val=document.getElementById(opt).value;
 				var check=false;
-				if(val=='Y'){
+				var isChecked=$('input[name=optradio]').is(':checked');
+				
+				if(isChecked){
 					check=confirm(str+"번 강좌 개설을 승인하시겠습니까?");
-					if(check) document.getElementById(id).submit();
+					if(check) form.submit();
 					else return;
-				}else if(val='N'){
+				} else {
 					check=confirm(str+"번 강좌 개설을 거절하시겠습니까?");
-					if(check) document.getElementById(id).submit();
+					if(check) form.submit();
 					else return;
 				}
 

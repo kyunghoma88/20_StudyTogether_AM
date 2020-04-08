@@ -14,6 +14,7 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.study.model.vo.Study;
 
+
 /**
  * Servlet implementation class MemberLectorServlet
  */
@@ -43,18 +44,13 @@ public class MemberStudyServlet extends HttpServlet {
 		Member m=(Member)session.getAttribute("loginedMember");
 		String id=m.getUserId();
 		
+		
 		List<Study> scList=new MemberService().selectMemberCreateStudy(id); //이용자가 개설한 강좌 모두 조회
 		List<Study> sjList=new MemberService().selectMemberJoinStudy(id); //이용자가 수강한 강좌 모두 조회
 		
-		for(Study s:scList) {
-			System.out.println(s);			
-		}
-		for(Study s:sjList) {
-			System.out.println(s);			
-		}
-
 		request.setAttribute("scList", scList);
 		request.setAttribute("sjList", sjList);
+		
 		request.getRequestDispatcher("/views/member/myStudy.jsp").forward(request, response);
 	}
 

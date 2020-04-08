@@ -12,8 +12,10 @@
  	int cPage=(int)request.getAttribute("cPage");
 %>
 <section>
+
   <div class="make">
-    <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a>
+    <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" >
+   <p>강좌 개설하기</p></a>
   </div>
   	<div id=title>강좌 스터디 찾기 </div>
 	
