@@ -76,7 +76,7 @@
 
     <script>
          function fn_writeReviewStudy(){
- 				location.replace("<%=request.getContextPath()%>/review/reviewStudyWrite?writer=<%=loginMember.getUserId()%>");
+ 				location.href="<%=request.getContextPath()%>/review/reviewStudyWrite?writer=<%=loginMember.getUserId()%>";
 	
  		}
     </script>

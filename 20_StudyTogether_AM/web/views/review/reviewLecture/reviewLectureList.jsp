@@ -75,7 +75,7 @@
     <script>
       
          function fn_writeReviewLecture(){
- 			location.replace("<%=request.getContextPath()%>/review/reviewLectureWrite?writer=<%=loginMember.getUserId()%>");
+ 			location.href="<%=request.getContextPath()%>/review/reviewLectureWrite?writer=<%=loginMember.getUserId()%>";
  		}
     </script>
 <%@ include file="/views/common/footer.jsp"%>
