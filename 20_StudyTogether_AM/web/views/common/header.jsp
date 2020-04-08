@@ -287,6 +287,23 @@
       <%}else{ %>
       	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
       <%} %>
+      <ul  class='menu4-submenu'>
+      	  <li>
+          <%if(loginMember!=null) {%>
+       		<a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">강좌 스터디</a>
+       	  <%}else{ %>
+       		<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">강좌 스터디</a>
+    	  <%} %>
+          </li>
+          <li>
+          <%if(loginMember!=null) {%>
+          	<a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">일반 스터디</a>
+          <%}else{ %>
+           	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">일반 스터디</a>
+    	  <%} %>
+          </li>
+          
+        </ul>
     </li>
     <li class='menu4'>
       <a href="<%=request.getContextPath()%>/board/boardList">커뮤니티</a>
