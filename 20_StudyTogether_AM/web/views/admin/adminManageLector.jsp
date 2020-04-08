@@ -35,7 +35,7 @@
                 <td class="">
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <button type="button" class="form-check-input btn btn-primary btn-sm">전송</button>
+                      <button type="button" class="form-check-input btn btn-primary btn-sm" onclick="close(this);">전송</button>
                     </label>
                   </div>
                 </td>
@@ -43,6 +43,15 @@
             <%} %>      
           </tbody>
       </table>
+      <button type="button" onclick="closeCheckedAll();"></button>
     </form>
+    <script>
+    	function close(e){
+    		
+    	}
+    	function closecheckedAll(e){
+    		
+    	}
+    </script>
 </div>
 <%@ include file="/views/admin/adminFooter.jsp" %>

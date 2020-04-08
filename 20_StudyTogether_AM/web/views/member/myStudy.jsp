@@ -38,12 +38,13 @@
 	            <tr>
 	                <td class=""><%=s.getStudyNo() %></td>
 	                <td class=""><%=s.getStudyCategory() %></td>
-	                <td class=""><%=s.getStudyName()%></td>
 	                <td class=""><a href="<%=request.getContextPath() %>/study/studyView?no=<%=s.getStudyNo() %>"><%=s.getStudyName() %></a></td>
 	                <td class=""><%=s.getMaxMember() %></td>
+	                <td class="">
 	                  <div class="form-check-inline">
+	                     <%=s.getEnrollDate() %>
 	                  </div>                        
-	                </td>
+					</td>
 	            </tr>      
             	<%} %>
             <%} %>
@@ -87,8 +88,8 @@
             <tr>
                 <td class=""><%=s.getStudyNo() %></td>
                 <td class=""><%=s.getStudyCategory() %></td>
-                <td class=""><%=s.getStudyName() %></td>
                 <td class=""><a href="<%=request.getContextPath() %>/study/studyView?no=<%=s.getStudyNo() %>"><%=s.getStudyName() %></a></td>
+                <td class=""><%=s.getMaxMember() %></td>
                 <td class="">
                   <div class="form-check-inline">
                      <%=s.getEnrollDate() %>
