@@ -387,14 +387,30 @@ public class BoardDao {
 	public int deleteBoard(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		int result=0;
+		ResultSet rs=null;
 		String sql=prop.getProperty("deleteBoard");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			result=pstmt.executeUpdate();
+			if(result>0) {
+				sql=prop.getProperty("selectReplyBoard");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {					
+					sql=prop.getProperty("deleteReplyBoard");
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					result=pstmt.executeUpdate();
+				}else {
+					return result;
+				}
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		return result;
