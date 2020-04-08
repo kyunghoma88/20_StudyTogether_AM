@@ -56,6 +56,7 @@
 	<div class="list_start">
 		<h3>검색된 강좌가 없습니다.</h3>
 <%}else{ %>
+	
 	<%for(Lector lector:list){ %>
   		<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
     <div class="list_detail">

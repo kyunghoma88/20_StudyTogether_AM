@@ -79,9 +79,10 @@
   
 <!-- 동영상 강의 -->
   <div class="parent">
-    <div id="first">first</div>
-    <div id="second">second</div>
-    <div id="third">third</div>
+    <div id="rank0">first</div>
+    <div id="rank1">se</div>
+    <div id="rank2">th</div>
+   
 </div>
 
 
@@ -107,13 +108,39 @@
 
  
  //신규강좌 top3 ajax!
-         $(function(){
+       <%--   $(function(){
         	$.ajax({
         		url:"<%=request.getContextPath()%>/main/main",
         		datatype:"json",
         		type:"post",
         		success:function(data){
-        			console.log(data[0]);
+        			console.log(data);
+        			for(let i=0; i<data.length;i++){
+	        			$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo=data[i][lectorNo]'>"+
+	        			<div class='list_detail'>
+	        			<h4><lectorCategory></h4>
+	        			lectorOriginalImg
+	        			
+	        					
+)
+        				
+        				
+        				
+        			}
+        			<a href="<%=request.getContextPath()%>/lector/lectorView?pNo=<%=lector.getLectorNo()%>">
+
+        		    <div class="list_detail">
+        		      <h4 ><%=lector.getLectorCategory() %></h4>
+        		      <%if(lector.getLectorOriginalImg()!=null){ %>
+        		     <div>
+        		     <!-- 리네임된 파일업로드  -->
+        		        <img src="<%=request.getContextPath() %>/upload/lector/<%=lector.getLectorOriginalImg() %>" class="" width="200px" height="150px">
+        		     </div>
+        		      <%} %>
+        		      <div id="lectorTitle"><%=lector.getLectorTitle() %></div>
+        		    </div>
+        		  </a>
+        			
         			
         		},
         		error:function(request,status,error){
@@ -123,7 +150,7 @@
         		}
         		
         	})
-        }) 
+        })  --%>
         
         
 </script>
