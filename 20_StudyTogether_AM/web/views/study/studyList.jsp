@@ -19,13 +19,13 @@
   <div class="make">
   	
   	<div id=title>일반 스터디 찾기
+  	
   	<div class="open-lecture-container">
 	  	<div id="owl-img">
 			<a href="<%=request.getContextPath()%>/study/studyOpen">
 				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:0px;" >
 			</a>
 		</div>
-		
 		<div id="open-lec">
 	   <a href="<%=request.getContextPath()%>/study/studyOpen">
 				스터디 개설
@@ -33,7 +33,6 @@
 		</div>
 	  </div>  
 	 </div>
-		<div class="main_list">
 	 <!-- 상단 제목 -->
 		<!-- <div class="main_title"> -->
 <form action="<%=request.getContextPath() %>/study/studyFinder" method="post">
