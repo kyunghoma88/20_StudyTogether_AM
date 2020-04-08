@@ -139,7 +139,9 @@
 					<%}else{ %>
 						<li><a id="write_btn" href="<%=request.getContextPath()%>/board/boardWrite?category=<%=category %>"><i class="fas fa-edit"></i>글쓰기</a></li>
 					<%} %>
+					<%if(b.getReply_level()==1) {%>
 					<li><a href="javascript:boareReply(<%=b.getBoard_no()%>,'<%=category%>')"><i class="fas fa-comment-dots"></i> 답글</a></li>
+					<%} %>
 					<li><a href="javascript:boardList(<%=cPage%>,'<%=category%>')">목록</a></li>
 				</ul>
 				<%if(loginMember!=null&&loginMember.getUserId().equals(b.getNickname())) {%>
