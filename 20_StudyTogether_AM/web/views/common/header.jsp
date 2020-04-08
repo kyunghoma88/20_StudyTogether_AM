@@ -97,7 +97,7 @@
 
     <div class="containerlogin">
       <!-- <label for="uname"><b>아이디</b></label> -->
-      <input type="text" placeholder="ID" id="uname" name="uname" value = "<%=saveId!=null? saveId : "" %>" required>
+      <input type="text" autocomplete="off" placeholder="ID" id="uname" name="uname" value = "<%=saveId!=null? saveId : "" %>" required>
 
       <!-- <label for="psw"><b>비밀번호</b></label> -->
       <input type="password" placeholder="Password" id="psw" name="psw" required>
@@ -153,7 +153,7 @@
                             <tbody>
                                 <tr>
                                     <div class="form-group">
-                                        <input type="text" id="id" class="form-control" name="id" placeholder="ID" required>
+                                        <input type="text" id="id" autocomplete="off" class="form-control" name="id" placeholder="ID" required>
                                     </div>
                                 </tr>
                                 <tr>
@@ -220,7 +220,7 @@
                                 </tr>
                                 <tr>    
                                     <div class="form-group">
-                                        <input type="text" id="joinName" class="form-control" name="userName" placeholder="Username" required>
+                                        <input type="text" autocomplete="off" id="joinName" class="form-control" name="userName" placeholder="Username" required>
                                     </div>                
                                 </tr>
                                 <tr>
@@ -240,7 +240,7 @@
                                 </tr>
                                 <tr>
                                     <div class="form-group">
-                                        <input type="email" id="joinEmail" class="form-control" name="email" placeholder="Email" required>
+                                        <input type="email" autocomplete="off" id="joinEmail" class="form-control" name="email" placeholder="Email" required>
                                     </div>        
                                 </tr>
                                 <tr>
