@@ -61,22 +61,23 @@
 	<%}
     } %>
 
-       		<ul class="pagination" style="margin-left:580px">
-       		<%if(!list.isEmpty()){ %>
-				<%=request.getAttribute("pageBar") %>
-			<%} %>
-			</ul>
+       		
         <%if(loginMember!=null){%>
 			<input type="button" value="스터디 후기 작성" id ="rev_WriteBtn" onclick="fn_writeReviewStudy()"/>
 		<%}else{ %>
 			<input type="hidden" >
 		<%} %>
-       
+		<br>
+       <ul class="pagination" style="margin-left:580px">
+       		<%if(!list.isEmpty()){ %>
+				<%=request.getAttribute("pageBar") %>
+			<%} %>
+			</ul>
     </div>
 
     <script>
          function fn_writeReviewStudy(){
- 				location.replace("<%=request.getContextPath()%>/review/reviewStudyWrite?writer=<%=loginMember.getUserId()%>");
+ 				location.href="<%=request.getContextPath()%>/review/reviewStudyWrite?writer=<%=loginMember.getUserId()%>";
 	
  		}
     </script>

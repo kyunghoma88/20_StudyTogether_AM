@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.kh.member.model.vo.Member, com.kh.common.listener.SessionCheckListener" %>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+
 
 <%
    //Member m = (Member)request.getAttribute("loginedMember");
@@ -32,7 +32,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    
 	    <!-- CSS -->
-<link href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/section.css" type="text/css"/>
@@ -97,7 +97,7 @@
 
     <div class="containerlogin">
       <!-- <label for="uname"><b>아이디</b></label> -->
-      <input type="text" autocomplete="off" placeholder="ID" id="uname" name="uname" value = "<%=saveId!=null? saveId : "" %>" required>
+      <input type="text" placeholder="ID" id="uname" name="uname" value = "<%=saveId!=null? saveId : "" %>" required>
 
       <!-- <label for="psw"><b>비밀번호</b></label> -->
       <input type="password" placeholder="Password" id="psw" name="psw" required>
@@ -116,6 +116,7 @@
    
     <div class="containerlogin" style="background-color:#f1f1f1">
  	<a id="myBtn">비밀번호 찾기</a> &nbsp;
+     <a href="#">회원가입</a>
     </div>
   </form>
 </div>
@@ -126,9 +127,9 @@
 	<div class="modal-content2">
 		<form action="<%=request.getContextPath()%>/lookforpassword" method="post">
 			<h4 id="hID">비밀번호 찾기</h2>
-			<input type="text" name="id" id="userId" placeholder="ID"><br>
-			<input type="text" name="name" id="name" placeholder="이름"><br>
-			<input type="email" name="email" id="email" placeholder="EMAIL">
+			<input type="text" autocomplete="off" name="id" id="userId" placeholder="ID"><br>
+			<input type="text" autocomplete="off" name="name" id="name" placeholder="이름"><br>
+			<input type="email" autocomplete="off" name="email" id="email" placeholder="EMAIL">
 			<input class="form-button" id="pwbtn" type="submit" value="전송">
 		</form>
 	</div>
@@ -152,7 +153,7 @@
                             <tbody>
                                 <tr>
                                     <div class="form-group">
-                                        <input type="text" autocomplete="off" id="id" class="form-control" name="id" placeholder="ID" required>
+                                        <input type="text" id="id" class="form-control" name="id" placeholder="ID" required>
                                     </div>
                                 </tr>
                                 <tr>
@@ -219,7 +220,7 @@
                                 </tr>
                                 <tr>    
                                     <div class="form-group">
-                                        <input type="text" autocomplete="off" id="joinName" class="form-control" name="userName" placeholder="Username" required>
+                                        <input type="text" id="joinName" class="form-control" name="userName" placeholder="Username" required>
                                     </div>                
                                 </tr>
                                 <tr>
@@ -239,7 +240,7 @@
                                 </tr>
                                 <tr>
                                     <div class="form-group">
-                                        <input type="email" autocomplete="off" id="joinEmail" class="form-control" name="email" placeholder="Email" required>
+                                        <input type="email" id="joinEmail" class="form-control" name="email" placeholder="Email" required>
                                     </div>        
                                 </tr>
                                 <tr>
@@ -282,27 +283,27 @@
       <a href="<%=request.getContextPath()%>/study/studyList">일반 스터디</a>
     </li>
     <li class='menu3'>
-    <%if(loginMember!=null) {%>
-      <a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">스터디 후기</a>
-      <%}else{ %>
-      	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
-      <%} %>
-      <ul  class='menu4-submenu'>
-      	  <li>
-          <%if(loginMember!=null) {%>
-       		<a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">강좌 스터디</a>
-       	  <%}else{ %>
-       		<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">강좌 스터디</a>
-    	  <%} %>
-          </li>
-          <li>
-          <%if(loginMember!=null) {%>
-          	<a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">일반 스터디</a>
-          <%}else{ %>
-           	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">일반 스터디</a>
-    	  <%} %>
-          </li>
-          
+    	<%if(loginMember!=null) {%>
+    		 <a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">스터디 후기</a>
+    	<%}else{ %>
+    	  	<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">스터디 후기</a>
+     	<%} %>
+      		<ul  class='menu4-submenu'>
+			<li>
+				<%if(loginMember!=null) {%>
+					<a href="<%=request.getContextPath()%>/review/reviewLecture/reviewLectureList">강좌 스터디</a>
+				<%}else{ %>
+					<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">강좌 스터디</a>
+				<%} %>
+			</li>
+			<li>
+				<%if(loginMember!=null) {%>
+        			<a href="<%=request.getContextPath()%>/review/reviewStudy/reviewStudyList">일반 스터디</a>
+         		 <%}else{ %>
+           			<a href="<%=request.getContextPath()%>" onclick="loginErrorMsg();">일반 스터디</a>
+   				  <%} %>
+      	   </li>
+     
         </ul>
     </li>
     <li class='menu4'>

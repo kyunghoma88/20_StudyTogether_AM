@@ -411,6 +411,12 @@ public class BoardDao {
 			pstmt.setInt(4, c.getBoard_ref());
 			pstmt.setInt(5, c.getComment_no_ref());
 			result=pstmt.executeUpdate();
+			if(result>0) {
+				sql=prop.getProperty("commentCount");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, c.getBoard_ref());
+				result=pstmt.executeUpdate();
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

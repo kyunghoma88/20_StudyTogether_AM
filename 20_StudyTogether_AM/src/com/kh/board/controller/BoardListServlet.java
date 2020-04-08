@@ -61,11 +61,11 @@ public class BoardListServlet extends HttpServlet {
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		//댓글 갯수 구하기
-		List<Integer> commentCount = new ArrayList();
-		for(Board b : list) {
-			commentCount=new BoardService().commentCount(b.getBoard_no());
-			System.out.println("댓글 수 "+commentCount);
-		}
+//		List<Integer> commentCount = new ArrayList();
+//		for(Board b : list) {
+//			commentCount=new BoardService().commentCount(b.getBoard_no());
+//			System.out.println("댓글 수 "+commentCount);
+//		}
 		
 		
 		String pageBar="";
@@ -86,7 +86,7 @@ public class BoardListServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+")'>다음></a>";
 		}
 		request.setAttribute("category", category);
-		request.setAttribute("commentCount", commentCount);
+		//request.setAttribute("commentCount", commentCount);
 		request.setAttribute("list", list);
 		request.setAttribute("replyList", replyList);
 		request.setAttribute("pageBar", pageBar);
