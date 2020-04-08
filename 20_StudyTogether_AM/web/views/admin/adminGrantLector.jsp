@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, com.kh.lector.model.vo.Lector" %>
 <%@ include file="/views/admin/adminHeader.jsp" %>
-
 <%
 	List<Lector> list=(List)request.getAttribute("lectorGrantList");
 %>
@@ -59,9 +58,7 @@
         </div>
 		<script>
 			function confirmGrant(no){
-				
 				var raCheck=document.getElementsByName('optradio');
-
 	    		var select;
 	    		for(let i=0;i>raCheck.length;i++){
 	    			if(raChecked[i].checked==true){
@@ -69,7 +66,6 @@
 	    			}
 	    		}
 	    		console.log(select);
-	    		
 				
 				var str="".concat(String(no));
 				let id='lec'.concat(str);

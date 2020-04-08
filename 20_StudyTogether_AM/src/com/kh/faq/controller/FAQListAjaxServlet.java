@@ -72,7 +72,7 @@ public class FAQListAjaxServlet extends HttpServlet {
 			if(pageNo==1) {
 				pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>이전</a></li>";
 			} else {
-				pageBar+="<li class='page-item'><a class='page-link'  href='javascript:void(0)' onclick='fn_btn("+(pageNo-1)+",\""+category+"\")'>[이전]</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link'  href='javascript:void(0)' onclick='fn_btn("+(pageNo-1)+",\""+category+"\")'>이전</a></li>";
 			}
 			
 			while(!(pageNo>pageEnd||pageNo>totalPage)) {
