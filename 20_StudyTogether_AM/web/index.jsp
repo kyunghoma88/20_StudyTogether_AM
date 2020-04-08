@@ -119,6 +119,7 @@
         			console.log("강좌번호"+data[0].lectorNo);
         			console.log("카테고리"+data[0].lectorCategory);
         			console.log("사진"+data[0].lectorOriginalImg);
+        			
         			for(let i=0; i<data.length;i++){
 	        			$("#rank")[i].append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
 	     				"<div class='list_detail'>"+
