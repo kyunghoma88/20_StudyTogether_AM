@@ -42,7 +42,11 @@
 	                <td class=""><%=s.getMaxMember() %></td>
 	                <td class="">
 	                  <div class="form-check-inline">
+<<<<<<< HEAD
 	                     <%=s.getEnrollDate() %>
+=======
+	                  	<%=s.getEnrollDate() %>
+>>>>>>> branch 'developer' of https://github.com/kyunghoma88/20_StudyTogether_AM.git
 	                  </div>                        
 					</td>
 	            </tr>      
@@ -92,9 +96,9 @@
                 <td class=""><%=s.getMaxMember() %></td>
                 <td class="">
                   <div class="form-check-inline">
-                     <%=s.getEnrollDate() %>
+                  	<%=s.getEnrollDate() %>
                   </div>                        
-                </td>
+				</td>
             </tr>
           	  <%} %>
             <%} %>      
