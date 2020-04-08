@@ -18,15 +18,13 @@
 
 <section>
   <div class="make">
-    <a href="<%=request.getContextPath()%>/study/studyOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>스터디개설하기</p></a>
-
-  
-  <div id=title>스터디 찾기 </div>
+  		<div id=title>스터디 찾기 </div>
   
 	<div class="main_list">
 	 <!-- 상단 제목 -->
-		<div class="main_title">
+		<!-- <div class="main_title"> -->
 <form action="<%=request.getContextPath() %>/study/studyFinder" method="post">
+<br>
 	<select name="area" > 
     <option value="지역 선택" >지역</option>
     <optgroup label="서울" <%=area!=null&&area.equals("서울")?"selected":"" %>>
@@ -91,6 +89,19 @@
      	<input type="submit" value="검색">
     </form>
 </div>
+
+<!--  <div class="open-lecture-container">
+	  	<div id="owl-img">
+			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:20px;" >
+			</a>
+		</div>
+		<div id="open-lec">
+	    <a href="<%=request.getContextPath()%>/study/studyOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>스터디개설하기</p></a>
+			</a>
+		</div>
+	  </div> -->
+
 </div>
   </div>
 <%if(list.isEmpty()){ %>

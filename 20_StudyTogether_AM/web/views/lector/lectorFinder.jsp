@@ -59,7 +59,7 @@
      <div class="open-lecture-container">
 	  	<div id="owl-img">
 			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
-				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="70px" height="70px" >
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" >
 			</a>
 		</div>
 		<div id="open-lec">
