@@ -37,10 +37,17 @@ public class MainServlet extends HttpServlet {
 		
 		
 		  List<Lector> list=new LectorService().lectorRank();
+		
 		  
+		/*
+		 * String rank=""; for(int i=0; i<list.size();i++) { if(i!=0) rank+="/n";
+		 * rank+=list.get(i); }
+		 */
+		  System.out.println(list);
 		  response.setContentType("application/json;charset=UTF-8");
-		  new Gson().toJson(list,response.getWriter());
+		 new Gson().toJson(list,response.getWriter());
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
