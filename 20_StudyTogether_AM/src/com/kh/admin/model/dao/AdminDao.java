@@ -166,4 +166,37 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+
+	public int deleteLector(Connection conn, int lecNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteLector");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, lecNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteStudy(Connection conn, int stuNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteStudy");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, stuNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

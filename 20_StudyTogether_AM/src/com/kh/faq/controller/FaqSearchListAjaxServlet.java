@@ -1,30 +1,28 @@
-package com.kh.lector.controller;
+package com.kh.faq.controller;
 
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.lector.model.service.LectorService;
-import com.kh.lector.model.vo.Lector;
+import com.kh.faq.model.service.FAQService;
+import com.kh.faq.model.vo.FAQ;
 
 /**
- * Servlet implementation class MainServlet
+ * Servlet implementation class FaqSearchListAjaxServlet
  */
-@WebServlet("/main/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/faq/faqSearchListAjax")
+public class FaqSearchListAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainServlet() {
+    public FaqSearchListAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +33,9 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//List<FAQ> list = new FAQService().searchFaq();
 		
-		  List<Lector> list=new LectorService().lectorRank();
-		
-		  
-		/*
-		 * String rank=""; for(int i=0; i<list.size();i++) { if(i!=0) rank+="/n";
-		 * rank+=list.get(i); }
-		 */
-		/* System.out.println("???"+list); */
-		  response.setContentType("application/json;charset=UTF-8");
-		 new Gson().toJson(list,response.getWriter());
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

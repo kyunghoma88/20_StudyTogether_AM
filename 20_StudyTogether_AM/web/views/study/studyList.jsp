@@ -14,13 +14,25 @@
 	String type=request.getParameter("searchType");
 %>
 
-
-
 <section>
+ 
   <div class="make">
-  		<div id=title>스터디 찾기 </div>
-  
-	<div class="main_list">
+  	
+  	<div id=title>일반 스터디 찾기
+  	
+  	<div class="open-lecture-container">
+	  	<div id="owl-img">
+			<a href="<%=request.getContextPath()%>/study/studyOpen">
+				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:0px;" >
+			</a>
+		</div>
+		<div id="open-lec">
+	   <a href="<%=request.getContextPath()%>/study/studyOpen">
+				스터디 개설
+			</a>
+		</div>
+	  </div>  
+	 </div>
 	 <!-- 상단 제목 -->
 		<!-- <div class="main_title"> -->
 <form action="<%=request.getContextPath() %>/study/studyFinder" method="post">
@@ -87,20 +99,13 @@
               <option value="주말" <%=day!=null&&day.equals("자바프로그래밍")?"selected":"" %>>주말</option>
       </select> 
      	<input type="submit" value="검색">
+    
+    
     </form>
+    
+ 
 </div>
 
-<!--  <div class="open-lecture-container">
-	  	<div id="owl-img">
-			<a href="<%=request.getContextPath()%>/lector/lectorOpen">
-				<img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="130px" style="margin-bottom:20px;" >
-			</a>
-		</div>
-		<div id="open-lec">
-	    <a href="<%=request.getContextPath()%>/study/studyOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>스터디개설하기</p></a>
-			</a>
-		</div>
-	  </div> -->
 
 </div>
   </div>

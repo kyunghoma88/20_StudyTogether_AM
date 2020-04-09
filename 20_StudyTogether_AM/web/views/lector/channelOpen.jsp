@@ -36,7 +36,7 @@ fieldset {
 		</tr>  
         <tr>
 			<td>강좌<br>비디오<br>첨부</td>
-			<td> <input type="file" name="video"  readonly/></td>
+			<td> <input type="file" name="video"  accept="video/mp4"/></td>
 		</tr>   
         <tr>
 			<td>가격</td>

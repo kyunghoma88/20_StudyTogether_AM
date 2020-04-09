@@ -24,8 +24,13 @@
 	
     <%-- <a href="<%=request.getContextPath()%>/lector/lectorOpen"><img src="<%=request.getContextPath() %>/images/owl.JPG" width="100px" height="auto" ><br><p>강좌 개설하기</p></a> --%>
   <!-- </div> -->
-  <span style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue;">
+  <%-- <span style="text-align:center; margin-top:80px; font-size:20px; font-weight:bolder;font-Color:blue;">
    검색하신 결과는 총 <%=list.size() %>개 입니다.</span>
+    --%>
+   
+    
+  <p style="text-align:center; margin-top:50px; font-size:20px; font-weight:bolder;font-Color:blue; margin-left:400px; margin-bottom:50px;">
+   검색하신 결과는 총 <%=list.size() %>개 입니다.</p>
 	
 	 <!-- 상단 제목 -->
 		<!-- <div class="main_title"> -->

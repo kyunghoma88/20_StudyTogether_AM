@@ -39,7 +39,7 @@ public class ChannelOpenEndServlet extends HttpServlet {
 		}
 		
 		String path=getServletContext().getRealPath("/upload/lector/");
-		int maxSize=1024*1024*30;
+		int maxSize=1024*1024*1024;
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		int noRef=Integer.parseInt(mr.getParameter("no"));

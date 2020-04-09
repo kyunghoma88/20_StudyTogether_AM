@@ -69,5 +69,19 @@ public class ReviewStudyService {
 		close(conn);
 		return category;
 	}
+	public List<ReviewStudy> searchReviewStudyPage(int cPage, int numPerPage,String type, String key) {
+		Connection conn = getConnection();
+		List<ReviewStudy> list = dao.searchReviewStudyPage(conn,cPage,numPerPage,type,key);
+		close(conn);
+		System.out.println(list);
+		return list;
+	}
+
+	public int reviewStudyCount(String type, String key) {
+		Connection conn = getConnection();
+		int result = dao.reviewStudyCount(conn,type,key);
+		close(conn);
+		return result;
+	}
 
 }

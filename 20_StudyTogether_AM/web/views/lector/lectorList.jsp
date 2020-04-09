@@ -14,13 +14,9 @@
 <section>
 
   <div class="make">
-	  <div id=title>강좌 스터디 찾기 </div>
-	  
-	
+	 <div id=title>강좌 스터디 찾기 </div>
 		<div class="main_list">
 		 <!-- 상단 제목 -->
-		
-	
    <form action="<%=request.getContextPath() %>/lector/lectorFinder" method="post">
      <br>
      <select id="searchType" name="searchType">

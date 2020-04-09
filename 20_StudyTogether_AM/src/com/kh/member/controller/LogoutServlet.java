@@ -30,13 +30,20 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		/*
+		 * String msg="로그아웃 되었습니다."; String loc="/";
+		 */
 //		session을 가져오기
 		HttpSession session = request.getSession(false);
+//		request.setAttribute("msg", msg);
+//		request.setAttribute("loc", loc);
 		if(session != null) {
 			session.invalidate();
 			response.sendRedirect(request.getContextPath());
+			
 		}
-	
+		
+	//	request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

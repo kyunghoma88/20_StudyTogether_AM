@@ -8,11 +8,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.kh.review.model.vo.ReviewLecture;
+
 
 
 public class ReviewLectureDao {
@@ -184,6 +186,58 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return category;
+	}
+
+	public List<ReviewLecture> searchReviewLecturePage(Connection conn, int cPage, int numPerPage, String type, String key) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<ReviewLecture> list= new ArrayList();
+		String sql="SELECT * FROM ("
+				+ "SELECT ROWNUM AS RNUM, A.* FROM "
+				+ "(SELECT * FROM REVIEW_LECTURE "
+				+ 	"WHERE "+type+" like '%"+key+"%' ORDER BY REVIEW_LEC_DATE) A) "
+				+ "	WHERE RNUM BETWEEN "+((cPage-1)*numPerPage+1)
+				+ " AND "+(cPage*numPerPage);
+		
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()) {
+				ReviewLecture revL = new ReviewLecture();
+				revL.setReviewLecNo(rs.getInt("REVIEW_LEC_NO"));
+				revL.setReviewLecWriter(rs.getString("REVIEW_LEC_WRITER"));
+				revL.setLectureName(rs.getString("LECTURE_TITLE"));
+				revL.setReviewLecCategory(rs.getString("REVIEW_LEC_CATEGORY"));
+				revL.setReviewLecContent(rs.getString("REVIEW_LEC_CONTENT"));
+				revL.setReviewLecStar(rs.getInt("REVIEW_LEC_STAR"));
+				revL.setReviewLecDate(rs.getDate("REVIEW_LEC_DATE"));
+				list.add(revL);
+			}	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
+
+	public int reviewLectureCount(Connection conn, String type, String key) {
+		Statement stmt = null;
+		ResultSet rs=null;
+		int result = 0;
+		String sql="SELECT COUNT(*) as cnt FROM REVIEW_LECTURE WHERE "+type+" LIKE '%"+key+"%'";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			if(rs.next()) result=rs.getInt("cnt");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return result;
 	}
 
 }
