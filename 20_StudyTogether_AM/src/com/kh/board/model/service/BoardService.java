@@ -68,9 +68,9 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public int minNo(int no) {
+	public int minNo() {
 		Connection conn=getConnection();
-		int result=dao.maxNo(conn, no);
+		int result=dao.minNo(conn);
 		close(conn);
 		return result;
 	}
