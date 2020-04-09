@@ -87,7 +87,6 @@
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'" style="margin-bottom:30px">더 많은 강좌 보러가기</button>
 </div>
 <script>
-
 // 현재시간 출력
      //switch문에 비교연산? 가능???
      setInterval(function(){
@@ -115,33 +114,33 @@
         
  //신규강좌 top3 ajax!
          $(function(){
-        	$.ajax({
-				url:"<%=request.getContextPath()%>/main/main",
-        		datatype:"json",
-        		type:"post",
-        		success:function(data){
-        			console.log(data);
-        			console.log("강좌번호"+data[0].lectorNo);
-        			console.log("카테고리"+data[0].lectorCategory);
-        			console.log("사진"+data[0].lectorOriginalImg);
-        			
-        			for(let i=0; i<data.length;i++){
-        				$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
-	     				"<div class='list_detail'>"+
-	     				"<h4>"+data[i].lectorCategory+"</h4>"+
-	        			"<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
-	        			"</div>"+
-	        			"<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
-	        			"</a>"); 
-        				
-        				$("#lectorTitle").attr("color","black");
-        			}
-        		},
-        		error:function(request,status,error){
-        			if(request.status==404){
-        			}
-        		}
-        	})
+           $.ajax({
+            url:"<%=request.getContextPath()%>/main/main",
+              datatype:"json",
+              type:"post",
+              success:function(data){
+                 console.log(data);
+                 console.log("강좌번호"+data[0].lectorNo);
+                 console.log("카테고리"+data[0].lectorCategory);
+                 console.log("사진"+data[0].lectorOriginalImg);
+                 
+                 for(let i=0; i<data.length;i++){
+                    $("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
+                    "<div class='list_detail'>"+
+                    "<h4>"+data[i].lectorCategory+"</h4>"+
+                    "<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
+                    "</div>"+
+                    "<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
+                    "</a>"); 
+                    
+                    $("#lectorTitle").attr("color","black");
+                 }
+              },
+              error:function(request,status,error){
+                 if(request.status==404){
+                 }
+              }
+           })
         }) 
         
         

@@ -70,7 +70,6 @@
     <option value="포항" <%=area!=null&&area.equals("포항")?"selected":"" %>>포항</option>
 </optgroup>
 </select>
-	
       <!-- 카테고리 -->
    <select id="searchType" name="searchType">
      	<option >강좌 카테고리</option>
