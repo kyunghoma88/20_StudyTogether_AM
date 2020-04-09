@@ -34,17 +34,13 @@ public class MemberDuplicateCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String id=request.getParameter("id");
-		System.out.println(id);
 		int result=new MemberService().duplicateCheck(id);
-		System.out.println(result);
 		
 		String str="";
 		if(result==1) {
-			System.out.println("회원 있다");
 			str="NO";
 		}
 		else {
-			System.out.println("회원 없다");
 			str="YES";
 		}
 		
