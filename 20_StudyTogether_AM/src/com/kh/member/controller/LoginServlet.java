@@ -45,7 +45,6 @@ public class LoginServlet extends HttpServlet {
 		Member m=new MemberService().selectId(id,pw);
 		//m 일치하는 값이 있으면 값이 있고, 없으면  null
 		
-		System.out.println(m);
 		String msg="";
 		HttpSession session = request.getSession();	
 		

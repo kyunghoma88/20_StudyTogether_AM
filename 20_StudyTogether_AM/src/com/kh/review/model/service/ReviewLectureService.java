@@ -74,7 +74,7 @@ public class ReviewLectureService {
 		Connection conn = getConnection();
 		List<ReviewLecture> list = dao.searchReviewLecturePage(conn,cPage,numPerPage,type,key);
 		close(conn);
-		System.out.println(list);
+	
 		return list;
 	}
 
