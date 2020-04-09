@@ -41,7 +41,7 @@ button{
             <br>
      	강좌<input type="file" name="lectorVideo" />
  		<%if(lc.getChannelOriginalVideo()!=null){ %><span id="fname"><%=lc.getChannelOriginalVideo() %></span>
-             <input type="hidden" name="lectorVideo" value="<%=lc.getChannelOriginalVideo()%>">
+             <input type="hidden" name="lectorVideo1" value="<%=lc.getChannelOriginalVideo()%>">
            <%} %><br><br>
             
             가격

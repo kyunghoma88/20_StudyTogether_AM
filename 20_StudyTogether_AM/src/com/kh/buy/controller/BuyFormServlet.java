@@ -35,9 +35,7 @@ public class BuyFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("buyForm으로 넘어온 내용");
 		String userId=((Member)request.getSession().getAttribute("loginedMember")).getUserId();
-		System.out.println(userId);
 
 		String[] cartNoArr= request.getParameterValues("cartList");
 		
@@ -46,9 +44,6 @@ public class BuyFormServlet extends HttpServlet {
 			request.setAttribute("loc", "/cart/cartView?id="+userId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			for(int i=0;i<cartNoArr.length;i++) {
-				System.out.println(cartNoArr[i]);
-			}
 			
 			int cartNo=0;
 			Cart c=null;
@@ -56,14 +51,11 @@ public class BuyFormServlet extends HttpServlet {
 			
 			for(int i=0; i<cartNoArr.length; i++) {
 				cartNo=Integer.parseInt(cartNoArr[i]);
-				System.out.println(cartNo);
 				c=new CartService().searchCartForCartNo(cartNo);
-				System.out.println(c);
 				list.add(c);
 			}
 			
 			String totalSum=request.getParameter("total_sum");
-			System.out.println(totalSum);
 			
 			request.setAttribute("totalSum", totalSum);
 			request.setAttribute("cartList", list);

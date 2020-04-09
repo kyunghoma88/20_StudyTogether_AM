@@ -42,24 +42,19 @@ public class BuySuccessServlet extends HttpServlet {
 			int cartNo=c.getCartNo();
 			int lectorNo=c.getLectorNo();
 			int amount=c.getLectorPrice();
-			System.out.println(cartNo+" "+userId+" "+lectorNo+" "+amount);
 			
 			//결제정보를 Buy테이블에 입력
 			result=new BuyService().insertBuy(userId,cartNo,lectorNo,amount);
-			System.out.println(result>0?"buy테이블 입력성공":"buy테이블 입력실패");
 			
 			//장바구니에 구매한 Cart를 제거
 			result=new CartService().updateCartForCartNo(cartNo, userId);
-			System.out.println(result>0?"cart테이블 수정성공":"cart테이블 수정실패");
 			
 			//구매한 결제정보가 입력된 buyNo를 조회
 			Buy b=new BuyService().selectBuyForUserId(userId);
-			System.out.println(b);
 			
 			//LectorJoin에 lectorNo, userId, buyNo를 입력 
 			int buyNo=b.getBuyNo();
 			result=new BuyService().insertLectorJoin(lectorNo,userId, buyNo);
-			System.out.println(result>0?"강좌신청테이블 입력성공":"강좌신청테이블 입력실패");
 			
 			//중복구매를 막는 로직은??
 			//cart에서 중복장바구니 입력 방지

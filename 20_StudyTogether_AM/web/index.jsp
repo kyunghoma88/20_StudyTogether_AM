@@ -74,21 +74,20 @@
   <div id="hr">
     <i>행복은 성적순이 아닐지 몰라도 성공은 성적순이다.</i></div>
   <div id="hr2">
-    <p>Let's STUDY &nbsp;신규강좌 TOP3</p>
+    <p>Let's STUDY &nbsp;신규강좌 RANK3</p>
   </div>
   
 <!-- 동영상 강의 -->
-  <div class="parent">
-    <div id="rank0">first</div>
-    <div id="rank1">se</div>
-    <div id="rank2">th</div>
-   
+  <div id="parent">
+    <div id="rank0"></div>
+    <div id="rank1"></div>
+    <div id="rank2"></div>
 </div>
 
 
 
 <div class="container1">
-  <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'">더 많은 강좌 보러가기</button>
+  <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'" style="margin-bottom:30px">더 많은 강좌 보러가기</button>
 </div>
 <script>
 
@@ -121,14 +120,15 @@
         			console.log("사진"+data[0].lectorOriginalImg);
         			
         			for(let i=0; i<data.length;i++){
-	        			
-        				$("#rank")[i].append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
+        				$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
 	     				"<div class='list_detail'>"+
 	     				"<h4>"+data[i].lectorCategory+"</h4>"+
 	        			"<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
 	        			"</div>"+
 	        			"<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
 	        			"</a>"); 
+        				
+        				$("#lectorTitle").attr("color","black");
         			}
         		},
         		error:function(request,status,error){
