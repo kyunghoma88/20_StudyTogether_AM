@@ -87,7 +87,6 @@
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'" style="margin-bottom:30px">더 많은 강좌 보러가기</button>
 </div>
 <script>
-
 // 현재시간 출력
      //switch문에 비교연산? 가능???
      setInterval(function(){
