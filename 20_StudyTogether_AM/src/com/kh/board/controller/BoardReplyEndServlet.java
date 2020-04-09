@@ -72,8 +72,7 @@ public class BoardReplyEndServlet extends HttpServlet {
 		}
 		String fileNames=String.join(",", list);
 		String id=mr.getParameter("id");
-		//System.out.println(fileNames.substring(fileNames.lastIndexOf(",")));
-		System.out.println(fileNames);
+		
 		Board b=new Board(0,no,2,id,title,write_text,category,fileNames,new Date(),0,0,0,0);
 		new BoardService().insertReplyBoard(b);
 		response.sendRedirect(request.getContextPath()+"/board/boardList?category="+category);

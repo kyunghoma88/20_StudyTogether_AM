@@ -164,7 +164,7 @@
                         <td style="text-align: center;"><%=preView.getWrite_date() %></td>
                     </tr>
                  <%} %>
-                 <%if(b.getBoard_no()!=1) {%>
+                 <%if(b.getBoard_no()>minNo) {%>
                     <tr>
                         <td><a href="javascript:boardView(<%=b.getBoard_no()-1 %>,'<%=category%>')" style="text-decoration: none; color:black;">
                         <i class="fas fa-angle-down" style="color: orange;"></i> 

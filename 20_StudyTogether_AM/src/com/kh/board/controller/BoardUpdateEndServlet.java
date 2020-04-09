@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.oreilly.servlet.MultipartRequest;
@@ -42,12 +44,17 @@ public class BoardUpdateEndServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			response.sendRedirect("/");
+			return;
+		}
 		// 파일 업로드 로직 수행
 		String path = getServletContext().getRealPath("/upload/board/");
 		int maxSize = 1024 * 1024 * 10;// 10MB
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
 		int fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
+		
 		int no = Integer.parseInt(mr.getParameter("no"));
 		String title = mr.getParameter("title");
 		String write_text = mr.getParameter("write_text");
@@ -55,8 +62,10 @@ public class BoardUpdateEndServlet extends HttpServlet {
 		String id = mr.getParameter("id");
 
 		String oriFileName[]= new String[fileCnt];
-		for(int i=0;i<fileCnt;i++) {
+		
+		for(int i=0;i<fileCnt;i++) {		
 			oriFileName[i]=mr.getParameter("oriFile"+(i+1));
+			
 		}
 		List<String> list = new ArrayList<>(Arrays.asList(oriFileName));
 		for(int i=0;i<list.size();i++) {
@@ -65,7 +74,7 @@ public class BoardUpdateEndServlet extends HttpServlet {
 			}
 		}
 		String fileNames=String.join(",", list);	
-
+		
 		Board b = new Board(no, 0, 0, id, title, write_text, category, fileNames, new Date(), 0, 0, 0, 0);
 		// upfile새로 추가한 파일이 있으면, 없으면
 		// 있으면 orifile삭제, 없으면 업로드 되고 끝!~

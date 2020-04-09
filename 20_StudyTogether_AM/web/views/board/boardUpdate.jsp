@@ -40,7 +40,7 @@
                     </button>
                 </div>
                 <div id="fileArea">
-                <%if(files.length==0) {%>
+                <%if(files==null) {%>
                     <div id="data1">
                         <span class="item">파일#1</span> 
                         <input type="file" name="fileup1" id="fileup1">
@@ -68,11 +68,12 @@
     <script>
         $(function(){
             var cnt;
-            if(<%=files.length%>==0){
+            
+            <%if(files==null){%>
             	cnt=1;
-            }else{
+            <%}else{%>
             	cnt=<%=files.length%>;
-            }
+            <%}%>
             
             //파일창 추가
             $("#fileAdd").click(event,function(){
