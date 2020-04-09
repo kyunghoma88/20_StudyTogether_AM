@@ -66,7 +66,7 @@
 	          <%for(int i=0;i<mList.size();i++){
 	         		StudyJoinMember sjm=mList.get(i);%>
 	        <%if(i==0){ %>
-	        <tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+	        <tr class="info<%=s.getStudyNo()%> on" style='display:none;'>
 	              <th>스터디 번호</th>
 	              <th>이름</th>
 	              <th>아이디</th>
@@ -76,7 +76,7 @@
 		     </tr>
 	        <%}%>
 	        <%if(sjm.getStudyNo()==s.getStudyNo()) {%>
-	          <tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+	          <tr class="info<%=s.getStudyNo()%> on" style='display:none;'>
 	              <td class=""><%=sjm.getStudyNo() %></td>
 	              <td class=""><%=sjm.getStudyName() %></td>
 	              <td class=""><%=sjm.getUserId() %></td>
@@ -88,7 +88,7 @@
 	  	 		} else {
 	  	 			if(i==mList.size()-1 && count==0){
 	  	 			count=0;%>
-			<tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+			<tr class="info<%=s.getStudyNo()%> on" style='display:none;'>
 			  <td colspan="6">현재 스터디에는 참여한 회원이 없네요</td>
 			</tr>
   	 			<%} else {%>

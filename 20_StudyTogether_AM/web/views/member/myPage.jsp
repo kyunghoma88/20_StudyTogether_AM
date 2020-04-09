@@ -209,40 +209,100 @@
                     <div class="row mt-4">
                         <input type="button" class="btn btn-light col" id="join" value="회원수정">
                         <script>
-                        	$("#join").click(function(){
-                        		function updateOK(){
-	                        		var formMerge=$("form[name='updateForm']").serialize();
-	                        		console.log(formMerge);
-	                        		$.ajax({  
-	    							    url : "<%=request.getContextPath()%>/member/memberUpdate",  
-	    							    type : "POST",  
-	    							    data : formMerge,
-	    							    dataType: "html",
-	    							    success : function(data){  
-	    							    	$('#myPagePwd').val('');
-	    							    	$('#myPagePwdCheck').val('');
-	    							    	alert('회원 정보를 수정 했습니다');
-	    							    }, 
-	    							    error:function(data){ //ajax 오류인경우  
-	    							    	alert('회원 수정에 실패했습니다. 관리자에게 문의하세요');
-	        							}  
-	    							});  
-                        			
-                        		}
-                        		
-                        		if($('#myPagePwdCheck').val()==$('#myPagePwd').val()){
+                      //로그인 깃발
+                    	var joinFlag=false;
+                    	var joinPwStateFlag=false;
+                    	var joinPwSameFlag=false;
+                    	var joinEmailFlag=false;
+                    	
+                    	//비밀번호 유효값 체크
+                    	$("#myPagePwd").blur(function(){
+                    	    // passwdCheck : 패스워드 체크에서는 영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8~16자가 되는지 검사를 한다.
+                    	    var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+                    	    if(!$(this).val().trim()==""){            
+                    	        if(!passwdCheck.test($(this).val().trim())){
+                    	            joinPwStateFlag=false;
+                    	        }
+                    	        if(passwdCheck.test($(this).val().trim())){
+                    	            joinPwStateFlag=true;
+                    	        } 
+                    	    } else{
+                    	        joinPwStateFlag=false;
+                    	    }
+                    	});
+                    	
+                    	//비밀번호 일치 로직
+                    	//입력값 들어왔을 때 비밀번호 동일한지 체크
+                    	$("#myPagePwdCheck").blur(function(){ 
+                    	    var password1=$("#myPagePwd").val().trim();
+                    	    var password2=$("#myPagePwdCheck").val().trim();
+                    	    if(password1 != "" || password2 != ""){ 
+                    	        if(!(password1 == password2)){ 
+                    	            joinPwSameFlag=false;
+                    	        }else { 
+                    	            joinPwSameFlag=true;
+                    	        }
+                    	    }  else {
+                    	        joinPwSameFlag=false;
+                    	    }
+                    	});
+                    	
+                     
+                    	//회원수정 폼 전송 제어
+                    	function validate(){
+                    		if(!joinPwStateFlag){
+                    			joinFlag=false;
+                    			$("#submit").attr("disabled", "disabled");
+                    			alert("비밀번호가 적합하지 않습니다");
+                    			return false;
+                    		}
+                    		if(!joinPwSameFlag){
+                    			joinFlag=false;
+                    			$("#submit").attr("disabled", "disabled");
+                    			alert("비밀번호가 일치하지 않습니다");
+                    			return false;
+                    		}
+                    		return true;
+                    	}
+                        
+                       	$("#join").click(function(){
+                       		function updateOK(){
+                        		var formMerge=$("form[name='updateForm']").serialize();
+                        		console.log(formMerge);
+                        		$.ajax({  
+    							    url : "<%=request.getContextPath()%>/member/memberUpdate",  
+    							    type : "POST",  
+    							    data : formMerge,
+    							    dataType: "html",
+    							    success : function(data){  
+    							    	$('#myPagePwd').val('');
+    							    	$('#myPagePwdCheck').val('');
+    							    	alert('회원 정보를 수정 했습니다');
+    							    }, 
+    							    error:function(data){ //ajax 오류인경우  
+    							    	alert('회원 수정에 실패했습니다. 관리자에게 문의하세요');
+        							}  
+    							});  
+                       			
+                       		}
+                       		
+                       		if($('#myPagePwdCheck').val()==$('#myPagePwd').val()){
+                       			if(validate()==true){
                         			updateOK();
-                        		}else if($('#myPagePwdCheck').val()==""){
-                        			alert('회원정보 수정을 위해 비밀번호를 입력하세요.');
-                        		}else{
-                        			alert('입력한 비밀번호가 서로 일치하지 않습니다.');
-                        		}
-                        	});
-                        	$("#deactivate").click(function(){
-								$("div[name='must']").hide();
-								$("div[name='option']").hide();
- 						 		$("div[name='delForm']").removeClass("d-none");
- 							});
+                       			}
+                       		}else if($('#myPagePwdCheck').val()==""){
+                       			alert('회원정보 수정을 위해 비밀번호를 입력하세요.');
+                       		}else{
+                       			alert('입력한 비밀번호가 서로 일치하지 않습니다.');
+                       		}
+                       		
+                       	});
+                       	
+                       	$("#deactivate").click(function(){
+							$("div[name='must']").hide();
+							$("div[name='option']").hide();
+						 		$("div[name='delForm']").removeClass("d-none");
+						});                        	
                         </script>
                     </div>
                 </form>
