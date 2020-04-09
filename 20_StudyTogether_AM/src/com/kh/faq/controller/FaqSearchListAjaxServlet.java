@@ -33,7 +33,69 @@ public class FaqSearchListAjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//List<FAQ> list = new FAQService().searchFaq();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		int cPage;
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+			
+		} catch(NumberFormatException e) {
+			cPage=1;
+		}
+		
+		int numPerPage = 5;
+		
+		
+		String title=request.getParameter("title");
+		if(title==null) {
+			title="";
+		}
+		
+		
+		List<FAQ> list = new FAQService().searchFormFAQ(cPage, numPerPage, title);
+	
+		int totalFAQ = new FAQService().searchFormCount(title);
+	
+		
+		int totalPage = (int)Math.ceil((double)totalFAQ/numPerPage);
+		
+		int pageBarSize = 5;
+		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
+		
+		int pageEnd = pageNo + pageBarSize-1;
+		
+		String pageBar = "";
+	
+		
+			if(pageNo==1) {
+				pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>이전</a></li>";
+			} else {
+				pageBar+="<li class='page-item'><a class='page-link'  href='javascript:void(0)' onclick='fn_search_btn("+(pageNo-1)+")'>이전</a></li>";
+			}
+			
+			while(!(pageNo>pageEnd||pageNo>totalPage)) {
+				if(pageNo==cPage) {
+					pageBar += "<li class='page-item'><span class='page-link' style='background-color: lightblue; color:black; font-weight:bold;'>"+pageNo+"</span></li>";
+				} else {
+					pageBar += "<li class='page-item'><a class='page-link' href='javascript:void(0)' onclick='fn_search_btn("+pageNo+")'>"+pageNo+"</a></li>";
+				}
+				pageNo++;
+			}
+			
+			if(pageNo>totalPage) {
+				
+				pageBar+="<li class='page-item disabled'><a class='page-link' href='#'>다음</a></li>";
+			} else {
+				
+				pageBar += "<li class='page-item'><a class='page-link' href='javascript:void(0)' onclick='fn_search_btn("+(pageNo)+")'>다음</a></li>";
+				
+			}
+			
+			request.setAttribute("list", list);
+			request.setAttribute("pageBar", pageBar);
+			request.getRequestDispatcher("/views/faq/faqTable.jsp").forward(request, response);
+			
 		
 	}
 

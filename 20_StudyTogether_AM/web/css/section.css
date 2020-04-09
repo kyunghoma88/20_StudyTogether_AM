@@ -141,15 +141,11 @@
  #parent{
       width: 80%;
       height: 200px;
-      margin-top:100px;
+      margin-top:70px;
       margin-left:130px;
       margin-bottom: 200px;
       display: flex;
-      text-decoration:none;
-  
   } 
-  
-  
   #rank0{
   border:14px solid orange;
   text-align:center;
@@ -157,29 +153,28 @@
   width:300x;
   height:260px;
   background-color:#E7E7E7;
-   border-radius:20px;
-   text-decoration:none;
+  border-radius:20px;
   
   }
   #rank1{
   border:14px solid orange;
   text-align:center;
   margin-right:200px;
-  width:700px;
+  width:300px;
   height:260px;
   background-color:#E7E7E7;
  border-radius:20px;
   }
+ 
   #rank2{
   border:14px solid orange;
   text-align:center;
   margin-right:150px;
-  width:700px;
+  width:300px;
   height:260px;
   background-color:#E7E7E7;
  border-radius:20px;
   } 
-
 
   #hr3{
     background-color: black;

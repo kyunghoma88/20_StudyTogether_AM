@@ -15,9 +15,9 @@
 <section>
 <%if(loginMember!=null && loginMember.getUserId().equals("admin")||loginMember.getUserId().equals(l.getLectorWriter())){ %>
 <div class="container" >
-    <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">자식강좌 추가</a>
-    <a href="<%=request.getContextPath()%>/lector/ChannelUpdate?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 수정</a>
-    <a href="<%=request.getContextPath() %>/lector/ChannelDelete?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">자식강좌 삭제</a><!--관리자만 삭제  -->
+    <a href="<%=request.getContextPath()%>/lector/lectorChannelOpen?cNo=<%=l.getLectorNo() %>" class="btn btn-info" role="button">강좌 추가</a>
+    <a href="<%=request.getContextPath()%>/lector/ChannelUpdate?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">강좌 수정</a>
+    <a href="<%=request.getContextPath() %>/lector/ChannelDelete?pNo=<%=lc.getChannelNoRef() %>&cNo=<%=lc.getChannelNo() %>" class="btn btn-info" role="button">강좌 삭제</a>
 </div>
 <%} %>
 

@@ -16,12 +16,21 @@
 		
 	}
 	
+	
 	section{
 		font-size : 20px;
 	}
 	
+	.title-con{
+		width : 450px !important;
+	}
+	
 	#faq-content{
 		margin-top : 5px;
+	}
+	
+	.select-btn{
+		width : 150px !important;
 	}
 	
 	#blank{
@@ -40,6 +49,7 @@
 	}
 	
 	#faq-container{
+		height : 600px;
 		width : 800px;
 		margin-left : 150px;
 		
@@ -50,7 +60,7 @@
 
 </style>
 
-<section id="faq-container" style="height:800px;">
+<section id="faq-container">
 
 	<div class="row">
 		<div class="col-2"></div>
@@ -76,14 +86,14 @@
 				<tr>
 					<th>제 목</th>
 					<td>
-						<input type="text" name="title" class="form-control form-control" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
+						<input type="text" name="title" class="form-control form-control title-con" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
 					</td>
 				</tr>
 				
 				<tr>
 					<th>카테고리</th>
 						<td>
-							<select class="form-control" name="category">
+							<select class="form-control select-btn" name="category">
 								<option value="">카테고리 선택</option>
 								<option value="회원">회원</option>
 								<option value="스터디개설">스터디개설</option>
