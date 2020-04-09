@@ -34,7 +34,7 @@
               <th>강좌명</th>
               <th>개설 승인 여부</th>
               <th>개설한 날짜</th>
-              <th>강좌 폐쇄</th>
+              <th>기능</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -92,7 +92,7 @@
               <th>강좌명</th>
               <th>금액</th>
               <th>등록일</th>
-              <th>강좌 탈퇴</th>
+              <th>기능</th>
             </tr>
           </thead>
           <tbody class="text-center">

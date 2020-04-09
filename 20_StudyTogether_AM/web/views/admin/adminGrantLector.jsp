@@ -20,6 +20,7 @@
                   </tr>
                 </thead>
                 <tbody class="text-center">
+                  <%if(list.size()>0){ %>
                   <%for(Lector l:list){ %>
 		          <form id="lec<%=l.getLectorNo()%>" action="<%=request.getContextPath() %>/admin/adminGrantLectorEnd" class="form-group col">
                   <tr>
@@ -28,7 +29,7 @@
                       	<input type="hidden" name="lecNo" value="<%=l.getLectorNo()%>">
                       </td>
                       <td>
-                          <img class="img-thumbnail" style="width:100px;height:100px;" src="<%=request.getContextPath() %>/upload/lector/<%=l.getLectorRenamedImg() %>" alt="">
+                          <img class="img-thumbnail" style="width:80px;height:80px;" src="<%=request.getContextPath() %>/upload/lector/<%=l.getLectorRenamedImg() %>" alt="">
                       </td>
                       <td>
                         <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo()%>"><%=l.getLectorTitle() %></a>
@@ -53,6 +54,11 @@
                   </tr>      
 		          </form>
                   <%} %>      
+                  <%} else{ %>
+                   <tr>
+                   	<td colspan="7">현재 개설신청한 강좌가 없습니다.</td>
+                   </tr>
+                  <%} %>
                 </tbody>
               </table>
         </div>
