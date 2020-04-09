@@ -116,7 +116,7 @@
    
     <div class="containerlogin" style="background-color:#f1f1f1">
  	<a id="myBtn">비밀번호 찾기</a> &nbsp;
-     <a href="#">회원가입</a>
+     
     </div>
   </form>
 </div>

@@ -6,10 +6,8 @@
 <%
 	List<Cart> list=(List)request.getAttribute("cartList");
 	String[] cartNoArr=(String[])request.getAttribute("cartNoArr");
-	System.out.println(cartNoArr);
 	
 	String totalSum=(String)request.getAttribute("totalSum");
-	System.out.println(totalSum);
 	DecimalFormat formatter=new DecimalFormat();
 	
 	session.setAttribute("cartList", list);
