@@ -35,10 +35,10 @@ public class StudyFinderServlet extends HttpServlet {
 		String area=request.getParameter("area");
 		String searchType=request.getParameter("searchType");
 		String day=request.getParameter("day");
-		System.out.println(area+" "+searchType+" "+day);
+		//System.out.println(area+" "+searchType+" "+day);
 		
 		List<Study> list=new StudyService().searchStudyPage(area,searchType,day);
-		System.out.println(list);
+		//System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("day", day);

@@ -24,7 +24,7 @@
   <div class="business-info">
       <div><p>법인명(상호): Study Together<br>대표자(성명): 마경호 대표<br>개인정보보호책임자:(help@kh.com)
       <br>사업자등록번호: 123-45-67890<br>통신판매업: 제2019-서울강남-012345호</p></div>
-      <div><p>문의: 문의하기<br>
+      <div><p>
       마케팅제휴: marketing@kh.com<br>
       채용문의: recruit@kh.com<br>
       팩스: 012-3456-7890<br>

@@ -39,7 +39,7 @@ public class BoardListServlet extends HttpServlet {
 		if(category==null) {
 			category="qna";
 		}
-		System.out.println("카테고리 : "+category);
+		
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -53,7 +53,7 @@ public class BoardListServlet extends HttpServlet {
 		
 		//총 게시판 갯수 구하기
 		int totalBoard=new BoardService().boardCount();
-		System.out.println("총 게시판 수 : "+totalBoard);
+		
 		//총 페이지 갯수 구하기
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
 		

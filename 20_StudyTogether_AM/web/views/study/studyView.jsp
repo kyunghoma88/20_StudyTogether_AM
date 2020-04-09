@@ -18,12 +18,14 @@
 <%} %>
 <%--  <input type="text" name="member" value="<%=loginMember.getUserId() %>">
  <input type="text" name="no1" value="<%=s.getStudyNo() %>"> --%>
+  
   <div style="margin-top:100px;margin-bottom:150px;" class="watch">
       <p id="watchtitle"><h1>스터디명 : <%=s.getStudyName() %></h1></p>
-      <p id="detail">희망 일자 : <%=s.getStudyPossibleDay() %> </p>
+      
+      <p id="detail"> 개설자:<%=s.getStudyWriter() %>	<br>희망 일자 : <%=s.getStudyPossibleDay() %>
+      </p>
         <p id="detail2" style="font-size:30px;">
         	스터디 지역 : <%=s.getStudyArea() %></br>
-        	
         	모집 인원 : <%=s.getMaxMember() %>명 /
          	현재 인원 : <%=list.size() %> 명</br>
          	<%SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd"); %>

@@ -119,7 +119,7 @@
 				<br>
                  <div align="center">
                      <button type="reset" onclick = "cancelChk()" id="openCancleBtn">취소</button>
-                     <button type="submit" onclick="" id="openEnrollBtn">승인 요청</button>
+                     <button type="submit" onclick="" id="openEnrollBtn">등록</button>
                  </div>
 
  </form>

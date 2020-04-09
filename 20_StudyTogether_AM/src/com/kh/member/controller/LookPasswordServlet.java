@@ -65,7 +65,7 @@ public class LookPasswordServlet extends HttpServlet {
 		Member m = new MemberService().lookforPassword(id, name, email);
 
 
-		String host = "http://rclass.iptime.org:9999/20_StudyTogether_AM/";
+		String host = "http://rclass.iptime.org:9999/20_StudyTogether_AM";
 		String from = "studySemiproject@gmail.com";
 		String to = email;
 		String subject = "비밀번호 변경을 위한 인증 메일입니다.";

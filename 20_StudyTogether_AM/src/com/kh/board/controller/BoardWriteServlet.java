@@ -29,7 +29,7 @@ public class BoardWriteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
 		String category=request.getParameter("category");
-		System.out.println("안나오니? "+category);
+		
 		if(id!=null) {			
 			request.setAttribute("category", category);
 			request.getRequestDispatcher("/views/board/write.jsp")
