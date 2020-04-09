@@ -26,7 +26,7 @@
                 </div>
                 <input type="text" name="title" id="title" value="<%=b.getTitle() %>" size="70"/>
                 <div style="padding-left: 106px; margin-top:16px">
-                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"> <%=b.getContent().trim() %></textarea>
+                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none; font-size: 20px;"> <%=b.getContent().trim() %></textarea>
                 </div>
                 <div class="write_item" style="float: left; margin-top: 16px;">
                     <span style="font-weight: bold;">첨부파일</span>
@@ -40,7 +40,7 @@
                     </button>
                 </div>
                 <div id="fileArea">
-                <%if(files.length==0) {%>
+                <%if(files==null) {%>
                     <div id="data1">
                         <span class="item">파일#1</span> 
                         <input type="file" name="fileup1" id="fileup1">
@@ -68,16 +68,17 @@
     <script>
         $(function(){
             var cnt;
-            if(<%=files.length%>==0){
+            
+            <%if(files==null){%>
             	cnt=1;
-            }else{
+            <%}else{%>
             	cnt=<%=files.length%>;
-            }
+            <%}%>
             
             //파일창 추가
             $("#fileAdd").click(event,function(){
                 //var span=$("<span class='item'>파일#"+cnt+"</span>");
-                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+"</span>"+
+                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+" </span>"+
                 "<input type='file' name='fileup"+(cnt+1)+"' id='fileup"+(cnt+1)+"'></div>";
                     if(cnt > 4){
                     $("#filelimit").html("※파일은 최대 5개까지만 등록가능합니다.").
@@ -86,7 +87,8 @@
                         "font-weight":"bold",
                         "padding-left":"106px",
                         "position":"relative",
-                        "top":"16px"
+                        "top":"16px",
+                        "font-size":"25px"
                     });
                     
                     //$("#fileAdd").off("click");

@@ -8,7 +8,7 @@
 	/*게시판 커뮤니티 이름*/
 	.category_name{
 		font-weight: bold;
-		font-size: 30px;
+		font-size: 40px;
 		margin-left: 20px;
 		margin-bottom: 20px;
 	}
@@ -16,10 +16,12 @@
 	.view_content2{
 		padding: 15px;
 		border: 1px solid lightgray;
+		font-size:27px;
 	}
 	/*게시판 뷰 top 메뉴*/
 	.view_topMenu{
 		list-style-type: none;
+		font-size:20px;
 	}
 	.view_topMenu>li{
 		border-right: 5px solid lightgray;
@@ -45,7 +47,7 @@
 		text-indent: 1em;
 		font-weight: 1000;
 		font-family: "맑은 고딕";
-		font-size: 24px;
+		font-size: 34px;
 		padding: 5px 0px;
 		border-top: 2px solid red;
 	}
@@ -55,8 +57,8 @@
 		margin-right: 300px;
 		border: 1px solid black;
 		padding: 5px;
-		width: 80px;
-		height: 80px;
+		width: 150px;
+		height: 150px;
 		text-decoration: none;
 		color: black;
 		font-weight: bold;
@@ -66,8 +68,8 @@
 		display: inline-block;
 		border: 1px solid black;
 		padding: 5px;
-		width: 80px;
-		height: 80px;
+		width: 150px;
+		height: 150px;
 		text-decoration: none;
 		color: black;
 		font-weight: bold;
@@ -112,10 +114,10 @@
 		text-decoration: none;
 		text-align: center;
     	border: 1px solid rgb(169,169,169);
-		width: 100px;
-		height: 78px;
+		width: 125px;
+		height: 125px;
 		display: inline-block;
-		padding-top: 24px;
+		padding-top: 38px;
 		background-color: white;
 		color: black;
 	}
@@ -127,6 +129,7 @@
 	.listbtn{
 		list-style-type: none;
 		padding: 0;
+		font-size:25px;
 	}
 	.listbtn>li{
 		display: inline;

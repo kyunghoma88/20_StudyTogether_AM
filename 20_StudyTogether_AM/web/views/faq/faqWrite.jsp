@@ -4,7 +4,9 @@
 
 <style>
 	#faq-container{
-		height:600px;
+		height:800px;
+		width : 1000px;
+		margin-left : 100px;
 	}
 
 	.faq-header{
@@ -13,19 +15,19 @@
 		
 	}
 	
+	.form-control{
+		font-size : 30px !important;
+	}
+	
 	.title-con{
 		width : 450px !important;
 	}
 	
 	.select-btn{
-		width : 150px !important;
+		width : 300px !important;
 	}
 	
 	
-	
-	section{
-		font-size : 15px;
-	}
 	
 	#faq-content{
 		margin-top : 5px;
@@ -42,7 +44,8 @@
 	}
 	
 	.write-container{
-		width : 800px;
+		width : 1000px;
+		font-size : 30px;
 	
 	}
 	
@@ -54,9 +57,9 @@
 
 <section id="faq-container">
 	<div class="row">
-		<div class="col-2"></div>
-		<div class="container faq-header col-10">
-			<h2>FAQ 작성</h2>
+		<div class="col-1"></div>
+		<div class="container faq-header col-11">
+			<p style="font-size:40px; font-weight:bolder;">FAQ 작성</p>
 		</div>
 	</div>
 	
@@ -100,7 +103,7 @@
 			<div style="display:flex; margin-top:30px;">
 				<div id="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div id="btn-regist">
-					<button class="btn btn-outline-dark" style="font-size:13px" type="submit">등록하기</button>
+					<button class="btn btn-outline-dark" style="font-size:25px" type="submit">등록하기</button>
 				</div>
 			</div>
 			

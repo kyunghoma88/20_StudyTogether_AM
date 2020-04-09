@@ -69,7 +69,7 @@ public class BoardViewServlet extends HttpServlet {
 		Board b=new BoardService().boardView(no,hasRead);
 		
 		int maxNo=new BoardService().maxNo(no);
-		int minNo=new BoardService().minNo(no);
+		int minNo=new BoardService().minNo();
 		Board nextView=new BoardService().boardView(no-1);
 		Board preView=new BoardService().boardView(no+1);
 		
@@ -77,6 +77,7 @@ public class BoardViewServlet extends HttpServlet {
 		request.setAttribute("board", b);
 		request.setAttribute("maxNo", maxNo);
 		request.setAttribute("minNo", minNo);
+		
 		request.setAttribute("nextView", nextView);
 		request.setAttribute("preView", preView);
 		request.setAttribute("cPage", cPage);
