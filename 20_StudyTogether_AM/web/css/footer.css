@@ -107,6 +107,7 @@ footer
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
+            margin-left : 50px;
         }
         
         .business-info p

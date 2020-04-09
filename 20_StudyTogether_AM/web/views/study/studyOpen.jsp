@@ -131,10 +131,12 @@
            return false;
         }
     }
-  //모집 날짜, 오늘 날짜 이후로만 선택 가능
- /*  $(function() {
-	  $( "#endPeriod" ).datepicker({ minDate: 0});
-	  }); */ // 안됨...
+  
+  var minDate = new Date();
+  $(function() {
+  	$( "#endPeriod" ).datepicker({ minDate: minDate});
+   });
+  
  </script>
 
 

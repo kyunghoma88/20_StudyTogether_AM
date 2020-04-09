@@ -86,7 +86,7 @@ public class BoardService {
 		return result;
 	}
 	
-	public void updateGood(int no) {
+	public int updateGood(int no) {
 		Connection conn=getConnection();
 		int result=dao.updateGood(conn, no);
 		if(result>0) {
@@ -95,6 +95,7 @@ public class BoardService {
 			rollback(conn);
 		}
 		close(conn);
+		return result;
 	}
 	
 	public int updateBad(int no) {
@@ -193,9 +194,9 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public boolean insertMood(Mood m) {
+	public boolean insertMood(Mood m, String mood) {
 		Connection conn=getConnection();
-		boolean result=dao.insertMood(conn, m);
+		boolean result=dao.insertMood(conn, m, mood);
 		if(result) {
 			commit(conn);
 		}else {

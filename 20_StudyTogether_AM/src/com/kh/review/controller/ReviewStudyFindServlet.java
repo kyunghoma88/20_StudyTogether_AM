@@ -76,7 +76,7 @@ public class ReviewStudyFindServlet extends HttpServlet {
 		}else {
 			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>다음</a>";
 		}
-				
+		
 		request.setAttribute("list",list);
 		request.setAttribute("pageBar",pageBar);
 		request.getRequestDispatcher("/views/review/reviewStudy/reviewStudyList.jsp").forward(request, response);
