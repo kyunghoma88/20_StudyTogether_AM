@@ -13,7 +13,7 @@
 %>
 <%@ include file="/views/board/aside.jsp"%>
 		<div class="view_content">
-			<div class="category_name">커뮤니티</div>
+			<div class="category_name">묻고 답하기</div>
 			<div class="view_content2">	
 				<ul class="view_topMenu" style="text-align: right;">
 					<li style="color: blue;"><a href="<%=request.getContextPath()%>/"><i class="fas fa-home"></i></a></li>
@@ -61,8 +61,7 @@
 					</div>
 					<div style="padding-top: 50px;">
 						<ul class="view_topMenu" style="padding-left: 20px;">
-							<li>댓글 1</li>
-							<li>최신순</li>
+							<li>댓글 <%=b.getComment_cnt() %></li>
 						</ul>
 					</div>
 					<div style="background-color: lightgray; padding: 10px 26px 16px 16px;">

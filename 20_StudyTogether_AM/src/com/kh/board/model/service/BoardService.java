@@ -11,6 +11,7 @@ import java.util.List;
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Comment;
+import com.kh.board.model.vo.Mood;
 
 public class BoardService {
 	private BoardDao dao=new BoardDao();
@@ -96,7 +97,7 @@ public class BoardService {
 		close(conn);
 	}
 	
-	public void updateBad(int no) {
+	public int updateBad(int no) {
 		Connection conn=getConnection();
 		int result=dao.updateBad(conn, no);
 		if(result>0) {
@@ -105,6 +106,7 @@ public class BoardService {
 			rollback(conn);
 		}
 		close(conn);
+		return result;
 	}
 	
 	public List<Board> boardFindList(int cPage, int numPerPage, String date, String content, String searchText){
@@ -184,6 +186,17 @@ public class BoardService {
 		Connection conn=getConnection();
 		int result=dao.deleteComment(conn, no);
 		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public boolean insertMood(Mood m) {
+		Connection conn=getConnection();
+		boolean result=dao.insertMood(conn, m);
+		if(result) {
 			commit(conn);
 		}else {
 			rollback(conn);
