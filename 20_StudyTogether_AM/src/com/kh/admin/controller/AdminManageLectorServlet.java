@@ -33,9 +33,6 @@ public class AdminManageLectorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Lector> list=new AdminService().selectLectorM();
-		for(Lector l:list) {
-			System.out.println(l);
-		}
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/adminManageLector.jsp").forward(request, response);
 	}

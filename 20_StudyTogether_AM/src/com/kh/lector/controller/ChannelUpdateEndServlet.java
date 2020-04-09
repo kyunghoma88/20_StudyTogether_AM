@@ -41,7 +41,7 @@ public class ChannelUpdateEndServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		String path=getServletContext().getRealPath("/upload/lector/");
-		int maxSize=1024*1024*10;
+		int maxSize=1024*1024*1024;
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		int no=Integer.parseInt(mr.getParameter("no"));
@@ -55,14 +55,14 @@ public class ChannelUpdateEndServlet extends HttpServlet {
 		LectorChannel lc=new LectorChannel(no,noRef,title,writer,detail,price,oriFile,renameFile,null,0,null);
 		System.out.println(lc);
 		
-		java.io.File f=mr.getFile("oriFile");
+		java.io.File f=mr.getFile("lectorVideo");
 
 		if(f!=null&&f.length()>0) {
-			File deleteFile=new File(path+mr.getParameter("lectorImg1"));
+			File deleteFile=new File(path+mr.getParameter("lectorVideo1"));
 			boolean flag=deleteFile.delete();
 			System.out.println(flag?"파일삭제성공":"파일삭제실패");
 		}else {
-			lc.setChannelOriginalVideo(mr.getParameter("lectorVideo"));
+			lc.setChannelOriginalVideo(mr.getParameter("lectorVideo1"));
 		}
 		
 		int result=new LectorService().updateChannel(lc);
@@ -76,6 +76,9 @@ public class ChannelUpdateEndServlet extends HttpServlet {
 		}else {
 			msg="수정을 실패하였습니다.";
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

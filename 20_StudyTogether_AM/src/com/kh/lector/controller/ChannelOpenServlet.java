@@ -34,7 +34,6 @@ public class ChannelOpenServlet extends HttpServlet {
 		Lector l=new LectorService().selectLector(no);
 		
 		request.setAttribute("lector", l);
-		System.out.println(l);
 		
 		//화면 전환용 서블릿
 		request.getRequestDispatcher("/views/lector/channelOpen.jsp").forward(request, response);

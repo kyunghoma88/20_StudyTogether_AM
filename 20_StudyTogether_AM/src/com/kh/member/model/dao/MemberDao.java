@@ -217,7 +217,6 @@ public class MemberDao {
 		String sql = prop.getProperty("duplicateCheck");
 		ResultSet rs = null;
 		int result=0;
-		System.out.println(id);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//duplicateCheck=SELECT * FROM MEMBER WHERE USER_ID=?
@@ -232,7 +231,6 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(result);
 		return result;
 	}
 	
@@ -320,7 +318,6 @@ public class MemberDao {
 		try {			
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
-				System.out.println(id);
 				rs = pstmt.executeQuery();
 				
 			while(rs.next()) {

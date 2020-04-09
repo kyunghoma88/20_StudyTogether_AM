@@ -37,7 +37,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		m.setPassword(request.getParameter("pwd"));
 		m.setEmail(request.getParameter("email"));
 		m.setNickName(request.getParameter("nickname"));
-		System.out.println(request.getParameter("gender"));
 		m.setGender(request.getParameter("gender"));
 		if(!request.getParameter("birth").equals("")) {
 			m.setBirthDate(Date.valueOf(request.getParameter("birth")));
@@ -45,15 +44,11 @@ public class MemberUpdateServlet extends HttpServlet {
 		m.setPhone(request.getParameter("phone"));
 		m.setAddress(request.getParameter("address1")+request.getParameter("address2"));
 		
-		System.out.println(m);
 		int result=new MemberService().memberUpdate(m);
-		System.out.println(result!=0?"수정성공":"수정실패");
 		
 		if(result>0) {
 			request.getSession(true).setAttribute("loginedMember", m);
-			System.out.println("수정성공");
 		}else {
-			System.out.println("수정실패");			
 		}
 		request.getRequestDispatcher("/member/memberView").forward(request, response);
 	}

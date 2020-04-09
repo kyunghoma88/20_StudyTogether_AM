@@ -498,11 +498,11 @@ public class LectorDao {
 			pstmt.setInt(4, lc.getChannelPrice());
 			pstmt.setString(5, lc.getChannelOriginalVideo());
 			pstmt.setString(6, lc.getChannelRenamedVideo());
-			pstmt.setDate(7, lc.getChannelEnrollDate());
-			pstmt.setInt(8, lc.getChannelLevel());
-			pstmt.setString(9, lc.getChannelAssign());
-			pstmt.setInt(10, lc.getChannelNo());
-			pstmt.setInt(11, lc.getChannelNoRef());
+//			pstmt.setDate(7, lc.getChannelEnrollDate());
+//			pstmt.setInt(8, lc.getChannelLevel());
+//			pstmt.setString(9, lc.getChannelAssign());
+			pstmt.setInt(7, lc.getChannelNo());
+			pstmt.setInt(8, lc.getChannelNoRef());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

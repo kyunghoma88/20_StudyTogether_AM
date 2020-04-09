@@ -33,12 +33,8 @@ public class AdminGrantLectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("강좌관리서블릿");
 		
 		List<Lector> list=new AdminService().selectLectorA();
-		for(Lector l:list) {
-			System.out.println(l);
-		}
 		
 		request.setAttribute("lectorGrantList", list);
 		request.getRequestDispatcher("/views/admin/adminGrantLector.jsp").forward(request, response);

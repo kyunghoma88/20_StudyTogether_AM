@@ -124,7 +124,6 @@
       <%} %>
       <div id="lectorTitle"><%=s.getStudyName() %><br/>
       <%=s.getStudyArea() %>&nbsp;|&nbsp;<%=s.getStudyPossibleDay() %><br>
-      
     <%SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); %>
     모집마감&nbsp;~<%=sdf.format(sdf.parse(s.getEndDate()))%> </div> </div>
   </a>

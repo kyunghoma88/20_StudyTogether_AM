@@ -43,17 +43,11 @@ public class BuyServlet extends HttpServlet {
 		String address=address1+" "+address2+" "+address3;
 		
 		String stotalPrice=request.getParameter("totalPrice");
-		System.out.println(stotalPrice);
 		if(stotalPrice!=null) {
 			int totalPrice=Integer.parseInt(stotalPrice);			
 		}
 		
-		System.out.println("구매테이블에 가는중");
 		List<Cart> list=(List)(request.getSession()).getAttribute("cartList");
-		for(Cart c:list) {
-			System.out.println(c);
-		}
-		System.out.println("장바구니객체넘어왔니??");
 		
 		request.setAttribute("name", name);
 		request.setAttribute("email", email);

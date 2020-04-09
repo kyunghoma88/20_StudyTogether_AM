@@ -31,11 +31,9 @@ public class ChannelDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
 		int cNo=Integer.parseInt(request.getParameter("cNo"));
-		System.out.println(pNo);
-		System.out.println(cNo);
+		
 		
 		int result=new LectorService().deleteChannel(pNo,cNo);
-		System.out.println("삭제RESULT"+result);
 
 		String msg="";
 		String loc="";
