@@ -16,10 +16,13 @@
 		
 	}
 	
-	
-	section{
-		font-size : 20px;
+	.form-control{
+		font-size : 30px !important;
 	}
+	
+	/* section{
+		font-size : 20px;
+	} */
 	
 	.title-con{
 		width : 450px !important;
@@ -29,8 +32,12 @@
 		margin-top : 5px;
 	}
 	
+	.write-container{
+		font-size : 30px;	
+	}
+	
 	.select-btn{
-		width : 150px !important;
+		width : 300px !important;
 	}
 	
 	#blank{
@@ -44,13 +51,13 @@
 	}
 	
 	.btn-container button{
-		font-size : 11px;
+		font-size : 25px;
 		font-weight : bolder;
 	}
 	
 	#faq-container{
-		height : 600px;
-		width : 800px;
+		height : 800px;
+		width : 1000px;
 		margin-left : 150px;
 		
 	}
@@ -65,7 +72,7 @@
 	<div class="row">
 		<div class="col-2"></div>
 		<div class="container faq-header col-10">
-			<h2>FAQ 수정</h2>
+			<p style="font-size:40px; font-weight:bolder;">FAQ 수정</p>
 		</div>
 	</div>
 	
@@ -86,7 +93,7 @@
 				<tr>
 					<th>제 목</th>
 					<td>
-						<input type="text" name="title" class="form-control form-control title-con" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
+						<input type="text" name="title" class="form-control title-con" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
 					</td>
 				</tr>
 				

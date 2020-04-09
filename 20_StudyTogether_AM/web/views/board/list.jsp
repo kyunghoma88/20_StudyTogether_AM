@@ -14,7 +14,7 @@
 		<%}else{ %>
 			<span class="category_name">묻고 답하기</span>
 		<%} %>
-			<table class="table">
+			<table class="table" style="font-size: 23px;">
         		<thead>
             	<tr>
 	            	<th></th>  
@@ -85,8 +85,8 @@
 				<ul class="pagination justify-content-center" id="page">
 					 <%=request.getAttribute("pageBar") %>
 				</ul>
-				<div style="text-align:center;">
-					<select name="searchContent" id="searchContent" style="background-color:white; height:29px;">
+				<div style="text-align:center; font-size:20px;">
+					<select name="searchContent" id="searchContent" style="background-color:white; height:35px;">
 						<option value="titleContent" selected>제목+내용</option>
 						<option value="title">제목만</option>
 						<option value="writer">글작성자</option>

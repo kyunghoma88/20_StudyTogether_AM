@@ -160,14 +160,14 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int minNo(Connection conn, int no) {
+	public int minNo(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
 		String sql=prop.getProperty("minNo");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, no);
+			
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				result=rs.getInt(1);
