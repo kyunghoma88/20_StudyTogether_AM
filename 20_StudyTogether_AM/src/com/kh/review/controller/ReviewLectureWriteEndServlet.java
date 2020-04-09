@@ -34,8 +34,7 @@ public class ReviewLectureWriteEndServlet extends HttpServlet {
 		String lecture = request.getParameter("allLecture");
 		String category = new ReviewLectureService().selectLectureCategory(lecture); 
 		int star = Integer.parseInt(request.getParameter("starCnt"));
-		System.out.println("star : " + star);
-		
+	
 		String content = request.getParameter("content");
 		
 		ReviewLecture revL = new ReviewLecture(0,writer,lecture,category,content,star,null);

@@ -73,7 +73,6 @@ public class ReviewStudyService {
 		Connection conn = getConnection();
 		List<ReviewStudy> list = dao.searchReviewStudyPage(conn,cPage,numPerPage,type,key);
 		close(conn);
-		System.out.println(list);
 		return list;
 	}
 
