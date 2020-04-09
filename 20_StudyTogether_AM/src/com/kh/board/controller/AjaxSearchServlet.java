@@ -103,7 +103,7 @@ public class AjaxSearchServlet extends HttpServlet {
 //		}
 		jsonObj.put("list", list);
 		jsonObj.put("category", category);
-		System.out.println(list);
+		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(jsonObj,response.getWriter());
 //		request.setAttribute("list", list);

@@ -42,8 +42,7 @@ public class BoardCommentServlet extends HttpServlet {
 		
 		int level=Integer.parseInt(request.getParameter("comment_level"));
 		int commentRef=Integer.parseInt(request.getParameter("comment_no_ref"));
-		System.out.println(comment);
-		System.out.println(boardRef);
+		
 		Comment c=new Comment(0,level,writer,comment,boardRef,commentRef,null);
 		new BoardService().insertComment(c);
 		JSONObject jo=new JSONObject();
