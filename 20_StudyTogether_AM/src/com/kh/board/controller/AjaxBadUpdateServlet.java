@@ -39,7 +39,7 @@ public class AjaxBadUpdateServlet extends HttpServlet {
 		if(id.equals("")) {
 			id=null;
 		}
-		System.out.println("아이디 : "+id);
+		
 		
 		Cookie[] cookies=request.getCookies();
 		String cookieVal="";//데이터를 보관용

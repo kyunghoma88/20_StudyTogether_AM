@@ -53,7 +53,7 @@ public class BoardReplyEndServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request, path, maxSize,
 				"UTF-8",new DefaultFileRenamePolicy());
 		fileCnt = Integer.parseInt(mr.getParameter("fileCnt"));
-		System.out.println("file "+fileCnt);
+		
 		String title=mr.getParameter("title");
 		String category=mr.getParameter("category");
 		int no=Integer.parseInt(mr.getParameter("no"));
@@ -63,8 +63,6 @@ public class BoardReplyEndServlet extends HttpServlet {
 		for(int i=0;i<fileCnt;i++) {
 			oriFileName[i]=mr.getOriginalFileName("fileup"+(i+1));
 			renamedFileName[i]=mr.getFilesystemName("fileup"+(i+1));
-			System.out.println(oriFileName[i]);
-			System.out.println(renamedFileName[i]);
 		}
 		List<String> list = new ArrayList<>(Arrays.asList(oriFileName));
 		for(int i=0;i<list.size();i++) {

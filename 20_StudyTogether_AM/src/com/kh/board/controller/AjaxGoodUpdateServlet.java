@@ -44,7 +44,7 @@ public class AjaxGoodUpdateServlet extends HttpServlet {
 		if(flag&&id!=null) {			
 			int result=new BoardService().updateGood(no);
 		}else {
-			System.out.println("에러");
+			
 		}
 		
 		Board b=new BoardService().boardView(no);

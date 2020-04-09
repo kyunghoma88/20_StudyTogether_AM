@@ -160,7 +160,12 @@
 									var year = list[i].write_date.substr(6,4);
 									var month = 0+list[i].write_date.substr(0,1);
 									var day = list[i].write_date.substr(3,1);
-									td+="<td>"+year+"-"+month+"-"+day+"</td>";
+									
+									if(day.length==2){									
+										td+="<td>"+year+"-"+month+"-"+day+"</td>";
+									}else{
+										td+="<td>"+year+"-"+month+"-0"+day+"</td>";
+									}
 									td+="<td>"+list[i].cnt+"</td>";
 									td+="<td>"+list[i].good_cnt+"</td>";
 									td+="<td>"+list[i].bad_cnt+"</td></tr>";
@@ -207,8 +212,12 @@
 								var year = list[i].write_date.substr(6,4);
 								var month = 0+list[i].write_date.substr(0,1);
 								var day = list[i].write_date.substr(3,1);
-								if(day.leng)
-								td+="<td>"+year+"-"+month+"-"+day+"</td>";
+								
+								if(day.length==2){									
+									td+="<td>"+year+"-"+month+"-"+day+"</td>";
+								}else{
+									td+="<td>"+year+"-"+month+"-0"+day+"</td>";
+								}
 								td+="<td>"+list[i].cnt+"</td>";
 								td+="<td>"+list[i].good_cnt+"</td>";
 								td+="<td>"+list[i].bad_cnt+"</td></tr>";
