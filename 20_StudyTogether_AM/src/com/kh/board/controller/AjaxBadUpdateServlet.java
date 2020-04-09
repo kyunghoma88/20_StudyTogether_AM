@@ -34,10 +34,15 @@ public class AjaxBadUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		String id=request.getParameter("id");
+		String mood=request.getParameter("bad");
+		if(id.equals("")) {
+			id=null;
+		}
+		System.out.println("아이디 : "+id);
 		
 		Mood m = new Mood(id,no,'N');
-		boolean flag=new BoardService().insertMood(m);
-		if(flag) {			
+		boolean flag=new BoardService().insertMood(m, mood);
+		if(flag&&id!=null) {			
 			int result=new BoardService().updateBad(no);
 		}else {
 			System.out.println("에러");
