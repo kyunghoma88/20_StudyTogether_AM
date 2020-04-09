@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/studyView.css" type="text/css"/>
 
 <%	
-	List<StudyJoin> list=(List)request.getAttribute("sList");
+/* 	StudyJoin sj1=(StudyJoin)request.getAttribute("sj1");
+ */	List<StudyJoin> list=(List)request.getAttribute("sList");
 	Study s=(Study)request.getAttribute("study");
 %>
 <section>
@@ -47,7 +48,6 @@
      <input type="button" class="basket" onclick="apply2();" value="참여하기"></button>
      <%}else{ %>
         <input type="button" class="basket" onclick="apply();" value="참여하기"></button>
-     
      <%} %>
    </div>
 </section>

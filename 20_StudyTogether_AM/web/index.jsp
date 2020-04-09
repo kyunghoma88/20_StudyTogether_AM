@@ -101,29 +101,34 @@
         }
         setInterval(function(){tick()},4000);
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
- //신규강좌 top3 ajax!
+  <%--       
+   //실시간게시판
+   $(function(){
+	   $.ajax({
+		   url:"<%=request.getContextPath()%>/realtime/review",
+		   datatype:"json",
+		   type:"post",
+		   success:function(data){
+			   console.log(data);
+             for(let i=0; i<data.length;i++){
+            	$("#realtime")[i].append(<li><p>"+data[i].lectureName+"</p></li>+<hr><br>"+
+            	<li><p>"+data[i].reviewLecContent+"</p></li>);
+            }
+		   },
+		   error:function(request,status,error){
+			   if(request.status==404){
+				   
+			   }
+		   }
+	   })
+   }) --%>
+   //신규강좌 top3 ajax!
          $(function(){
            $.ajax({
             url:"<%=request.getContextPath()%>/main/main",
               datatype:"json",
               type:"post",
               success:function(data){
-                 console.log(data);
-                 console.log("강좌번호"+data[0].lectorNo);
-                 console.log("카테고리"+data[0].lectorCategory);
-                 console.log("사진"+data[0].lectorOriginalImg);
-                 
                  for(let i=0; i<data.length;i++){
                     $("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
                     "<div class='list_detail'>"+

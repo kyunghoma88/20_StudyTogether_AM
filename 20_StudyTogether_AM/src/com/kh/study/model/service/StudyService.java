@@ -95,4 +95,11 @@ public class StudyService {
 		close(conn);
 		return slist;
 	}
+
+	public StudyJoin selectStudyJoin(int no,String loginId) {
+		Connection conn=getConnection();
+		StudyJoin sj=dao.selectStudyJoin(conn,no,loginId);
+		close(conn);
+		return sj;
+	}
 }
