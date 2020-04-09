@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 		<td>강좌 분야</td>
-		<td> 
+		<td>
 		<select id="searchType" name="searchType" > 
      			<option value="카테고리">카테고리</option>
      		<optgroup label="어학,회화">

@@ -43,7 +43,9 @@ public class ChannelOpenEndServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		int noRef=Integer.parseInt(mr.getParameter("no"));
-		System.out.println(noRef);
+		/*
+		 * System.out.println(noRef);
+		 */		
 		String title=mr.getParameter("title");
 		String writer=mr.getParameter("writer");
 		String detail=mr.getParameter("detail");

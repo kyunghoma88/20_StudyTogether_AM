@@ -122,7 +122,7 @@
         			
         			for(let i=0; i<data.length;i++){
 	        			
-        				$("#rank")[i].append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
+        				$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
 	     				"<div class='list_detail'>"+
 	     				"<h4>"+data[i].lectorCategory+"</h4>"+
 	        			"<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
