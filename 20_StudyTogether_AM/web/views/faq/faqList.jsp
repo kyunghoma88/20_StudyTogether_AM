@@ -87,7 +87,7 @@
 		<div class="container faq-header">
 			<h2 style="display:inline-block;">FAQ</h2>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<p id="faq-detail" style="display:inline-block;">자주 묻는 질문입니다. 더 궁금하신 사항은 카카오톡 문의를 이용해 주세요.</p>
+			<p id="faq-detail" style="display:inline-block;">자주 묻는 질문입니다. 더 궁금하신 사항은 전화문의 또는 카카오톡으로 문의해 주세요.</p>
 		</div>
 
 
