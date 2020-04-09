@@ -73,9 +73,8 @@ select{
         transform:perspective(400px) rotateZ(30deg);
 
     }
-  
-    .make a{
-    font-size: 20px;
+.make a{
+    font-size: 18px;
     text-decoration: none;
     color:black;
     font-weight: bolder;
@@ -104,7 +103,7 @@ select{
 }
   
 .open-lecture-container a{
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
     color:black;
     font-weight: bolder;

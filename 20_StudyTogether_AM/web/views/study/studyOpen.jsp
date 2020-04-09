@@ -119,7 +119,7 @@
 				<br>
                  <div align="center">
                      <button type="reset" onclick = "cancelChk()" id="openCancleBtn">취소</button>
-                     <button type="submit" onclick="" id="openEnrollBtn">승인 요청</button>
+                     <button type="submit" onclick="" id="openEnrollBtn">등록</button>
                  </div>
 
  </form>
@@ -131,10 +131,12 @@
            return false;
         }
     }
-  //모집 날짜, 오늘 날짜 이후로만 선택 가능
- /*  $(function() {
-	  $( "#endPeriod" ).datepicker({ minDate: 0});
-	  }); */ // 안됨...
+  
+  var minDate = new Date();
+  $(function() {
+  	$( "#endPeriod" ).datepicker({ minDate: minDate});
+   });
+  
  </script>
 
 

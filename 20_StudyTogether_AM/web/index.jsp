@@ -57,7 +57,6 @@
   </ul>
 </div>
 
-
 <!-- 슬라이드 후기 -->
 <div class="slide">
   <ul>
@@ -74,23 +73,20 @@
   <div id="hr">
     <i>행복은 성적순이 아닐지 몰라도 성공은 성적순이다.</i></div>
   <div id="hr2">
-    <p>Let's STUDY &nbsp;신규강좌 RANK3</p>
+    <p>실시간 신규강좌 RANK3</p>
+    
   </div>
-  
 <!-- 동영상 강의 -->
+  <img id="imgg" src='<%=request.getContextPath()%>/images/click1.JPG' width="200px" height="auto" style="margin-left:0px;">
   <div id="parent">
     <div id="rank0"></div>
     <div id="rank1"></div>
     <div id="rank2"></div>
 </div>
-
-
-
 <div class="container1">
   <button type="button" class="btn btn-danger" onClick="location.href='<%=request.getContextPath()%>/lector/lectorList'" style="margin-bottom:30px">더 많은 강좌 보러가기</button>
 </div>
 <script>
-
 // 현재시간 출력
      //switch문에 비교연산? 가능???
      setInterval(function(){
@@ -105,38 +101,50 @@
         }
         setInterval(function(){tick()},4000);
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         
  //신규강좌 top3 ajax!
          $(function(){
-        	$.ajax({
-				url:"<%=request.getContextPath()%>/main/main",
-        		datatype:"json",
-        		type:"post",
-        		success:function(data){
-        			console.log(data);
-        			console.log("강좌번호"+data[0].lectorNo);
-        			console.log("카테고리"+data[0].lectorCategory);
-        			console.log("사진"+data[0].lectorOriginalImg);
-        			
-        			for(let i=0; i<data.length;i++){
-        				$("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
-	     				"<div class='list_detail'>"+
-	     				"<h4>"+data[i].lectorCategory+"</h4>"+
-	        			"<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
-	        			"</div>"+
-	        			"<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
-	        			"</a>"); 
-        				
-        				$("#lectorTitle").attr("color","black");
-        			}
-        		},
-        		error:function(request,status,error){
-        			if(request.status==404){
-        			}
-        		}
-        	})
+           $.ajax({
+            url:"<%=request.getContextPath()%>/main/main",
+              datatype:"json",
+              type:"post",
+              success:function(data){
+                 console.log(data);
+                 console.log("강좌번호"+data[0].lectorNo);
+                 console.log("카테고리"+data[0].lectorCategory);
+                 console.log("사진"+data[0].lectorOriginalImg);
+                 
+                 for(let i=0; i<data.length;i++){
+                    $("#rank"+i).append("<a href='<%=request.getContextPath()%>/lector/lectorView?pNo="+data[i].lectorNo+"'>"+
+                    "<div class='list_detail'>"+
+                    "<h4>"+data[i].lectorCategory+"</h4>"+
+                    "<img src='<%=request.getContextPath()%>/upload/lector/"+data[i].lectorOriginalImg+"' width='200px' height='150px;'>"+
+                    "</div>"+
+                    "<div id='lectorTitle'>"+data[i].lectorTitle+"</div>"+
+                    "</a>"); 
+                    
+                    $("#lectorTitle").attr("color","black");
+                 }
+              },
+              error:function(request,status,error){
+                 if(request.status==404){
+                 }
+              }
+           })
         }) 
+        
+        
+        
 </script>
 <!-- footer페이지 불러오기 -->
 <%@ include file="/views/common/footer.jsp" %>

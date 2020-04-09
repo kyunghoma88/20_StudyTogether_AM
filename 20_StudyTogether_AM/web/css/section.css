@@ -205,6 +205,10 @@
     font-size:30px;
    } 
    
+   #imgg{
+   display:block;
+   }
+   
    
 /*    .list_detail{
 	border-radius:20px;

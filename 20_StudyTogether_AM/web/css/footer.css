@@ -2,7 +2,6 @@ footer
         {
             width: 100%;
             margin: 30px 0;
-            font-family: "Sunflower";
             display: flex;
             flex-flow: column;
             align-items: center;
@@ -107,6 +106,7 @@ footer
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
+            margin-left : 50px;
         }
         
         .business-info p

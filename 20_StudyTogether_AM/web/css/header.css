@@ -1,10 +1,10 @@
 /* 헤더 부분 */
 /* css 브라우저캐쉬삭제 적용 ctrl+f5 */
 
-body {
+/* body {
      font-family: 'Gamja Flower', cursive !important;
     }
-    
+     */
 .main{
   background-color: white;
   border-bottom: 1px solid silver;

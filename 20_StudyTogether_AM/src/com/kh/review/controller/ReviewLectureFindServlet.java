@@ -77,10 +77,10 @@ public class ReviewLectureFindServlet extends HttpServlet {
 		}else {
 			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>다음</a>";
 		}
-				
+		
 		request.setAttribute("list",list);
 		request.setAttribute("pageBar",pageBar);
-		request.getRequestDispatcher("/review/reviewLecture/reviewLectureList.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/review/reviewLecture/reviewLectureList.jsp").forward(request, response);
 	
 	}
 
