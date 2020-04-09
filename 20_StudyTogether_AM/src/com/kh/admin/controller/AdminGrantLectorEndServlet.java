@@ -28,20 +28,15 @@ public class AdminGrantLectorEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("회원승인서블릿");
 		String lectorNo=request.getParameter("lecNo");
 		String optradio=request.getParameter("optradio");
-		System.out.println(lectorNo);
-		System.out.println(optradio);
 		int result=0;
 		if(optradio.equals("Y")) {
 			result=new AdminService().updateGrantLector(lectorNo);
-			System.out.println(result>0?"강좌개설승인성공":"개설승인실패");
 			request.setAttribute("msg", lectorNo+"번 강좌가 승인되었습니다");
 			request.setAttribute("loc", "/admin/adminGrantLector");
 		}else if(optradio.equals("N")) {
 			result=new AdminService().updateRejectLector(lectorNo);			
-			System.out.println(result>0?"강좌거절승인성공":"개설거절실패");
 			request.setAttribute("msg", lectorNo+"번 강좌가 거절되었습니다");
 			request.setAttribute("loc", "/admin/adminGrantLector");
 		}

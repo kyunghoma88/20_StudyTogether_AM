@@ -39,13 +39,10 @@ public class AdminManageLectorEndServlet extends HttpServlet {
 			String[] arr=lecNoArr.split(",");
 		    int[] lecNums = Arrays.stream(arr).mapToInt(Integer::parseInt).toArray();
 		    int result=new AdminService().deleteLectorAll(lecNums);
-		    System.out.println(result);
 		    request.setAttribute("msg", result+"개의 강좌가 성공적으로 폐강되었습니다");
 			request.setAttribute("loc", "/admin/adminManageLector");
 		} else {
-			System.out.println("관리자 강좌 개별 삭제");
 			int lecNo=Integer.parseInt(request.getParameter("lecNo"));
-			System.out.println(lecNo);
 			int result=new AdminService().deleteLector(lecNo);
 			request.setAttribute("msg", lecNo+"번 강좌가 성공적으로 폐강되었습니다");
 			request.setAttribute("loc", "/admin/adminManageLector");

@@ -11,12 +11,6 @@
 	int totalPrice=Integer.parseInt(stotalPrice);
 	
 	List<Cart> list=(List)request.getAttribute("list");
-	System.out.println(name);
-	System.out.println(email);
-	System.out.println(phone);
-	System.out.println(address);
-	System.out.println(postcode);
-	System.out.println(stotalPrice);
 	
 	session.setAttribute("cartList", list);
 %>

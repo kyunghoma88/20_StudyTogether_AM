@@ -27,7 +27,6 @@ public class LookPasswordEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("lookpwend서블릿 넘어왔니");
 		request.getRequestDispatcher("/views/member/lookPassword.jsp").forward(request, response);
 	}
 

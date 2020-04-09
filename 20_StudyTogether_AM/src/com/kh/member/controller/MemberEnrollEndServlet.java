@@ -38,7 +38,6 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		
 		String id=request.getParameter("id");
 		String password=request.getParameter("jPsw");
-		System.out.println(password);
 		String userName=request.getParameter("userName");
 		String email=request.getParameter("email");
 		int result=new MemberService().memberEnroll(id, password, userName, email);
@@ -52,7 +51,6 @@ public class MemberEnrollEndServlet extends HttpServlet {
 			//회원가입 성공
 			msg="회원가입에 실패하셨습니다. 관리자에게 문의하세요";
 		}
-		System.out.println(msg);
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		
