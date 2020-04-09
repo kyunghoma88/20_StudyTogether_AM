@@ -201,7 +201,8 @@
 					$.ajax({
 						url:"<%=request.getContextPath()%>/ajax/goodUpdate",
 						type:"post",
-						data:{"no":<%=b.getBoard_no()%>,
+						data:{"good":"good",
+							  "no":<%=b.getBoard_no()%>,
 							  "id":"<%=loginMember!=null?loginMember.getUserId():""%>"},
 						success:function(data){
 							$("#goodAdd").html(data);
@@ -222,7 +223,8 @@
 					$.ajax({
 						url:"<%=request.getContextPath()%>/ajax/badUpdate",
 						type:"post",
-						data:{"no":<%=b.getBoard_no()%>,
+						data:{"bad":"bad",
+							  "no":<%=b.getBoard_no()%>,
 							  "id":"<%=loginMember!=null?loginMember.getUserId():""%>"},
 						success:function(data){
 							$("#badAdd").html(data);

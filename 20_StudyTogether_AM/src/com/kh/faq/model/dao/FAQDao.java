@@ -106,9 +106,7 @@ public class FAQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		
-		
-		////////////// 2020 04 04 수정
+	
 		
 		if(category.equals("전체보기")) {
 		
@@ -251,6 +249,67 @@ public class FAQDao {
 		return result;
 	}
 	
+	public List<FAQ> searchFormFAQ(Connection conn, int cPage, int numPerPage, String title) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("faqSearch");
+		List<FAQ> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+title+"%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FAQ f = new FAQ();
+				f.setFaqNo(rs.getInt("faq_no"));
+				f.setFaqTitle(rs.getString("faq_title"));
+				f.setFaqCategory(rs.getString("faq_category"));
+				f.setFaqContent(rs.getString("faq_content"));
+				f.setFaqDate(rs.getDate("faq_date"));
+				f.setFaqDeleteStatus(rs.getString("faq_delete_status"));
+				
+				list.add(f);
+				
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+				
+			} 
+			return list;
+
+	}
+
+	public int faqFormCount(Connection conn, String title) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+	
+		String sql = prop.getProperty("faqFormCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+title+"%");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+
+	}
 	
 
 }

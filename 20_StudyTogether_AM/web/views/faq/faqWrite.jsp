@@ -3,11 +3,25 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <style>
+	#faq-container{
+		height:600px;
+	}
+
 	.faq-header{
 		margin : 0px;
 		margin-top : 50px;
 		
 	}
+	
+	.title-con{
+		width : 450px !important;
+	}
+	
+	.select-btn{
+		width : 150px !important;
+	}
+	
+	
 	
 	section{
 		font-size : 15px;
@@ -38,7 +52,7 @@
 </style>
 
 
-<section id="faq-container" style="height:800px;">
+<section id="faq-container">
 	<div class="row">
 		<div class="col-2"></div>
 		<div class="container faq-header col-10">
@@ -56,13 +70,13 @@
 				</colgroup>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="title" required></td>
+					<td><input type="text" name="title" class="title-con" required></td>
 				</tr>
 				<tr>
 					<th>카테고리</th>
 					<!-- <td><input type="text" name="category" required></td> -->
 					<td>
-						<select class="form-control" name="category">
+						<select class="form-control select-btn" name="category">
 							<option value="">카테고리 선택</option>
 							<option value="회원">회원</option>
 							<option value="스터디개설">스터디개설</option>

@@ -35,7 +35,6 @@ public class BoardReplyServlet extends HttpServlet {
 		Board b=new BoardService().boardView(no);
 		String category=request.getParameter("category");
 		request.setAttribute("category", category);
-		System.out.println("너도 안나오니? "+id);
 		
 		request.setAttribute("board", b);
 		

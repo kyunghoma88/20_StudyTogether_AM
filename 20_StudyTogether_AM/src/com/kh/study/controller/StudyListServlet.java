@@ -54,7 +54,7 @@ public class StudyListServlet extends HttpServlet {
 		
 		//pageBar만들기
 		int totalStudy=new StudyService().studyCount();
-		System.out.println(totalStudy);
+		//System.out.println(totalStudy);
 		
 		int totalPage=(int)Math.ceil((double)totalStudy/numPerPage);
 		

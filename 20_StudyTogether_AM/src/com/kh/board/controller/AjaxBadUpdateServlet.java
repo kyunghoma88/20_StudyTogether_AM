@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,14 +35,37 @@ public class AjaxBadUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		String id=request.getParameter("id");
-		
-		Mood m = new Mood(id,no,'N');
-		boolean flag=new BoardService().insertMood(m);
-		if(flag) {			
-			int result=new BoardService().updateBad(no);
-		}else {
-			System.out.println("에러");
+		String mood=request.getParameter("bad");
+		if(id.equals("")) {
+			id=null;
 		}
+		
+		
+		Cookie[] cookies=request.getCookies();
+		String cookieVal="";//데이터를 보관용
+		boolean hasRead=false;//읽은표시
+		//cookie값에 있는 읽은 게시판을 확인
+		if(cookies!=null) {
+			for(Cookie c : cookies) {
+				String name=c.getName();
+				String value=c.getValue();
+				if("mood".equals(name)) {
+					cookieVal=value;
+					if(value.contains("|"+no+"|"+mood+"|")) {
+						hasRead=true;
+						break;
+					}
+				}
+			}
+		}
+		//읽지 않았다면 쿠키에 데이터를 추가
+		if(!hasRead) {
+			Cookie c=new Cookie("mood",cookieVal+"|"+no+"|"+mood+"|");
+			c.setMaxAge(-1);//session이 종료시에 삭제
+			response.addCookie(c);
+		}				
+		int result=new BoardService().updateBad(no);
+		
 		
 		Board b=new BoardService().boardView(no);
 		response.getWriter().print(b.getBad_cnt());

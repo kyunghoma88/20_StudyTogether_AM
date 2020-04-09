@@ -8,9 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
 
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Comment;
@@ -558,9 +561,10 @@ public class BoardDao {
 		}
 		return result;
 	}
-	public boolean insertMood(Connection conn, Mood m) {
+	public boolean insertMood(Connection conn, Mood m, String mood) {
 		PreparedStatement pstmt=null;
 		int result=0;
+		ResultSet rs=null;
 		String sql=prop.getProperty("insertMood");
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -571,13 +575,53 @@ public class BoardDao {
 				return true;
 			}
 		}catch(SQLException e) {
-			e.printStackTrace();
+			if(mood.equals("bad")) {				
+				sql=prop.getProperty("deleteBad");
+				try {				
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setInt(1, m.getBoard_ref());
+					result=pstmt.executeUpdate();
+					if(result>0) {
+						sql=prop.getProperty("deleteMood");
+						pstmt=conn.prepareStatement(sql);
+						pstmt.setString(1, m.getNickname());
+						pstmt.setInt(2, m.getBoard_ref());
+						result=pstmt.executeUpdate();
+						if(result>0) {
+							return true;
+						}
+					}
+				}catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}else if(mood.equals("good")){
+				sql=prop.getProperty("deleteGood");
+				try {				
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setInt(1, m.getBoard_ref());
+					result=pstmt.executeUpdate();
+					if(result>0) {
+						sql=prop.getProperty("deleteMood");
+						pstmt=conn.prepareStatement(sql);
+						pstmt.setString(1, m.getNickname());
+						pstmt.setInt(2, m.getBoard_ref());
+						result=pstmt.executeUpdate();
+						if(result>0) {
+							return true;
+						}
+					}
+				}catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		return false;
 	}
 }
+
 
 
 

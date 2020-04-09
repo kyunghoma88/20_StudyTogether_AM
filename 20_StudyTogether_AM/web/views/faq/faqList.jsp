@@ -15,6 +15,12 @@
 </script>
 
 <style>
+	#faq-detail{
+		font-size : 11px;
+		
+	}
+	
+
 	.faq-header{
 		margin : 0px;
 		margin-left : 50px;
@@ -27,16 +33,30 @@
 		margin-bottom : 0;
 	}
 	
+	.search-container{
+		margin-top : 20px;
+		margin-left : 95px;
+	}
+	
+	.search-container *{
+		display : inline-block !important;
+	}
+	
+	
+	#search-btn{
+		margin-bottom : 3px;
+	}
+	
+	.form-control{
+		width : 350px !important;
+	}
+	
 	.btn-faq-category{
 		font-size : 13px;
 	}
 	
 	.tbl-container{
 		font-size : 15px;
-	}
-	
-	#btn-faq-write{
-		
 	}
 	
 	#tbl-faq tr>th{
@@ -46,10 +66,6 @@
 	.faq-category{
 		text-align : center;
 	}
-	
-	/* #tbl-faq tr td{
-		text-align : center;
-	} */
 	
 	.tbl-faq tr>th{
 		text-align : center;
@@ -66,13 +82,15 @@
 </style>
 
 
-<section id="faq-container" style="height:800px;">
-	<!-- <div class="row">
-		<div class="col-2"></div> -->
+<section id="faq-container" style="height:600px;">
+	
 		<div class="container faq-header">
-			<h2>FAQ</h2>
+			<h2 style="display:inline-block;">FAQ</h2>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<p id="faq-detail" style="display:inline-block;">자주 묻는 질문입니다. 더 궁금하신 사항은 전화문의 또는 카카오톡으로 문의해 주세요.</p>
 		</div>
-	<!-- </div> -->
+
+
 	<br>
 	
 		<div id="category-container" class="container">
@@ -86,15 +104,14 @@
  			<button type="button" class="btn-faq-category btn btn-dark" id="btn-faq-write" onclick="fn_faqWrite();">FAQ 작성</button>
  		<% } %> 
  		
- 			<!-- <form id="searchForm">
- 				<input type="text" name="faqTitle"/>
- 				<button type="submit">검색</button>
- 			</form> -->
- 		
 		</div>
+		
+		<div class="search-container">
 
-	
+	 				<input type="text" name="faqTitle" class="form-control" autocomplete="off"/>
+	 				<button type="button" id="search-btn" class="btn btn-outline-secondary" onclick="fn_search_btn(1);">검색</button>
 
+		</div>
 
 		<div id="table-container" class="container tbl-container">
 			
@@ -140,17 +157,33 @@
 
 		<script>
 			function fn_btn(cPage, category){
+				
 				$.ajax({
 					url:"<%=request.getContextPath()%>/faq/faqListAjax",
 					type:"post",
 					data:{cPage:cPage,
 						 "category":category},
 					success:function(data){
-						//console.log(data);
-						//alert(category);
+						$("#tbl-faq, #pageBar").hide(); 					
+						$('#table-container').html(data);
+					}
+					
+				})
+			}
+			$("input[name=faqTitle]").keyup((e)=>{
+				if(e.key=='Enter'){
+					fn_search_btn(1);
+				}
+			})
+			function fn_search_btn(cPage){
+				var title = $("input[name=faqTitle]").val();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/faq/faqSearchListAjax",
+					type:"post",
+					data:{cPage:cPage,
+						 "title":title},
+					success:function(data){
 						$("#tbl-faq, #pageBar").hide(); 
-						
-						
 						
 						$('#table-container').html(data);
 					}
@@ -158,63 +191,11 @@
 				})
 			}
 			
-			function searchFaq(){
-				var searchData = $("#searchForm").serialize();
-				$.ajax({
-					url:"<%=request.getContextPath()%>/faq/faqSearchListAjax",
-					type:"post",
-					data:searchData,
-					success:function(data){
-						//console.log(data);
-						//alert(category);
-						$("#tbl-faq, #pageBar").hide(); 
-						
-						
-						
-						$('#table-container').html(data);
-					}
-					
-				})
-			}
 
 		</script>
 
 
-	<%-- <div class="container tbl-container">
-		<table id="tbl-faq" class="table table-hover">
-			<colgroup>
-				<col width="150px;" />
-				<col width="750px;" />
-				<col/>
-			</colgroup>
-			
-			<tr>
-				<th>카테고리</th>
-				<th>제목</th>			
-			</tr>
-		<% if(list.isEmpty()){ %>
-			<tr>
-				<td colspan='2'> 검색된 FAQ가 없습니다!</td>
-			</tr>
-		<% } else{ %>
-			<%	for(FAQ f : list){ %>
-			<tr>
-				<td class="faq-category"><%= f.getFaqCategory() %></td>				
-				<td><a href="<%= request.getContextPath() %>/faq/faqView?no=<%=f.getFaqNo() %>">
-						<%= f.getFaqTitle() %>
-					</a>
-				</td>
-			</tr>
-			<%} %>
-		<%} %>
-		</table>
-		
-		<div id="pageBar" class="container pageBar-container">
-			<ul class="pagination">
-				<%= request.getAttribute("pageBar") %>
-			</ul>	
-		</div>
-	</div> --%>
+	
 </section>
 
 
