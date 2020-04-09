@@ -56,7 +56,7 @@ public class ReviewStudyUpdateEndServlet extends HttpServlet {
 		String loc="/review/reviewStudyView?no="+request.getParameter("no");
 		
 		int result = new ReviewStudyService().updateReviewStudy(revS);
-		System.out.println(result);
+		
 		if(result>0) {
 			msg="수정이 완료되었습니다";		
 		}else {

@@ -56,7 +56,6 @@ public class MemberDao {
 				m.setPhone(rs.getString("phone"));
 				m.setAddress(rs.getString("address"));
 				m.setAdminStatus(rs.getString("admin_status").charAt(0));
-				System.out.println(m);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
