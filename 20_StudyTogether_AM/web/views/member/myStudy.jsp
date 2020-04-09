@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, com.kh.study.model.vo.Study" %>
+<%@ page import="java.util.List, com.kh.study.model.vo.Study, com.kh.member.model.vo.StudyJoinMember" %>
 <%@ include file="/views/member/myPageHeader.jsp" %>
 <%
 	List<Study> scList = (List)request.getAttribute("scList");
 	List<Study> sjList = (List)request.getAttribute("sjList");
+	List<StudyJoinMember> mList = (List)request.getAttribute("mList");
+	
 %>
-
 <div class="row">
 	<h4>내가 개설한 스터디</h4>
 </div>
@@ -31,7 +32,7 @@
               <th>스터디명</th>
               <th>최대 인원수</th>
               <th>등록일</th>
-              <th>스터디 폐강</th>
+              <th>기능</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -54,15 +55,48 @@
 	                <td class="">
 		                <div class="form-check-inline">
 		                    <label class="form-check-label">
-		                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">전송</button>
+		                      <button type="button" class="form-check-input btn-primary btn-sm" onclick="toggle(<%=s.getStudyNo()%>)">연락처 보기</button>
+		                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">폐강하기</button>
 		                      <input type="hidden" id="btn<%=s.getStudyNo() %>" name="lecNo" value="<%=s.getStudyNo() %>">
-		                      <input type="hidden" id="" name="stuNoArr" value="">
 		                    </label>
 		                  </div>
 	                </td>
-	            </tr>      
-            	<%} %>
-            <%} %>
+	            </tr>
+			  <%int count=0; %>
+	          <%for(int i=0;i<mList.size();i++){
+	         		StudyJoinMember sjm=mList.get(i);%>
+	        <%if(i==0){ %>
+	        <tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+	              <th>스터디 번호</th>
+	              <th>이름</th>
+	              <th>아이디</th>
+	              <th>회원명</th>
+	              <th>연락처</th>
+	              <th>이메일</th>
+		     </tr>
+	        <%}%>
+	        <%if(sjm.getStudyNo()==s.getStudyNo()) {%>
+	          <tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+	              <td class=""><%=sjm.getStudyNo() %></td>
+	              <td class=""><%=sjm.getStudyName() %></td>
+	              <td class=""><%=sjm.getUserId() %></td>
+	              <td class=""><%=sjm.getUserName() %></td>
+	              <td class=""><%=sjm.getPhone()!=null?sjm.getEmail():"미입력" %></td>
+	              <td class=""><%=sjm.getEmail()!=null?sjm.getEmail():"미입력" %></td>
+		     </tr>
+	  	 		<%count++;
+	  	 		} else {
+	  	 			if(i==mList.size()-1 && count==0){
+	  	 			count=0;%>
+			<tr class="info<%=s.getStudyNo()%>" style='display:none;'>
+			  <td colspan="6">현재 스터디에는 참여한 회원이 없네요</td>
+			</tr>
+  	 			<%} else {%>
+  	 			<%}%>
+  	 		<%}%>
+ 		<%} %>
+	<%} %> <!-- scList -->
+ <%} %><!-- else -->
           </tbody>
       </table>
     </form>
@@ -95,7 +129,7 @@
               <th>스터디명</th>
               <th>최대 인원수</th>
               <th>등록일</th>
-              <th>스터디 탈퇴</th>
+              <th>기능</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -118,15 +152,14 @@
                 <td class="">
 					<div class="form-check-inline">
 	                    <label class="form-check-label">
-	                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">전송</button>
+	                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">탈퇴하기</button>
 	                      <input type="hidden" id="btn<%=s.getStudyNo() %>" name="lecNo" value="<%=s.getStudyNo() %>">
-	                      <input type="hidden" id="" name="stuNoArr" value="">
 	                    </label>
 	                  </div>
 				</td>
             </tr>
-          	  <%} %>
-            <%} %>      
+       	  <%} %>
+        <%} %>      
           </tbody>
       </table>
     </form>
@@ -174,5 +207,23 @@
 		        }
         	});
         }
+        
+    	function toggle(e){
+    		var str='info'+String(e);
+    		var info=document.getElementsByClassName(str);
+    		var infoLength=info.length;
+    		console.log(infoLength);
+    		
+    		for(let i=0; i<infoLength; i++){
+	    		if(info[i].classList.contains('on')){
+	    			info.item(i).classList.remove('on')
+	    			info.item(i).style.display="";
+	    		}else{
+	    			info.item(i).classList.add('on')
+	    			info.item(i).style.display="none";
+	    		}
+    		}
+    	}
+        
     </script>
 <%@ include file="/views/member/myPageFooter.jsp" %>

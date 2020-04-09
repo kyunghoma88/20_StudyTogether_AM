@@ -17,6 +17,7 @@ import com.kh.join.model.vo.LectorJoin;
 import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.StudyJoinMember;
 import com.kh.study.model.vo.Study;
 
 public class MemberDao {
@@ -366,6 +367,34 @@ public class MemberDao {
 				l.setLectorDate(rs.getDate("LECTOR_DATE"));
 				l.setLectorAssign(rs.getString("LECTOR_ASSIGN"));
 				list.add(l);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public List<StudyJoinMember> selectStudyJoinContact(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql= prop.getProperty("selectStudyJoinContact");
+		List<StudyJoinMember> list=new ArrayList<StudyJoinMember>();
+		StudyJoinMember sjm = null;
+		try {			
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+			while(rs.next()) {
+				sjm=new StudyJoinMember();
+				sjm.setStudyNo(rs.getInt("study_no"));
+				sjm.setStudyName(rs.getString("study_name"));
+				sjm.setUserId(rs.getString("user_id"));
+				sjm.setUserName(rs.getString("user_name"));
+				sjm.setEmail(rs.getString("email"));
+				sjm.setPhone(rs.getString("phone"));
+				list.add(sjm);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

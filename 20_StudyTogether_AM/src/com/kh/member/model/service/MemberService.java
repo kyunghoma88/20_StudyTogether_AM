@@ -13,6 +13,7 @@ import com.kh.join.model.vo.StudyJoin;
 import com.kh.lector.model.vo.Lector;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.StudyJoinMember;
 import com.kh.study.model.vo.Study;
 
 public class MemberService {
@@ -106,6 +107,12 @@ private MemberDao dao = new MemberDao();
 	public List<Lector> selectMemberJoinLector(String id) {
 		Connection conn=getConnection();
 		List<Lector> list = dao.selectMemberJoinLector(conn,id);
+		close(conn);
+		return list;
+	}
+	public List<StudyJoinMember> selectStudyJoinContact() {
+		Connection conn=getConnection();
+		List<StudyJoinMember> list = dao.selectStudyJoinContact(conn);
 		close(conn);
 		return list;
 	}

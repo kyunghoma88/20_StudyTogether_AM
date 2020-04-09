@@ -28,7 +28,7 @@
                       	<input type="hidden" name="lecNo" value="<%=l.getLectorNo()%>">
                       </td>
                       <td>
-                          <img class="img-thumbnail" style="width:100px;height:100px;" src="" alt="">
+                          <img class="img-thumbnail" style="width:100px;height:100px;" src="<%=l.getLectorOriginalImg() %>" alt="">
                       </td>
                       <td>
                         <a href="<%=request.getContextPath() %>/lector/lectorView?pNo=<%=l.getLectorNo()%>"><%=l.getLectorTitle() %></a>

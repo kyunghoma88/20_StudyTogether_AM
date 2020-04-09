@@ -39,7 +39,7 @@
                 <td class="">
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">전송</button>
+                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="stu<%=s.getStudyNo()%>">폐쇄하기</button>
                       <input type="hidden" id="btn<%=s.getStudyNo() %>" name="lecNo" value="<%=s.getStudyNo() %>">
                       <input type="hidden" id="" name="stuNoArr" value="">
                     </label>

@@ -50,7 +50,7 @@
                 <td class="">
                 	<div class="form-check-inline">
                     <label class="form-check-label">
-                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="lec<%=l.getLectorNo()%>">전송</button>
+                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="lec<%=l.getLectorNo()%>">폐쇄하기</button>
                       <input type="hidden" id="btn<%=l.getLectorNo() %>" name="lecNo" value="<%=l.getLectorNo() %>">
                       <input type="hidden" id="" name="lecNoArr" value="">
                     </label>
@@ -106,7 +106,7 @@
                 <td class="">
                    <div class="form-check-inline">
                     <label class="form-check-label">
-                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="lec<%=l.getLectorNo()%>">전송</button>
+                      <button type="button" class="form-check-input btn-secondary btn-sm target" id="lec<%=l.getLectorNo()%>">탈퇴하기</button>
                       <input type="hidden" id="btn<%=l.getLectorNo() %>" name="lecNo" value="<%=l.getLectorNo() %>">
                       <input type="hidden" id="" name="lecNoArr" value="">
                     </label>

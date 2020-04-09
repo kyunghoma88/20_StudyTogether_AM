@@ -180,7 +180,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th scope="col" colspan="2">강좌명</th>
+						<th scope="col"	>강좌명</th>
 						<th scope="col">강사명</th>
 						<th scope="col">카테고리</th>
 						<th scope="col">판매가</th>
@@ -195,11 +195,6 @@
 					
 					<%for(Cart c:list){ %>
 					<tr>
-						<td id="prodImg0" class="img_cell ver_top">
-							<a href="javascript:;" class="book_img" onclick="toView('blank', '9788990247674', 'KOR');"> 
-								<img src="http://placehold.it/100x100">
-							</a>
-						</td>
 						<td id="prodName0" class="align_left ver_top">
 							<div class="order_name">
 								<a href="javascript:location.href='<%=request.getContextPath() %>/lector/lectorView?pNo=<%=c.getLectorNo()%>'">

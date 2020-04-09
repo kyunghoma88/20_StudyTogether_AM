@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.join.model.vo.StudyJoin;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.StudyJoinMember;
 import com.kh.study.model.vo.Study;
 
 
@@ -48,8 +51,15 @@ public class MemberStudyServlet extends HttpServlet {
 		List<Study> scList=new MemberService().selectMemberCreateStudy(id); //이용자가 개설한 강좌 모두 조회
 		List<Study> sjList=new MemberService().selectMemberJoinStudy(id); //이용자가 수강한 강좌 모두 조회
 		
+		List<StudyJoinMember> mList=new MemberService().selectStudyJoinContact();
+		for(StudyJoinMember sjm:mList) {
+			System.out.println(sjm);
+		}
+		
 		request.setAttribute("scList", scList);
 		request.setAttribute("sjList", sjList);
+		request.setAttribute("mList", mList);
+		
 		
 		request.getRequestDispatcher("/views/member/myStudy.jsp").forward(request, response);
 	}
