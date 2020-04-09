@@ -68,11 +68,11 @@ public class LectorOpenEndServlet extends HttpServlet {
 		String loc="";
 		
 		if(result>0) {
-			msg="등록 완료";
+			msg="관리자에게 개설 요청이 되었습니다.";
 			loc="/lector/lectorList";
 		}
 		else {
-			msg="등록 실패";
+			msg="개설을 실패했습니다. 다시 등록해주세요";
 			loc="/lector/lectorOpen";
 			
 		}

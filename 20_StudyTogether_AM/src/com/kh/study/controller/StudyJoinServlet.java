@@ -44,11 +44,12 @@ public class StudyJoinServlet extends HttpServlet {
 		StudyJoin sj=new StudyJoin(no,writer);
 		int result=new StudyService().insertJoin(sj);//참여하기버튼클릭!
 		
-		System.out.println(result);
-		
-		System.out.println("userId"+writer);
-		System.out.println("nono"+no);
-		System.out.println("list"+list);
+		/*
+		 * System.out.println(result);
+		 * 
+		 * System.out.println("userId"+writer); System.out.println("nono"+no);
+		 * System.out.println("list"+list);
+		 */
 		
 		String msg="";
 		String loc="";
