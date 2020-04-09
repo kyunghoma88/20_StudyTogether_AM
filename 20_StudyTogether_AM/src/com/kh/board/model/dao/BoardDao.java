@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Comment;
+import com.kh.board.model.vo.Mood;
 
 public class BoardDao {
 	
@@ -556,6 +557,25 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public boolean insertMood(Connection conn, Mood m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertMood");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, m.getNickname());
+			pstmt.setInt(2, m.getBoard_ref());
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return false;
 	}
 }
 

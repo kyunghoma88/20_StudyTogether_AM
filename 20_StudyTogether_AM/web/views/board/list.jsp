@@ -29,7 +29,7 @@
 	            <tbody>
 	            <%if(list==null||list.isEmpty()) {%>
 	            	<tr>
-	                	<td colspan="7">등록된 게시물이 존재하지 않습니다.</td>
+	                	<td colspan="7" style="text-align:center;">등록된 게시물이 존재하지 않습니다.</td>
 	                </tr>
 	            <%}else {%>
 	            <%for(Board b : list) {%>  
@@ -85,7 +85,7 @@
 				<ul class="pagination justify-content-center" id="page">
 					 <%=request.getAttribute("pageBar") %>
 				</ul>
-				<div>
+				<div style="text-align:center;">
 					<select name="searchContent" id="searchContent" style="background-color:white; height:29px;">
 						<option value="titleContent" selected>제목+내용</option>
 						<option value="title">제목만</option>
@@ -144,17 +144,22 @@
 								$("#page").html(data.pageBar);
 								var list = data.list;
 								if(list.length==0){
-									$(".table>tbody").html("<tr><td colspan='7'>등록된 게시물이 존재하지 않습니다.</td></tr>");
+									$(".table>tbody").html("<tr><td colspan='7' style='text-align:center;'>등록된 게시물이 존재하지 않습니다.</td></tr>");
 								} 
 								var td;
 								for(let i=0;i<list.length;i++){
 									td += "<tr><td>"+list[i].board_no+"</td>";
-									td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
-									list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
+									if(list[i].comment_cnt>0){									
+										td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+										list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
+									}else{
+										td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+										list[i].title+"</a></td>";
+									}
 									td+="<td>"+list[i].nickname+"</td>";
 									var year = list[i].write_date.substr(6,4);
 									var month = 0+list[i].write_date.substr(0,1);
-									var day = 0+list[i].write_date.substr(3,1);
+									var day = list[i].write_date.substr(3,1);
 									td+="<td>"+year+"-"+month+"-"+day+"</td>";
 									td+="<td>"+list[i].cnt+"</td>";
 									td+="<td>"+list[i].good_cnt+"</td>";
@@ -186,17 +191,22 @@
 							$("#page").html(data.pageBar);
 							var list = data.list;
 							if(list.length==0){
-								$(".table>tbody").html("<tr><td colspan='7'>등록된 게시물이 존재하지 않습니다.</td></tr>");
+								$(".table>tbody").html("<tr><td colspan='7' style='text-align:center;'>등록된 게시물이 존재하지 않습니다.</td></tr>");
 							} 
 							var td;
 							for(let i=0;i<list.length;i++){
 								td += "<tr><td>"+list[i].board_no+"</td>";
-								td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
-								list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
+								if(list[i].comment_cnt>0){									
+									td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+									list[i].title+"&nbsp;<span style='color:red;'>["+list[i].comment_cnt+"]</span></a></td>";
+								}else{
+									td+="<td><a class='board_title' href='javascript:boardView("+list[i].board_no+","+<%=cPage%>+","+"\"<%=category%>\""+")'>"+
+									list[i].title+"</a></td>";
+								}
 								td+="<td>"+list[i].nickname+"</td>";
 								var year = list[i].write_date.substr(6,4);
 								var month = 0+list[i].write_date.substr(0,1);
-								var day = 0+list[i].write_date.substr(3,1);
+								var day = list[i].write_date.substr(3,1);
 								td+="<td>"+year+"-"+month+"-"+day+"</td>";
 								td+="<td>"+list[i].cnt+"</td>";
 								td+="<td>"+list[i].good_cnt+"</td>";
