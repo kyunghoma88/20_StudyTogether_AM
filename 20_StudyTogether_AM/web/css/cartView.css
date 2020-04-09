@@ -15,12 +15,16 @@
 	font-weight:bolder;
 }
 #cartHead{
+	font-size:35px;
+}
+#cartValue{
 	font-size:25px;
 }
 #totalSum{
-	
+	font-size:25px;
 	border-style:none;
 }
 #totalSpan{
 	transform:translate(75%,0);
+	font-size:25px;
 }
