@@ -35,7 +35,6 @@ public class DeleteCartServlet extends HttpServlet {
 		String msg = "";
 		String loc = "";
 		for(int i = 0; i < cartList.length; i++) {
-			System.out.println("cartList 데이터 : " + cartList[i]);
 
 			String cartNo = cartList[i];
 			int result = new CartService().deleteCart(Integer.parseInt(cartNo));
