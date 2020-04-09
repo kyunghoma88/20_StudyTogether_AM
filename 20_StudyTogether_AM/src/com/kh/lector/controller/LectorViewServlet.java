@@ -37,7 +37,6 @@ public class LectorViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("pNo"));
-		System.out.println("viewNo"+no);
 
 		HttpSession session=request.getSession();
 		
@@ -46,8 +45,7 @@ public class LectorViewServlet extends HttpServlet {
 		
 		LectorJoin lj=new LectorService().searchLectorJoin(no,loginId);
 		//로그인한 사람이 결제를 했는지 조회하는 메서드
-		System.out.println("로그인한id :"+loginId);
-		System.out.println("강좌번호 :"+no);
+		
 
 	
 		//channel페이징처리시작

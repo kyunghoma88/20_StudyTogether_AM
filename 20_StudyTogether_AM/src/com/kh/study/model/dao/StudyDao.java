@@ -315,6 +315,32 @@ public class StudyDao {
 		}
 		return slist;
 	}
+//객체
+	public StudyJoin selectStudyJoin(Connection conn, int no,String loginId) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectStudyJoin");
+		StudyJoin sj=new StudyJoin();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			pstmt.setString(2, loginId);
+			rs=pstmt.executeQuery();
+		
+			if(rs.next()) {
+			sj=new StudyJoin();
+				sj.setStudyNo(rs.getInt("STUDY_NO"));
+				sj.setUserId(rs.getString("USER_ID"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return sj;
+	}
 		
 	
 }

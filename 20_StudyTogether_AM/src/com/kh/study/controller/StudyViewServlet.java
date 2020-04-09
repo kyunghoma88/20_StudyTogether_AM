@@ -48,7 +48,8 @@ public class StudyViewServlet extends HttpServlet {
 		
 		String loginId=((Member)session.getAttribute("loginedMember")).getUserId();
 		//System.out.println("로그인아이디"+loginId);
-		
+		StudyJoin sj1=new StudyService().selectStudyJoin(no,loginId);
+
 		//no where 
 		boolean attendAble=true;
 		
@@ -69,6 +70,7 @@ public class StudyViewServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			
 		}else {
+			request.setAttribute("sj1", sj1);
 			request.setAttribute("sList", sList);
 			request.setAttribute("attendAble", attendAble);
 			request.setAttribute("study", s);

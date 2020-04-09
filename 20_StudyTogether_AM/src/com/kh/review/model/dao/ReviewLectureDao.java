@@ -240,4 +240,34 @@ private Properties prop = new Properties();
 		return result;
 	}
 
+	public List<ReviewLecture> realtime(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=prop.getProperty("realtime");
+		List<ReviewLecture> list = new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewLecture revL =new ReviewLecture();
+				revL.setReviewLecNo(rs.getInt("review_lec_no"));
+				revL.setReviewLecWriter(rs.getString("review_lec_writer"));
+				revL.setLectureName(rs.getString("lecture_title"));
+				revL.setReviewLecCategory(rs.getString("review_lec_category"));
+				revL.setReviewLecContent(rs.getString("review_lec_content"));
+				revL.setReviewLecStar(rs.getInt("review_lec_star"));
+				revL.setReviewLecDate(rs.getDate("review_lec_date"));
+				list.add(revL);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
 }

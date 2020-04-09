@@ -85,4 +85,12 @@ public class ReviewLectureService {
 		return result;
 	}
 
+	public List<ReviewLecture> realtime() {
+		Connection conn = getConnection();
+		List<ReviewLecture> list = dao.realtime(conn);
+		close(conn);
+	
+		return list;
+	}
+
 }

@@ -553,6 +553,7 @@ public class BoardDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
+			pstmt.setInt(2, no);
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -619,6 +620,42 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return false;
+	}
+	public int selectCommentCount(Connection conn, int board_ref) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		ResultSet rs = null;
+		String sql=prop.getProperty("selectCommentCount");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, board_ref);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateCommentCount(Connection conn, int board_ref, int cnt) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql=prop.getProperty("updateCommentCount");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cnt);
+			pstmt.setInt(2, board_ref);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }
 

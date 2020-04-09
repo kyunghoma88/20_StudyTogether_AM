@@ -327,7 +327,8 @@
 	    		url:"<%=request.getContextPath()%>/comment/delete",
 	    		type:"post",
 				dataType:"json",
-				data:{"no":no},
+				data:{"no":no,
+					  "board_ref":<%=b.getBoard_no()%>},
 				success:function(data){
 					console.log(data);
 					if(data>0){						
