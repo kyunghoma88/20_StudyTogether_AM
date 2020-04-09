@@ -61,13 +61,13 @@ public class ReviewLectureFindServlet extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<li class='page-item'><a class='page-link'>이전</a></li>";
 		}else {
-			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewFinder?cPage="+(pageNo-1)+"&searchType="+type+""+"&searchKeyword="+key+"'>이전</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewLectureFinder?cPage="+(pageNo-1)+"&searchType="+type+""+"&searchKeyword="+key+"'>이전</a>";
 		}
 		while(!(pageNo>pageEnd || pageNo>totalPage)) {
 			if(pageNo ==cPage) {
 				pageBar+="<li class='page-item'><a class='page-link'<span class = 'cPage'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewLectureFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>"+pageNo+"</a>";
 			}		
 			pageNo++;
 		}
@@ -75,9 +75,8 @@ public class ReviewLectureFindServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'>다음</a></li>";
 		}else {
-			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>다음</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()+"/review/reviewLectureFinder?cPage="+pageNo+"&searchType="+type+""+"&searchKeyword="+key+"'>다음</a>";
 		}
-		
 		request.setAttribute("list",list);
 		request.setAttribute("pageBar",pageBar);
 		request.getRequestDispatcher("/views/review/reviewLecture/reviewLectureList.jsp").forward(request, response);
