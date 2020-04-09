@@ -18,9 +18,9 @@
          if(key.equals("saveId")){
             saveId=value;
          }
-         if(key.equals("keeplogin")){
+         /* if(key.equals("keeplogin")){
         	 keeplogin = value;
-         }
+         } */
       }
    }
 %> 
@@ -79,7 +79,7 @@
       <%} %>
 		<button onclick="location.href='<%=request.getContextPath()%>/member/memberView'" class="main2">내정보보기</button>
 		<button onclick="location.href='<%=request.getContextPath()%>/cart/cartView?id=<%=loginMember.getUserId() %>'" class="main2">장바구니</button>                                                                             
-		<button onclick="location.replace('<%=request.getContextPath()%>/logout.do')" class="main2">로그아웃</button>
+		<button onclick="logoutChk()" class="main2">로그아웃</button>
   		<%-- <div style="text-align:right;">
 			<%=loginMember.getUserId() %> 님 환영합니다.
 		</div> --%>
@@ -374,4 +374,12 @@
 	   alert("로그인 후 이용해 주세요!");
    }
  
+   function logoutChk(){
+	   if (confirm("로그아웃 하시겠습니까??") == true){    //확인
+		   location.replace('<%=request.getContextPath()%>/logout.do');
+       }else{   //취소
+          return false;
+       }
+   }
+   
 </script>

@@ -55,8 +55,8 @@ public class LoginServlet extends HttpServlet {
 
 			//cookie로 아이디 저장 유지하기
 			String saveId = request.getParameter("saveId");
-			
-			
+
+			//	System.out.println("saveId : " + saveId);
 			if(saveId!=null) {
 				//아이디를 쿠키에 저장하게함.
 				Cookie c = new Cookie("saveId",id);

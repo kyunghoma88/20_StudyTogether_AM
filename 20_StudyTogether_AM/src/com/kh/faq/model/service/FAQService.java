@@ -96,6 +96,24 @@ public class FAQService {
 		return flag;
 		
 	}
+	
+	public List<FAQ> searchFormFAQ(int cPage, int numPerPage, String title) {
+		Connection conn = getConnection();
+		List<FAQ> list = dao.searchFormFAQ(conn, cPage, numPerPage, title);
+		
+		
+		close(conn);
+		return list;
+	}
+
+	public int searchFormCount(String title) {
+		Connection conn = getConnection();
+		int result = dao.faqFormCount(conn, title);
+		close(conn);
+		return result;
+	}
+	
+	
 
 	
 }

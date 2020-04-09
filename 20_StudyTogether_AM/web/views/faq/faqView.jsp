@@ -31,7 +31,7 @@
 	
 	#faq-container{
 		width : 800px;
-		height : 800px;
+		height : 600px;
  		margin-left : 100px;
 	}
 	
@@ -46,7 +46,7 @@
 
 
 
-<section id = "faq-container" style="height:800px;">
+<section id = "faq-container">
 <!-- 	<div class="row"> -->
 <!-- 		<div class="col-1"></div> -->
 		<div class="container faq-header">
