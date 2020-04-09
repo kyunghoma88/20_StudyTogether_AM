@@ -83,7 +83,7 @@
 							</li>
 							<li style="float:right;">
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
-								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none;">삭제</a>
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none; font-size:20px;">삭제</a>
 							</li>
 							<%} %>
 						</ul>
@@ -101,7 +101,7 @@
 							<li><%=c.getComment_date() %></li>
 							<%if(loginMember!=null&&loginMember.getUserId().equals(c.getComment_writer())) {%>
 							<li style="float:right;">
-								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none;">삭제</a>
+								<a class="comment_delete" href="javascript:comment_delete(<%=c.getComment_no()%>)" style="text-decoration:none; font-size:20px;">삭제</a>
 							</li>
 							<%} %>
 						</ul>
@@ -150,7 +150,7 @@
 				</ul>
 				<%} %>
 			</div>
-			<table class="table" style="clear: both; width: 100%; font-size: 13px;">
+			<table class="table" style="clear: both; width: 100%; font-size: 17px;">
                 <%if(b.getBoard_no()!=maxNo) {%>
                     <tr>
                         <td style="width: 100px;"><a href="javascript:boardView(<%=b.getBoard_no()+1 %>,'<%=category%>')" style="text-decoration: none; color:black;">
@@ -164,7 +164,7 @@
                         <td style="text-align: center;"><%=preView.getWrite_date() %></td>
                     </tr>
                  <%} %>
-                 <%if(b.getBoard_no()!=1) {%>
+                 <%if(b.getBoard_no()>minNo) {%>
                     <tr>
                         <td><a href="javascript:boardView(<%=b.getBoard_no()-1 %>,'<%=category%>')" style="text-decoration: none; color:black;">
                         <i class="fas fa-angle-down" style="color: orange;"></i> 
@@ -327,7 +327,8 @@
 	    		url:"<%=request.getContextPath()%>/comment/delete",
 	    		type:"post",
 				dataType:"json",
-				data:{"no":no},
+				data:{"no":no,
+					  "board_ref":<%=b.getBoard_no()%>},
 				success:function(data){
 					console.log(data);
 					if(data>0){						

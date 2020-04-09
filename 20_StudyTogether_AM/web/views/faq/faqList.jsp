@@ -16,7 +16,7 @@
 
 <style>
 	#faq-detail{
-		font-size : 11px;
+		font-size : 20px;
 		
 	}
 	
@@ -44,19 +44,21 @@
 	
 	
 	#search-btn{
-		margin-bottom : 3px;
+		margin-bottom : 14px;
+		font-size : 25px !important;
 	}
 	
 	.form-control{
 		width : 350px !important;
+		font-size : 25px !important;
 	}
 	
 	.btn-faq-category{
-		font-size : 13px;
+		font-size : 25px;
 	}
 	
 	.tbl-container{
-		font-size : 15px;
+		font-size : 30px;
 	}
 	
 	#tbl-faq tr>th{
@@ -82,10 +84,10 @@
 </style>
 
 
-<section id="faq-container" style="height:600px;">
+<section id="faq-container" style="height:800px;">
 	
 		<div class="container faq-header">
-			<h2 style="display:inline-block;">FAQ</h2>
+			<p style="display:inline-block; font-size:40px; font-weight:bolder;">FAQ</p>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<p id="faq-detail" style="display:inline-block;">자주 묻는 질문입니다. 더 궁금하신 사항은 전화문의 또는 카카오톡으로 문의해 주세요.</p>
 		</div>

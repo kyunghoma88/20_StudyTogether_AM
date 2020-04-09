@@ -19,10 +19,11 @@
         width: 100px;
         height: 36px;
         display: inline-block;
+        font-size:25px;
     }
     #title{
         height:30px;
-        font-size:16px;
+        font-size:20px;
     }
     /*파일추가 버튼*/
     .fileAdd, .fileAdd:active, .fileAdd:focus{
@@ -31,7 +32,8 @@
         margin-right: 10px;
         color: white;
         border: 0px;
-        outline: none;;
+        outline: none;
+        font-size:20px;
     }
     /*파일삭제 버튼*/
     .fileDelete, .fileDelete:active, .fileDelete:focus{
@@ -41,6 +43,7 @@
         color: white;
         border: 0px;
         outline:none;
+        font-size:20px;
     }
     /*파일보내는 영역*/
     #fileArea{
@@ -48,6 +51,7 @@
         clear: both;
         position: relative;
         top: 16px;
+        font-size:20px;
     }
     /*버튼 클릭시 서버에 전송할 영역*/
     .sendArea{
@@ -55,6 +59,7 @@
         margin-left: 106px; 
         position: relative;
         top: 32px;
+        font-size:20px;
     }
     /*보내는 버튼 속성*/
     .write, .write:hover, .write:active, .write:focus{
@@ -71,7 +76,9 @@
     }
     .fname{
     	position:relative;
-    	left:-180px;
+    	left: 175px;
+    	top: -34px;
     	display: inline-block;
     	background-color: white;
+    	width: 400px;
     }

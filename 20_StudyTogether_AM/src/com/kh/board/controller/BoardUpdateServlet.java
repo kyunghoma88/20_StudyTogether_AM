@@ -35,9 +35,11 @@ public class BoardUpdateServlet extends HttpServlet {
 		Board b=new BoardService().boardView(no);
 		String category=request.getParameter("category");
 		
-		String[] files=b.getFile_upload().split(",");
-		request.setAttribute("board", b);
+		String files[] =b.getFile_upload()!=null?b.getFile_upload().split(","):null;
+			
+		request.setAttribute("board", b);			
 		request.setAttribute("files", files);
+		
 		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/views/board/boardUpdate.jsp")

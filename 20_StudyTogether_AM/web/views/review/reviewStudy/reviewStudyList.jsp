@@ -62,17 +62,17 @@
 	         </a>
            
             <%if(revS.getReviewStuStar()==1){%>
-            	<td>★</td>
+            	<p id="starColor">★</p>
             <%}else if(revS.getReviewStuStar()==2){ %>
-            	<td>★★</td>
+            	<p id="starColor">★★</p>
             <%}else if(revS.getReviewStuStar()==3){ %>
-            	<td>★★★</td>
+            	<p id="starColor">★★★</p>
             <%}else if(revS.getReviewStuStar()==4){ %>
-          		<td>★★★★</td>
+          		<p id="starColor">★★★★</p>
           	<%}else if(revS.getReviewStuStar()==5){ %>
-          		<td>★★★★★</td>
+          		<p id="starColor">★★★★★</p>
           	<%} %>
-          	<br><br>
+          	<br>
             <h4><%=revS.getReviewStuContent() %></h4>
         
             <td><span style="float:right;"><%=revS.getReviewStuWriter() %></span></td>
@@ -90,7 +90,7 @@
 			<input type="hidden" >
 		<%} %>
 		<br>
-       <ul class="pagination" style="margin-left:580px">
+       <ul class="pagination" style="margin-left:530px">
        		<%if(!list.isEmpty()){ %>
 				<%=request.getAttribute("pageBar") %>
 			<%	}%>	

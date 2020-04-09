@@ -30,8 +30,14 @@ public class CommentDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int no=Integer.parseInt(request.getParameter("no"));
+		int board_ref=Integer.parseInt(request.getParameter("board_ref"));
 		
+		int oldCnt=new BoardService().selectCommentCount(board_ref);
 		int result=new BoardService().deleteComment(no);
+		if(result>0) {
+			int newCnt = new BoardService().selectCommentCount(board_ref);
+			new BoardService().updateCommentCount(board_ref, (oldCnt-newCnt));
+		}
 		response.getWriter().print(result);
 		
 	}

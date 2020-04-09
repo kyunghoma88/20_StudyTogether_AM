@@ -67,7 +67,8 @@
                         "font-weight":"bold",
                         "padding-left":"106px",
                         "position":"relative",
-                        "top":"16px"
+                        "top":"16px",
+                        "font-size":"25px"
                     });
                     
                     //$("#fileAdd").off("click");

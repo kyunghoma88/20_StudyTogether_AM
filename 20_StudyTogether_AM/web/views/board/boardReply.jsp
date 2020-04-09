@@ -25,7 +25,7 @@
                 </div>
                 <input type="text" name="title" id="title" placeholder="게시글 제목을 입력하세요" size="70" value="[답글]<%=b.getTitle() %>" readonly/>
                 <div style="padding-left: 106px; margin-top:16px">
-                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none"></textarea>
+                    <textarea name="write_text" id="write_text" style="width: 708px; height:390px; resize:none; font-size: 20px;"></textarea>
                 </div>
                 <div class="write_item" style="float: left; margin-top: 16px;">
                     <span style="font-weight: bold;">첨부파일</span>
@@ -60,7 +60,7 @@
             //파일창 추가
             $("#fileAdd").click(event,function(){
                 //var span=$("<span class='item'>파일#"+cnt+"</span>");
-                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+"</span> "+
+                var data="<div id='data"+(cnt+1)+"'><span class='item'>파일#"+(cnt+1)+" </span> "+
                 "<input type='file' name='fileup"+(cnt+1)+"' id='fileup"+(cnt+1)+"'></div>";
                     if(cnt > 4){
                     $("#filelimit").html("※파일은 최대 5개까지만 등록가능합니다.").
@@ -69,7 +69,8 @@
                         "font-weight":"bold",
                         "padding-left":"106px",
                         "position":"relative",
-                        "top":"16px"
+                        "top":"16px",
+                        "font-size":"25px"
                     });
                     
                     //$("#fileAdd").off("click");

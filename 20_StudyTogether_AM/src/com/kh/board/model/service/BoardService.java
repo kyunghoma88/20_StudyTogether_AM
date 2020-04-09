@@ -68,9 +68,9 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public int minNo(int no) {
+	public int minNo() {
 		Connection conn=getConnection();
-		int result=dao.maxNo(conn, no);
+		int result=dao.minNo(conn);
 		close(conn);
 		return result;
 	}
@@ -204,6 +204,23 @@ public class BoardService {
 		}
 		close(conn);
 		return result;
+	}
+	public int selectCommentCount(int board_ref) {
+		Connection conn=getConnection();
+		int result=dao.selectCommentCount(conn, board_ref);
+		
+		close(conn);
+		return result;
+	}
+	public void updateCommentCount(int board_ref, int cnt) {
+		Connection conn=getConnection();
+		int result=dao.updateCommentCount(conn, board_ref, cnt);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
 	}
 }
 
