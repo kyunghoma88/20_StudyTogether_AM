@@ -59,17 +59,17 @@
 	                       <h2><%=revL.getLectureName() %></h2>
 	         </a>
            <%if(revL.getReviewLecStar()==1){%>
-            	<td>★</td>
+            	<p id="starColor">★</p>
             <%}else if(revL.getReviewLecStar()==2){ %>
-            	<td>★★</td>
+            	<p id="starColor">★★</p>
             <%}else if(revL.getReviewLecStar()==3){ %>
-            	<td>★★★</td>
+            	<p id="starColor">★★★</p>
             <%}else if(revL.getReviewLecStar()==4){ %>
-          		<td>★★★★</td>
+          		<p id="starColor">★★★★</p>
           	<%}else if(revL.getReviewLecStar()==5){ %>
-          		<td>★★★★★</td>
+          		<p id="starColor">★★★★★</p>
           	<%} %>
-          	<br><br>
+          	<br>
             <h4><%=revL.getReviewLecContent() %></h4>
         
             <td><span style="float:right;"><%=revL.getReviewLecWriter() %></span></td>
@@ -85,7 +85,7 @@
 			<input type="hidden" >
 		<%} %>
 		<br>
-       <ul class="pagination" style="margin-left:580px">
+       <ul class="pagination" style="margin-left:530px">
 			<%if(!list.isEmpty()){ %>
 			<%=request.getAttribute("pageBar") %>
 			<%} %>

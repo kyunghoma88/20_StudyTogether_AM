@@ -53,7 +53,7 @@
 			<%}else { %>
 			<%for(int i = 0; i < list.size(); i++) {%>
 				<%if(list.get(i).getStatus().equals("N")){ %>
-			<tr>
+			<tr id="cartValue">
 				<td><input type="checkbox" name="cartList" onclick="priceSum(this);" value="<%=list.get(i).getCartNo()%>">
 					 <%=list.get(i).getLectorTitle() %>
 				</td>

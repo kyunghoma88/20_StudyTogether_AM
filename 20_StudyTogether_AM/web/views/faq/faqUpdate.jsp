@@ -93,7 +93,7 @@
 				<tr>
 					<th>제 목</th>
 					<td>
-						<input type="text" name="title" class="form-control title-con" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
+						<input type="text" autocomplete="off" name="title" class="form-control title-con" value="<%=f.getFaqTitle()%>" id="faq_title" required/>
 					</td>
 				</tr>
 				
