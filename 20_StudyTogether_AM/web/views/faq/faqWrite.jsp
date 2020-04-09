@@ -73,7 +73,7 @@
 				</colgroup>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="title" class="title-con" required></td>
+					<td><input type="text" name="title" class="title-con" autocomplete="off" required></td>
 				</tr>
 				<tr>
 					<th>카테고리</th>
