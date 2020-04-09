@@ -33,16 +33,20 @@ public class AjaxGoodUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		String id=request.getParameter("id");
+		String mood=request.getParameter("good");
 		
-		Mood m = new Mood(id,no,'N');
-		boolean flag=new BoardService().insertMood(m);
-		if(flag) {			
-			int result=new BoardService().updateBad(no);
-		}else {
-			System.out.println("에러");
+		if(id.equals("")) {
+			id=null;
 		}
 		
-		new BoardService().updateGood(no);
+		Mood m = new Mood(id,no,'N');
+		boolean flag=new BoardService().insertMood(m, mood);
+		if(flag&&id!=null) {			
+			int result=new BoardService().updateGood(no);
+		}else {
+			
+		}
+		
 		Board b=new BoardService().boardView(no);
 		response.getWriter().print(b.getGood_cnt());
 	}
