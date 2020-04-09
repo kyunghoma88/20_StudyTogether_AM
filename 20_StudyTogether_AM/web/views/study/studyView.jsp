@@ -69,7 +69,6 @@ function apply(){
      }
     }
     
-    
 function apply2(){
  alert("개설자는 이미 참여 되었습니다.");
  location.reload;
