@@ -110,16 +110,16 @@ public class BoardService {
 		return result;
 	}
 	
-	public List<Board> boardFindList(int cPage, int numPerPage, String date, String content, String searchText){
+	public List<Board> boardFindList(int cPage, int numPerPage, String category, String content, String searchText){
 		Connection conn=getConnection();
-		List<Board> list=dao.boardFindList(conn, cPage, numPerPage, date, content, searchText);
+		List<Board> list=dao.boardFindList(conn, cPage, numPerPage, category, content, searchText);
 		close(conn);
 		return list;
 		
 	}
-	public int boardFindCount(String date, String content, String searchText) {
+	public int boardFindCount(String content, String searchText) {
 		Connection conn=getConnection();
-		int result=dao.boardFindCount(conn,date,content,searchText);
+		int result=dao.boardFindCount(conn,content,searchText);
 		close(conn);
 		return result;
 	}

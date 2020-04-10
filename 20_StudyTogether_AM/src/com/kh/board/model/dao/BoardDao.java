@@ -235,7 +235,7 @@ public class BoardDao {
 		return result;
 	}
 	
-	public List<Board> boardFindList(Connection conn, int cPage, int numPerPage, String date, String content, String searchText){
+	public List<Board> boardFindList(Connection conn, int cPage, int numPerPage, String category, String content, String searchText){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Board> list=new ArrayList();
@@ -325,7 +325,7 @@ public class BoardDao {
 		}
 		return list;
 	}
-	public int boardFindCount(Connection conn, String date, String content, String searchText) {
+	public int boardFindCount(Connection conn, String content, String searchText) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="";
