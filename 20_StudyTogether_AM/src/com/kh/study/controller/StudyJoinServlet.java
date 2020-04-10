@@ -55,7 +55,8 @@ public class StudyJoinServlet extends HttpServlet {
 		String loc="";
 
 		if(result>0) {
-			msg="환영합니다.가입되었습니다.";
+			msg="가입되었습니다. "
+					+ "스터디장의 개별 연락을 통해 진행될 예정입니다. ";
 			loc="/study/studyView?no="+no;
 		}else {
 			msg="이미 가입된 스터디 입니다.";
