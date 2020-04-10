@@ -135,7 +135,6 @@
 							type:"post",
 							dataType:"json",
 							data:{"cPage":<%=cPage%>,
-								  "date":$("#searchDate").val(),
 								  "content":$("#searchContent").val(),
 								  "searchText":$("#searchText").val().trim(),
 								  "category":"<%=category%>"},
@@ -157,15 +156,11 @@
 										list[i].title+"</a></td>";
 									}
 									td+="<td>"+list[i].nickname+"</td>";
-									var year = list[i].write_date.substr(6,4);
+									var year = list[i].write_date.substr(7,4);
 									var month = 0+list[i].write_date.substr(0,1);
-									var day = list[i].write_date.substr(3,1);
-									
-									if(day.length==2){									
-										td+="<td>"+year+"-"+month+"-"+day+"</td>";
-									}else{
-										td+="<td>"+year+"-"+month+"-0"+day+"</td>";
-									}
+									var day = list[i].write_date.substr(3,2);
+																		
+									td+="<td>"+year+"-"+month+"-"+day+"</td>";
 									td+="<td>"+list[i].cnt+"</td>";
 									td+="<td>"+list[i].good_cnt+"</td>";
 									td+="<td>"+list[i].bad_cnt+"</td></tr>";
@@ -187,7 +182,6 @@
 						type:"post",
 						dataType:"json",
 						data:{"cPage":<%=cPage%>,
-							  "date":$("#searchDate").val(),
 							  "content":$("#searchContent").val(),
 							  "searchText":$("#searchText").val().trim(),
 							  "category":"<%=category%>"},
@@ -209,15 +203,12 @@
 									list[i].title+"</a></td>";
 								}
 								td+="<td>"+list[i].nickname+"</td>";
-								var year = list[i].write_date.substr(6,4);
+								var year = list[i].write_date.substr(7,4);
 								var month = 0+list[i].write_date.substr(0,1);
-								var day = list[i].write_date.substr(3,1);
+								var day = list[i].write_date.substr(3,2);
+																
+								td+="<td>"+year+"-"+month+"-"+day+"</td>";
 								
-								if(day.length==2){									
-									td+="<td>"+year+"-"+month+"-"+day+"</td>";
-								}else{
-									td+="<td>"+year+"-"+month+"-0"+day+"</td>";
-								}
 								td+="<td>"+list[i].cnt+"</td>";
 								td+="<td>"+list[i].good_cnt+"</td>";
 								td+="<td>"+list[i].bad_cnt+"</td></tr>";
@@ -237,20 +228,21 @@
     	f.method="post";
     	f.submit();
     }
-    function boardList(cPage){
+    function boardList(cPage, category){
     	var f=document.paging;
     	f.cPage.value=cPage;
+    	f.category.value=category;
     	f.action="<%=request.getContextPath()%>/board/boardList";
     	f.method="post";
     	f.submit();
 	} 	
-    function boardFind(cPage,date,content,searchText){
+    function boardFind(cPage,category, content,searchText){
     	$.ajax({
 			url:"<%=request.getContextPath()%>/ajax/search",
 			type:"post",
 			dataType:"json",
 			data:{"cPage":cPage,
-				  "date":date,
+				  "category":category,
 				  "content":content,
 				  "searchText":searchText},
 			success:function(data){

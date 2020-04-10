@@ -36,7 +36,6 @@ public class AjaxSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String date=request.getParameter("date");
 		String content=request.getParameter("content");
 		String searchText=request.getParameter("searchText");
 		String category=request.getParameter("category");
@@ -51,11 +50,11 @@ public class AjaxSearchServlet extends HttpServlet {
 		//한페이지에 보여줄 데이터 갯수
 		int numPerPage=15;
 				
-		List<Board> list = new BoardService().boardFindList(cPage, numPerPage,date,content,searchText);
+		List<Board> list = new BoardService().boardFindList(cPage, numPerPage, category, content,searchText);
 		
 				
 		//총 게시판 갯수 구하기
-		int totalBoard=new BoardService().boardFindCount(date, content, searchText);
+		int totalBoard=new BoardService().boardFindCount(content, searchText);
 		//총 페이지 갯수 구하기
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
 				
@@ -65,24 +64,24 @@ public class AjaxSearchServlet extends HttpServlet {
 				
 		String pageBar="";
 		if(pageNo>10) {
-			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+(pageNo-1)+",\""+date+",\""+content+"\",\""+searchText+"\")'><이전</a>";
+			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+(pageNo-1)+",\""+category+",\""+content+"\",\""+searchText+"\")'><이전</a>";
 		}
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(pageNo==cPage) {
 				pageBar+="<li class='page-item disabled'><a class='page-link' href='#' style='background-color: lightblue; color:black; font-weight:bold;'>"+pageNo+"</a></li>";
 			}else {
-						pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+pageNo+",\""+date+"\",\""+content+"\",\""+searchText+"\")'>"+pageNo+"</a>";
+						pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+pageNo+",\""+category+"\",\""+content+"\",\""+searchText+"\")'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo>totalPage) {
 			pageBar+="";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+pageNo+",\""+date+"\",\""+content+"\",\""+searchText+"\")'>다음></a>";
+			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardFind("+pageNo+",\""+category+"\",\""+content+"\",\""+searchText+"\")'>다음></a>";
 		}
 		
 //		JSONArray ja=new JSONArray();
-		jsonObj.put("date", date);
+		jsonObj.put("category", category);
 		jsonObj.put("content", content);
 		jsonObj.put("searchText", searchText);
 		jsonObj.put("pageBar", pageBar);
