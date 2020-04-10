@@ -70,20 +70,20 @@ public class BoardListServlet extends HttpServlet {
 		
 		String pageBar="";
 		if(pageNo>10) {
-			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+(pageNo-1)+")'><이전</a>";
+			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+(pageNo-1)+",\""+category+"\")'><이전</a>";
 		}
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(pageNo==cPage) {
 				pageBar+="<li class='page-item disabled'><a class='page-link' href='#' style='background-color: lightblue; color:black; font-weight:bold;'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+")'>"+pageNo+"</a>";
+				pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+",\""+category+"\")'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo>totalPage) {
 			pageBar+="";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+")'>다음></a>";
+			pageBar+="<li class='page-item'><a class='page-link' href='javascript:boardList("+pageNo+",\""+category+"\")'>다음></a>";
 		}
 		request.setAttribute("category", category);
 		//request.setAttribute("commentCount", commentCount);
