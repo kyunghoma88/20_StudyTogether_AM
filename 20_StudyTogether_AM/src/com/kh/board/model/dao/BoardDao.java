@@ -244,7 +244,7 @@ public class BoardDao {
 		try {
 			if(content.equals("titleContent")) {
 				sql=prop.getProperty("weekFindTitleContent");
-				System.out.println("'%"+searchText+"%'");
+				
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, searchText);
 				pstmt.setString(2, searchText);
@@ -333,7 +333,7 @@ public class BoardDao {
 		try {
 			if(content.equals("titleContent")) {
 				sql=prop.getProperty("weekFindTitleContent_count");
-				System.out.println("'%"+searchText+"%'");
+				
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, searchText);
 				pstmt.setString(2, searchText);
@@ -343,7 +343,7 @@ public class BoardDao {
 				}
 			}else if(content.equals("title")) {
 				sql=prop.getProperty("weekFindTitle_count");
-				System.out.println("'%"+searchText+"%'");
+				
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, searchText);
 				rs=pstmt.executeQuery();
@@ -352,7 +352,7 @@ public class BoardDao {
 				}
 			}else if(content.equals("writer")) {
 				sql=prop.getProperty("weekFindWriter_count");
-				System.out.println("'%"+searchText+"%'");
+				
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setString(1, searchText);
 				rs=pstmt.executeQuery();
